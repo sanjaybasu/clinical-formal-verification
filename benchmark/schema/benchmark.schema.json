@@ -1,0 +1,280 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/sanjaybasu/clinical-formal-verification/benchmark/schema/benchmark.schema.json",
+  "title": "clinical safety invariant benchmark item",
+  "description": "A single benchmark item: a rule set, a safety property over that rule set, and metadata. Ground truth is held separately in answer_key.schema.json so that the public split can hide it from methods under test.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "domain", "ruleset", "property", "metadata"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$",
+      "description": "stable item identifier in kebab case"
+    },
+    "domain": {
+      "type": "string",
+      "enum": ["triage", "medication", "outreach"]
+    },
+    "ruleset": {
+      "$ref": "#/$defs/ruleset"
+    },
+    "property": {
+      "$ref": "#/$defs/property"
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["description", "source"],
+      "properties": {
+        "description": { "type": "string" },
+        "source": { "type": "string", "enum": ["synthetic", "public_derived"] },
+        "source_note": { "type": "string", "description": "for public_derived, the public source and the licence under which it is redistributable" },
+        "clinical_intent": { "type": "string", "description": "plain language statement of the safety intent the property encodes" }
+      }
+    }
+  },
+  "$defs": {
+    "typed_var": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "type"],
+      "properties": {
+        "name": { "type": "string", "pattern": "^[a-zA-Z_][a-zA-Z0-9_]*$" },
+        "type": { "type": "string", "enum": ["bool", "enum", "int"] },
+        "domain": {
+          "type": "array",
+          "description": "ordered list of labels for an enum variable; order defines the comparison order so that le/ge are meaningful (for example acuity levels)",
+          "items": { "type": "string" }
+        },
+        "bounds": {
+          "type": "array",
+          "description": "inclusive [min, max] for an int variable; required for int so that the input space is finite and its cardinality is reportable",
+          "items": { "type": "integer" },
+          "minItems": 2,
+          "maxItems": 2
+        }
+      },
+      "allOf": [
+        { "if": { "properties": { "type": { "const": "enum" } } }, "then": { "required": ["domain"] } },
+        { "if": { "properties": { "type": { "const": "int" } } }, "then": { "required": ["bounds"] } }
+      ]
+    },
+    "value": {
+      "description": "a constant: a boolean, an integer, or an enum label",
+      "oneOf": [
+        { "type": "boolean" },
+        { "type": "integer" },
+        { "type": "string" }
+      ]
+    },
+    "expr": {
+      "description": "a structured expression tree. A leaf is {var} or {const}. An internal node is {op, args}. Temporal operators are valid only in properties over a transition_system.",
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["var"],
+          "properties": { "var": { "type": "string" } }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["const"],
+          "properties": { "const": { "$ref": "#/$defs/value" } }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["op", "args"],
+          "properties": {
+            "op": {
+              "type": "string",
+              "enum": [
+                "and", "or", "not", "implies", "iff",
+                "eq", "neq", "lt", "le", "gt", "ge",
+                "add", "sub", "mul", "neg", "ite",
+                "G", "F", "X", "U", "R", "W"
+              ],
+              "description": "G global, F eventually, X next, U until, R release, W weak until"
+            },
+            "args": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/expr" },
+              "minItems": 1
+            }
+          }
+        }
+      ]
+    },
+    "assignment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["var", "value"],
+      "properties": {
+        "var": { "type": "string" },
+        "value": { "$ref": "#/$defs/value" }
+      }
+    },
+    "expr_assignment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["var", "expr"],
+      "properties": {
+        "var": { "type": "string" },
+        "expr": { "$ref": "#/$defs/expr" }
+      }
+    },
+    "ruleset": {
+      "oneOf": [
+        { "$ref": "#/$defs/decision_ruleset" },
+        { "$ref": "#/$defs/transition_system" }
+      ]
+    },
+    "decision_ruleset": {
+      "description": "a total function from inputs to outputs. Rules are evaluated under the stated conflict resolution; the function is total because of the default block.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "inputs", "outputs", "rules", "default", "conflict_resolution"],
+      "properties": {
+        "id": { "type": "string" },
+        "kind": { "const": "decision" },
+        "inputs": { "type": "array", "items": { "$ref": "#/$defs/typed_var" }, "minItems": 1 },
+        "outputs": { "type": "array", "items": { "$ref": "#/$defs/typed_var" }, "minItems": 1 },
+        "rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "when", "then"],
+            "properties": {
+              "id": { "type": "string" },
+              "priority": { "type": "integer", "description": "higher fires first under priority resolution" },
+              "when": { "$ref": "#/$defs/expr" },
+              "then": { "type": "array", "items": { "$ref": "#/$defs/assignment" }, "minItems": 1 }
+            }
+          }
+        },
+        "default": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/assignment" },
+          "description": "assignments applied to any output left unset after rule evaluation; makes the function total"
+        },
+        "conflict_resolution": {
+          "type": "string",
+          "enum": ["priority", "first_match", "error_on_conflict"],
+          "description": "priority: highest-priority matching rule wins per output; first_match: first in list order; error_on_conflict: two matching rules assigning different values to one output is itself a modelled fault"
+        }
+      }
+    },
+    "transition_system": {
+      "description": "a finite labelled transition system for temporal properties. State and event parameters are finite-domain so that bounded model checking and k-induction are decidable.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "state_vars", "events", "init", "transitions"],
+      "properties": {
+        "id": { "type": "string" },
+        "kind": { "const": "transition_system" },
+        "state_vars": { "type": "array", "items": { "$ref": "#/$defs/typed_var" }, "minItems": 1 },
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["name"],
+            "properties": {
+              "name": { "type": "string" },
+              "params": { "type": "array", "items": { "$ref": "#/$defs/typed_var" } }
+            }
+          }
+        },
+        "init": { "type": "array", "items": { "$ref": "#/$defs/assignment" } },
+        "transitions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "event", "update"],
+            "properties": {
+              "id": { "type": "string" },
+              "event": { "type": "string", "description": "name of the triggering event" },
+              "guard": { "$ref": "#/$defs/expr", "description": "condition over state vars and event params; absent guard means always enabled for that event" },
+              "update": { "type": "array", "items": { "$ref": "#/$defs/expr_assignment" }, "description": "next-state assignments; state vars not listed are unchanged" },
+              "emits": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["action"],
+                  "properties": {
+                    "action": { "type": "string", "description": "observable output emitted on this transition, for example send_message" },
+                    "when": { "$ref": "#/$defs/expr" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "property": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind"],
+      "properties": {
+        "id": { "type": "string" },
+        "kind": {
+          "type": "string",
+          "enum": ["invariant", "reachability", "mutual_exclusion", "monotonicity", "temporal"]
+        },
+        "formula": {
+          "$ref": "#/$defs/expr",
+          "description": "for invariant: must hold for all inputs (verifier checks unsatisfiability of its negation). for reachability: the forbidden pattern; the property holds iff this is unsatisfiable. for temporal: an LTL formula that must hold on all traces up to bound."
+        },
+        "mutual_exclusion": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "convenience template: expands to an invariant that no listed pair is jointly asserted in the outputs",
+          "required": ["pairs"],
+          "properties": {
+            "pairs": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": { "$ref": "#/$defs/expr" },
+                "minItems": 2,
+                "maxItems": 2
+              }
+            }
+          }
+        },
+        "monotonicity": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "convenience template: under a perturbation that can only worsen the clinical picture, the monotone output must not move in the safe direction. expands to a two-copy formula over inputs and inputs'.",
+          "required": ["perturbation", "monotone_var", "direction"],
+          "properties": {
+            "perturbation": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["var", "change"],
+              "properties": {
+                "var": { "type": "string" },
+                "change": { "type": "string", "enum": ["set_true", "increase"] }
+              }
+            },
+            "monotone_var": { "type": "string" },
+            "direction": { "type": "string", "enum": ["nondecreasing", "nonincreasing"], "description": "required direction of the monotone output under the perturbation" }
+          }
+        },
+        "bound": { "type": "integer", "description": "trace length for bounded model checking of a temporal property; the verifier also attempts k-induction for an unbounded result and reports which was achieved" },
+        "intent": { "type": "string", "description": "plain language statement of what the property guarantees" }
+      },
+      "allOf": [
+        { "if": { "properties": { "kind": { "enum": ["invariant", "reachability", "temporal"] } } }, "then": { "required": ["formula"] } },
+        { "if": { "properties": { "kind": { "const": "mutual_exclusion" } } }, "then": { "required": ["mutual_exclusion"] } },
+        { "if": { "properties": { "kind": { "const": "monotonicity" } } }, "then": { "required": ["monotonicity"] } }
+      ]
+    }
+  }
+}

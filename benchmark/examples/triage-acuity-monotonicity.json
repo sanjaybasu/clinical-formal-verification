@@ -1,0 +1,42 @@
+{
+  "id": "triage-acuity-monotonicity",
+  "domain": "triage",
+  "metadata": {
+    "description": "symptom-to-acuity decision rules; adding a red flag must not lower acuity",
+    "source": "synthetic",
+    "clinical_intent": "a triage rule set must never assign a lower acuity to a patient once a red-flag symptom is added to an otherwise identical presentation"
+  },
+  "ruleset": {
+    "id": "triage-acuity-v1",
+    "kind": "decision",
+    "inputs": [
+      { "name": "syncope", "type": "bool" },
+      { "name": "chest_pain", "type": "bool" },
+      { "name": "shortness_of_breath", "type": "bool" },
+      { "name": "age", "type": "int", "bounds": [0, 120] },
+      { "name": "pain_severity", "type": "int", "bounds": [0, 10] }
+    ],
+    "outputs": [
+      { "name": "acuity", "type": "enum", "domain": ["self_care", "routine", "urgent", "emergent"] }
+    ],
+    "rules": [
+      { "id": "r_syncope", "priority": 100, "when": { "var": "syncope" }, "then": [ { "var": "acuity", "value": "emergent" } ] },
+      { "id": "r_chestpain_older", "priority": 90, "when": { "op": "and", "args": [ { "var": "chest_pain" }, { "op": "ge", "args": [ { "var": "age" }, { "const": 50 } ] } ] }, "then": [ { "var": "acuity", "value": "emergent" } ] },
+      { "id": "r_chestpain", "priority": 80, "when": { "var": "chest_pain" }, "then": [ { "var": "acuity", "value": "urgent" } ] },
+      { "id": "r_sob", "priority": 70, "when": { "var": "shortness_of_breath" }, "then": [ { "var": "acuity", "value": "urgent" } ] },
+      { "id": "r_pain", "priority": 10, "when": { "op": "ge", "args": [ { "var": "pain_severity" }, { "const": 7 } ] }, "then": [ { "var": "acuity", "value": "urgent" } ] }
+    ],
+    "default": [ { "var": "acuity", "value": "routine" } ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "syncope-never-lowers-acuity",
+    "kind": "monotonicity",
+    "monotonicity": {
+      "perturbation": { "var": "syncope", "change": "set_true" },
+      "monotone_var": "acuity",
+      "direction": "nondecreasing"
+    },
+    "intent": "for any two presentations that differ only in that the second has syncope set true, the acuity of the second is at least the acuity of the first"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/sanjaybasu/clinical-formal-verification/benchmark/schema/answer_key.schema.json",
+  "title": "ground truth for a benchmark item",
+  "description": "Held separately from the item so the public split can withhold it from methods under test. Ground truth is established independently of any solver: for a violated item the witness is a concrete input or trace that, when executed against the rule set, exhibits the violation, and this execution does not use a solver. For a holds item the basis records how the absence of any violation was established.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["item", "ground_truth", "seeded", "interaction_depth", "basis"],
+  "properties": {
+    "item": { "type": "string", "description": "id of the benchmark item this key answers" },
+    "ground_truth": { "type": "string", "enum": ["holds", "violated"] },
+    "witness": {
+      "description": "for a violated item: the concrete assignment (decision rule set) or event trace (transition system) that exhibits the violation. null for a holds item. The witness is replayable by concrete execution without a solver, which is what breaks the circularity of using a solver to label a benchmark that scores solvers.",
+      "oneOf": [
+        { "type": "null" },
+        { "type": "array", "items": { "type": "object", "additionalProperties": false, "required": ["var", "value"], "properties": { "var": { "type": "string" }, "value": {} } } },
+        { "type": "array", "items": { "type": "object", "additionalProperties": false, "required": ["event"], "properties": { "event": { "type": "string" }, "params": { "type": "object" } } } }
+      ]
+    },
+    "seeded": { "type": "boolean", "description": "true if the violation was deliberately introduced as a rule-interaction fault" },
+    "seeded_bug": { "type": "string", "description": "for a seeded item, the description of the introduced fault and the interacting rules that produce it" },
+    "interaction_depth": { "type": "integer", "minimum": 0, "description": "number of distinct rules that must interact to produce the violation; 0 for a holds item; the compositionality hypothesis predicts probabilistic methods miss higher-depth violations" },
+    "basis": { "type": "string", "enum": ["by_construction", "concrete_replay", "manual_proof"], "description": "how ground truth was established. by_construction: the fault was inserted and its witness recorded; concrete_replay: the witness was executed against the rule set and the violation observed; manual_proof: a holds item argued by hand or exhaustive enumeration independent of the system under test" },
+    "notes": { "type": "string" }
+  },
+  "allOf": [
+    { "if": { "properties": { "ground_truth": { "const": "violated" } } }, "then": { "required": ["witness"] } }
+  ]
+}

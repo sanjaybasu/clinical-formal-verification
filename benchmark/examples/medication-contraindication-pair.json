@@ -1,0 +1,40 @@
+{
+  "id": "medication-contraindication-pair",
+  "domain": "medication",
+  "metadata": {
+    "description": "condition-to-recommendation rules with a seeded missing-guard interaction; no path may co-suggest a contraindicated pair",
+    "source": "synthetic",
+    "clinical_intent": "a recommender must never jointly suggest a non-selective oral anti-inflammatory and an oral anticoagulant, a combination that raises gastrointestinal bleeding risk"
+  },
+  "ruleset": {
+    "id": "medication-rec-v1",
+    "kind": "decision",
+    "inputs": [
+      { "name": "musculoskeletal_pain", "type": "bool" },
+      { "name": "atrial_fibrillation", "type": "bool" },
+      { "name": "ckd_stage4", "type": "bool" }
+    ],
+    "outputs": [
+      { "name": "rec_nsaid", "type": "bool" },
+      { "name": "rec_anticoagulant", "type": "bool" },
+      { "name": "rec_acetaminophen", "type": "bool" }
+    ],
+    "rules": [
+      { "id": "r_pain_nsaid", "priority": 50, "when": { "var": "musculoskeletal_pain" }, "then": [ { "var": "rec_nsaid", "value": true } ] },
+      { "id": "r_afib_anticoag", "priority": 50, "when": { "var": "atrial_fibrillation" }, "then": [ { "var": "rec_anticoagulant", "value": true } ] },
+      { "id": "r_ckd_blocks_nsaid", "priority": 90, "when": { "var": "ckd_stage4" }, "then": [ { "var": "rec_nsaid", "value": false }, { "var": "rec_acetaminophen", "value": true } ] }
+    ],
+    "default": [ { "var": "rec_nsaid", "value": false }, { "var": "rec_anticoagulant", "value": false }, { "var": "rec_acetaminophen", "value": false } ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "no-nsaid-with-anticoagulant",
+    "kind": "mutual_exclusion",
+    "mutual_exclusion": {
+      "pairs": [
+        [ { "var": "rec_nsaid" }, { "var": "rec_anticoagulant" } ]
+      ]
+    },
+    "intent": "no input produces an output in which both rec_nsaid and rec_anticoagulant are true"
+  }
+}

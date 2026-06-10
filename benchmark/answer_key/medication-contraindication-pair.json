@@ -1,0 +1,14 @@
+{
+  "item": "medication-contraindication-pair",
+  "ground_truth": "violated",
+  "witness": [
+    { "var": "musculoskeletal_pain", "value": true },
+    { "var": "atrial_fibrillation", "value": true },
+    { "var": "ckd_stage4", "value": false }
+  ],
+  "seeded": true,
+  "seeded_bug": "the rule set lacks a guard that suppresses rec_nsaid when atrial_fibrillation drives rec_anticoagulant. r_pain_nsaid sets rec_nsaid true from musculoskeletal_pain and r_afib_anticoag sets rec_anticoagulant true from atrial_fibrillation; with ckd_stage4 false the protective r_ckd_blocks_nsaid does not fire, so both outputs are true.",
+  "interaction_depth": 2,
+  "basis": "by_construction",
+  "notes": "replay the witness against the rule set: r_pain_nsaid and r_afib_anticoag both fire, r_ckd_blocks_nsaid does not, defaults do not apply to set outputs, so rec_nsaid and rec_anticoagulant are both true and the mutual exclusion is violated. Confirming this needs only concrete execution, not a solver."
+}

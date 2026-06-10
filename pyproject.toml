@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "clinical-formal-verification"
+version = "0.1.0"
+description = "Formal verification of the deterministic control layer of clinical AI systems, with a head-to-head benchmark against probabilistic guardrails"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Sanjay Basu" }]
+dependencies = [
+  "z3-solver>=4.13",
+  "jsonschema>=4.20",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+baselines = [
+  "nemoguardrails>=0.11",
+  "openai>=1.40",
+]
+dev = [
+  "pytest>=8.0",
+  "numpy>=1.26",
+]
+
+[tool.setuptools]
+packages = ["verifier"]

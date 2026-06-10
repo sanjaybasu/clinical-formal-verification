@@ -1,0 +1,31 @@
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# os
+.DS_Store
+
+# secrets and local config
+.env
+*.local
+
+# experiment artifacts that are regenerated from code
+experiments/runs/*/raw/
+*.log
+
+# never commit proprietary or PHI-derived splits
+benchmark/private/
+casestudies/private/

@@ -1,0 +1,9 @@
+{
+  "item": "triage-acuity-monotonicity",
+  "ground_truth": "holds",
+  "witness": null,
+  "seeded": false,
+  "interaction_depth": 0,
+  "basis": "manual_proof",
+  "notes": "setting syncope true fires r_syncope at priority 100 and assigns acuity emergent, the maximum of the ordered domain; emergent is greater than or equal to every acuity, so the perturbed presentation cannot have lower acuity than the base presentation. Holds over the full finite input space by enumeration of the base acuity outcomes."
+}

@@ -1,0 +1,9 @@
+{
+  "item": "outreach-optout-persistence",
+  "ground_truth": "holds",
+  "witness": null,
+  "seeded": false,
+  "interaction_depth": 0,
+  "basis": "manual_proof",
+  "notes": "opted_out only ever transitions false to true, never back. The only transition that sets sent true is t_send_allowed, whose guard requires opted_out false. Therefore in any state where opted_out is true, the preceding transition could not have been t_send_allowed, so sent is false. The temporal property holds to the stated bound and by k-induction without bound."
+}
