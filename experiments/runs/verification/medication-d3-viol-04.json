@@ -1,0 +1,32 @@
+{
+  "item_id": "medication-d3-viol-04",
+  "method": "verification",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "hypertension",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": false
+    },
+    {
+      "var": "immunosuppressed",
+      "value": false
+    }
+  ],
+  "seconds": 0.0007,
+  "extra": {
+    "proof_scope": "all 32 inputs",
+    "method_note": "sat: counterexample over the input space"
+  }
+}

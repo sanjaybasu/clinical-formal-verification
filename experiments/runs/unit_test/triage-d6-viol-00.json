@@ -1,0 +1,68 @@
+{
+  "item_id": "triage-d6-viol-00",
+  "method": "unit_test",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "confusion",
+      "value": true
+    },
+    {
+      "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "sweating",
+      "value": true
+    },
+    {
+      "var": "leg_swelling",
+      "value": true
+    },
+    {
+      "var": "pallor",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": false
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": true
+    },
+    {
+      "var": "confusion__base",
+      "value": true
+    },
+    {
+      "var": "syncope__base",
+      "value": true
+    },
+    {
+      "var": "sweating__base",
+      "value": true
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": true
+    },
+    {
+      "var": "pallor__base",
+      "value": false
+    },
+    {
+      "var": "palpitations__base",
+      "value": false
+    }
+  ],
+  "seconds": 0.0002,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

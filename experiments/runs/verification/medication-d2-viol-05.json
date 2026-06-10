@@ -1,0 +1,24 @@
+{
+  "item_id": "medication-d2-viol-05",
+  "method": "verification",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": false
+    }
+  ],
+  "seconds": 0.0005,
+  "extra": {
+    "proof_scope": "all 8 inputs",
+    "method_note": "sat: counterexample over the input space"
+  }
+}

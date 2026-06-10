@@ -1,0 +1,44 @@
+{
+  "item_id": "triage-d3-viol-05",
+  "method": "unit_test",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "confusion",
+      "value": true
+    },
+    {
+      "var": "vision_loss",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": true
+    },
+    {
+      "var": "chest_pain",
+      "value": false
+    },
+    {
+      "var": "confusion__base",
+      "value": true
+    },
+    {
+      "var": "vision_loss__base",
+      "value": true
+    },
+    {
+      "var": "back_pain__base",
+      "value": false
+    },
+    {
+      "var": "chest_pain__base",
+      "value": false
+    }
+  ],
+  "seconds": 0.0,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "item_id": "medication-d5-viol-06",
+  "method": "unit_test",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "ckd_dialysis",
+      "value": true
+    },
+    {
+      "var": "immunosuppressed",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    }
+  ],
+  "seconds": 0.0008,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

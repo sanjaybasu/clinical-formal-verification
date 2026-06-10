@@ -1,0 +1,11 @@
+{
+  "item_id": "outreach-d1-hold-109",
+  "method": "verification",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": 0.009,
+  "extra": {
+    "proof_scope": "all reachable states (k-induction)",
+    "method_note": "BMC to 5 plus a 5-induction step: property holds without bound"
+  }
+}

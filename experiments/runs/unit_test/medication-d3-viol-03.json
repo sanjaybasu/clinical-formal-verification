@@ -1,0 +1,36 @@
+{
+  "item_id": "medication-d3-viol-03",
+  "method": "unit_test",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "hyperkalemia",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": false
+    },
+    {
+      "var": "ckd_dialysis",
+      "value": false
+    }
+  ],
+  "seconds": 0.0001,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

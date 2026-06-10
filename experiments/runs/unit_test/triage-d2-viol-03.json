@@ -1,0 +1,44 @@
+{
+  "item_id": "triage-d2-viol-03",
+  "method": "unit_test",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "dizziness",
+      "value": true
+    },
+    {
+      "var": "vomiting",
+      "value": true
+    },
+    {
+      "var": "pallor",
+      "value": false
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": true
+    },
+    {
+      "var": "dizziness__base",
+      "value": false
+    },
+    {
+      "var": "vomiting__base",
+      "value": true
+    },
+    {
+      "var": "pallor__base",
+      "value": false
+    }
+  ],
+  "seconds": 0.0,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

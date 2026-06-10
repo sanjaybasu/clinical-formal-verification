@@ -1,0 +1,68 @@
+{
+  "item_id": "triage-d6-viol-04",
+  "method": "unit_test",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "leg_swelling",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": true
+    },
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "vision_loss",
+      "value": true
+    },
+    {
+      "var": "severe_headache__base",
+      "value": true
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": true
+    },
+    {
+      "var": "rash__base",
+      "value": true
+    },
+    {
+      "var": "back_pain__base",
+      "value": true
+    },
+    {
+      "var": "dyspnea__base",
+      "value": true
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": false
+    },
+    {
+      "var": "vision_loss__base",
+      "value": true
+    }
+  ],
+  "seconds": 0.0001,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

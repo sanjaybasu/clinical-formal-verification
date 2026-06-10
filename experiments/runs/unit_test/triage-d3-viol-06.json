@@ -1,0 +1,44 @@
+{
+  "item_id": "triage-d3-viol-06",
+  "method": "unit_test",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "chest_pain",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "sweating",
+      "value": true
+    },
+    {
+      "var": "chest_pain__base",
+      "value": true
+    },
+    {
+      "var": "dyspnea__base",
+      "value": true
+    },
+    {
+      "var": "palpitations__base",
+      "value": false
+    },
+    {
+      "var": "sweating__base",
+      "value": true
+    }
+  ],
+  "seconds": 0.0,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "item_id": "medication-d4-viol-03",
+  "method": "unit_test",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "polypharmacy",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "ckd_dialysis",
+      "value": true
+    },
+    {
+      "var": "hypertension",
+      "value": true
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": false
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    }
+  ],
+  "seconds": 0.0,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

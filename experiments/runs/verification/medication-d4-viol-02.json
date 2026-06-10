@@ -1,0 +1,36 @@
+{
+  "item_id": "medication-d4-viol-02",
+  "method": "verification",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "polypharmacy",
+      "value": true
+    },
+    {
+      "var": "ckd_dialysis",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "prior_gi_bleed",
+      "value": false
+    },
+    {
+      "var": "qt_prolongation",
+      "value": false
+    }
+  ],
+  "seconds": 0.0006,
+  "extra": {
+    "proof_scope": "all 64 inputs",
+    "method_note": "sat: counterexample over the input space"
+  }
+}

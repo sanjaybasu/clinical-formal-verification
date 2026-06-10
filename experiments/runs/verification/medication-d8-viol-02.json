@@ -1,0 +1,52 @@
+{
+  "item_id": "medication-d8-viol-02",
+  "method": "verification",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "diabetes",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "renal_impairment",
+      "value": false
+    },
+    {
+      "var": "prior_gi_bleed",
+      "value": false
+    }
+  ],
+  "seconds": 0.0007,
+  "extra": {
+    "proof_scope": "all 1024 inputs",
+    "method_note": "sat: counterexample over the input space"
+  }
+}

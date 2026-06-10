@@ -1,0 +1,64 @@
+{
+  "item_id": "medication-d10-viol-06",
+  "method": "unit_test",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "renal_impairment",
+      "value": true
+    },
+    {
+      "var": "hyperkalemia",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "immunosuppressed",
+      "value": true
+    },
+    {
+      "var": "hypertension",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "polypharmacy",
+      "value": true
+    }
+  ],
+  "seconds": 0.0045,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

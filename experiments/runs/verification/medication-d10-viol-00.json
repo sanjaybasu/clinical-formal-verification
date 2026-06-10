@@ -1,0 +1,64 @@
+{
+  "item_id": "medication-d10-viol-00",
+  "method": "verification",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "polypharmacy",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "ckd_dialysis",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "diabetes",
+      "value": true
+    },
+    {
+      "var": "immunosuppressed",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "hyperkalemia",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "prior_gi_bleed",
+      "value": false
+    },
+    {
+      "var": "elderly",
+      "value": false
+    },
+    {
+      "var": "bradycardia",
+      "value": false
+    }
+  ],
+  "seconds": 0.0009,
+  "extra": {
+    "proof_scope": "all 8192 inputs",
+    "method_note": "sat: counterexample over the input space"
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "item_id": "triage-d8-viol-04",
+  "method": "unit_test",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "vomiting",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": true
+    },
+    {
+      "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "hemoptysis",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "dizziness",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "slurred_speech",
+      "value": false
+    },
+    {
+      "var": "rash__base",
+      "value": true
+    },
+    {
+      "var": "vomiting__base",
+      "value": true
+    },
+    {
+      "var": "dyspnea__base",
+      "value": true
+    },
+    {
+      "var": "syncope__base",
+      "value": true
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": true
+    },
+    {
+      "var": "palpitations__base",
+      "value": true
+    },
+    {
+      "var": "dizziness__base",
+      "value": true
+    },
+    {
+      "var": "fever__base",
+      "value": false
+    },
+    {
+      "var": "slurred_speech__base",
+      "value": false
+    }
+  ],
+  "seconds": 0.0021,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

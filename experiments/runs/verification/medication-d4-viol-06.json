@@ -1,0 +1,40 @@
+{
+  "item_id": "medication-d4-viol-06",
+  "method": "verification",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": false
+    },
+    {
+      "var": "hypertension",
+      "value": false
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": false
+    }
+  ],
+  "seconds": 0.0006,
+  "extra": {
+    "proof_scope": "all 128 inputs",
+    "method_note": "sat: counterexample over the input space"
+  }
+}

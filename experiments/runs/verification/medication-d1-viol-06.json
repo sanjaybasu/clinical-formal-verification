@@ -1,0 +1,28 @@
+{
+  "item_id": "medication-d1-viol-06",
+  "method": "verification",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": false
+    },
+    {
+      "var": "diabetes",
+      "value": false
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": false
+    }
+  ],
+  "seconds": 0.0005,
+  "extra": {
+    "proof_scope": "all 16 inputs",
+    "method_note": "sat: counterexample over the input space"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d1-hold-100",
+  "method": "verification",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": 0.0014,
+  "extra": {
+    "proof_scope": "all ordered pairs over 8 inputs",
+    "method_note": "unsat of the negation: monotonicity proven over the full input space"
+  }
+}

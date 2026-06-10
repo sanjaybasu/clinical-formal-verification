@@ -1,0 +1,48 @@
+{
+  "item_id": "medication-d8-viol-01",
+  "method": "verification",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "diabetes",
+      "value": true
+    },
+    {
+      "var": "hypertension",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "ckd_dialysis",
+      "value": false
+    }
+  ],
+  "seconds": 0.0007,
+  "extra": {
+    "proof_scope": "all 512 inputs",
+    "method_note": "sat: counterexample over the input space"
+  }
+}

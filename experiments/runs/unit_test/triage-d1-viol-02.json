@@ -1,0 +1,44 @@
+{
+  "item_id": "triage-d1-viol-02",
+  "method": "unit_test",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": false
+    },
+    {
+      "var": "slurred_speech",
+      "value": false
+    },
+    {
+      "var": "severe_headache__base",
+      "value": false
+    },
+    {
+      "var": "fever__base",
+      "value": true
+    },
+    {
+      "var": "palpitations__base",
+      "value": false
+    },
+    {
+      "var": "slurred_speech__base",
+      "value": false
+    }
+  ],
+  "seconds": 0.0,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

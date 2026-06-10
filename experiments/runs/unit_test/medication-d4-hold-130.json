@@ -1,0 +1,11 @@
+{
+  "item_id": "medication-d4-hold-130",
+  "method": "unit_test",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": 0.0054,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "item_id": "triage-d1-viol-00",
+  "method": "unit_test",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "vision_loss",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": false
+    },
+    {
+      "var": "stiff_neck",
+      "value": true
+    },
+    {
+      "var": "vision_loss__base",
+      "value": false
+    },
+    {
+      "var": "rash__base",
+      "value": false
+    },
+    {
+      "var": "stiff_neck__base",
+      "value": true
+    }
+  ],
+  "seconds": 0.0,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

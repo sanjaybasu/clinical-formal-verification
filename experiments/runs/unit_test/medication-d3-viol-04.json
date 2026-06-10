@@ -1,0 +1,32 @@
+{
+  "item_id": "medication-d3-viol-04",
+  "method": "unit_test",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "hypertension",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "immunosuppressed",
+      "value": true
+    }
+  ],
+  "seconds": 0.0,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

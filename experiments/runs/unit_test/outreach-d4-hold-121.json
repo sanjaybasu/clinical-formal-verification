@@ -1,0 +1,11 @@
+{
+  "item_id": "outreach-d4-hold-121",
+  "method": "unit_test",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": 0.0233,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "item_id": "triage-d4-viol-03",
+  "method": "unit_test",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "stiff_neck",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": true
+    },
+    {
+      "var": "hemoptysis",
+      "value": false
+    },
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": false
+    },
+    {
+      "var": "stiff_neck__base",
+      "value": true
+    },
+    {
+      "var": "rash__base",
+      "value": true
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": true
+    },
+    {
+      "var": "dyspnea__base",
+      "value": false
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": false
+    },
+    {
+      "var": "fever__base",
+      "value": true
+    },
+    {
+      "var": "back_pain__base",
+      "value": false
+    }
+  ],
+  "seconds": 0.0,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

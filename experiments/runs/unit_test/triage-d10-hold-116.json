@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d10-hold-116",
+  "method": "unit_test",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": 0.0097,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

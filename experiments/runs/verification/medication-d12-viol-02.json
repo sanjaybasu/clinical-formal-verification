@@ -1,0 +1,64 @@
+{
+  "item_id": "medication-d12-viol-02",
+  "method": "verification",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "immunosuppressed",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "hyperkalemia",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "ckd_dialysis",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "renal_impairment",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": false
+    }
+  ],
+  "seconds": 0.0009,
+  "extra": {
+    "proof_scope": "all 8192 inputs",
+    "method_note": "sat: counterexample over the input space"
+  }
+}

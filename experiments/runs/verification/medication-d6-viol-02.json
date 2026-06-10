@@ -1,0 +1,40 @@
+{
+  "item_id": "medication-d6-viol-02",
+  "method": "verification",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "polypharmacy",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "hyperkalemia",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": false
+    }
+  ],
+  "seconds": 0.0006,
+  "extra": {
+    "proof_scope": "all 128 inputs",
+    "method_note": "sat: counterexample over the input space"
+  }
+}

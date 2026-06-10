@@ -1,0 +1,24 @@
+{
+  "item_id": "medication-d1-viol-01",
+  "method": "unit_test",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "ckd_dialysis",
+      "value": true
+    }
+  ],
+  "seconds": 0.0,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "item_id": "triage-d2-viol-07",
+  "method": "verification",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "abdominal_pain",
+      "value": true
+    },
+    {
+      "var": "vomiting",
+      "value": true
+    },
+    {
+      "var": "pallor",
+      "value": false
+    },
+    {
+      "var": "leg_swelling",
+      "value": false
+    },
+    {
+      "var": "confusion",
+      "value": false
+    },
+    {
+      "var": "abdominal_pain__base",
+      "value": true
+    },
+    {
+      "var": "vomiting__base",
+      "value": false
+    },
+    {
+      "var": "pallor__base",
+      "value": false
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": false
+    },
+    {
+      "var": "confusion__base",
+      "value": false
+    }
+  ],
+  "seconds": 0.0019,
+  "extra": {
+    "proof_scope": "all ordered pairs over 32 inputs",
+    "method_note": "sat: a perturbation that moves the monotone output the wrong way"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "item_id": "medication-d4-viol-01",
+  "method": "unit_test",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "polypharmacy",
+      "value": false
+    },
+    {
+      "var": "renal_impairment",
+      "value": true
+    }
+  ],
+  "seconds": 0.0002,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

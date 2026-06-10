@@ -1,0 +1,20 @@
+{
+  "item_id": "medication-d1-viol-00",
+  "method": "verification",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": false
+    }
+  ],
+  "seconds": 0.0006,
+  "extra": {
+    "proof_scope": "all 4 inputs",
+    "method_note": "sat: counterexample over the input space"
+  }
+}

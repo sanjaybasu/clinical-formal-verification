@@ -1,0 +1,40 @@
+{
+  "item_id": "medication-d5-viol-02",
+  "method": "unit_test",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "hyperkalemia",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": false
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    }
+  ],
+  "seconds": 0.0005,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

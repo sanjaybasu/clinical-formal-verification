@@ -1,0 +1,35 @@
+{
+  "item_id": "outreach-d2-viol-07",
+  "method": "verification",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "stutter"
+    },
+    {
+      "event": "tick",
+      "transition": "t_tick"
+    },
+    {
+      "event": "optout",
+      "transition": "t_optout"
+    },
+    {
+      "event": "tick",
+      "transition": "t_tick"
+    },
+    {
+      "event": "send_attempt",
+      "transition": "t_resume_glitch"
+    },
+    {
+      "event": "optout",
+      "transition": "t_optout"
+    }
+  ],
+  "seconds": 0.0069,
+  "extra": {
+    "proof_scope": "traces up to length 6",
+    "method_note": "sat: a reachable trace reaches a state violating the invariant"
+  }
+}

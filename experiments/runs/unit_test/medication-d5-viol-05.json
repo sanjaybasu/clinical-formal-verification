@@ -1,0 +1,44 @@
+{
+  "item_id": "medication-d5-viol-05",
+  "method": "unit_test",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "prior_gi_bleed",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": false
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "immunosuppressed",
+      "value": false
+    }
+  ],
+  "seconds": 0.0003,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

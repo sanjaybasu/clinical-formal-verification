@@ -1,0 +1,56 @@
+{
+  "item_id": "medication-d10-viol-03",
+  "method": "verification",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "renal_impairment",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "immunosuppressed",
+      "value": true
+    },
+    {
+      "var": "ckd_dialysis",
+      "value": false
+    }
+  ],
+  "seconds": 0.0008,
+  "extra": {
+    "proof_scope": "all 2048 inputs",
+    "method_note": "sat: counterexample over the input space"
+  }
+}

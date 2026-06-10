@@ -1,0 +1,68 @@
+{
+  "item_id": "medication-d12-viol-05",
+  "method": "verification",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "renal_impairment",
+      "value": true
+    },
+    {
+      "var": "diabetes",
+      "value": true
+    },
+    {
+      "var": "ckd_dialysis",
+      "value": true
+    },
+    {
+      "var": "polypharmacy",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "prior_gi_bleed",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": false
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": false
+    }
+  ],
+  "seconds": 0.0009,
+  "extra": {
+    "proof_scope": "all 16384 inputs",
+    "method_note": "sat: counterexample over the input space"
+  }
+}

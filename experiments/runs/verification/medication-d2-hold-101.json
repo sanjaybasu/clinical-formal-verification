@@ -1,0 +1,11 @@
+{
+  "item_id": "medication-d2-hold-101",
+  "method": "verification",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": 0.0005,
+  "extra": {
+    "proof_scope": "all 16 inputs",
+    "method_note": "unsat of the negation: property proven over the full input space"
+  }
+}

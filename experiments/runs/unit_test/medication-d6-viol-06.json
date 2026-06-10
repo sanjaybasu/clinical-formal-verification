@@ -1,0 +1,48 @@
+{
+  "item_id": "medication-d6-viol-06",
+  "method": "unit_test",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "diabetes",
+      "value": true
+    },
+    {
+      "var": "prior_gi_bleed",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "polypharmacy",
+      "value": true
+    }
+  ],
+  "seconds": 0.0001,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

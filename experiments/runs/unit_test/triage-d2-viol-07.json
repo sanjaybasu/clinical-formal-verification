@@ -1,0 +1,52 @@
+{
+  "item_id": "triage-d2-viol-07",
+  "method": "unit_test",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "abdominal_pain",
+      "value": true
+    },
+    {
+      "var": "vomiting",
+      "value": true
+    },
+    {
+      "var": "pallor",
+      "value": false
+    },
+    {
+      "var": "leg_swelling",
+      "value": false
+    },
+    {
+      "var": "confusion",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain__base",
+      "value": true
+    },
+    {
+      "var": "vomiting__base",
+      "value": false
+    },
+    {
+      "var": "pallor__base",
+      "value": false
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": false
+    },
+    {
+      "var": "confusion__base",
+      "value": true
+    }
+  ],
+  "seconds": 0.0,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

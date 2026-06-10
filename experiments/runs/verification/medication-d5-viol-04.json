@@ -1,0 +1,44 @@
+{
+  "item_id": "medication-d5-viol-04",
+  "method": "verification",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "polypharmacy",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "immunosuppressed",
+      "value": false
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": false
+    },
+    {
+      "var": "prior_gi_bleed",
+      "value": false
+    }
+  ],
+  "seconds": 0.0007,
+  "extra": {
+    "proof_scope": "all 256 inputs",
+    "method_note": "sat: counterexample over the input space"
+  }
+}

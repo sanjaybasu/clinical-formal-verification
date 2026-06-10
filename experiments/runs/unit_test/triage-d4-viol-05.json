@@ -1,0 +1,68 @@
+{
+  "item_id": "triage-d4-viol-05",
+  "method": "unit_test",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "leg_swelling",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "pallor",
+      "value": true
+    },
+    {
+      "var": "hemoptysis",
+      "value": true
+    },
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": true
+    },
+    {
+      "var": "palpitations__base",
+      "value": true
+    },
+    {
+      "var": "pallor__base",
+      "value": true
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": false
+    },
+    {
+      "var": "severe_headache__base",
+      "value": true
+    },
+    {
+      "var": "back_pain__base",
+      "value": true
+    },
+    {
+      "var": "fever__base",
+      "value": true
+    }
+  ],
+  "seconds": 0.0002,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

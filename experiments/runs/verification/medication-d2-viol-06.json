@@ -1,0 +1,32 @@
+{
+  "item_id": "medication-d2-viol-06",
+  "method": "verification",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "immunosuppressed",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "diabetes",
+      "value": false
+    },
+    {
+      "var": "ckd_dialysis",
+      "value": false
+    },
+    {
+      "var": "prior_gi_bleed",
+      "value": false
+    }
+  ],
+  "seconds": 0.0006,
+  "extra": {
+    "proof_scope": "all 32 inputs",
+    "method_note": "sat: counterexample over the input space"
+  }
+}
