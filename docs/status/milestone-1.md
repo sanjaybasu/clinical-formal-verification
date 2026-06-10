@@ -63,8 +63,8 @@ code and CC-BY-4.0 for the benchmark.
 
 ## Open risks and decisions
 
-- Benchmark name is not chosen; it propagates through the benchmark, the paper, and the docs, so
-  it is the gating decision before Milestone 2 authors the full suite.
+- Benchmark name is chosen: CIV-Bench (clinical invariant verification benchmark). It is now
+  reflected in the README and `benchmark/README.md` and is the name Milestone 2 builds under.
 - The Institutional Review Board statement for the private split derived from the operational
   Medicaid care program is unresolved; the public benchmark is synthetic or public-derived and
   has no human subjects. Resolve against the governing determination before submission.
