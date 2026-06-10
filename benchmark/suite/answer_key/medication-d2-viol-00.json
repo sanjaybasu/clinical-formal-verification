@@ -1,0 +1,26 @@
+{
+  "item": "medication-d2-viol-00",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "polypharmacy",
+      "value": false
+    },
+    {
+      "var": "diabetes",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 2,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 2 produces the violation; see generate.py for the construction"
+}

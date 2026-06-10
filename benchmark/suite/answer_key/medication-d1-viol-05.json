@@ -1,0 +1,22 @@
+{
+  "item": "medication-d1-viol-05",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "hypertension",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": false
+    },
+    {
+      "var": "diabetes",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 1,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 1 produces the violation; see generate.py for the construction"
+}

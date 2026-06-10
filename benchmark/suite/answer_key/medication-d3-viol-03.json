@@ -1,0 +1,34 @@
+{
+  "item": "medication-d3-viol-03",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "polypharmacy",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "renal_impairment",
+      "value": false
+    },
+    {
+      "var": "anticoagulated",
+      "value": false
+    },
+    {
+      "var": "qt_prolongation",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 3,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 3 produces the violation; see generate.py for the construction"
+}

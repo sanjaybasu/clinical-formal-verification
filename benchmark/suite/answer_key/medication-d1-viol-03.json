@@ -1,0 +1,26 @@
+{
+  "item": "medication-d1-viol-03",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": false
+    },
+    {
+      "var": "diabetes",
+      "value": false
+    },
+    {
+      "var": "anticoagulated",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 1,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 1 produces the violation; see generate.py for the construction"
+}

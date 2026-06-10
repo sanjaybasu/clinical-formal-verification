@@ -1,0 +1,26 @@
+{
+  "item": "outreach-d2-viol-08",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "event": "optout",
+      "transition": "t_optout"
+    },
+    {
+      "event": "tick",
+      "transition": "t_tick"
+    },
+    {
+      "event": "tick",
+      "transition": "t_tick"
+    },
+    {
+      "event": "send_attempt",
+      "transition": "t_resume_glitch"
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 2,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 2 produces the violation; see generate.py for the construction"
+}

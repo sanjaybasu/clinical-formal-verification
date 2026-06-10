@@ -1,0 +1,34 @@
+{
+  "item": "medication-d3-viol-00",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "diabetes",
+      "value": false
+    },
+    {
+      "var": "hypertension",
+      "value": false
+    },
+    {
+      "var": "polypharmacy",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 3,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 3 produces the violation; see generate.py for the construction"
+}

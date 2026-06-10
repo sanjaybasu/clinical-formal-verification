@@ -1,0 +1,136 @@
+{
+  "id": "medication-d4-viol-06",
+  "domain": "medication",
+  "metadata": {
+    "description": "condition-to-recommendation rules; a contraindicated pair must not co-occur",
+    "source": "synthetic",
+    "clinical_intent": "drugs a and b form a contraindicated pair and must never be jointly recommended"
+  },
+  "ruleset": {
+    "id": "medication-4-6",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "renal_impairment",
+        "type": "bool"
+      },
+      {
+        "name": "polypharmacy",
+        "type": "bool"
+      },
+      {
+        "name": "elderly",
+        "type": "bool"
+      },
+      {
+        "name": "qt_prolongation",
+        "type": "bool"
+      },
+      {
+        "name": "diabetes",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "rec_drug_a",
+        "type": "bool"
+      },
+      {
+        "name": "rec_drug_b",
+        "type": "bool"
+      },
+      {
+        "name": "rec_drug_c",
+        "type": "bool"
+      }
+    ],
+    "rules": [
+      {
+        "id": "rec_b_from_trigger",
+        "priority": 50,
+        "when": {
+          "var": "renal_impairment"
+        },
+        "then": [
+          {
+            "var": "rec_drug_b",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_diabetes",
+        "priority": 40,
+        "when": {
+          "var": "diabetes"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_a_from_conjunction",
+        "priority": 50,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "renal_impairment"
+            },
+            {
+              "var": "polypharmacy"
+            },
+            {
+              "var": "elderly"
+            },
+            {
+              "var": "qt_prolongation"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "rec_drug_a",
+            "value": true
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "rec_drug_a",
+        "value": false
+      },
+      {
+        "var": "rec_drug_b",
+        "value": false
+      },
+      {
+        "var": "rec_drug_c",
+        "value": false
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "no-contraindicated-pair",
+    "kind": "mutual_exclusion",
+    "mutual_exclusion": {
+      "pairs": [
+        [
+          {
+            "var": "rec_drug_a"
+          },
+          {
+            "var": "rec_drug_b"
+          }
+        ]
+      ]
+    },
+    "intent": "no input recommends both drug a and drug b"
+  }
+}

@@ -1,0 +1,1442 @@
+[
+  {
+    "id": "triage-d1-viol-00",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": 8
+  },
+  {
+    "id": "medication-d1-viol-00",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": 8
+  },
+  {
+    "id": "outreach-d1-viol-00",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": null
+  },
+  {
+    "id": "triage-d1-viol-01",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": 4
+  },
+  {
+    "id": "medication-d1-viol-01",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": 8
+  },
+  {
+    "id": "outreach-d1-viol-01",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": null
+  },
+  {
+    "id": "triage-d1-viol-02",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": 4
+  },
+  {
+    "id": "medication-d1-viol-02",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": 8
+  },
+  {
+    "id": "outreach-d1-viol-02",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": null
+  },
+  {
+    "id": "triage-d1-viol-03",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": 16
+  },
+  {
+    "id": "medication-d1-viol-03",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": 16
+  },
+  {
+    "id": "outreach-d1-viol-03",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": null
+  },
+  {
+    "id": "triage-d1-viol-04",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": 4
+  },
+  {
+    "id": "medication-d1-viol-04",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": 4
+  },
+  {
+    "id": "outreach-d1-viol-04",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": null
+  },
+  {
+    "id": "triage-d1-viol-05",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": 16
+  },
+  {
+    "id": "medication-d1-viol-05",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": 8
+  },
+  {
+    "id": "outreach-d1-viol-05",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": null
+  },
+  {
+    "id": "triage-d1-viol-06",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": 8
+  },
+  {
+    "id": "medication-d1-viol-06",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": 4
+  },
+  {
+    "id": "outreach-d1-viol-06",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": null
+  },
+  {
+    "id": "triage-d1-viol-07",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": 4
+  },
+  {
+    "id": "medication-d1-viol-07",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": 8
+  },
+  {
+    "id": "outreach-d1-viol-07",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": null
+  },
+  {
+    "id": "triage-d1-viol-08",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": 16
+  },
+  {
+    "id": "medication-d1-viol-08",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": 4
+  },
+  {
+    "id": "outreach-d1-viol-08",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": null
+  },
+  {
+    "id": "triage-d1-viol-09",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": 8
+  },
+  {
+    "id": "medication-d1-viol-09",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": 16
+  },
+  {
+    "id": "outreach-d1-viol-09",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1,
+    "space": null
+  },
+  {
+    "id": "triage-d2-viol-00",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": 8
+  },
+  {
+    "id": "medication-d2-viol-00",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": 16
+  },
+  {
+    "id": "outreach-d2-viol-00",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": null
+  },
+  {
+    "id": "triage-d2-viol-01",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": 32
+  },
+  {
+    "id": "medication-d2-viol-01",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": 32
+  },
+  {
+    "id": "outreach-d2-viol-01",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": null
+  },
+  {
+    "id": "triage-d2-viol-02",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": 32
+  },
+  {
+    "id": "medication-d2-viol-02",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": 32
+  },
+  {
+    "id": "outreach-d2-viol-02",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": null
+  },
+  {
+    "id": "triage-d2-viol-03",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": 16
+  },
+  {
+    "id": "medication-d2-viol-03",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": 16
+  },
+  {
+    "id": "outreach-d2-viol-03",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": null
+  },
+  {
+    "id": "triage-d2-viol-04",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": 16
+  },
+  {
+    "id": "medication-d2-viol-04",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": 32
+  },
+  {
+    "id": "outreach-d2-viol-04",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": null
+  },
+  {
+    "id": "triage-d2-viol-05",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": 32
+  },
+  {
+    "id": "medication-d2-viol-05",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": 16
+  },
+  {
+    "id": "outreach-d2-viol-05",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": null
+  },
+  {
+    "id": "triage-d2-viol-06",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": 16
+  },
+  {
+    "id": "medication-d2-viol-06",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": 8
+  },
+  {
+    "id": "outreach-d2-viol-06",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": null
+  },
+  {
+    "id": "triage-d2-viol-07",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": 8
+  },
+  {
+    "id": "medication-d2-viol-07",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": 16
+  },
+  {
+    "id": "outreach-d2-viol-07",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": null
+  },
+  {
+    "id": "triage-d2-viol-08",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": 32
+  },
+  {
+    "id": "medication-d2-viol-08",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": 32
+  },
+  {
+    "id": "outreach-d2-viol-08",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": null
+  },
+  {
+    "id": "triage-d2-viol-09",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": 32
+  },
+  {
+    "id": "medication-d2-viol-09",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": 16
+  },
+  {
+    "id": "outreach-d2-viol-09",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": null
+  },
+  {
+    "id": "triage-d3-viol-00",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": 16
+  },
+  {
+    "id": "medication-d3-viol-00",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": 64
+  },
+  {
+    "id": "outreach-d3-viol-00",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": null
+  },
+  {
+    "id": "triage-d3-viol-01",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": 32
+  },
+  {
+    "id": "medication-d3-viol-01",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": 16
+  },
+  {
+    "id": "outreach-d3-viol-01",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": null
+  },
+  {
+    "id": "triage-d3-viol-02",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": 32
+  },
+  {
+    "id": "medication-d3-viol-02",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": 64
+  },
+  {
+    "id": "outreach-d3-viol-02",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": null
+  },
+  {
+    "id": "triage-d3-viol-03",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": 32
+  },
+  {
+    "id": "medication-d3-viol-03",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": 64
+  },
+  {
+    "id": "outreach-d3-viol-03",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": null
+  },
+  {
+    "id": "triage-d3-viol-04",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": 64
+  },
+  {
+    "id": "medication-d3-viol-04",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": 64
+  },
+  {
+    "id": "outreach-d3-viol-04",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": null
+  },
+  {
+    "id": "triage-d3-viol-05",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": 64
+  },
+  {
+    "id": "medication-d3-viol-05",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": 16
+  },
+  {
+    "id": "outreach-d3-viol-05",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": null
+  },
+  {
+    "id": "triage-d3-viol-06",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": 64
+  },
+  {
+    "id": "medication-d3-viol-06",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": 16
+  },
+  {
+    "id": "outreach-d3-viol-06",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": null
+  },
+  {
+    "id": "triage-d3-viol-07",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": 64
+  },
+  {
+    "id": "medication-d3-viol-07",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": 16
+  },
+  {
+    "id": "outreach-d3-viol-07",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": null
+  },
+  {
+    "id": "triage-d3-viol-08",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": 16
+  },
+  {
+    "id": "medication-d3-viol-08",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": 64
+  },
+  {
+    "id": "outreach-d3-viol-08",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": null
+  },
+  {
+    "id": "triage-d3-viol-09",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": 64
+  },
+  {
+    "id": "medication-d3-viol-09",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": 16
+  },
+  {
+    "id": "outreach-d3-viol-09",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 3,
+    "space": null
+  },
+  {
+    "id": "triage-d4-viol-00",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": 64
+  },
+  {
+    "id": "medication-d4-viol-00",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": 64
+  },
+  {
+    "id": "outreach-d4-viol-00",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": null
+  },
+  {
+    "id": "triage-d4-viol-01",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": 32
+  },
+  {
+    "id": "medication-d4-viol-01",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": 64
+  },
+  {
+    "id": "outreach-d4-viol-01",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": null
+  },
+  {
+    "id": "triage-d4-viol-02",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": 32
+  },
+  {
+    "id": "medication-d4-viol-02",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": 32
+  },
+  {
+    "id": "outreach-d4-viol-02",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": null
+  },
+  {
+    "id": "triage-d4-viol-03",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": 64
+  },
+  {
+    "id": "medication-d4-viol-03",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": 32
+  },
+  {
+    "id": "outreach-d4-viol-03",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": null
+  },
+  {
+    "id": "triage-d4-viol-04",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": 64
+  },
+  {
+    "id": "medication-d4-viol-04",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": 64
+  },
+  {
+    "id": "outreach-d4-viol-04",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": null
+  },
+  {
+    "id": "triage-d4-viol-05",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": 64
+  },
+  {
+    "id": "medication-d4-viol-05",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": 64
+  },
+  {
+    "id": "outreach-d4-viol-05",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": null
+  },
+  {
+    "id": "triage-d4-viol-06",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": 128
+  },
+  {
+    "id": "medication-d4-viol-06",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": 32
+  },
+  {
+    "id": "outreach-d4-viol-06",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": null
+  },
+  {
+    "id": "triage-d4-viol-07",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": 128
+  },
+  {
+    "id": "medication-d4-viol-07",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": 64
+  },
+  {
+    "id": "outreach-d4-viol-07",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": null
+  },
+  {
+    "id": "triage-d4-viol-08",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": 64
+  },
+  {
+    "id": "medication-d4-viol-08",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": 32
+  },
+  {
+    "id": "outreach-d4-viol-08",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": null
+  },
+  {
+    "id": "triage-d4-viol-09",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": 128
+  },
+  {
+    "id": "medication-d4-viol-09",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": 32
+  },
+  {
+    "id": "outreach-d4-viol-09",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": null
+  },
+  {
+    "id": "triage-d1-hold-100",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 8
+  },
+  {
+    "id": "medication-d1-hold-100",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 4
+  },
+  {
+    "id": "outreach-d1-hold-100",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 6
+  },
+  {
+    "id": "triage-d2-hold-101",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 32
+  },
+  {
+    "id": "medication-d2-hold-101",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 16
+  },
+  {
+    "id": "outreach-d2-hold-101",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 9
+  },
+  {
+    "id": "triage-d3-hold-102",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 64
+  },
+  {
+    "id": "medication-d3-hold-102",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 64
+  },
+  {
+    "id": "outreach-d3-hold-102",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 12
+  },
+  {
+    "id": "triage-d4-hold-103",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 64
+  },
+  {
+    "id": "medication-d4-hold-103",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 32
+  },
+  {
+    "id": "outreach-d4-hold-103",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 15
+  },
+  {
+    "id": "triage-d1-hold-104",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 16
+  },
+  {
+    "id": "medication-d1-hold-104",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 4
+  },
+  {
+    "id": "outreach-d1-hold-104",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 6
+  },
+  {
+    "id": "triage-d2-hold-105",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 8
+  },
+  {
+    "id": "medication-d2-hold-105",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 16
+  },
+  {
+    "id": "outreach-d2-hold-105",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 9
+  },
+  {
+    "id": "triage-d3-hold-106",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 16
+  },
+  {
+    "id": "medication-d3-hold-106",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 64
+  },
+  {
+    "id": "outreach-d3-hold-106",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 12
+  },
+  {
+    "id": "triage-d4-hold-107",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 64
+  },
+  {
+    "id": "medication-d4-hold-107",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 128
+  },
+  {
+    "id": "outreach-d4-hold-107",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 15
+  },
+  {
+    "id": "triage-d1-hold-108",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 8
+  },
+  {
+    "id": "medication-d1-hold-108",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 16
+  },
+  {
+    "id": "outreach-d1-hold-108",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 6
+  },
+  {
+    "id": "triage-d2-hold-109",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 16
+  },
+  {
+    "id": "medication-d2-hold-109",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 16
+  },
+  {
+    "id": "outreach-d2-hold-109",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 9
+  },
+  {
+    "id": "triage-d3-hold-110",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 32
+  },
+  {
+    "id": "medication-d3-hold-110",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 32
+  },
+  {
+    "id": "outreach-d3-hold-110",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 12
+  },
+  {
+    "id": "triage-d4-hold-111",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 32
+  },
+  {
+    "id": "medication-d4-hold-111",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 64
+  },
+  {
+    "id": "outreach-d4-hold-111",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 15
+  },
+  {
+    "id": "triage-d1-hold-112",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 16
+  },
+  {
+    "id": "medication-d1-hold-112",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 16
+  },
+  {
+    "id": "outreach-d1-hold-112",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 6
+  },
+  {
+    "id": "triage-d2-hold-113",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 32
+  },
+  {
+    "id": "medication-d2-hold-113",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 32
+  },
+  {
+    "id": "outreach-d2-hold-113",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 9
+  },
+  {
+    "id": "triage-d3-hold-114",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 32
+  },
+  {
+    "id": "medication-d3-hold-114",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 32
+  },
+  {
+    "id": "outreach-d3-hold-114",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 12
+  },
+  {
+    "id": "triage-d4-hold-115",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 32
+  },
+  {
+    "id": "medication-d4-hold-115",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 128
+  },
+  {
+    "id": "outreach-d4-hold-115",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 15
+  },
+  {
+    "id": "triage-d1-hold-116",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 16
+  },
+  {
+    "id": "medication-d1-hold-116",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 16
+  },
+  {
+    "id": "outreach-d1-hold-116",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 6
+  },
+  {
+    "id": "triage-d2-hold-117",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 8
+  },
+  {
+    "id": "medication-d2-hold-117",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 8
+  },
+  {
+    "id": "outreach-d2-hold-117",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 9
+  },
+  {
+    "id": "triage-d3-hold-118",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 64
+  },
+  {
+    "id": "medication-d3-hold-118",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 32
+  },
+  {
+    "id": "outreach-d3-hold-118",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 12
+  },
+  {
+    "id": "triage-d4-hold-119",
+    "domain": "triage",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 128
+  },
+  {
+    "id": "medication-d4-hold-119",
+    "domain": "medication",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 64
+  },
+  {
+    "id": "outreach-d4-hold-119",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 15
+  }
+]

@@ -1,0 +1,26 @@
+{
+  "item": "triage-d1-viol-04",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "vision_loss",
+      "value": false
+    },
+    {
+      "var": "palpitations__base",
+      "value": false
+    },
+    {
+      "var": "vision_loss__base",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 1,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 1 produces the violation; see generate.py for the construction"
+}

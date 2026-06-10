@@ -1,0 +1,30 @@
+{
+  "item": "medication-d2-viol-04",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "polypharmacy",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": false
+    },
+    {
+      "var": "elderly",
+      "value": false
+    },
+    {
+      "var": "heart_failure",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 2,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 2 produces the violation; see generate.py for the construction"
+}

@@ -1,0 +1,42 @@
+{
+  "item": "triage-d2-viol-03",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "abdominal_pain",
+      "value": true
+    },
+    {
+      "var": "vision_loss",
+      "value": true
+    },
+    {
+      "var": "vomiting",
+      "value": false
+    },
+    {
+      "var": "dyspnea",
+      "value": false
+    },
+    {
+      "var": "abdominal_pain__base",
+      "value": true
+    },
+    {
+      "var": "vision_loss__base",
+      "value": false
+    },
+    {
+      "var": "vomiting__base",
+      "value": false
+    },
+    {
+      "var": "dyspnea__base",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 2,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 2 produces the violation; see generate.py for the construction"
+}

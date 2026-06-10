@@ -1,0 +1,30 @@
+{
+  "item": "medication-d4-viol-09",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "diabetes",
+      "value": true
+    },
+    {
+      "var": "renal_impairment",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 4,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 4 produces the violation; see generate.py for the construction"
+}

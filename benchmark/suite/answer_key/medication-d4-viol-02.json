@@ -1,0 +1,30 @@
+{
+  "item": "medication-d4-viol-02",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "hypertension",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 4,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 4 produces the violation; see generate.py for the construction"
+}

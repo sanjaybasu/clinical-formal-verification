@@ -1,0 +1,50 @@
+{
+  "item": "triage-d2-viol-02",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": false
+    },
+    {
+      "var": "focal_weakness",
+      "value": false
+    },
+    {
+      "var": "chest_pain",
+      "value": false
+    },
+    {
+      "var": "palpitations__base",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain__base",
+      "value": false
+    },
+    {
+      "var": "rash__base",
+      "value": false
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": false
+    },
+    {
+      "var": "chest_pain__base",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 2,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 2 produces the violation; see generate.py for the construction"
+}

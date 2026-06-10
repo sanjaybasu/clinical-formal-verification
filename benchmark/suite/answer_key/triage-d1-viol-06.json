@@ -1,0 +1,34 @@
+{
+  "item": "triage-d1-viol-06",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": false
+    },
+    {
+      "var": "vomiting",
+      "value": false
+    },
+    {
+      "var": "syncope__base",
+      "value": false
+    },
+    {
+      "var": "fever__base",
+      "value": false
+    },
+    {
+      "var": "vomiting__base",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 1,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 1 produces the violation; see generate.py for the construction"
+}

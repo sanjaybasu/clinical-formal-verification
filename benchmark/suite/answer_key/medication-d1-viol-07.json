@@ -1,0 +1,22 @@
+{
+  "item": "medication-d1-viol-07",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "polypharmacy",
+      "value": false
+    },
+    {
+      "var": "elderly",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 1,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 1 produces the violation; see generate.py for the construction"
+}

@@ -1,0 +1,58 @@
+{
+  "item": "triage-d4-viol-00",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "chest_pain",
+      "value": true
+    },
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "vision_loss",
+      "value": false
+    },
+    {
+      "var": "vomiting",
+      "value": false
+    },
+    {
+      "var": "palpitations__base",
+      "value": true
+    },
+    {
+      "var": "severe_headache__base",
+      "value": true
+    },
+    {
+      "var": "chest_pain__base",
+      "value": true
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": false
+    },
+    {
+      "var": "vision_loss__base",
+      "value": false
+    },
+    {
+      "var": "vomiting__base",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 4,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 4 produces the violation; see generate.py for the construction"
+}

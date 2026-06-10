@@ -1,0 +1,157 @@
+{
+  "id": "medication-d1-hold-108",
+  "domain": "medication",
+  "metadata": {
+    "description": "condition-to-recommendation rules; a contraindicated pair must not co-occur",
+    "source": "synthetic",
+    "clinical_intent": "drugs a and b form a contraindicated pair and must never be jointly recommended"
+  },
+  "ruleset": {
+    "id": "medication-1-108",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "renal_impairment",
+        "type": "bool"
+      },
+      {
+        "name": "anticoagulated",
+        "type": "bool"
+      },
+      {
+        "name": "elderly",
+        "type": "bool"
+      },
+      {
+        "name": "peptic_ulcer",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "rec_drug_a",
+        "type": "bool"
+      },
+      {
+        "name": "rec_drug_b",
+        "type": "bool"
+      },
+      {
+        "name": "rec_drug_c",
+        "type": "bool"
+      }
+    ],
+    "rules": [
+      {
+        "id": "rec_a_from_conjunction",
+        "priority": 50,
+        "when": {
+          "var": "renal_impairment"
+        },
+        "then": [
+          {
+            "var": "rec_drug_a",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_elderly",
+        "priority": 40,
+        "when": {
+          "var": "elderly"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "guard_suppress_b",
+        "priority": 90,
+        "when": {
+          "var": "renal_impairment"
+        },
+        "then": [
+          {
+            "var": "rec_drug_b",
+            "value": false
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_anticoagulated",
+        "priority": 40,
+        "when": {
+          "var": "anticoagulated"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_b_from_trigger",
+        "priority": 50,
+        "when": {
+          "var": "renal_impairment"
+        },
+        "then": [
+          {
+            "var": "rec_drug_b",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_peptic_ulcer",
+        "priority": 40,
+        "when": {
+          "var": "peptic_ulcer"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "rec_drug_a",
+        "value": false
+      },
+      {
+        "var": "rec_drug_b",
+        "value": false
+      },
+      {
+        "var": "rec_drug_c",
+        "value": false
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "no-contraindicated-pair",
+    "kind": "mutual_exclusion",
+    "mutual_exclusion": {
+      "pairs": [
+        [
+          {
+            "var": "rec_drug_a"
+          },
+          {
+            "var": "rec_drug_b"
+          }
+        ]
+      ]
+    },
+    "intent": "no input recommends both drug a and drug b"
+  }
+}

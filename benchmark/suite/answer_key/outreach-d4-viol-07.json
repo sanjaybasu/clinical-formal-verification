@@ -1,0 +1,34 @@
+{
+  "item": "outreach-d4-viol-07",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "event": "optout",
+      "transition": "t_optout"
+    },
+    {
+      "event": "tick",
+      "transition": "t_tick"
+    },
+    {
+      "event": "tick",
+      "transition": "t_tick"
+    },
+    {
+      "event": "tick",
+      "transition": "t_tick"
+    },
+    {
+      "event": "tick",
+      "transition": "t_tick"
+    },
+    {
+      "event": "send_attempt",
+      "transition": "t_resume_glitch"
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 4,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 4 produces the violation; see generate.py for the construction"
+}
