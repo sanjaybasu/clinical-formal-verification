@@ -13,8 +13,9 @@ rate over a test set.
 
 This repository contains:
 
-- a benchmark of machine-readable clinical rule sets paired with safety properties, with a
-  ground-truth answer key (`benchmark/`);
+- CIV-Bench (clinical invariant verification benchmark), a benchmark of machine-readable
+  clinical rule sets paired with safety properties, with a ground-truth answer key
+  (`benchmark/`);
 - a solver harness that compiles rule sets to SMT constraints and returns either a proof that a
   property holds over the full input space or a counterexample (`verifier/`);
 - runners for probabilistic baselines on the identical benchmark: programmable rails, an
