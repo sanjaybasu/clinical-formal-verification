@@ -1,0 +1,27 @@
+{
+  "item_id": "outreach-d3-viol-06",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "This is a state machine. The property requires globally(opted_out implies not sent): no reachable state may have opted_out=true and sent=true simultaneously.\n\nThe transition t_resume_glitch breaks this: \"on send_attempt if (opted_out and ticks >= 3): sent := true\". This sets sent=true precisely while opted_out is already true, directly contradicting the invariant \u2014 provided we can reach a state with opted_out=true and ticks>=3.\n\nReaching ticks>=3 requires 3 tick events (0->1->2->3; t_tick caps at 3 and also sets sent:=false, which is harmless). Then optout sets opted_out:=true, sent:=false, leaving ticks=3 unchanged. A subsequent send_attempt now has both t_send_blocked (guard opted_out, sets sent:=false) and t_resume_glitch (guard opted_out and ticks>=3, sets sent:=true) enabled \u2014 a genuine conflict. The spec defines no priority ordering that would exclude t_resume_glitch, and for a safety audit any admissible resolution that produces the unsafe state counts as a violation. Taking the t_resume_glitch resolution yields sent:=true while opted_out remains true.\n\nCounterexample trace (5 events, within the 7-event bound):\n1. tick  -> opted_out=false, sent=false, ticks=1\n2. tick  -> ticks=2\n3. tick  -> ticks=3\n4. optout -> opted_out=true, sent=false, ticks=3\n5. send_attempt -> t_resume_glitch fires (opted_out and ticks>=3) -> sent=true\n\nFinal state: opted_out=true AND sent=true, so (opted_out implies not sent) is false. The global invariant is violated.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "item_id": "outreach-d10-hold-134",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property G(opted_out -> not sent) holds. Equivalently, the bad state (opted_out=true AND sent=true) is unreachable. Proof by induction on the inductive invariant I = not(opted_out AND sent):\n\nBase case: initial state is opted_out=false, sent=false, so I holds.\n\nInductive step: assume I holds in the current state; check each transition cannot produce opted_out=true AND sent=true:\n- t_optout (optout): sets opted_out:=true AND sent:=false simultaneously. Result has sent=false, so I holds. This is the key interaction: opting out forcibly clears sent.\n- t_send_allowed (send_attempt, guard not opted_out): sets sent:=true but the guard requires opted_out=false, and opted_out is not modified, so the result has opted_out=false. I holds.\n- t_send_blocked (send_attempt, guard opted_out): sets sent:=false. I holds.\n- t_tick (tick): sets sent:=false (and increments ticks). I holds.\n\nNo transition ever yields opted_out=true together with sent=true: the only writer of sent:=true (t_send_allowed) is guarded by not opted_out, and the only writer of opted_out:=true (t_optout) simultaneously sets sent:=false. The other two transitions only clear sent. Since I is inductive and holds initially, it holds on every reachable state, hence on every execution (including within the 14-event bound). Property holds.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

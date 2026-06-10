@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d4-hold-112",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property holds. The output `acuity` is determined by four rules, keyed on palpitations, dizziness (\u2192 urgent, priority 2), syncope, and confusion (\u2192 emergent, priority 3), with a default of routine for the unset case. The input variable `severe_headache` does not appear in the condition of ANY rule (lines 13-16 reference only palpitations, dizziness, syncope, confusion). Therefore, for any fixed assignment of the other four inputs, toggling severe_headache from false to true changes nothing about which rules match, their priorities, the conflict resolution, or the default application. The computed acuity is identical before and after setting severe_headache true (acuity_after == acuity_before for every input). Since \"equal\" is not \"lower,\" the monotonicity property (\"setting severe_headache true never lowers acuity\") is trivially satisfied across the entire input space. There is no rule that decreases acuity, and severe_headache has no causal path to the output, so no counterexample exists.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

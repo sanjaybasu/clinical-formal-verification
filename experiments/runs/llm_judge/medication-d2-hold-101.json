@@ -1,0 +1,11 @@
+{
+  "item_id": "medication-d2-hold-101",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "rec_drug_a is true only via rule rec_a_from_conjunction (priority 50, condition prior_gi_bleed AND qt_prolongation); its default is false, so rec_drug_a = (prior_gi_bleed AND qt_prolongation). rec_drug_b is set by rec_b_from_trigger (priority 50, IF prior_gi_bleed => true) and guard_suppress_b (priority 90, IF prior_gi_bleed AND qt_prolongation => false). For rec_drug_a to be true we need prior_gi_bleed AND qt_prolongation, which is exactly guard_suppress_b's condition. Since guard_suppress_b (priority 90) outranks rec_b_from_trigger (priority 50), in that case rec_drug_b is forced to false. Thus whenever rec_drug_a is true, rec_drug_b is false; and whenever the conjunction fails, rec_drug_a is false. So (rec_drug_a AND rec_drug_b) is never jointly true. Checking the only a-true case explicitly: prior_gi_bleed=true, qt_prolongation=true gives rec_drug_a=true, rec_drug_b=false. The property holds over all 16 input combinations.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

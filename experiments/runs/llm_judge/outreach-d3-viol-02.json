@@ -1,0 +1,27 @@
+{
+  "item_id": "outreach-d3-viol-02",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "This is a state machine. The property G(opted_out implies not sent) is violated by transition [t_resume_glitch], which on a send_attempt with guard (opted_out and ticks >= 3) sets sent := true while opted_out is true.\n\nReachability of the violating state within the 7-event bound:\n- ticks only increases via the tick event (capped at 3). Three ticks reach ticks=3 (each tick also sets sent:=false, harmless here). opted_out remains false.\n- The optout event sets opted_out:=true, sent:=false, and leaves ticks unchanged at 3.\n- A subsequent send_attempt has guards: t_send_allowed (not opted_out)=false; t_send_blocked (opted_out)=true; t_resume_glitch (opted_out and ticks>=3)=true. Both t_send_blocked and t_resume_glitch are enabled. Under the spec's enumeration of enabled transitions, an execution exists in which t_resume_glitch fires, setting sent:=true.\n\nResulting state: opted_out=true, ticks=3, sent=true. Evaluating opted_out implies not sent = (true implies not true) = false, so the globally invariant fails.\n\nWitness execution (5 events, within the 7-event bound): tick, tick, tick, optout, send_attempt. The t_resume_glitch transition is the intended-bug: it re-enables sending after a tick-based timeout window even though the member has opted out, defeating the opt-out guarantee. Property is violated.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

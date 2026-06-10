@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d8-hold-133",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The input chest_pain does not appear in any rule condition, nor in the default. The eight rules trigger only on confusion, back_pain, severe_headache, pallor, abdominal_pain, dizziness, vomiting, and fever; the default acuity := routine applies when no rule fires. Because acuity is computed solely from the other eight inputs and the default, toggling chest_pain while holding all other inputs fixed cannot change which rules match or which value the priority/order conflict resolution selects. Therefore acuity(chest_pain=true) = acuity(chest_pain=false) for every assignment of the other inputs. Equality satisfies the monotonicity requirement that acuity be \"no lower than before.\" The property holds for the entire input space (no rule interaction, priority conflict, or default path can make chest_pain=true lower acuity since chest_pain is irrelevant to the output).",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "item_id": "triage-d10-viol-05",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain",
+      "value": true
+    },
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "stiff_neck",
+      "value": true
+    },
+    {
+      "var": "dizziness",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": true
+    },
+    {
+      "var": "pallor",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "sweating",
+      "value": true
+    },
+    {
+      "var": "vomiting",
+      "value": false
+    },
+    {
+      "var": "syncope__base",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain__base",
+      "value": true
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": true
+    },
+    {
+      "var": "stiff_neck__base",
+      "value": true
+    },
+    {
+      "var": "dizziness__base",
+      "value": true
+    },
+    {
+      "var": "palpitations__base",
+      "value": true
+    },
+    {
+      "var": "dyspnea__base",
+      "value": true
+    },
+    {
+      "var": "pallor__base",
+      "value": true
+    },
+    {
+      "var": "rash__base",
+      "value": true
+    },
+    {
+      "var": "sweating__base",
+      "value": false
+    },
+    {
+      "var": "vomiting__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property requires that setting sweating=true (all else unchanged) never lowers acuity. It is VIOLATED by the interaction_drop rule.\n\nsweating appears in exactly one rule: interaction_drop (priority 100, the highest priority in the system), which fires only when all ten conjuncts are true, including sweating, and sets acuity := self_care (the lowest level).\n\nCounterexample pair (all other inputs fixed): syncope=abdominal_pain=focal_weakness=stiff_neck=dizziness=palpitations=dyspnea=pallor=rash=true, vomiting=false.\n\n- With sweating=FALSE: interaction_drop does not fire (sweating false). The highest-priority matching rules are priority-3 emergent rules (raise_pallor, raise_abdominal_pain, raise_stiff_neck, raise_palpitations), so acuity = emergent.\n- With sweating=TRUE: now all ten conjuncts of interaction_drop hold, so it fires at priority 100, beating every other rule (max other priority = 3), setting acuity = self_care.\n\nAcuity drops from emergent to self_care when sweating is set true, which lowers acuity and violates monotonicity. The witness_assignment given is the sweating=true endpoint that yields the lowered acuity (self_care); the comparison point is the identical input with sweating=false (emergent).",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

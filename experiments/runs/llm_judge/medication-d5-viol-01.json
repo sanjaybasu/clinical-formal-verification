@@ -1,0 +1,36 @@
+{
+  "item_id": "medication-d5-viol-01",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "hyperkalemia",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "polypharmacy",
+      "value": true
+    },
+    {
+      "var": "prior_gi_bleed",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that rec_drug_a and rec_drug_b are never jointly true. rec_drug_a becomes true only via rule rec_a_from_conjunction, whose antecedent is (hyperkalemia AND low_ejection_fraction AND pregnancy AND peptic_ulcer AND polypharmacy). That antecedent itself requires hyperkalemia = true. rec_drug_b becomes true via rule rec_b_from_trigger whenever hyperkalemia = true, and there is no competing/higher-priority rule for output rec_drug_b to suppress it. Because the two rules write to different outputs (rec_drug_a vs rec_drug_b), the priority/tie-break mechanism never causes one to override the other; both simply fire. Therefore, any input that satisfies the conjunction rule necessarily also satisfies the trigger rule, forcing both rec_drug_a and rec_drug_b true. Setting hyperkalemia=low_ejection_fraction=pregnancy=peptic_ulcer=polypharmacy=true (prior_gi_bleed arbitrary, here false) yields rec_drug_a=true and rec_drug_b=true, violating mutual exclusion.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

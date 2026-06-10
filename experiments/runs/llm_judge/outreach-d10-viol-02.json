@@ -1,0 +1,48 @@
+{
+  "item_id": "outreach-d10-viol-02",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "This is a state machine. The property requires globally(opted_out implies not sent): never reach a state with opted_out=true AND sent=true. Transition t_resume_glitch fires on send_attempt when (opted_out and ticks>=10) and sets sent:=true, which directly contradicts the property. It is reachable: (1) ten tick events drive ticks from 0 up to its cap of 10 (each tick increments ticks while ticks<10, leaving it at 10, and sets sent:=false); state becomes opted_out=F, sent=F, ticks=10. (2) optout sets opted_out:=true (and sent:=false); state opted_out=T, sent=F, ticks=10. (3) send_attempt now satisfies t_resume_glitch's guard (opted_out=T and ticks=10), applying sent:=true; the resulting state opted_out=T, sent=T violates the invariant. On the send_attempt both t_send_blocked (guard opted_out) and t_resume_glitch (guard opted_out and ticks>=10) are enabled; t_resume_glitch is the later-listed, strictly-more-specific transition deliberately introduced as the 'resume glitch' that overrides the block at the tick cap, so it applies and sets sent=true. The witness uses 12 events, within the 14-event bound. Therefore the property is violated.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "item_id": "triage-d5-viol-07",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "pallor",
+      "value": true
+    },
+    {
+      "var": "vision_loss",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "sweating",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "pallor__base",
+      "value": true
+    },
+    {
+      "var": "vision_loss__base",
+      "value": true
+    },
+    {
+      "var": "fever__base",
+      "value": true
+    },
+    {
+      "var": "sweating__base",
+      "value": true
+    },
+    {
+      "var": "palpitations__base",
+      "value": false
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": true
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property (setting palpitations=true never lowers acuity) is VIOLATED.\n\npalpitations appears in exactly one rule: interaction_drop (priority 100), which sets acuity := self_care (the lowest enum value) and requires pallor \u2227 vision_loss \u2227 fever \u2227 sweating \u2227 palpitations. Because it has the highest priority by far (100 vs. the priority-3 emergent rules), whenever it fires it dominates all other rules.\n\nCounterexample pair (all other inputs held at: pallor=T, vision_loss=T, fever=T, sweating=T, focal_weakness=T):\n- palpitations=FALSE: interaction_drop does not fire (palpitations missing). The active rules include raise_sweating, raise_focal_weakness, and raise_vision_loss (each priority 3 \u2192 emergent), plus raise_fever/raise_pallor (priority 2 \u2192 urgent). Highest priority among firing rules is 3, all agreeing on emergent. Result: acuity = emergent.\n- palpitations=TRUE: now interaction_drop fires (all five of pallor, vision_loss, fever, sweating, palpitations are true). With priority 100 it beats every priority-3 emergent rule. Result: acuity = self_care.\n\nToggling palpitations from false to true lowered acuity from emergent (highest) to self_care (lowest), directly violating the property. The witness_assignment gives the palpitations=true endpoint that produces the lowered acuity; the baseline is the identical assignment with palpitations=false.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

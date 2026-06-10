@@ -1,0 +1,72 @@
+{
+  "item_id": "medication-d12-viol-04",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "hypertension",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "diabetes",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "renal_impairment",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "prior_gi_bleed",
+      "value": true
+    },
+    {
+      "var": "polypharmacy",
+      "value": false
+    },
+    {
+      "var": "seizure_history",
+      "value": false
+    },
+    {
+      "var": "heart_failure",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires rec_drug_a and rec_drug_b never to be jointly true. rec_drug_a is set true only by rec_a_from_conjunction (priority 50), which requires all 12 conditions true, including asthma. rec_drug_b is set true by rec_b_from_trigger (priority 50) whenever asthma is true. Since the conjunction requires asthma, any input that fires rec_a_from_conjunction necessarily also fires rec_b_from_trigger. These rules write to different outputs, so priorities (which only resolve same-output conflicts) do not prevent both from being set, and defaults do not apply because both outputs are explicitly set true. Setting all 12 conjunction conditions true (asthma, hypertension, low_ejection_fraction, qt_prolongation, diabetes, pregnancy, peptic_ulcer, hepatic_impairment, bradycardia, renal_impairment, elderly, prior_gi_bleed) yields rec_drug_a=true and rec_drug_b=true simultaneously, violating mutual exclusion. The remaining inputs (polypharmacy, seizure_history, heart_failure) only affect rec_drug_c and are irrelevant; set false.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

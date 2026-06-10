@@ -53,13 +53,12 @@ experiments, so it is an Article, not a Review.
 - Author Contributions (CRediT taxonomy).
 - Funding: state explicitly; per the author's default, "This research received no external
   funding."
-- Institutional Review Board Statement: required for studies involving humans, human data, or
-  human tissue. Action item: determine the correct statement for the private split derived from
-  the operational Medicaid care program; the public benchmark is synthetic or public-source
-  derived and involves no human subjects. If the private split is reported only as aggregate
-  rule and population characteristics with no individual-level data, an exemption or waiver
-  statement with justification, or a "not applicable" with rationale, is the likely form;
-  confirm against the governing IRB determination before submission.
+- Institutional Review Board Statement: resolved. WCG IRB approved these observational studies
+  of retrospective data that do not affect participant treatment decisions, with a waiver of
+  informed consent given the use of de-identified data, under IRB Tracking ID 20253751. The
+  manuscript carries this statement. The public benchmark is synthetic or public-source derived
+  and involves no human subjects; the private COMPASS-derived split is retrospective and
+  de-identified and is covered by this approval.
 - Informed Consent Statement: as applicable; likely a waiver or not applicable given no
   individual-level human data are presented.
 - Data Availability Statement: required. Planned statement: the benchmark, verifier, baselines,

@@ -1,0 +1,64 @@
+{
+  "item_id": "medication-d10-viol-00",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "polypharmacy",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "ckd_dialysis",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "diabetes",
+      "value": true
+    },
+    {
+      "var": "immunosuppressed",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "hyperkalemia",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "prior_gi_bleed",
+      "value": false
+    },
+    {
+      "var": "elderly",
+      "value": false
+    },
+    {
+      "var": "bradycardia",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "rec_drug_a is set true only by rule rec_a_from_conjunction (priority 50), whose antecedent is the conjunction of 10 inputs including polypharmacy. rec_drug_b is set true only by rule rec_b_from_trigger (priority 50) whenever polypharmacy is true. Since rec_drug_a=true logically requires polypharmacy=true (it is one of the 10 required conjuncts), the very same input that activates rec_drug_a also activates rec_drug_b. There is no priority conflict because the two recommendations are distinct outputs, each with a single enabling rule, and defaults only apply when no rule fires. Therefore any input satisfying the full conjunction makes both rec_drug_a and rec_drug_b true, violating the mutual-exclusion property. Counterexample: all 10 conjunction inputs true (polypharmacy, anticoagulated, ckd_dialysis, heart_failure, diabetes, immunosuppressed, asthma, g6pd_deficiency, hyperkalemia, low_ejection_fraction), with prior_gi_bleed, elderly, bradycardia set false. This yields rec_drug_a=true and rec_drug_b=true simultaneously.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

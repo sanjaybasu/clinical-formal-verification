@@ -1,0 +1,116 @@
+{
+  "item_id": "triage-d12-viol-03",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": true
+    },
+    {
+      "var": "dizziness",
+      "value": true
+    },
+    {
+      "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain",
+      "value": true
+    },
+    {
+      "var": "confusion",
+      "value": true
+    },
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "vision_loss",
+      "value": true
+    },
+    {
+      "var": "pallor",
+      "value": true
+    },
+    {
+      "var": "chest_pain",
+      "value": true
+    },
+    {
+      "var": "severe_headache__base",
+      "value": true
+    },
+    {
+      "var": "palpitations__base",
+      "value": true
+    },
+    {
+      "var": "rash__base",
+      "value": true
+    },
+    {
+      "var": "fever__base",
+      "value": true
+    },
+    {
+      "var": "back_pain__base",
+      "value": true
+    },
+    {
+      "var": "dizziness__base",
+      "value": true
+    },
+    {
+      "var": "syncope__base",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain__base",
+      "value": true
+    },
+    {
+      "var": "confusion__base",
+      "value": true
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": true
+    },
+    {
+      "var": "vision_loss__base",
+      "value": true
+    },
+    {
+      "var": "pallor__base",
+      "value": false
+    },
+    {
+      "var": "chest_pain__base",
+      "value": true
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property is monotonicity in pallor: setting pallor=true (all else unchanged) must never lower acuity. Pallor appears in only one rule, interaction_drop (priority 100), which requires all 12 of severe_headache, palpitations, rash, fever, back_pain, dizziness, syncope, abdominal_pain, confusion, focal_weakness, vision_loss, pallor to be true and forces acuity := self_care (lowest). Its priority 100 dominates every other rule (max other priority is 3).\n\nCounterexample comparison: take all of the 12 non-pallor conjunction symptoms true (plus chest_pain true, irrelevant).\n- Baseline (pallor=false): interaction_drop does NOT fire because pallor is missing. Multiple emergent rules fire (raise_palpitations, raise_focal_weakness, raise_dizziness, raise_fever, raise_abdominal_pain, all priority 3) -> highest matching priority 3 -> acuity = emergent.\n- After flipping pallor=true (the witness, all 13 inputs true): the full conjunction is satisfied, so interaction_drop (priority 100) fires and wins -> acuity = self_care.\n\nAcuity drops from emergent (highest) to self_care (lowest) purely by setting pallor true. This lowers acuity, violating the monotonicity property. The reported witness_assignment is the violating input (pallor=true); its pallor=false counterpart yields the strictly higher acuity emergent.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "item_id": "triage-d2-viol-03",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "dizziness",
+      "value": true
+    },
+    {
+      "var": "vomiting",
+      "value": false
+    },
+    {
+      "var": "pallor",
+      "value": false
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": true
+    },
+    {
+      "var": "dizziness__base",
+      "value": false
+    },
+    {
+      "var": "vomiting__base",
+      "value": false
+    },
+    {
+      "var": "pallor__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property is violated by the high-priority interaction_drop rule. Compare the baseline (dizziness=false) with the same input but dizziness=true, holding focal_weakness=true, vomiting=false, pallor=false fixed.\n\nBaseline (focal_weakness=true, dizziness=false, vomiting=false, pallor=false): The interaction_drop rule (priority 100) requires both focal_weakness AND dizziness, so it does not fire. Only raise_focal_weakness (priority 2) matches, setting acuity:=urgent. raise_pallor and raise_vomiting do not match. Result: acuity=urgent (enum index 2).\n\nAfter setting dizziness=true (focal_weakness=true, dizziness=true, vomiting=false, pallor=false): Now interaction_drop (priority 100) fires, setting acuity:=self_care, and raise_focal_weakness (priority 2) sets acuity:=urgent. The highest-priority matching rule wins, so priority 100 dominates: acuity=self_care (enum index 0).\n\nSetting dizziness from false to true lowers acuity from urgent (2) to self_care (0). Since the property requires acuity to be no lower after dizziness becomes true, this is a direct violation. The witness assignment given is the dizziness=true state that produces the lowered acuity (self_care) relative to its dizziness=false counterpart (urgent).",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

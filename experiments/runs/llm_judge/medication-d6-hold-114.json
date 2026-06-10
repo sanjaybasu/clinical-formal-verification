@@ -1,0 +1,11 @@
+{
+  "item_id": "medication-d6-hold-114",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "Property: never (rec_drug_a AND rec_drug_b).\n\nrec_drug_a is set true ONLY by rec_a_from_conjunction (priority 50), which requires the full conjunction C = (ckd_dialysis \u2227 renal_impairment \u2227 hepatic_impairment \u2227 immunosuppressed \u2227 seizure_history \u2227 diabetes). Otherwise it defaults false. So rec_drug_a = true implies C holds.\n\nrec_drug_b is governed by two rules: guard_suppress_b (priority 90, condition C \u2192 rec_drug_b := false) and rec_b_from_trigger (priority 50, condition ckd_dialysis \u2192 rec_drug_b := true), with default false. Conflict resolution is highest-priority-wins per output.\n\nWhenever C holds (the only situation where rec_drug_a can be true), both b-rules match: guard_suppress_b at priority 90 and rec_b_from_trigger at priority 50 (ckd_dialysis is part of C, so it is true). The highest-priority matching rule wins; 90 > 50, so guard_suppress_b dominates and forces rec_drug_b := false. No tie exists, so order does not matter. Thus under C, rec_drug_b = false, making the conjunction false.\n\nWhen C does not hold, rec_drug_a = false (default), so the conjunction is false regardless of rec_drug_b's value.\n\nIn every input assignment at least one of rec_drug_a or rec_drug_b is false. polypharmacy only affects rec_drug_c (priority 40), which is irrelevant to this property. The property holds over the entire 2^7 input space.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

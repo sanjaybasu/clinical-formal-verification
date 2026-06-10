@@ -1,0 +1,11 @@
+{
+  "item_id": "outreach-d1-hold-109",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property globally(opted_out implies not sent) holds. The only transition that sets sent:=true is t_send_allowed, guarded by \"not opted_out\", so sent can only become true while opted_out is false. The only transition that sets opted_out:=true is t_optout, which simultaneously sets sent:=false; thus right after opting out, sent is false. opted_out is monotonic (no transition ever resets it to false), so once opted_out is true: send_attempt fires t_send_blocked (guard opted_out) setting sent:=false while t_send_allowed's guard (not opted_out) fails and can never re-enable; tick sets sent:=false; another optout keeps sent:=false. Hence in every reachable state with opted_out=true, sent is necessarily false. The bad combination (opted_out=true and sent=true) is unreachable for any event sequence (the 5-event bound is irrelevant since this is an invariant established at the moment of opt-out and preserved thereafter). The ticks variable does not affect the property. Property holds; no counterexample exists.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

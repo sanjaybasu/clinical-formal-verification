@@ -1,0 +1,24 @@
+{
+  "item_id": "outreach-d2-viol-02",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "This is a state machine. The property G(opted_out implies not sent) is violated by the t_resume_glitch transition: [t_resume_glitch] on send_attempt if (opted_out and ticks >= 2): sent := true. This transition sets sent=true while opted_out is true, directly negating the property whenever it can fire. Its guard requires opted_out=true and ticks>=2, which is reachable.\n\nTrace (initial: opted_out=false, sent=false, ticks=0):\n1. optout -> t_optout fires (guard true): opted_out=true, sent=false, ticks=0.\n2. tick -> t_tick: ticks=1, sent=false.\n3. tick -> t_tick: ticks=2, sent=false.\n4. send_attempt -> guard (opted_out and ticks>=2) holds, so t_resume_glitch fires: sent=true. State now opted_out=true, sent=true, ticks=2.\n\nIn this reachable state opted_out=true and sent=true, so opted_out implies not sent is false, violating the globally property. This occurs in 4 events, within the 6-event bound. Note that on send_attempt with opted_out=true and ticks>=2, both t_send_blocked (sent:=false) and t_resume_glitch (sent:=true) are enabled; the verifier must consider the t_resume_glitch execution as a possible (nondeterministic) choice, and t_resume_glitch is the last-listed transition, so it is selected/available rather than masked. The glitch transition is the deliberate bug: it re-enables sending after opt-out once enough ticks have elapsed.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

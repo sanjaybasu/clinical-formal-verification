@@ -1,0 +1,28 @@
+{
+  "item_id": "medication-d3-viol-07",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "immunosuppressed",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that no input makes both rec_drug_a and rec_drug_b true simultaneously.\n\nrec_drug_a is set true only by rule rec_a_from_conjunction (priority 50): IF (elderly AND g6pd_deficiency AND heart_failure). Otherwise it defaults to false.\n\nrec_drug_b is set true only by rule rec_b_from_trigger (priority 50): IF elderly. Otherwise it defaults to false.\n\nThe condition that makes rec_drug_a true (elderly AND g6pd_deficiency AND heart_failure) is a strict subset of the condition that makes rec_drug_b true (elderly). Thus every input that fires the drug-A rule also fires the drug-B rule, since elderly is a required conjunct in both. Priorities and tie-breaking are irrelevant here because each output has only one positive-setting rule plus the default; there is no competing rule that could override either to false.\n\nConcretely, with elderly=true, g6pd_deficiency=true, heart_failure=true: rec_a_from_conjunction fires (rec_drug_a=true) and rec_b_from_trigger fires (rec_drug_b=true). Both are jointly true, violating mutual exclusion. immunosuppressed only affects rec_drug_c (via rec_c_from_immunosuppressed) and is irrelevant to this conflict; it is set to false in the witness. The property is violated.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

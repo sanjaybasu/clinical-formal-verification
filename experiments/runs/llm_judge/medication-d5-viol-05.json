@@ -1,0 +1,44 @@
+{
+  "item_id": "medication-d5-viol-05",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "prior_gi_bleed",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": false
+    },
+    {
+      "var": "anticoagulated",
+      "value": false
+    },
+    {
+      "var": "immunosuppressed",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "rec_drug_a is set true only by rec_a_from_conjunction (priority 50), which requires prior_gi_bleed AND heart_failure AND asthma AND low_ejection_fraction AND g6pd_deficiency. rec_drug_b is set true only by rec_b_from_trigger (priority 50), which requires prior_gi_bleed. The trigger condition for rec_drug_b (prior_gi_bleed) is a subset of the conjunction condition for rec_drug_a, so any input satisfying the conjunction also satisfies the rec_drug_b trigger. With prior_gi_bleed, heart_failure, asthma, low_ejection_fraction, and g6pd_deficiency all true: rec_a_from_conjunction fires setting rec_drug_a := true, and rec_b_from_trigger fires setting rec_drug_b := true. No rule sets either output false (defaults apply only to outputs left unset, and both are set here), so both rec_drug_a and rec_drug_b are true simultaneously. This violates the mutual-exclusion property NOT(rec_drug_a AND rec_drug_b). The remaining inputs (bradycardia, anticoagulated, immunosuppressed) only affect rec_drug_c and are set false for a minimal witness. File: /Users/sanjaybasu/clinical-formal-verification/experiments/runs/_judge_prompts/medication-d5-viol-05.txt",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

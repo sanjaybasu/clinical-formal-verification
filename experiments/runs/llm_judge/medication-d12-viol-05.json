@@ -1,0 +1,68 @@
+{
+  "item_id": "medication-d12-viol-05",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "renal_impairment",
+      "value": true
+    },
+    {
+      "var": "diabetes",
+      "value": true
+    },
+    {
+      "var": "ckd_dialysis",
+      "value": true
+    },
+    {
+      "var": "polypharmacy",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "prior_gi_bleed",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": false
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that rec_drug_a and rec_drug_b are never jointly true. rec_drug_a is set true only by rec_a_from_conjunction (priority 50), whose condition is a 12-way AND that includes the conjunct pregnancy. rec_drug_b is set true only by rec_b_from_trigger (priority 50), whose condition is simply pregnancy. Each output has exactly one rule that can set it true, so priorities/ties/defaults are irrelevant: each fires whenever its condition holds, and defaults only apply to outputs left unset. Because the rec_drug_a condition logically entails pregnancy, any input that turns rec_drug_a true must have pregnancy true, which in turn forces rec_drug_b true. Thus rec_drug_a true implies rec_drug_b true, making joint truth unavoidable whenever a fires. Concrete counterexample: set all 12 conjuncts (pregnancy, renal_impairment, diabetes, ckd_dialysis, polypharmacy, hepatic_impairment, seizure_history, bradycardia, prior_gi_bleed, elderly, low_ejection_fraction, qt_prolongation) to true; anticoagulated and g6pd_deficiency are irrelevant (set false). Then rec_a_from_conjunction fires (rec_drug_a=true) and rec_b_from_trigger fires (rec_drug_b=true), violating mutual exclusion. The file is /Users/sanjaybasu/clinical-formal-verification/experiments/runs/_judge_prompts/medication-d12-viol-05.txt.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

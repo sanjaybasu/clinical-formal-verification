@@ -1,0 +1,20 @@
+{
+  "item_id": "medication-d1-viol-00",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that rec_drug_a and rec_drug_b are never jointly true. Two distinct rules are triggered by the same condition (pregnancy): rec_a_from_conjunction (priority 50) sets rec_drug_a := true when pregnancy, and rec_b_from_trigger (priority 50) sets rec_drug_b := true when pregnancy. With pregnancy = true, the rule for rec_drug_a fires (no competing rule for that output, so default does not apply), yielding rec_drug_a = true. Independently, the rule for rec_drug_b fires (no competing rule for that output), yielding rec_drug_b = true. low_ejection_fraction only affects rec_drug_c and is irrelevant to this conflict. Therefore pregnancy = true makes both rec_drug_a and rec_drug_b true simultaneously, violating mutual exclusion. Counterexample: pregnancy = true, low_ejection_fraction = false (low_ejection_fraction can be either value).",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

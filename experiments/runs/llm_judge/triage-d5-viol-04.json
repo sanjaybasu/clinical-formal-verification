@@ -1,0 +1,76 @@
+{
+  "item_id": "triage-d5-viol-04",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "chest_pain",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "slurred_speech",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": false
+    },
+    {
+      "var": "sweating",
+      "value": false
+    },
+    {
+      "var": "hemoptysis",
+      "value": false
+    },
+    {
+      "var": "chest_pain__base",
+      "value": true
+    },
+    {
+      "var": "fever__base",
+      "value": true
+    },
+    {
+      "var": "severe_headache__base",
+      "value": true
+    },
+    {
+      "var": "rash__base",
+      "value": true
+    },
+    {
+      "var": "slurred_speech__base",
+      "value": false
+    },
+    {
+      "var": "back_pain__base",
+      "value": false
+    },
+    {
+      "var": "sweating__base",
+      "value": false
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "slurred_speech appears in exactly one rule: interaction_drop (priority 100) IF (chest_pain AND fever AND severe_headache AND rash AND slurred_speech) THEN acuity := self_care. No rule raises acuity from slurred_speech; it can only enable this highest-priority drop to self_care. Counterexample input: chest_pain=T, fever=T, severe_headache=T, rash=T, back_pain=F, sweating=F, hemoptysis=F. With slurred_speech=FALSE: interaction_drop does not fire; matching rules are raise_chest_pain (p2->urgent), raise_severe_headache (p2->urgent), raise_fever (p3->emergent), raise_rash (p3->emergent). Highest priority is p3, yielding acuity=emergent. With slurred_speech=TRUE (everything else unchanged): interaction_drop (p100) now fires and, having the highest priority, wins -> acuity=self_care. Acuity drops from emergent to self_care when slurred_speech is set true, violating the monotonicity property (setting slurred_speech true never lowers acuity). The witness_assignment lists the slurred_speech=true state that produces the lower acuity.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

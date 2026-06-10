@@ -1,0 +1,20 @@
+{
+  "item_id": "medication-d1-viol-03",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "hyperkalemia",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property NOT(rec_drug_a AND rec_drug_b) is VIOLATED. Two rules share the same trigger condition (hyperkalemia) but write different outputs: rec_a_from_conjunction sets rec_drug_a := true and rec_b_from_trigger sets rec_drug_b := true. Priority-based conflict resolution applies per-output (highest-priority matching rule per output wins), so it never causes these two rules to compete \u2014 each is the sole rule for its own output. When hyperkalemia=true, both rules fire, making rec_drug_a=true AND rec_drug_b=true simultaneously, which makes the mutual-exclusion property false. The elderly input is irrelevant (it only affects rec_drug_c); set elderly=false for a minimal witness. Witness {hyperkalemia:true, elderly:false}: rec_drug_a=true (rec_a_from_conjunction), rec_drug_b=true (rec_b_from_trigger), rec_drug_c=false (default, elderly not set). rec_drug_a AND rec_drug_b = true -> violation.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "item_id": "outreach-d3-viol-05",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires GLOBALLY(opted_out implies not sent), i.e., no reachable state may have opted_out=true and sent=true. The transition [t_resume_glitch] on send_attempt with guard (opted_out and ticks>=3) sets sent:=true, which directly creates such a forbidden state. This guard is reachable: three tick events drive ticks 0->1->2->3 (capped at 3), then an optout event sets opted_out=true (and sent=false, ticks unchanged at 3). A subsequent send_attempt now has both [t_send_blocked] (guard opted_out) and [t_resume_glitch] (guard opted_out and ticks>=3) enabled; under standard nondeterministic LTS semantics the system may take t_resume_glitch, setting sent=true while opted_out remains true. The resulting state (opted_out=true, sent=true) violates opted_out implies not sent. The counterexample uses 5 events, within the 7-event bound.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

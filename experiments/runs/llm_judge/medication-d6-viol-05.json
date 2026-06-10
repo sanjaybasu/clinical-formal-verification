@@ -1,0 +1,40 @@
+{
+  "item_id": "medication-d6-viol-05",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "hyperkalemia",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "immunosuppressed",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property NOT(rec_drug_a AND rec_drug_b) is violated. rec_drug_a is set true only by rule rec_a_from_conjunction, whose antecedent is the conjunction of hyperkalemia, bradycardia, low_ejection_fraction, asthma, g6pd_deficiency, and immunosuppressed. Critically, that conjunction includes hyperkalemia, which is exactly the trigger for rule rec_b_from_trigger (rec_drug_b := true). So whenever the conjunction holds, hyperkalemia is necessarily true, firing both rules. These rules write to different outputs (rec_drug_a vs rec_drug_b), so per-output priority/tie-breaking conflict resolution never opposes them \u2014 each output gets set to true independently. No rule ever sets either output to false, and defaults apply only to unset outputs, so neither default fires. Setting all six conjunction inputs true (anticoagulated irrelevant, set false) makes both rec_drug_a and rec_drug_b true simultaneously, violating mutual exclusion.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

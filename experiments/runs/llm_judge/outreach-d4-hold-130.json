@@ -1,0 +1,11 @@
+{
+  "item_id": "outreach-d4-hold-130",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property globally(opted_out implies not sent) is an inductive invariant. Initially opted_out=false, so it holds vacuously. Checking each transition preserves it: (1) t_optout sets opted_out:=true but simultaneously sets sent:=false, so the consequent holds. (2) t_send_allowed sets sent:=true but its guard requires not opted_out, and it does not change opted_out, so the resulting state has opted_out=false (antecedent false). (3) t_send_blocked fires only when opted_out is true and sets sent:=false, preserving the invariant. (4) t_tick sets sent:=false regardless, preserving it. No transition ever assigns opted_out:=false and simultaneously requires sent to be true; in fact no transition sets opted_out:=false at all, so once opted_out is true the only way sent could be set true would be t_send_allowed, whose guard (not opted_out) is then disabled. Therefore no reachable state can have opted_out=true and sent=true, for any event sequence of any length (including up to 8). The property holds over the entire input space.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

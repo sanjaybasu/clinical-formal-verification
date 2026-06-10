@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d1-hold-118",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The acuity output depends only on sweating and dyspnea. The input variable `fever` does not appear in any rule condition or in the default, so it has no effect on acuity. Both rules (raise_sweating, raise_dyspnea, each priority 3) set acuity := emergent when their condition holds; otherwise the default sets acuity := routine. Enumerating all fixed (sweating, dyspnea) pairs: (F,F)->routine, (F,T)->emergent, (T,F)->emergent, (T,T)->emergent. Flipping fever from false to true leaves the output identical in every case (sweating and dyspnea unchanged), so acuity is never lowered. The monotonicity property (acuity_after >= acuity_before) is satisfied \u2014 equality holds throughout. The property holds over the entire input space.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

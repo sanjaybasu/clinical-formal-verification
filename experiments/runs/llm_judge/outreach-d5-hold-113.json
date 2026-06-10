@@ -1,0 +1,11 @@
+{
+  "item_id": "outreach-d5-hold-113",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property globally(opted_out implies not sent) holds. Key invariant: opted_out is monotonic (no transition ever resets it to false). The only transition that sets sent:=true is t_send_allowed, which is guarded by \"not opted_out\" and so can never fire when opted_out is true. The moment opted_out becomes true (via t_optout) the same transition sets sent:=false. While opted_out remains true, every applicable event keeps sent false: optout sets sent:=false, send_attempt triggers t_send_blocked (sent:=false) since opted_out is true, and tick sets sent:=false. Therefore in every reachable state where opted_out is true, sent is false; before opted_out is true the implication is vacuously satisfied. This is an invariant argument independent of execution length, so it holds within the 9-event bound. No counterexample exists.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "item_id": "outreach-d5-hold-131",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The invariant globally(opted_out implies not sent) holds on every reachable execution.\n\nKey observations about the two relevant variables:\n\n1. sent becomes true ONLY via t_send_allowed, whose guard requires `not opted_out`. So at any moment sent is set true, opted_out is false. There is no other transition that sets sent:=true.\n\n2. opted_out becomes true ONLY via t_optout, and that same atomic update also sets sent:=false. So at the instant opted_out flips to true, sent is forced to false in the same step.\n\n3. opted_out is never reset to false by any transition \u2014 once true it stays true.\n\n4. Every transition that fires while opted_out is true either keeps sent false or sets it false: t_send_blocked (guard opted_out) sets sent:=false; t_tick sets sent:=false; t_optout sets sent:=false. None of them can set sent:=true (the only setter, t_send_allowed, is disabled by its `not opted_out` guard).\n\nTherefore, the only states with sent=true are states with opted_out=false, where the implication is vacuously satisfied. In every reachable state with opted_out=true, sent is false. The initial state (opted_out=false) trivially satisfies the implication. This holds for all executions, including those up to 9 events. No counterexample exists.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

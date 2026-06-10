@@ -1,0 +1,40 @@
+{
+  "item_id": "medication-d4-viol-00",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": false
+    },
+    {
+      "var": "immunosuppressed",
+      "value": false
+    },
+    {
+      "var": "anticoagulated",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires NOT(rec_drug_a AND rec_drug_b). Only two rules affect A and B: rec_a_from_conjunction (priority 50) sets rec_drug_a:=true when (g6pd_deficiency AND seizure_history AND heart_failure AND hepatic_impairment); rec_b_from_trigger (priority 50) sets rec_drug_b:=true when g6pd_deficiency. The trigger condition for A is a strict superset of the condition for B, since both require g6pd_deficiency=true. Thus any input that fires the A rule necessarily also fires the B rule. With g6pd_deficiency=seizure_history=heart_failure=hepatic_impairment=true, rec_a_from_conjunction fires (rec_drug_a:=true, the sole rule for A, no conflicting rule to override) and rec_b_from_trigger fires (rec_drug_b:=true, the sole rule for B). Defaults apply only to outputs left unset, so neither A nor B reverts to false. Both outputs are true simultaneously, violating mutual exclusion. The other rules only set rec_drug_c and are irrelevant; bradycardia, immunosuppressed, and anticoagulated are set false for a minimal witness.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "item_id": "triage-d6-viol-00",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "confusion",
+      "value": true
+    },
+    {
+      "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "sweating",
+      "value": true
+    },
+    {
+      "var": "leg_swelling",
+      "value": true
+    },
+    {
+      "var": "pallor",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": false
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": true
+    },
+    {
+      "var": "confusion__base",
+      "value": true
+    },
+    {
+      "var": "syncope__base",
+      "value": true
+    },
+    {
+      "var": "sweating__base",
+      "value": true
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": true
+    },
+    {
+      "var": "pallor__base",
+      "value": false
+    },
+    {
+      "var": "palpitations__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property (setting pallor=true never lowers acuity) is VIOLATED. The variable pallor never appears as a trigger in any acuity-raising rule; it appears only as a required conjunct of interaction_drop (priority 100), which sets acuity := self_care (the lowest enum value). Therefore flipping pallor false->true can only enable interaction_drop, lowering acuity.\n\nCounterexample (base input = witness with pallor=false):\n- Base (pallor=false): focal_weakness=T, confusion=T, syncope=T, sweating=T, leg_swelling=T, pallor=F, palpitations=F. interaction_drop does NOT fire (pallor missing). Matching rules: raise_sweating (p3, emergent), raise_confusion (p3, emergent), raise_focal_weakness (p2, urgent), raise_leg_swelling (p2, urgent), raise_syncope (p2, urgent). Highest priority is 3 => acuity = emergent.\n- After (pallor=true), all else unchanged (the witness_assignment): now interaction_drop (priority 100) matches because all six conjuncts focal_weakness, confusion, syncope, sweating, leg_swelling, pallor are true. Priority 100 > 3, so interaction_drop wins => acuity = self_care.\n\nemergent -> self_care is a strict decrease, so setting pallor true lowers acuity, violating monotonicity. (palpitations is irrelevant here because priority 100 dominates the priority-3 palpitations rule regardless; it is set false to keep the witness minimal.)",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

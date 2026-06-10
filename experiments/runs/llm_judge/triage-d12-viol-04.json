@@ -1,0 +1,116 @@
+{
+  "item_id": "triage-d12-viol-04",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "leg_swelling",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "vision_loss",
+      "value": true
+    },
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "pallor",
+      "value": true
+    },
+    {
+      "var": "sweating",
+      "value": true
+    },
+    {
+      "var": "chest_pain",
+      "value": true
+    },
+    {
+      "var": "dizziness",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": false
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": true
+    },
+    {
+      "var": "dyspnea__base",
+      "value": true
+    },
+    {
+      "var": "back_pain__base",
+      "value": true
+    },
+    {
+      "var": "fever__base",
+      "value": true
+    },
+    {
+      "var": "syncope__base",
+      "value": true
+    },
+    {
+      "var": "vision_loss__base",
+      "value": true
+    },
+    {
+      "var": "severe_headache__base",
+      "value": true
+    },
+    {
+      "var": "pallor__base",
+      "value": true
+    },
+    {
+      "var": "sweating__base",
+      "value": true
+    },
+    {
+      "var": "chest_pain__base",
+      "value": true
+    },
+    {
+      "var": "dizziness__base",
+      "value": true
+    },
+    {
+      "var": "rash__base",
+      "value": false
+    },
+    {
+      "var": "palpitations__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property (setting rash=true never lowers acuity) is VIOLATED.\n\nrash appears in only one rule: interaction_drop [priority 100] IF (leg_swelling AND dyspnea AND back_pain AND fever AND syncope AND vision_loss AND severe_headache AND pallor AND sweating AND chest_pain AND dizziness AND rash) THEN acuity := self_care. This requires every listed input except palpitations to be true. Because priority 100 is far above any other rule's priority, when it fires it wins the conflict resolution and forces acuity to self_care (the lowest enum value).\n\nCounterexample: set leg_swelling, dyspnea, back_pain, fever, syncope, vision_loss, severe_headache, pallor, sweating, chest_pain, dizziness all = true; palpitations = false. Toggle rash.\n\nBEFORE (rash=false): interaction_drop does not fire (its conjunction is false). The firing rules include several priority-3 rules (raise_vision_loss, raise_pallor, raise_fever, raise_chest_pain, raise_dyspnea), all setting acuity := emergent. Priority 3 is the highest among firing rules, so result = emergent (highest acuity).\n\nAFTER (rash=true, all else unchanged): now all 12 conjuncts of interaction_drop are true, so it fires with priority 100, beating every priority-3 rule, giving acuity := self_care.\n\nEnum order is [self_care, routine, urgent, emergent] low to high. Acuity drops from emergent (highest) to self_care (lowest) when rash flips from false to true. This is a strict decrease, directly violating monotonicity. The witness_assignment records the AFTER state (rash=true) that produces self_care; the matching BEFORE state has identical inputs with rash=false and produces emergent.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

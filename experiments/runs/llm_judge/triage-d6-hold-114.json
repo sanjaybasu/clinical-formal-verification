@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d6-hold-114",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The variable `palpitations` does not appear in the condition of any rule in the rule set. The six rules (raise_hemoptysis, raise_fever, raise_rash, raise_stiff_neck, raise_abdominal_pain, raise_vomiting) trigger only on hemoptysis, fever, rash, stiff_neck, abdominal_pain, and vomiting respectively. The default (routine) applies when no rule sets the output. Therefore, for any fixed assignment of the other six inputs, the computed acuity is identical regardless of whether palpitations is false or true \u2014 palpitations has no influence on rule firing, priority resolution, or the default. The monotonicity property requires that setting palpitations true never lowers acuity; since flipping palpitations leaves acuity exactly unchanged (equal, not lower) for every input in the entire input space, the property holds. File: /Users/sanjaybasu/clinical-formal-verification/experiments/runs/_judge_prompts/triage-d6-hold-114.txt",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

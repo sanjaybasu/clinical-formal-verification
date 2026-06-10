@@ -1,0 +1,11 @@
+{
+  "item_id": "medication-d3-hold-120",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "Property: never (rec_drug_a AND rec_drug_b) jointly true.\n\nrec_drug_a is set true ONLY by rec_a_from_conjunction (priority 50), which requires seizure_history AND pregnancy AND polypharmacy. There is no other rule for rec_drug_a, and its default is false. So rec_drug_a = true requires exactly that conjunction C = (seizure_history AND pregnancy AND polypharmacy).\n\nrec_drug_b is affected by two rules: rec_b_from_trigger (priority 50, IF seizure_history THEN true) and guard_suppress_b (priority 90, IF C THEN false). Conflict resolution is per-output by priority, highest wins.\n\nCase 1: C is false. Then rec_a_from_conjunction does not fire, and no other rule sets rec_drug_a, so rec_drug_a = false (default). The conjunction (a AND b) is false regardless of b. Property holds.\n\nCase 2: C is true. Then rec_drug_a = true. But for rec_drug_b, both rec_b_from_trigger (true, priority 50) and guard_suppress_b (false, priority 90) match; the priority-90 guard wins, so rec_drug_b = false. Thus (a AND b) = (true AND false) = false. Property holds.\n\nSince C true is precisely the only way to get rec_drug_a = true, and C true always forces rec_drug_b false via the higher-priority guard, the two outputs can never both be true across all 64 input combinations. The property holds.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

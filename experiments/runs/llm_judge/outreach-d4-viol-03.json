@@ -1,0 +1,30 @@
+{
+  "item_id": "outreach-d4-viol-03",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires globally(opted_out implies not sent). The transition [t_resume_glitch] on send_attempt with guard (opted_out and ticks >= 4) sets sent := true while opted_out stays true, which directly contradicts the intended invariant. A reachable execution triggers it: (1) optout -> opted_out=true, sent=false, ticks=0; (2-5) four tick events advance ticks 0->1->2->3->4 (capped at 4 by the t_tick update), each also resetting sent=false, leaving opted_out=true, sent=false, ticks=4; (6) send_attempt -- with opted_out=true and ticks>=4, t_resume_glitch is enabled and applies sent:=true, producing the state opted_out=true, sent=true, ticks=4. This violates opted_out implies not sent. Note that on this send_attempt both t_send_blocked (guard opted_out) and t_resume_glitch (guard opted_out and ticks>=4) are enabled, so the event is nondeterministic; since the property must hold on EVERY reachable execution, the resolution that fires t_resume_glitch yields a genuine counterexample. The sequence is 6 events, within the 8-event bound.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

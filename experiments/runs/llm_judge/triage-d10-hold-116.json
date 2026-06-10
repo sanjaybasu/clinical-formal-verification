@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d10-hold-116",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The input `hemoptysis` is declared in the Inputs list but does not appear in the condition of ANY of the 10 rules. The rules condition only on: back_pain, chest_pain, dizziness, abdominal_pain, slurred_speech, severe_headache, fever, vomiting, leg_swelling, and focal_weakness. Because `hemoptysis` is never referenced in any rule guard, the computed value of `acuity` is entirely independent of `hemoptysis`. The conflict-resolution (priority-then-order) and default (routine) logic all operate solely on the other inputs. Therefore, for any fixed assignment of the other 10 inputs, setting hemoptysis from false to true (or any toggle) leaves acuity exactly unchanged. Since acuity is identical before and after, it is trivially \"no lower than before,\" satisfying the monotonicity property. No counterexample can exist because hemoptysis has zero effect on the output. The property holds.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

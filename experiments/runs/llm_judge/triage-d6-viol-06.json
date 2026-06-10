@@ -1,0 +1,68 @@
+{
+  "item_id": "triage-d6-viol-06",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "leg_swelling",
+      "value": true
+    },
+    {
+      "var": "stiff_neck",
+      "value": true
+    },
+    {
+      "var": "hemoptysis",
+      "value": true
+    },
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "sweating",
+      "value": false
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": true
+    },
+    {
+      "var": "stiff_neck__base",
+      "value": true
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": true
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": true
+    },
+    {
+      "var": "fever__base",
+      "value": true
+    },
+    {
+      "var": "syncope__base",
+      "value": false
+    },
+    {
+      "var": "sweating__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "syncope appears in exactly one rule, interaction_drop (priority 100), which forces acuity := self_care (the lowest acuity). Because this is the highest-priority rule, enabling syncope can only ever drop acuity, never raise it.\n\nCounterexample (the witness_assignment is the syncope=true state): leg_swelling, stiff_neck, hemoptysis, focal_weakness, fever all true; sweating false.\n\nBaseline (syncope=false, everything else identical): interaction_drop requires syncope, so it does NOT fire. The priority-3 rules raise_focal_weakness and raise_stiff_neck fire, yielding acuity = emergent (priority 3 beats the priority-2 urgent rules from fever/leg_swelling/hemoptysis). Result: emergent.\n\nAfter setting syncope=true (all else unchanged): all six conjuncts of interaction_drop (leg_swelling AND stiff_neck AND hemoptysis AND focal_weakness AND fever AND syncope) are satisfied. With priority 100 it wins over all other rules, setting acuity = self_care.\n\nTransition emergent -> self_care is a decrease, so setting syncope true lowers acuity, violating the monotonicity property. The witness_assignment gives the post-flip (syncope=true) input that produces self_care, while the same input with syncope=false produces emergent.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

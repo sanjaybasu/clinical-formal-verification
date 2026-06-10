@@ -1,0 +1,48 @@
+{
+  "item_id": "medication-d6-viol-01",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "hypertension",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": false
+    },
+    {
+      "var": "pregnancy",
+      "value": false
+    },
+    {
+      "var": "renal_impairment",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires NOT(rec_drug_a AND rec_drug_b). Only one rule sets rec_drug_a: rec_a_from_conjunction (priority 50), which fires when qt_prolongation AND hypertension AND low_ejection_fraction AND g6pd_deficiency AND peptic_ulcer AND bradycardia all hold. Only one rule sets rec_drug_b: rec_b_from_trigger (priority 50), which fires when qt_prolongation holds. Crucially, the conjunction for rec_drug_a includes qt_prolongation, so any input satisfying the rec_drug_a conjunction necessarily also satisfies the rec_drug_b trigger. Neither output has a competing rule that could set it false, so priorities, tie-breaking, and defaults are irrelevant \u2014 once both rules fire they both assign true and stay true. Setting the six conjunction inputs to true (with asthma/pregnancy/renal_impairment false, since those only affect rec_drug_c) yields rec_drug_a=true and rec_drug_b=true simultaneously, violating mutual exclusion. The property is violated.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

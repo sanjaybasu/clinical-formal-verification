@@ -1,0 +1,36 @@
+{
+  "item_id": "outreach-d6-viol-03",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires globally(opted_out implies not sent). The transition t_resume_glitch (line 14) fires on send_attempt when (opted_out and ticks >= 6) and sets sent := true, which directly establishes opted_out=true AND sent=true \u2014 a state forbidden by the property. This transition is reachable. Path: (1) optout -> opted_out=true, sent=false, ticks=0. (2) Apply tick six times; each tick increments ticks (capped at 6) and sets sent:=false, so after six ticks ticks=6. (3) send_attempt: the guard (opted_out and ticks>=6) holds, so t_resume_glitch is enabled and sets sent:=true while opted_out remains true. On send_attempt, t_send_blocked (guard opted_out) and t_resume_glitch (guard opted_out and ticks>=6) are both enabled; the glitch transition's update produces a reachable execution in which sent=true with opted_out=true. Since the property must hold on EVERY reachable execution, the existence of this execution violates it. The full 8-event sequence is within the 10-event bound. Witness state after the sequence: opted_out=true, ticks=6, sent=true.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d1-hold-100",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The system has inputs syncope, sweating, vomiting (boolean) and output acuity ordered [self_care < routine < urgent < emergent]. Only two rules exist, both priority 2: vomiting -> urgent, and sweating -> urgent. Default (when unset) is routine. The key observation is that the variable syncope does NOT appear in any rule. Acuity is therefore a function of vomiting and sweating only: urgent if vomiting OR sweating is true, else routine. Toggling syncope from false to true while holding vomiting and sweating fixed cannot change which rules fire (none reference syncope), so acuity is identical before and after for every one of the four (vomiting, sweating) combinations: (F,F)->routine=routine, (T,F)->urgent=urgent, (F,T)->urgent=urgent, (T,T)->urgent=urgent. \"No lower than before\" (after >= before in enum order) is satisfied since acuity is exactly equal in all cases. The monotonicity property holds across the entire input space.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d1-hold-127",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The input variable `dizziness` does not appear in the condition of any rule (rules only reference dyspnea, leg_swelling, stiff_neck), nor does it affect any priority or the default. Therefore, for any fixed assignment of the other three inputs, the computed acuity is identical regardless of dizziness's value. Acuity is determined solely by: dyspnea -> emergent (pri 3), stiff_neck -> emergent (pri 3), leg_swelling -> urgent (pri 2), else default routine. Flipping dizziness from false to true leaves acuity unchanged. The monotonicity property requires new acuity >= old acuity; since they are equal, the >= relation holds. This is true across the entire input space, so the property holds with no counterexample. There is no rule that could lower acuity in response to dizziness (e.g., no \"IF dizziness THEN self_care\" rule), which is the only way the property could be violated.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

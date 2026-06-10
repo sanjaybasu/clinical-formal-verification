@@ -1,0 +1,84 @@
+{
+  "item_id": "triage-d8-viol-05",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "hemoptysis",
+      "value": true
+    },
+    {
+      "var": "confusion",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": true
+    },
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "stiff_neck",
+      "value": true
+    },
+    {
+      "var": "chest_pain",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain",
+      "value": true
+    },
+    {
+      "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "vision_loss",
+      "value": false
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": true
+    },
+    {
+      "var": "confusion__base",
+      "value": true
+    },
+    {
+      "var": "dyspnea__base",
+      "value": true
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": true
+    },
+    {
+      "var": "stiff_neck__base",
+      "value": true
+    },
+    {
+      "var": "chest_pain__base",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain__base",
+      "value": true
+    },
+    {
+      "var": "syncope__base",
+      "value": false
+    },
+    {
+      "var": "vision_loss__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property requires that flipping syncope from false to true (all other inputs fixed) never lowers acuity. It is violated.\n\nsyncope appears in only two ways in the rule set: (1) as one of the eight required conjuncts of the interaction_drop rule (priority 100, sets acuity := self_care, the LOWEST acuity), and (2) nowhere else \u2014 there is no raise_syncope rule. Thus enabling syncope can only newly enable the acuity-lowering interaction_drop rule, which is the textbook monotonicity-violation pattern.\n\nCounterexample comparison with all other inputs fixed at hemoptysis=true, confusion=true, dyspnea=true, focal_weakness=true, stiff_neck=true, chest_pain=true, abdominal_pain=true, vision_loss=false:\n\n- syncope = FALSE (baseline): interaction_drop does NOT fire (it requires syncope). The highest-priority matching rules are raise_chest_pain / raise_focal_weakness / raise_confusion, all priority 3, each setting acuity := emergent. Result = emergent.\n\n- syncope = TRUE (witness, shown): now all eight conjuncts of interaction_drop are satisfied, so it fires at priority 100, which exceeds the priority-3 raise rules, so it wins under per-output priority conflict resolution: acuity := self_care. Result = self_care.\n\nFlipping syncope false->true lowers acuity from emergent to self_care (self_care < routine < urgent < emergent). This violates monotonicity. The witness_assignment is the syncope=true configuration that yields the lower (self_care) outcome.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

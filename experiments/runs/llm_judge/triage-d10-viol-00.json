@@ -1,0 +1,100 @@
+{
+  "item_id": "triage-d10-viol-00",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "hemoptysis",
+      "value": true
+    },
+    {
+      "var": "stiff_neck",
+      "value": true
+    },
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "pallor",
+      "value": true
+    },
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain",
+      "value": true
+    },
+    {
+      "var": "vomiting",
+      "value": true
+    },
+    {
+      "var": "chest_pain",
+      "value": true
+    },
+    {
+      "var": "leg_swelling",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": false
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": true
+    },
+    {
+      "var": "stiff_neck__base",
+      "value": true
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": true
+    },
+    {
+      "var": "pallor__base",
+      "value": true
+    },
+    {
+      "var": "severe_headache__base",
+      "value": true
+    },
+    {
+      "var": "rash__base",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain__base",
+      "value": true
+    },
+    {
+      "var": "vomiting__base",
+      "value": true
+    },
+    {
+      "var": "chest_pain__base",
+      "value": true
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": false
+    },
+    {
+      "var": "back_pain__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that flipping leg_swelling from false to true (all else unchanged) never lowers acuity. leg_swelling appears in exactly one rule: interaction_drop (priority 100), which sets acuity := self_care (the lowest level) when ALL of hemoptysis, stiff_neck, focal_weakness, pallor, severe_headache, rash, abdominal_pain, vomiting, chest_pain, AND leg_swelling are true. Because that rule has priority 100 (far above every other rule's priority 2 or 3), whenever it fires it dominates.\n\nCounterexample baseline (leg_swelling = FALSE), with hemoptysis=stiff_neck=focal_weakness=pallor=severe_headache=rash=abdominal_pain=vomiting=chest_pain=true, back_pain=false:\n- interaction_drop does NOT fire (leg_swelling false).\n- Matching rules: raise_stiff_neck/raise_pallor/raise_vomiting/raise_rash (all emergent, priority 3) plus several urgent priority-2 rules. Highest priority among matches is 3 -> acuity = EMERGENT.\n\nNow flip leg_swelling to TRUE (witness shown), everything else identical:\n- All ten conjuncts of interaction_drop are now true, so it fires at priority 100, beating every priority-2/3 rule -> acuity = SELF_CARE (the lowest level).\n\nacuity drops from emergent to self_care purely by setting leg_swelling true. This directly violates the monotonicity property (setting leg_swelling true must never lower acuity). The witness_assignment is the post-flip input that yields self_care; its companion baseline (same inputs but leg_swelling=false) yields emergent, demonstrating the decrease.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

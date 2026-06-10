@@ -1,0 +1,36 @@
+{
+  "item_id": "triage-d2-viol-05",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain",
+      "value": false
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": true
+    },
+    {
+      "var": "back_pain__base",
+      "value": false
+    },
+    {
+      "var": "abdominal_pain__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property (setting back_pain true never lowers acuity) is VIOLATED by the interaction_drop rule, which has the highest priority (100) and outputs the lowest acuity value (self_care) precisely when back_pain is added.\\n\\nCounterexample fixing focal_weakness=true, abdominal_pain=false and flipping back_pain:\\n\\nBEFORE (back_pain=false): raise_abdominal_pain not matched; raise_focal_weakness matched (priority 2) -> urgent; interaction_drop not matched (back_pain false). Highest-priority matching rule = raise_focal_weakness => acuity = urgent.\\n\\nAFTER (back_pain=true): raise_abdominal_pain not matched; raise_focal_weakness matched (priority 2) -> urgent; interaction_drop matched, focal_weakness AND back_pain (priority 100) -> self_care. Highest priority wins => acuity = self_care.\\n\\nEnum order self_care < routine < urgent < emergent, so acuity dropped from urgent to self_care when back_pain was set true. That lowers acuity, violating monotonicity. The witness assignment given is the post-flip input (focal_weakness=true, back_pain=true, abdominal_pain=false) yielding self_care, versus the same input with back_pain=false yielding urgent. (Note: the abdominal_pain=true variant is an even more dramatic violation: emergent -> self_care.)",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

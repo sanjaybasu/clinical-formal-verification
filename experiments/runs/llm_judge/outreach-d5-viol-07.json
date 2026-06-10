@@ -1,0 +1,33 @@
+{
+  "item_id": "outreach-d5-viol-07",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "This is a state machine. Property: globally(opted_out implies not sent) within 9 events. The transition t_resume_glitch fires on send_attempt when (opted_out and ticks>=5) and sets sent:=true while opted_out is true, directly negating the property if reachable. Reachability: opted_out is set true by optout and is never reset to false by any transition. ticks is driven to 5 by five tick events (t_tick increments to a cap of 5). Once opted_out=true and ticks=5, a send_attempt enables t_resume_glitch, which sets sent:=true. Even though t_send_blocked (guard opted_out) is also enabled and listed earlier, t_resume_glitch is a valid enabled transition the system may take (the prompt emphasizes priorities/defaults and deliberately names this a 'glitch'); under any-enabled-transition or more-specific-rule-wins semantics it fires. Witness execution (7 events, within bound): optout -> (opted_out=true, sent=false, ticks=0); tick x5 -> (opted_out=true, sent=false, ticks=5; each tick also sets sent=false); send_attempt -> t_resume_glitch fires -> (opted_out=true, sent=true). Resulting state has opted_out=true and sent=true, violating opted_out implies not sent.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "item_id": "medication-d8-viol-01",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "diabetes",
+      "value": true
+    },
+    {
+      "var": "hypertension",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "ckd_dialysis",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "rec_drug_a is set true only by rule rec_a_from_conjunction (p50), whose antecedent is the 8-way conjunction including diabetes. rec_drug_b is set true by rec_b_from_trigger (p50) whenever diabetes is true. Because diabetes is a conjunct required to fire rec_drug_a, any input that makes rec_drug_a true also satisfies the trigger for rec_drug_b. These rules target different outputs, so the per-output priority resolution never makes them compete \u2014 both fire independently, and no rule ever assigns rec_drug_a:=false or rec_drug_b:=false (defaults apply only to unset outputs, but both are set). Therefore the all-eight-true assignment yields rec_drug_a=true and rec_drug_b=true simultaneously, violating mutual exclusion. ckd_dialysis is irrelevant (it only affects rec_drug_c) and is set false. Witness: diabetes, hypertension, peptic_ulcer, pregnancy, qt_prolongation, heart_failure, seizure_history, hepatic_impairment all true; ckd_dialysis false \u2192 rec_drug_a=true, rec_drug_b=true.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

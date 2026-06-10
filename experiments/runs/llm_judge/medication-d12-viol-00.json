@@ -1,0 +1,68 @@
+{
+  "item_id": "medication-d12-viol-00",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "prior_gi_bleed",
+      "value": true
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "hyperkalemia",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "ckd_dialysis",
+      "value": true
+    },
+    {
+      "var": "diabetes",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": false
+    },
+    {
+      "var": "elderly",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "rec_drug_a is set true only by rule rec_a_from_conjunction (priority 50), whose antecedent is a 12-way AND that includes prior_gi_bleed as one required conjunct. rec_drug_b is set true only by rule rec_b_from_trigger (priority 50) whose antecedent is prior_gi_bleed alone. There are no competing rules on either output; absent a firing rule, each output falls to its false default. Therefore whenever rec_a_from_conjunction fires (all 12 conjuncts true), prior_gi_bleed is necessarily true, so rec_b_from_trigger also fires, making rec_drug_b true as well. Both rec_drug_a and rec_drug_b are then true simultaneously, violating the mutual-exclusion property. The witness sets all 12 conjunction inputs to true; the two inputs not in the conjunction (peptic_ulcer, elderly) are set false and are irrelevant to the violation. Under this assignment: rec_drug_a = true, rec_drug_b = true, so (rec_drug_a and rec_drug_b) holds \u2014 the forbidden joint state.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

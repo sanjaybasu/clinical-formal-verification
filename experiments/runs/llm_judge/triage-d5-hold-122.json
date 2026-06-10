@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d5-hold-122",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property is monotonicity in `dizziness`: setting dizziness=true (other inputs fixed) must never lower acuity. The decisive fact is that `dizziness` appears in NO rule's condition. The seven rules trigger only on rash, vomiting, syncope, back_pain, palpitations, confusion, and pallor. Therefore the value of dizziness has zero effect on which rules match, on the priority-based conflict resolution, or on the default fallback. For any fixed assignment of the other seven inputs, acuity computed with dizziness=false equals acuity computed with dizziness=true. Since the new value equals the old value, it is trivially \"no lower than before\" for every point in the input space. No counterexample can exist because the output is constant in dizziness. The property holds.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "item_id": "medication-d10-viol-04",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "renal_impairment",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "prior_gi_bleed",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "diabetes",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "hyperkalemia",
+      "value": false
+    },
+    {
+      "var": "hypertension",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires NOT (rec_drug_a AND rec_drug_b). rec_drug_a is set true only by rule rec_a_from_conjunction (priority 50), whose antecedent is a 10-way conjunction that includes g6pd_deficiency as a conjunct. rec_drug_b is set true by rule rec_b_from_trigger (priority 50) whenever g6pd_deficiency is true. Each output has exactly one rule that can set it true, so priorities and tie-breaking never come into play to suppress either output. Therefore any input that satisfies the conjunction (which forces g6pd_deficiency=true) simultaneously fires both rec_drug_a and rec_drug_b. Setting g6pd_deficiency, renal_impairment, anticoagulated, pregnancy, prior_gi_bleed, heart_failure, bradycardia, peptic_ulcer, diabetes, and elderly all true makes rec_drug_a=true via the conjunction and rec_drug_b=true via the g6pd_deficiency trigger, so (rec_drug_a AND rec_drug_b) holds, violating mutual exclusion. hyperkalemia and hypertension only affect rec_drug_c and are irrelevant; set false. The defaults do not save the property because both outputs are explicitly set true. File: /Users/sanjaybasu/clinical-formal-verification/experiments/runs/_judge_prompts/medication-d10-viol-04.txt",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

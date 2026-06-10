@@ -1,0 +1,21 @@
+{
+  "item_id": "outreach-d1-viol-04",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "This is a state machine. Property: globally (opted_out implies not sent), i.e., no reachable state has opted_out=true and sent=true.\n\nInitial state: opted_out=false, sent=false, ticks=0.\n\nThe defect is rule t_resume_glitch: on send_attempt, if (opted_out and ticks >= 1), it sets sent := true. This directly produces a violating state because it sets sent true while opted_out is true. When opted_out and ticks>=1, both t_send_blocked (guard opted_out) and t_resume_glitch (guard opted_out and ticks>=1) are enabled; the spec imposes no deterministic priority among multiple enabled transitions, so the t_resume_glitch execution is reachable.\n\nCounterexample (3 events, within the 5-event bound):\n1. optout: t_optout fires -> opted_out=true, sent=false, ticks=0.\n2. tick: t_tick fires -> ticks = (0<1 ? 1 : ...) = 1, sent=false. State: opted_out=true, sent=false, ticks=1.\n3. send_attempt: guard (opted_out and ticks>=1) holds, t_resume_glitch fires -> sent:=true. State: opted_out=true, sent=true, ticks=1.\n\nThe state after event 3 has opted_out=true and sent=true, violating (opted_out implies not sent). File: /Users/sanjaybasu/clinical-formal-verification/experiments/runs/_judge_prompts/outreach-d1-viol-04.txt.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

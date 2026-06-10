@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d10-hold-125",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The input `vomiting` does not appear in the antecedent (condition) of any of the 10 rules. The acuity output is determined solely by the other 10 boolean inputs (severe_headache, stiff_neck, pallor, sweating, hemoptysis, dizziness, vision_loss, back_pain, chest_pain, slurred_speech) via the priority-based conflict resolution, with a default of `routine` when no rule fires. Since `vomiting` is referenced by no rule, toggling it from false to true while holding all other inputs fixed does not change which rules match, does not change the priority arbitration, and does not change whether the default applies. Therefore acuity(vomiting=true) equals acuity(vomiting=false) for every assignment of the remaining inputs. Equal acuity is \"no lower than before,\" so the monotonicity property is satisfied across the entire input space. The property holds.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

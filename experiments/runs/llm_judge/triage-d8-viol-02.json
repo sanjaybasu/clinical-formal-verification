@@ -1,0 +1,84 @@
+{
+  "item_id": "triage-d8-viol-02",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "slurred_speech",
+      "value": true
+    },
+    {
+      "var": "pallor",
+      "value": true
+    },
+    {
+      "var": "vision_loss",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": true
+    },
+    {
+      "var": "chest_pain",
+      "value": true
+    },
+    {
+      "var": "hemoptysis",
+      "value": false
+    },
+    {
+      "var": "fever__base",
+      "value": true
+    },
+    {
+      "var": "palpitations__base",
+      "value": true
+    },
+    {
+      "var": "slurred_speech__base",
+      "value": true
+    },
+    {
+      "var": "pallor__base",
+      "value": true
+    },
+    {
+      "var": "vision_loss__base",
+      "value": true
+    },
+    {
+      "var": "rash__base",
+      "value": true
+    },
+    {
+      "var": "back_pain__base",
+      "value": true
+    },
+    {
+      "var": "chest_pain__base",
+      "value": false
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property requires that flipping chest_pain from false to true (all else fixed) never lowers acuity. chest_pain participates in only one rule: interaction_drop (priority 100), which requires the conjunction of fever, palpitations, slurred_speech, pallor, vision_loss, rash, back_pain, AND chest_pain, and sets acuity := self_care (the lowest level). There is no standalone rule that raises acuity when chest_pain is true. Therefore chest_pain can only enable the drop-to-self_care rule, which is the violation vector.\\n\\nConcrete counterexample. Consider the input with fever, palpitations, slurred_speech, pallor, vision_loss, rash, back_pain all true and hemoptysis false.\\n- With chest_pain = FALSE: interaction_drop does not fire (chest_pain is a required conjunct). Matching rules include pallor, rash, palpitations (each priority 3 -> emergent) and several priority-2 -> urgent rules. Highest priority wins -> acuity = emergent.\\n- With chest_pain = TRUE (all else identical): now all 8 conjuncts of interaction_drop are satisfied, so the priority-100 rule fires and dominates everything (100 > 3 > 2), setting acuity := self_care.\\n\\nFlipping chest_pain false->true lowers acuity from emergent to self_care, a strict decrease in the listed enum order (self_care < routine < urgent < emergent). This violates the monotonicity property: setting chest_pain true must never lower acuity. The clinical danger is obvious: a patient with chest pain plus a constellation of other severe symptoms is downgraded to self_care.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

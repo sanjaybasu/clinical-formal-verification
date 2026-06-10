@@ -1,0 +1,36 @@
+{
+  "item_id": "triage-d1-viol-06",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "confusion",
+      "value": true
+    },
+    {
+      "var": "hemoptysis",
+      "value": true
+    },
+    {
+      "var": "slurred_speech",
+      "value": false
+    },
+    {
+      "var": "confusion__base",
+      "value": false
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": true
+    },
+    {
+      "var": "slurred_speech__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "File: /Users/sanjaybasu/clinical-formal-verification/experiments/runs/_judge_prompts/triage-d1-viol-06.txt\n\nThe monotonicity property (setting confusion=true never lowers acuity) is VIOLATED.\n\nCounterexample pair (vary only confusion, hold hemoptysis=true, slurred_speech=false):\n\nBEFORE (confusion=false): Only raise_hemoptysis (priority 2) matches -> acuity := urgent. interaction_drop does not fire. Result = urgent (rank 2).\n\nAFTER (confusion=true): Both raise_hemoptysis (priority 2 -> urgent) and interaction_drop (priority 100 -> self_care) match the acuity output. Conflict resolution selects the highest-priority matching rule; interaction_drop at priority 100 wins. Result = self_care (rank 0).\n\nFlipping confusion from false to true drops acuity from urgent (rank 2) down to self_care (rank 0), which is lower, not no-lower. The interaction_drop rule's priority 100 overrides the escalation rules (priority 2), so a confused patient with hemoptysis (or slurred speech) is forced all the way down to self_care. The witness assignment is the AFTER state demonstrating the lowered acuity relative to its confusion=false counterpart. (The same violation also occurs with slurred_speech=true,hemoptysis=false, or both true.)",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

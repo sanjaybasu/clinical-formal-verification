@@ -1,0 +1,32 @@
+{
+  "item_id": "medication-d2-viol-02",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": false
+    },
+    {
+      "var": "bradycardia",
+      "value": false
+    },
+    {
+      "var": "polypharmacy",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires NOT(rec_drug_a AND rec_drug_b) for all inputs. rec_drug_a is set true only by rec_a_from_conjunction (priority 50): IF (elderly AND pregnancy). rec_drug_b is set true only by rec_b_from_trigger (priority 50): IF elderly. With elderly=true and pregnancy=true, both antecedents are satisfied: rec_a_from_conjunction fires making rec_drug_a=true (it is the sole rule for output a, so it wins and is not overridden by the default), and rec_b_from_trigger fires making rec_drug_b=true (sole rule for output b). Priorities and tie-breaking are irrelevant here since each output has exactly one matching rule. The remaining inputs (qt_prolongation, bradycardia, polypharmacy) only affect rec_drug_c, so they are set false for a minimal witness; rec_drug_c stays false via default. Thus rec_drug_a=true and rec_drug_b=true simultaneously, jointly true, violating mutual exclusion.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

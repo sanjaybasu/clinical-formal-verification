@@ -1,0 +1,11 @@
+{
+  "item_id": "outreach-d10-hold-116",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The invariant \"opted_out implies not sent\" is inductive and holds on all reachable executions. Initial state: opted_out=false, so antecedent is false. Checking each transition's effect: (1) t_optout sets opted_out:=true AND sent:=false atomically, so the consequent (not sent) holds. (2) t_send_allowed is the ONLY transition that sets sent:=true, but its guard requires not opted_out and it does not change opted_out, so the resulting state has opted_out=false (antecedent false). (3) t_send_blocked fires only when opted_out is true and sets sent:=false, preserving the invariant. (4) t_tick sets sent:=false and leaves opted_out unchanged, so if opted_out was true, sent becomes false. There is no transition that sets opted_out=true while leaving a pre-existing sent=true, and none that sets sent=true while opted_out is true. Thus the invariant is preserved by every step and holds initially, so it holds for the entire reachable state space (far within 14 events). Property holds; no counterexample exists.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

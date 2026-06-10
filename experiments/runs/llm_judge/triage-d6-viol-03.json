@@ -1,0 +1,84 @@
+{
+  "item_id": "triage-d6-viol-03",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "hemoptysis",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain",
+      "value": true
+    },
+    {
+      "var": "sweating",
+      "value": true
+    },
+    {
+      "var": "chest_pain",
+      "value": true
+    },
+    {
+      "var": "vomiting",
+      "value": true
+    },
+    {
+      "var": "vision_loss",
+      "value": true
+    },
+    {
+      "var": "slurred_speech",
+      "value": false
+    },
+    {
+      "var": "palpitations",
+      "value": false
+    },
+    {
+      "var": "rash",
+      "value": false
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain__base",
+      "value": true
+    },
+    {
+      "var": "sweating__base",
+      "value": true
+    },
+    {
+      "var": "chest_pain__base",
+      "value": true
+    },
+    {
+      "var": "vomiting__base",
+      "value": true
+    },
+    {
+      "var": "vision_loss__base",
+      "value": false
+    },
+    {
+      "var": "slurred_speech__base",
+      "value": false
+    },
+    {
+      "var": "palpitations__base",
+      "value": false
+    },
+    {
+      "var": "rash__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "vision_loss appears in exactly one rule: interaction_drop (priority 100), which fires when hemoptysis AND abdominal_pain AND sweating AND chest_pain AND vomiting AND vision_loss are all true, setting acuity := self_care (the lowest acuity). Because priority 100 dominates every other rule, this rule controls the outcome whenever it matches.\n\nTake the baseline input with the five non-vision conditions true and vision_loss FALSE (hemoptysis, abdominal_pain, sweating, chest_pain, vomiting = true; vision_loss = false; others false). The interaction_drop rule does not fire (vision_loss is false). The matching rules are raise_chest_pain (pri 3 -> emergent), raise_abdominal_pain (pri 3 -> emergent), raise_vomiting (pri 2 -> urgent), raise_sweating (pri 2 -> urgent), raise_hemoptysis (pri 2 -> urgent). Highest priority wins -> acuity = emergent.\n\nNow flip vision_loss to TRUE, everything else unchanged. All six conditions of interaction_drop are now satisfied, so it fires at priority 100 -> acuity := self_care, overriding all the priority-3 emergent rules. Result acuity = self_care.\n\nIn the enum order [self_care, routine, urgent, emergent], self_care < emergent. Setting vision_loss true LOWERED acuity from emergent to self_care, directly violating the monotonicity property (vision_loss true must never lower acuity). The reported witness is the input with vision_loss = true; its self_care result is lower than the emergent result of its vision_loss = false counterpart.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

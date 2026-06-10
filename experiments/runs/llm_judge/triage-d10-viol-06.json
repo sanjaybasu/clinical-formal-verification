@@ -1,0 +1,100 @@
+{
+  "item_id": "triage-d10-viol-06",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "hemoptysis",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "sweating",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain",
+      "value": true
+    },
+    {
+      "var": "leg_swelling",
+      "value": true
+    },
+    {
+      "var": "chest_pain",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": true
+    },
+    {
+      "var": "stiff_neck",
+      "value": true
+    },
+    {
+      "var": "syncope",
+      "value": false
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": true
+    },
+    {
+      "var": "fever__base",
+      "value": true
+    },
+    {
+      "var": "sweating__base",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain__base",
+      "value": true
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": true
+    },
+    {
+      "var": "chest_pain__base",
+      "value": true
+    },
+    {
+      "var": "palpitations__base",
+      "value": true
+    },
+    {
+      "var": "severe_headache__base",
+      "value": true
+    },
+    {
+      "var": "back_pain__base",
+      "value": true
+    },
+    {
+      "var": "stiff_neck__base",
+      "value": false
+    },
+    {
+      "var": "syncope__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that flipping stiff_neck from false to true (all else fixed) never lowers acuity, given enum order [self_care < routine < urgent < emergent].\n\nstiff_neck appears in exactly one rule: interaction_drop (priority 100), which requires hemoptysis AND fever AND sweating AND abdominal_pain AND leg_swelling AND chest_pain AND palpitations AND severe_headache AND back_pain AND stiff_neck, and sets acuity := self_care (the lowest level). It appears in no individual raise rule.\n\nTake the baseline where the other 10 conjuncts of interaction_drop are all true and stiff_neck = false (syncope irrelevant, set false):\n- BEFORE (stiff_neck=false): interaction_drop cannot fire (missing stiff_neck). The matching rules include priority-3 rules raise_fever, raise_abdominal_pain, raise_severe_headache, raise_chest_pain (all set emergent) plus several priority-2 urgent rules. Highest priority (3) wins -> acuity = emergent.\n- AFTER (stiff_neck=true): all ten conjuncts of interaction_drop now hold, so it fires at priority 100, which dominates every other rule (priorities 2-3) -> acuity := self_care.\n\nAcuity moves from emergent (highest) to self_care (lowest) purely by setting stiff_neck true. That is a strict decrease, so monotonicity is violated. The witness_assignment gives the after-state (stiff_neck=true) input; comparing it to the same input with stiff_neck=false demonstrates the downward jump from emergent to self_care.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

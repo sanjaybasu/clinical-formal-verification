@@ -1,0 +1,32 @@
+{
+  "item_id": "medication-d3-viol-06",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "hyperkalemia",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": false
+    },
+    {
+      "var": "prior_gi_bleed",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "Property requires NOT(rec_drug_a AND rec_drug_b). rec_drug_a is set true only by rule rec_a_from_conjunction (priority 50): IF (bradycardia AND low_ejection_fraction AND hyperkalemia). rec_drug_b is set true only by rule rec_b_from_trigger (priority 50): IF bradycardia. The condition for rec_drug_a is a strict superset of (and thus implies) the condition for rec_drug_b, since both require bradycardia. There is no rule that sets rec_drug_a:=false or rec_drug_b:=false; the default only applies when an output is left unset, and here both outputs are set by their matching rules. With bradycardia=true, low_ejection_fraction=true, hyperkalemia=true: rec_a_from_conjunction fires (rec_drug_a=true) and rec_b_from_trigger fires (rec_drug_b=true). No priority or ordering resolves this because the two outputs are independent; priorities only resolve competing rules on the SAME output, and each output has just one rule writing true. heart_failure and prior_gi_bleed are irrelevant to a/b (they only affect rec_drug_c) and are set false. Hence both rec_drug_a and rec_drug_b are jointly true, violating mutual exclusion.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

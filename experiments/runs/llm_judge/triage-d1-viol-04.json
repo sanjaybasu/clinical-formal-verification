@@ -1,0 +1,36 @@
+{
+  "item_id": "triage-d1-viol-04",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "dyspnea",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "dizziness",
+      "value": false
+    },
+    {
+      "var": "dyspnea__base",
+      "value": false
+    },
+    {
+      "var": "fever__base",
+      "value": true
+    },
+    {
+      "var": "dizziness__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property (monotonicity) requires that setting dyspnea=true, with all other inputs held fixed, never lowers acuity. It is violated because the interaction_drop rule (priority 100, the highest) fires whenever dyspnea is true and forces acuity := self_care (the lowest level), overriding every escalating rule.\n\nCounterexample: hold fever=true, dizziness=false.\n- Baseline dyspnea=false: no rule sets acuity except raise_fever (priority 3) -> acuity = emergent (the highest level). interaction_drop does not match since dyspnea is false.\n- Flip dyspnea=true (the witness assignment): interaction_drop (priority 100) and raise_fever (priority 3) both match. Highest priority wins -> acuity = self_care (the lowest level).\n\nacuity goes from emergent down to self_care when dyspnea is set true, with fever and dizziness unchanged. Since self_care < emergent in the listed enum order, setting dyspnea true lowered acuity, violating the property. The witness_assignment gives the full input vector at the violating (dyspnea=true) state.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

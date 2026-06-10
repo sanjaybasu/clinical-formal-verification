@@ -1,0 +1,40 @@
+{
+  "item_id": "medication-d4-viol-01",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": false
+    },
+    {
+      "var": "polypharmacy",
+      "value": false
+    },
+    {
+      "var": "renal_impairment",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that rec_drug_a and rec_drug_b are never jointly true. rec_drug_a is set true only by rec_a_from_conjunction (priority 50): IF (bradycardia AND anticoagulated AND low_ejection_fraction AND asthma). rec_drug_b is set true only by rec_b_from_trigger (priority 50): IF bradycardia. The conjunction that triggers rec_drug_a logically entails bradycardia, which is exactly the trigger for rec_drug_b. Therefore any input satisfying the rec_drug_a conjunction necessarily fires rec_drug_b as well. With bradycardia=true, anticoagulated=true, low_ejection_fraction=true, asthma=true: rec_a_from_conjunction fires (it is the only rule matching output a, so it wins regardless of priority/tie rules), setting rec_drug_a=true; rec_b_from_trigger fires (only rule matching output b), setting rec_drug_b=true. No higher-priority rule sets either output false, and the default only applies to unset outputs, so both outputs remain true. The mutual-exclusion property is violated. The remaining inputs (seizure_history, polypharmacy, renal_impairment) are irrelevant to outputs a and b; set to false for concreteness.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

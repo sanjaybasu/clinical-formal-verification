@@ -1,0 +1,54 @@
+{
+  "item_id": "outreach-d12-viol-02",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property GLOBALLY(opted_out implies not sent) is VIOLATED by the t_resume_glitch transition.\n\nTrace through the witness (14 events, within the 16-event bound):\n- Initial: opted_out=false, sent=false, ticks=0\n- optout (t_optout fires): opted_out=true, sent=false, ticks=0\n- tick x12 (t_tick fires each time): ticks increments 0->1->...->12 (capped at 12); each tick also sets sent:=false; opted_out remains true (no transition ever resets opted_out to false). After 12 ticks: opted_out=true, sent=false, ticks=12.\n- send_attempt: guard of t_resume_glitch is (opted_out and ticks>=12) = (true and 12>=12) = true, so t_resume_glitch fires and applies sent:=true. Resulting state: opted_out=true, sent=true, ticks=12.\n\nThis state has opted_out=true AND sent=true, so (opted_out implies not sent) is false, violating the global property.\n\nNote on rule interaction/priority: on send_attempt with opted_out=true and ticks>=12, both t_send_blocked (guard opted_out) and t_resume_glitch (guard opted_out and ticks>=12) are enabled. The spec defines no priority ordering, so this is nondeterministic. The temporal property must hold on EVERY reachable execution; since at least one resolution fires t_resume_glitch (a legitimately enabled transition), a violating execution exists. The \"resume glitch\" rule is precisely the defect \u2014 it re-enables sending to an opted-out recipient once the tick counter saturates at 12, which is the clinical safety hazard the property is meant to forbid.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

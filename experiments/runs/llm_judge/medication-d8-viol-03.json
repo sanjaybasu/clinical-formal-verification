@@ -1,0 +1,56 @@
+{
+  "item_id": "medication-d8-viol-03",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "renal_impairment",
+      "value": true
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "immunosuppressed",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": false
+    },
+    {
+      "var": "elderly",
+      "value": false
+    },
+    {
+      "var": "pregnancy",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The mutual-exclusion property NOT(rec_drug_a AND rec_drug_b) is violated. rec_drug_a can only become true via the single rule rec_a_from_conjunction (priority 50), whose antecedent is the conjunction of eight booleans including renal_impairment. Thus any input that makes rec_drug_a true must have renal_impairment = true. But renal_impairment = true also fires rec_b_from_trigger (priority 50), which sets rec_drug_b := true. No other rule writes rec_drug_b, so nothing can reset it to false (the default applies only to outputs left unset, and rec_drug_b is set by the trigger). Therefore rec_drug_a true logically implies rec_drug_b true, and the two can never be mutually exclusive whenever rec_drug_a fires. Counterexample: set all eight conjuncts (renal_impairment, g6pd_deficiency, heart_failure, immunosuppressed, seizure_history, qt_prolongation, peptic_ulcer, bradycardia) to true; remaining inputs (anticoagulated, elderly, pregnancy) are irrelevant to a/b and set false. Then rec_a_from_conjunction makes rec_drug_a = true and rec_b_from_trigger makes rec_drug_b = true, so both are jointly true and the property is violated.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

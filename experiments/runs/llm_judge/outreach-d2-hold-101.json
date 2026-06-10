@@ -1,0 +1,11 @@
+{
+  "item_id": "outreach-d2-hold-101",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property \"globally(opted_out implies not sent)\" is an inductive invariant that holds on all reachable executions.\n\nAnalysis of how each variable changes:\n- sent becomes true ONLY via t_send_allowed (on send_attempt), which is guarded by `not opted_out`. So whenever sent is set true, opted_out is false at that instant -> invariant preserved.\n- opted_out becomes true ONLY via t_optout (on optout), which in the SAME atomic update sets sent := false. So the moment opted_out flips to true, sent is forced to false -> invariant preserved.\n- Once opted_out is true, no transition ever sets it back to false (no rule assigns opted_out := false). So it is sticky/monotone.\n- While opted_out is true, a send_attempt cannot match t_send_allowed (guard `not opted_out` is false); it instead matches t_send_blocked which sets sent := false. So sent can never become true while opted_out is true.\n- t_tick always sets sent := false, never violating.\n\nThe send_attempt event is cleanly partitioned: exactly one of t_send_allowed (not opted_out) / t_send_blocked (opted_out) is enabled, so there is no priority conflict and no path to set sent true under opt-out.\n\nInductive argument: Initial state (opted_out=false) satisfies the invariant vacuously. For any reachable state satisfying it, every event preserves it: optout sets sent=false; send_attempt either requires not opted_out (so opted_out stays false) or is blocked (sent=false); tick sets sent=false. Therefore no reachable state has opted_out=true AND sent=true, within 6 events or any length. The property holds.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

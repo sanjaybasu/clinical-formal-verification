@@ -1,0 +1,11 @@
+{
+  "item_id": "medication-d3-hold-102",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "rec_drug_a becomes true only via rec_a_from_conjunction (priority 50), whose condition is C = (g6pd_deficiency AND immunosuppressed AND qt_prolongation); otherwise it defaults to false. rec_drug_b has two competing rules: rec_b_from_trigger (priority 50, IF g6pd_deficiency THEN true) and guard_suppress_b (priority 90, IF C THEN false). The joint condition rec_drug_a AND rec_drug_b requires rec_drug_a=true, which requires C true. But whenever C is true, the priority-90 guard fires on the exact same condition and sets rec_drug_b:=false, overriding the priority-50 trigger (highest priority wins). Therefore in every input where rec_drug_a=true, rec_drug_b is forced false, so the two are never jointly true. The diabetes/ckd_dialysis rules only affect rec_drug_c and are irrelevant. Property holds across the entire input space.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

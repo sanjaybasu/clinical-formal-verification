@@ -1,0 +1,100 @@
+{
+  "item_id": "triage-d10-viol-02",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "vomiting",
+      "value": true
+    },
+    {
+      "var": "confusion",
+      "value": true
+    },
+    {
+      "var": "stiff_neck",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": true
+    },
+    {
+      "var": "vision_loss",
+      "value": true
+    },
+    {
+      "var": "pallor",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": false
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": true
+    },
+    {
+      "var": "vomiting__base",
+      "value": true
+    },
+    {
+      "var": "confusion__base",
+      "value": true
+    },
+    {
+      "var": "stiff_neck__base",
+      "value": true
+    },
+    {
+      "var": "dyspnea__base",
+      "value": true
+    },
+    {
+      "var": "back_pain__base",
+      "value": true
+    },
+    {
+      "var": "vision_loss__base",
+      "value": true
+    },
+    {
+      "var": "pallor__base",
+      "value": true
+    },
+    {
+      "var": "palpitations__base",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain__base",
+      "value": false
+    },
+    {
+      "var": "fever__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that flipping abdominal_pain from false to true (all else fixed) never lowers acuity. It is VIOLATED.\n\nabdominal_pain appears in only one rule: interaction_drop (priority 100) IF (focal_weakness AND vomiting AND confusion AND stiff_neck AND dyspnea AND back_pain AND vision_loss AND pallor AND palpitations AND abdominal_pain) THEN acuity := self_care. This is the highest-priority rule and sets the lowest acuity. abdominal_pain is a required conjunct, so toggling it on is what can activate this drop.\n\nCounterexample (compare the witness state to its abdominal_pain=false twin):\n\nBEFORE (abdominal_pain = false, all other 9 conjuncts true, fever false): interaction_drop cannot fire (missing abdominal_pain). The firing rules include several priority-3 emergent rules (pallor, back_pain, vomiting, stiff_neck) plus priority-2 urgent rules. Highest priority is 3 -> acuity = emergent.\n\nAFTER (abdominal_pain = true, witness assignment): now all 10 conjuncts are true, so interaction_drop fires at priority 100, beating every priority-3 rule, setting acuity = self_care.\n\nSetting abdominal_pain true thus lowers acuity from emergent to self_care, directly violating monotonicity. (fever is irrelevant here and set false; any value reproduces the violation.)",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

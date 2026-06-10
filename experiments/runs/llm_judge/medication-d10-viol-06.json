@@ -1,0 +1,64 @@
+{
+  "item_id": "medication-d10-viol-06",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "renal_impairment",
+      "value": true
+    },
+    {
+      "var": "hyperkalemia",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "immunosuppressed",
+      "value": true
+    },
+    {
+      "var": "hypertension",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": false
+    },
+    {
+      "var": "anticoagulated",
+      "value": false
+    },
+    {
+      "var": "polypharmacy",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "rec_drug_a is set true only by rec_a_from_conjunction (priority 50), which requires the conjunction of 10 conditions including renal_impairment=true. rec_drug_b is set true by rec_b_from_trigger (priority 50) whenever renal_impairment=true. Since any input that makes rec_drug_a true necessarily has renal_impairment=true, that same input also fires rec_b_from_trigger, making rec_drug_b true. No higher-priority rule unsets either output, and defaults apply only to outputs left unset (both are set true here). Setting all 10 conjunction inputs to true (asthma/anticoagulated/polypharmacy false, irrelevant to a and b) yields rec_drug_a=true and rec_drug_b=true simultaneously, violating the mutual-exclusion property (rec_drug_a and rec_drug_b not jointly true).",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

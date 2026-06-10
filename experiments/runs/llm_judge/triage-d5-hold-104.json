@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d5-hold-104",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The decision system has 8 boolean inputs and output acuity ordered self_care < routine < urgent < emergent. Critically, none of the 7 rules (raise_fever, raise_slurred_speech, raise_dyspnea, raise_stiff_neck, raise_confusion, raise_vomiting, raise_pallor) reference chest_pain in their conditions, nor does any rule assign acuity based on chest_pain. chest_pain is therefore an entirely inert input with respect to the acuity output.\n\nThe monotonicity property requires that setting chest_pain to true (while holding all other inputs fixed) never lowers acuity. Because chest_pain appears in no rule condition (neither positively nor negatively), flipping chest_pain from false to true leaves the set of matching rules unchanged, the highest-priority/order-tiebroken winner unchanged, and the default-application unchanged. Hence acuity is exactly equal before and after the flip for every possible assignment of the other 7 inputs. \"No lower than before\" is satisfied by equality, so the property holds across the entire input space. No counterexample exists.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "item_id": "triage-d3-viol-06",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "chest_pain",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "sweating",
+      "value": false
+    },
+    {
+      "var": "chest_pain__base",
+      "value": true
+    },
+    {
+      "var": "dyspnea__base",
+      "value": true
+    },
+    {
+      "var": "palpitations__base",
+      "value": false
+    },
+    {
+      "var": "sweating__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property is VIOLATED. The culprit is the rule interaction_drop (priority 100): IF (chest_pain AND dyspnea AND palpitations) THEN acuity := self_care, which is both the highest-priority rule and sets acuity to the LOWEST value.\n\nCompare two inputs differing only in palpitations, with chest_pain=true, dyspnea=true, sweating=false:\n\nBEFORE (palpitations=false): matching rules are raise_chest_pain (p2 -> urgent) and raise_dyspnea (p3 -> emergent). interaction_drop does not fire (palpitations false). Highest priority among matches is raise_dyspnea (p3) -> acuity = emergent (rank 3).\n\nAFTER (palpitations=true): matching rules are raise_chest_pain (p2 -> urgent), raise_dyspnea (p3 -> emergent), and interaction_drop (p100 -> self_care). The highest-priority match is interaction_drop (p100) -> acuity = self_care (rank 0).\n\nSetting palpitations true lowers acuity from emergent (3) to self_care (0), directly contradicting the requirement that acuity be no lower than before. The witness_assignment given is the AFTER input (palpitations=true) that yields the lowered acuity; the corresponding BEFORE input is identical except palpitations=false, which yields emergent.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

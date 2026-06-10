@@ -1,0 +1,44 @@
+{
+  "item_id": "triage-d1-viol-02",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": false
+    },
+    {
+      "var": "slurred_speech",
+      "value": false
+    },
+    {
+      "var": "severe_headache__base",
+      "value": false
+    },
+    {
+      "var": "fever__base",
+      "value": true
+    },
+    {
+      "var": "palpitations__base",
+      "value": false
+    },
+    {
+      "var": "slurred_speech__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property requires that flipping severe_headache from false to true (all other inputs unchanged) never lowers acuity. The system violates this because the interaction_drop rule (IF severe_headache THEN acuity := self_care) carries priority 100, which dominates the priority-3 raise rules.\\n\\nCounterexample pair: Take base input {fever: true, palpitations: false, slurred_speech: false}.\\n- With severe_headache = false: only raise_fever matches (priority 3), so acuity := emergent (the highest level).\\n- With severe_headache = true: raise_fever (priority 3) proposes emergent, but interaction_drop (priority 100) proposes self_care. Highest priority wins, so acuity := self_care (the lowest level).\\n\\nSetting severe_headache true lowers acuity from emergent to self_care, directly violating the property. The witness_assignment gives the post-flip input {severe_headache: true, fever: true, palpitations: false, slurred_speech: false}, which produces self_care while its severe_headache=false counterpart produces emergent. (The same drop occurs whenever any raise rule would otherwise fire \u2014 fever, palpitations, or slurred_speech \u2014 but the fever case is a concrete witness.)",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

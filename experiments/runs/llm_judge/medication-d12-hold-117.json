@@ -1,0 +1,11 @@
+{
+  "item_id": "medication-d12-hold-117",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "rec_drug_a can only become true via rec_a_from_conjunction (priority 50), which fires only when all 12 conditions hold (diabetes, asthma, low_ejection_fraction, anticoagulated, elderly, hepatic_impairment, immunosuppressed, hypertension, polypharmacy, renal_impairment, qt_prolongation, peptic_ulcer). In every other input rec_drug_a defaults to false, making the conjunction (rec_drug_a and rec_drug_b) trivially false.\n\nThe only concern is the single input where all 12 conditions are true. There, rec_drug_a = true. For rec_drug_b in that same input, two rules match: guard_suppress_b (priority 90, sets rec_drug_b := false) and rec_b_from_trigger (priority 50, sets rec_drug_b := true, since diabetes is true). Conflict resolution is per-output by highest priority; 90 > 50, so guard_suppress_b wins and rec_drug_b := false. Thus rec_drug_a = true, rec_drug_b = false \u2014 not jointly true.\n\nBecause the guard rule shares the exact same 12-condition trigger as the only rec_drug_a-enabling rule and outranks the diabetes-based rec_drug_b trigger, rec_drug_b is always suppressed precisely when rec_drug_a is true. The mutual-exclusion property holds across the entire input space.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

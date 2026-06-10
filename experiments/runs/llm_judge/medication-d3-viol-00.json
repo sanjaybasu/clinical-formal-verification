@@ -1,0 +1,36 @@
+{
+  "item_id": "medication-d3-viol-00",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "renal_impairment",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "immunosuppressed",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": false
+    },
+    {
+      "var": "elderly",
+      "value": false
+    },
+    {
+      "var": "prior_gi_bleed",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that rec_drug_a and rec_drug_b are never jointly true. rec_drug_a is set true only by rule rec_a_from_conjunction (priority 50): IF (renal_impairment AND asthma AND immunosuppressed). rec_drug_b is set true only by rule rec_b_from_trigger (priority 50): IF renal_impairment. No rule ever assigns false to either output; the only source of false is the default, which applies solely to outputs left unset. With renal_impairment=true, asthma=true, immunosuppressed=true, both rec_a_from_conjunction and rec_b_from_trigger fire, setting rec_drug_a:=true and rec_drug_b:=true. Since both outputs are set, the default does not apply, and there is no overriding rule. Thus both are simultaneously true, violating mutual exclusion. The other inputs (heart_failure, elderly, prior_gi_bleed) only affect rec_drug_c and are irrelevant; set to false for a minimal witness.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

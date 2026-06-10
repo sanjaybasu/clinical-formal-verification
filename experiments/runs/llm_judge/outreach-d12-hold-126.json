@@ -1,0 +1,11 @@
+{
+  "item_id": "outreach-d12-hold-126",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property G(opted_out implies not sent) holds for all reachable executions. Proof by establishing the invariant inductively. Initial state: opted_out=false, so antecedent is false (vacuously holds). The only transition that sets opted_out:=true is t_optout (on optout), and it atomically also sets sent:=false, so the resulting state satisfies the invariant. The only transition that sets sent:=true is t_send_allowed (on send_attempt), which is guarded by 'not opted_out', so it can only fire when opted_out is false, yielding opted_out=false and the antecedent false. The remaining transitions both clear sent: t_send_blocked (send_attempt when opted_out) sets sent:=false, and t_tick (on tick) sets sent:=false while leaving opted_out unchanged; both preserve the invariant. Events with no enabled transition leave state unchanged, preserving the invariant by the inductive hypothesis. Crucially, no transition ever sets opted_out=true without simultaneously clearing sent, and no transition sets sent=true while opted_out is true. Therefore no reachable state has opted_out=true and sent=true, and the property holds within (and beyond) the 16-event bound.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

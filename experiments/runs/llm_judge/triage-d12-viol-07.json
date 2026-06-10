@@ -1,0 +1,116 @@
+{
+  "item_id": "triage-d12-viol-07",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "sweating",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": true
+    },
+    {
+      "var": "slurred_speech",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": true
+    },
+    {
+      "var": "chest_pain",
+      "value": true
+    },
+    {
+      "var": "dizziness",
+      "value": true
+    },
+    {
+      "var": "vision_loss",
+      "value": true
+    },
+    {
+      "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "leg_swelling",
+      "value": true
+    },
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "vomiting",
+      "value": false
+    },
+    {
+      "var": "fever__base",
+      "value": true
+    },
+    {
+      "var": "sweating__base",
+      "value": true
+    },
+    {
+      "var": "back_pain__base",
+      "value": true
+    },
+    {
+      "var": "slurred_speech__base",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain__base",
+      "value": true
+    },
+    {
+      "var": "dyspnea__base",
+      "value": true
+    },
+    {
+      "var": "chest_pain__base",
+      "value": true
+    },
+    {
+      "var": "dizziness__base",
+      "value": true
+    },
+    {
+      "var": "vision_loss__base",
+      "value": true
+    },
+    {
+      "var": "syncope__base",
+      "value": true
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": true
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": false
+    },
+    {
+      "var": "vomiting__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that flipping focal_weakness from false to true (all else equal) never lowers acuity. focal_weakness appears in only one rule: interaction_drop (priority 100), whose 12-term conjunction includes focal_weakness and requires all of {fever, sweating, back_pain, slurred_speech, abdominal_pain, dyspnea, chest_pain, dizziness, vision_loss, syncope, leg_swelling, focal_weakness} to be true; it sets acuity := self_care.\n\nConsider the input pair where those other 11 conjunction members are all true and vomiting is anything (here false).\n\nBEFORE (focal_weakness=false): interaction_drop does not fire because focal_weakness is false. Multiple emergent rules fire \u2014 raise_sweating (p3), raise_slurred_speech (p3), raise_dyspnea (p3), raise_dizziness (p3), raise_syncope (p3) \u2014 alongside several priority-2 urgent rules. The highest-priority matching rule is priority 3 \u2192 acuity = emergent.\n\nAFTER (focal_weakness=true): now all 12 conjuncts hold, so interaction_drop fires at priority 100, beating every priority-3 emergent rule \u2192 acuity = self_care.\n\nSetting focal_weakness true changes acuity from emergent to self_care \u2014 a strict decrease in the ordered enum [self_care < routine < urgent < emergent]. This violates monotonicity. The witness is the focal_weakness=true assignment (vomiting=false), which yields self_care, while its focal_weakness=false counterpart yields emergent.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

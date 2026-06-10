@@ -1,0 +1,68 @@
+{
+  "item_id": "triage-d4-viol-06",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "stiff_neck",
+      "value": true
+    },
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": false
+    },
+    {
+      "var": "focal_weakness",
+      "value": false
+    },
+    {
+      "var": "pallor",
+      "value": false
+    },
+    {
+      "var": "palpitations__base",
+      "value": true
+    },
+    {
+      "var": "syncope__base",
+      "value": true
+    },
+    {
+      "var": "stiff_neck__base",
+      "value": true
+    },
+    {
+      "var": "severe_headache__base",
+      "value": false
+    },
+    {
+      "var": "dyspnea__base",
+      "value": false
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": false
+    },
+    {
+      "var": "pallor__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "severe_headache appears in exactly one rule: interaction_drop (priority 100), which sets acuity := self_care (the lowest level). No rule raises acuity in response to severe_headache. Therefore enabling severe_headache can only activate the drop-to-self_care override, which can lower acuity, breaking monotonicity.\n\nCounterexample input (severe_headache = true): palpitations=true, syncope=true, stiff_neck=true, severe_headache=true, dyspnea=false, focal_weakness=false, pallor=false.\n\nCompare the two cases (all other inputs identical):\n\nBEFORE (severe_headache = false): matching rules are raise_palpitations (p2 -> urgent), raise_syncope (p3 -> emergent), raise_stiff_neck (p2 -> urgent). interaction_drop does not match because severe_headache is false. Highest priority wins: raise_syncope at priority 3 -> acuity = emergent.\n\nAFTER (severe_headache = true): matching rules now also include interaction_drop (p100 -> self_care) since palpitations, syncope, stiff_neck, severe_headache are all true. Priority 100 dominates priorities 2 and 3 -> acuity = self_care.\n\nAcuity goes from emergent (highest) to self_care (lowest) when severe_headache flips false -> true with all else unchanged. This violates the monotonicity property that setting severe_headache true never lowers acuity. The reported witness_assignment is the severe_headache=true state where the lowered acuity occurs; the comparison baseline is the same assignment with severe_headache=false.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "item_id": "medication-d6-viol-06",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "diabetes",
+      "value": true
+    },
+    {
+      "var": "prior_gi_bleed",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": false
+    },
+    {
+      "var": "pregnancy",
+      "value": false
+    },
+    {
+      "var": "polypharmacy",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property NOT(rec_drug_a AND rec_drug_b) is violated. rec_drug_a is set true only by rec_a_from_conjunction, whose antecedent requires diabetes=true among six conjuncts. But diabetes=true is also the sole trigger for rec_b_from_trigger, which sets rec_drug_b:=true. With diabetes, prior_gi_bleed, anticoagulated, bradycardia, elderly, and seizure_history all true, the conjunction is satisfied (rec_drug_a=true) and diabetes is true (rec_drug_b=true). Each output has exactly one matching rule firing, so priorities/ties are irrelevant and defaults do not apply (both outputs are set). Both rec_drug_a and rec_drug_b are simultaneously true, breaking mutual exclusion. The remaining inputs (hepatic_impairment, pregnancy, polypharmacy) are irrelevant to a and b and set false in this minimal witness. File analyzed: /Users/sanjaybasu/clinical-formal-verification/experiments/runs/_judge_prompts/medication-d6-viol-06.txt",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

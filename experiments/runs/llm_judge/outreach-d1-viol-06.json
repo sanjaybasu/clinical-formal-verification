@@ -1,0 +1,21 @@
+{
+  "item_id": "outreach-d1-viol-06",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "This is a state machine. The property requires globally(opted_out implies not sent). The transition [t_resume_glitch] on send_attempt with guard (opted_out and ticks >= 1) sets sent := true, which directly contradicts the property when its guard holds.\n\nReachability of the glitch guard: opted_out becomes true only via [t_optout] (on optout), and nothing ever resets it to false. ticks >= 1 is achieved only via [t_tick] (on tick), which increments ticks from 0 to 1. So firing optout then tick puts the machine in opted_out=true, sent=false, ticks=1 \u2014 the exact precondition for [t_resume_glitch].\n\nWitness execution (3 events, within the 5-event bound):\n1. Initial: opted_out=false, sent=false, ticks=0\n2. optout -> [t_optout] (guard true): opted_out=true, sent=false, ticks=0\n3. tick -> [t_tick] (guard true): ticks=1 (since ticks<1), sent=false. State: opted_out=true, sent=false, ticks=1\n4. send_attempt -> here both [t_send_blocked] (guard opted_out) and [t_resume_glitch] (guard opted_out and ticks>=1) are enabled. With no stated priority, [t_resume_glitch] is a valid enabled transition; firing it gives sent := true. State: opted_out=true, sent=true, ticks=1.\n\nThis reachable state has opted_out=true AND sent=true, violating opted_out implies not sent. Because the verification considers any enabled transition, the presence of an enabled glitch transition that produces the bad state is sufficient to violate the global property.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

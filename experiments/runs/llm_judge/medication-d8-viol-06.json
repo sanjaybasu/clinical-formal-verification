@@ -1,0 +1,48 @@
+{
+  "item_id": "medication-d8-viol-06",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "polypharmacy",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "renal_impairment",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "immunosuppressed",
+      "value": true
+    },
+    {
+      "var": "hyperkalemia",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The mutual-exclusion property NOT(rec_drug_a AND rec_drug_b) is VIOLATED. rec_drug_a is set true only by rec_a_from_conjunction (priority 50), whose condition is the conjunction of all 8 inputs including polypharmacy. rec_drug_b is set true by rec_b_from_trigger (priority 50) whenever polypharmacy is true. The condition for rec_drug_a is a strict superset of the condition for rec_drug_b: any input that fires the conjunction necessarily has polypharmacy true, so rec_b_from_trigger also fires. No rule ever sets rec_drug_a or rec_drug_b to false, and the defaults only apply to outputs left unset (so they cannot override a fired rule). Therefore setting all 8 conjunction inputs true makes both rec_drug_a and rec_drug_b true simultaneously. elderly is immaterial (set false here; it only affects rec_drug_c). Concrete counterexample: polypharmacy=bradycardia=renal_impairment=qt_prolongation=immunosuppressed=hyperkalemia=hepatic_impairment=peptic_ulcer=true, elderly=false yields rec_drug_a=true and rec_drug_b=true.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

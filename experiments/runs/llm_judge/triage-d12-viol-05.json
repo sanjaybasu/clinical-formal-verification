@@ -1,0 +1,116 @@
+{
+  "item_id": "triage-d12-viol-05",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "pallor",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "stiff_neck",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain",
+      "value": true
+    },
+    {
+      "var": "confusion",
+      "value": true
+    },
+    {
+      "var": "dizziness",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": true
+    },
+    {
+      "var": "leg_swelling",
+      "value": false
+    },
+    {
+      "var": "pallor__base",
+      "value": true
+    },
+    {
+      "var": "palpitations__base",
+      "value": true
+    },
+    {
+      "var": "syncope__base",
+      "value": true
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": true
+    },
+    {
+      "var": "stiff_neck__base",
+      "value": true
+    },
+    {
+      "var": "dyspnea__base",
+      "value": true
+    },
+    {
+      "var": "fever__base",
+      "value": true
+    },
+    {
+      "var": "severe_headache__base",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain__base",
+      "value": true
+    },
+    {
+      "var": "confusion__base",
+      "value": true
+    },
+    {
+      "var": "dizziness__base",
+      "value": true
+    },
+    {
+      "var": "back_pain__base",
+      "value": false
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "back_pain appears in exactly one rule: interaction_drop (priority 100), which sets acuity := self_care (the LOWEST acuity) and requires back_pain among its 12 conjuncts. This makes setting back_pain true able to ENABLE a rule that drops acuity, violating monotonicity.\n\nCounterexample (the witness is the \"after\" input with back_pain=true):\nCompare two inputs differing only in back_pain, with pallor, palpitations, syncope, focal_weakness, stiff_neck, dyspnea, fever, severe_headache, abdominal_pain, confusion, dizziness all true and leg_swelling false.\n\nBEFORE (back_pain=false): interaction_drop does not fire (back_pain false). Priority-3 emergent rules fire (palpitations, confusion, dyspnea, focal_weakness, severe_headache). Highest firing priority = 3 -> acuity := emergent. Result = emergent (highest acuity).\n\nAFTER (back_pain=true, all else unchanged): now all 12 conjuncts of interaction_drop are satisfied (pallor, palpitations, syncope, focal_weakness, stiff_neck, dyspnea, fever, severe_headache, abdominal_pain, confusion, dizziness, back_pain). interaction_drop fires at priority 100, beating all priority-3 rules -> acuity := self_care. Result = self_care (lowest acuity).\n\nSetting back_pain true lowers acuity from emergent to self_care, violating the monotonicity property. The reported witness_assignment is the violating after-input.\n\nFile analyzed: /Users/sanjaybasu/clinical-formal-verification/experiments/runs/_judge_prompts/triage-d12-viol-05.txt",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

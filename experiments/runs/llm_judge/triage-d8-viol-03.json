@@ -1,0 +1,84 @@
+{
+  "item_id": "triage-d8-viol-03",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "slurred_speech",
+      "value": true
+    },
+    {
+      "var": "confusion",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": true
+    },
+    {
+      "var": "vision_loss",
+      "value": true
+    },
+    {
+      "var": "leg_swelling",
+      "value": true
+    },
+    {
+      "var": "sweating",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": true
+    },
+    {
+      "var": "focal_weakness",
+      "value": false
+    },
+    {
+      "var": "fever__base",
+      "value": true
+    },
+    {
+      "var": "slurred_speech__base",
+      "value": true
+    },
+    {
+      "var": "confusion__base",
+      "value": true
+    },
+    {
+      "var": "dyspnea__base",
+      "value": true
+    },
+    {
+      "var": "vision_loss__base",
+      "value": true
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": true
+    },
+    {
+      "var": "sweating__base",
+      "value": true
+    },
+    {
+      "var": "back_pain__base",
+      "value": false
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that setting back_pain=true (other inputs fixed) never lowers acuity. back_pain appears in exactly one rule: interaction_drop (priority 100) IF (fever AND slurred_speech AND confusion AND dyspnea AND vision_loss AND leg_swelling AND sweating AND back_pain) THEN acuity:=self_care. This is the highest-priority rule and it sets the LOWEST acuity, and it can only fire when back_pain is true. This is the monotonicity-breaking interaction.\\n\\nCounterexample baseline: fever, slurred_speech, confusion, dyspnea, vision_loss, leg_swelling, sweating all true; focal_weakness false.\\n\\nWith back_pain=FALSE: interaction_drop does not match. Matching raise rules include raise_dyspnea (emergent, prio 3), raise_slurred_speech (emergent, prio 3), raise_leg_swelling (emergent, prio 3), plus several priority-2 urgent rules. Highest priority = 3 -> acuity = emergent.\\n\\nWith back_pain=TRUE (the witness assignment, everything else identical): all 8 antecedents of interaction_drop hold, so it matches at priority 100, beating every priority-2/3 raise rule. Winner -> acuity = self_care.\\n\\nThus flipping back_pain false->true drops acuity from emergent (rank 3) to self_care (rank 0), which is strictly lower. The monotonicity property is violated. The witness_assignment given is the back_pain=true input that yields the lowered acuity (self_care).",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

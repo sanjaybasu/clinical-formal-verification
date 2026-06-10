@@ -1,0 +1,11 @@
+{
+  "item_id": "outreach-d6-hold-114",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The invariant globally(opted_out implies not sent) holds on every reachable execution. Argument: (1) opted_out is monotone \u2014 only t_optout sets it (false\u2192true), and no transition ever resets it to false. (2) sent becomes true ONLY via t_send_allowed, whose guard is `not opted_out`; thus sent can only be set true while opted_out is false. (3) Every transition that could coexist with opted_out=true forces sent false: t_optout itself atomically sets sent:=false in the same step it sets opted_out:=true (no intermediate state where opted_out is true and sent is still true); t_send_blocked (the send_attempt branch taken when opted_out) sets sent:=false; t_tick sets sent:=false. (4) The initial state (opted_out=false, sent=false, ticks=0) trivially satisfies the implication. Consequently there is no reachable state with opted_out=true and sent=true: the moment opt-out occurs, sent is cleared, and no enabled transition can re-set sent true while opted_out remains true (t_send_allowed is guarded out). This holds within the 10-event bound and in fact unboundedly. File: /Users/sanjaybasu/clinical-formal-verification/experiments/runs/_judge_prompts/outreach-d6-hold-114.txt",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

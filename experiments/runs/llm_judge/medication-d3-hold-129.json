@@ -1,0 +1,11 @@
+{
+  "item_id": "medication-d3-hold-129",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "rec_drug_a is set true only by rule rec_a_from_conjunction (priority 50) under the condition (hyperkalemia AND seizure_history AND ckd_dialysis); otherwise it defaults to false. Thus rec_drug_a = true requires exactly that conjunction. For rec_drug_b, three things can affect it: guard_suppress_b (priority 90, condition = same conjunction, sets false), rec_b_from_trigger (priority 50, condition = hyperkalemia, sets true), and the default (false). The highest-priority matching rule per output wins. Whenever the conjunction holds (the only situation making rec_drug_a true), guard_suppress_b (priority 90) matches and outranks rec_b_from_trigger (priority 50), forcing rec_drug_b := false despite hyperkalemia being true. Therefore in every input where rec_drug_a is true, rec_drug_b is false, so (rec_drug_a AND rec_drug_b) is never jointly true. The mutual-exclusion property holds across the entire input space.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

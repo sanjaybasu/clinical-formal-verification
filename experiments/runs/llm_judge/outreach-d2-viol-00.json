@@ -1,0 +1,24 @@
+{
+  "item_id": "outreach-d2-viol-00",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "This is a state machine over (opted_out, sent, ticks), initial (false, false, 0). The property is globally(opted_out implies not sent): in every reachable state, opted_out=true must imply sent=false.\n\nThe vulnerable transition is t_resume_glitch: on send_attempt if (opted_out and ticks >= 2): sent := true. This directly sets sent=true while opted_out is still true, which is exactly the configuration the property forbids. The only requirement to fire it is opted_out=true and ticks at its max value (2), both reachable.\n\nCounterexample execution (4 events, within the 6-event bound):\n1. optout: t_optout fires (guard true) -> opted_out=true, sent=false. State (true, false, 0).\n2. tick: t_tick fires -> ticks=1, sent=false. State (true, false, 1).\n3. tick: t_tick fires -> ticks=2, sent=false. State (true, false, 2).\n4. send_attempt: t_resume_glitch is enabled (opted_out=true and ticks>=2) and sets sent:=true. State (true, true, 2).\n\nIn the resulting state opted_out=true and sent=true, so (opted_out implies not sent) is false, violating the global property. t_send_blocked (sent:=false) is also enabled on this send_attempt, but since the property must hold on every reachable execution, the execution that takes the t_resume_glitch branch is itself a reachable counterexample; nothing in the spec gives t_send_blocked overriding priority that would suppress t_resume_glitch. The t_resume_glitch rule is the intended defect: it re-enables outreach after opt-out once the tick counter saturates. Property is violated.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

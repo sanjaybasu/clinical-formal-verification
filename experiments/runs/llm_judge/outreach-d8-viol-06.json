@@ -1,0 +1,42 @@
+{
+  "item_id": "outreach-d8-viol-06",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property globally(opted_out implies not sent) is VIOLATED via the t_resume_glitch transition.\n\nTransition t_resume_glitch fires on send_attempt when (opted_out and ticks >= 8) and sets sent := true, which directly creates a state where opted_out is true and sent is true.\n\nThe only requirement is that ticks can reach >= 8 while opted_out is true. This is reachable: t_optout sets opted_out := true (ticks unaffected, stays at its current value), and t_tick increments ticks up to a cap of 8. opted_out is never cleared by any transition.\n\nCounterexample execution (10 events, within the 12-event bound):\n1. optout -> opted_out=true, sent=false, ticks=0\n2-9. tick (x8) -> each increments ticks (capped at 8) and sets sent=false; after 8 ticks ticks=8, opted_out=true, sent=false\n10. send_attempt -> guard (opted_out and ticks>=8) holds, so t_resume_glitch applies sent:=true. Resulting state: opted_out=true, sent=true.\n\nThis reachable state has opted_out=true and sent=true, falsifying (opted_out implies not sent). Note t_send_blocked is also enabled on this send_attempt (it would keep sent=false), but t_resume_glitch is a distinct enabled transition that can be taken, so a violating execution exists. The \"glitch\" naming confirms this is the intended faulty rule interaction.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

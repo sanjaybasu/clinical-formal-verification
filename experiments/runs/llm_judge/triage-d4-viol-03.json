@@ -1,0 +1,68 @@
+{
+  "item_id": "triage-d4-viol-03",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "stiff_neck",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": true
+    },
+    {
+      "var": "hemoptysis",
+      "value": false
+    },
+    {
+      "var": "fever",
+      "value": false
+    },
+    {
+      "var": "back_pain",
+      "value": false
+    },
+    {
+      "var": "stiff_neck__base",
+      "value": true
+    },
+    {
+      "var": "rash__base",
+      "value": true
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": true
+    },
+    {
+      "var": "dyspnea__base",
+      "value": false
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": false
+    },
+    {
+      "var": "fever__base",
+      "value": false
+    },
+    {
+      "var": "back_pain__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property requires that flipping dyspnea from false to true (other inputs unchanged) never lowers acuity. Dyspnea appears in only one rule: interaction_drop (priority 100) IF (stiff_neck and rash and focal_weakness and dyspnea) THEN acuity := self_care. This rule has the highest priority, so when it fires it overrides everything.\n\nConsider the base input: stiff_neck=true, rash=true, focal_weakness=true, hemoptysis=false, fever=false, back_pain=false.\n\nBefore (dyspnea=false): interaction_drop does NOT fire (dyspnea missing). Matching rules: raise_rash (priority 3 -> emergent), raise_stiff_neck (priority 2 -> urgent), raise_focal_weakness (priority 2 -> urgent). Highest priority is raise_rash at priority 3, so acuity = emergent (highest level).\n\nAfter (dyspnea=true, everything else identical): interaction_drop now fires because stiff_neck and rash and focal_weakness and dyspnea are all true. At priority 100 it beats raise_rash (priority 3), so acuity = self_care (lowest level).\n\nSetting dyspnea true drops acuity from emergent to self_care, a decrease across the full enum range. The property is violated. The witness assignment is the post-flip state (dyspnea=true) producing the lowered self_care acuity.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

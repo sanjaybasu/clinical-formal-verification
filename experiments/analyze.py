@@ -128,7 +128,8 @@ def main() -> int:
 
         slope = logistic_slope([keys[i]["interaction_depth"] for i in covered],
                                [int(runs[i]["verdict"] == "violated") for i in covered])
-        mean_sec = float(np.mean([runs[i]["seconds"] for i in covered])) if covered else float("nan")
+        secs = [runs[i]["seconds"] for i in covered if runs[i].get("seconds") is not None]
+        mean_sec = float(np.mean(secs)) if secs else float("nan")
 
         summary["methods"][method] = {
             "label": METHOD_LABEL[method],

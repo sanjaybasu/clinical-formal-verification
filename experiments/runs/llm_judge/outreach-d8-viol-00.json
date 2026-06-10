@@ -1,0 +1,42 @@
+{
+  "item_id": "outreach-d8-viol-00",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property G(opted_out implies not sent) is VIOLATED via the t_resume_glitch transition.\n\nState vars: opted_out (bool), sent (bool), ticks [0,8]. Initial: opted_out=false, sent=false, ticks=0.\n\nThe dangerous rule is [t_resume_glitch]: on send_attempt if (opted_out and ticks>=8): sent := true. This sets sent=true while opted_out is true, directly contradicting the intent that opted-out members never have sent=true.\n\nTo enable it we need opted_out=true AND ticks>=8 simultaneously, then a send_attempt. Counterexample (10 events, within the 12-event bound):\n1-8. tick x8: each tick increments ticks (capped at 8) and sets sent=false. After 8 ticks, ticks=8 (>=8).\n9. optout: opted_out:=true, sent:=false. State: opted_out=true, sent=false, ticks=8.\n10. send_attempt: Two transitions on send_attempt are enabled here: [t_send_blocked] (guard opted_out, sets sent:=false) and [t_resume_glitch] (guard opted_out and ticks>=8, sets sent:=true). Both guards hold, so the system is nondeterministic; an execution may take t_resume_glitch, yielding sent:=true.\n\nResulting reachable state: opted_out=true, sent=true. This satisfies opted_out and NOT (not sent), violating (opted_out implies not sent), so the globally property fails.\n\nEven under any tie-break preference, t_resume_glitch is a real enabled transition whose update produces the bad state, so a violating execution exists. The intent \u2014 opted-out members are never sent to \u2014 is broken once ticks reach the cap (the \"resume glitch\" re-enables sending to opted-out members after 8 ticks).",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "item_id": "medication-d2-viol-07",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that no input makes (rec_drug_a AND rec_drug_b) jointly true. rec_drug_a is set true only by rec_a_from_conjunction (priority 50) when bradycardia AND pregnancy. rec_drug_b is set true by rec_b_from_trigger (priority 50) when bradycardia. These rules write to DIFFERENT outputs (rec_drug_a vs rec_drug_b), so the per-output priority/conflict-resolution mechanism never pits them against each other \u2014 each output is resolved independently. With bradycardia=true and pregnancy=true, both rules fire: rec_drug_a becomes true (conjunction satisfied) and rec_drug_b becomes true (bradycardia satisfied). The priority-40 seizure rule only affects rec_drug_c and is irrelevant. Thus with bradycardia=true, pregnancy=true, seizure_history=false, the system outputs rec_drug_a=true, rec_drug_b=true, rec_drug_c=false, violating mutual exclusion. The property is violated.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

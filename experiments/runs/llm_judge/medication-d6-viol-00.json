@@ -1,0 +1,48 @@
+{
+  "item_id": "medication-d6-viol-00",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "immunosuppressed",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "hypertension",
+      "value": true
+    },
+    {
+      "var": "polypharmacy",
+      "value": false
+    },
+    {
+      "var": "bradycardia",
+      "value": false
+    },
+    {
+      "var": "renal_impairment",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The mutual-exclusion property requires that rec_drug_a and rec_drug_b are never both true. rec_drug_b is set true by rule rec_b_from_trigger (priority 50) whenever hepatic_impairment is true. rec_drug_a is set true by rule rec_a_from_conjunction (priority 50) when hepatic_impairment AND low_ejection_fraction AND elderly AND immunosuppressed AND anticoagulated AND hypertension all hold. Crucially, the conjunction that triggers rec_drug_a includes hepatic_impairment as one of its conjuncts. Therefore any input that makes rec_drug_a true must also have hepatic_impairment = true, which independently forces rec_drug_b = true via rec_b_from_trigger. These two rules write to different outputs (rec_drug_a vs rec_drug_b), so there is no priority/conflict resolution that suppresses one in favor of the other; both fire simultaneously. Setting the six conjunction conditions all true (hepatic_impairment, low_ejection_fraction, elderly, immunosuppressed, anticoagulated, hypertension) yields rec_drug_a = true and rec_drug_b = true at once. The remaining inputs (polypharmacy, bradycardia, renal_impairment) only affect rec_drug_c and are set false in this minimal witness. Hence the property is violated.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

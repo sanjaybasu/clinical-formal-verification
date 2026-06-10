@@ -1,0 +1,76 @@
+{
+  "item_id": "triage-d5-viol-00",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "pallor",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": false
+    },
+    {
+      "var": "rash",
+      "value": false
+    },
+    {
+      "var": "dizziness",
+      "value": false
+    },
+    {
+      "var": "severe_headache__base",
+      "value": true
+    },
+    {
+      "var": "palpitations__base",
+      "value": true
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": true
+    },
+    {
+      "var": "fever__base",
+      "value": true
+    },
+    {
+      "var": "pallor__base",
+      "value": false
+    },
+    {
+      "var": "back_pain__base",
+      "value": false
+    },
+    {
+      "var": "rash__base",
+      "value": false
+    },
+    {
+      "var": "dizziness__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that toggling pallor from false to true (all else fixed) never lowers acuity. It is VIOLATED.\n\npallor appears in exactly one rule: interaction_drop (priority 100, the highest), which fires only when severe_headache AND palpitations AND focal_weakness AND fever AND pallor are all true, and sets acuity := self_care (the LOWEST acuity). pallor appears in no rule that raises acuity. Thus enabling pallor can only activate the high-priority downward rule.\n\nCounterexample baseline (pallor=false): severe_headache=palpitations=focal_weakness=fever=true, pallor=back_pain=rash=dizziness=false. interaction_drop does not fire (needs pallor). Matching rules: raise_palpitations (p3, emergent), raise_fever (p3, emergent), raise_severe_headache (p2, urgent), raise_focal_weakness (p2, urgent). Highest priority = 3 -> acuity = emergent.\n\nAfter (pallor=true), everything else unchanged: interaction_drop now matches (all five antecedents true) at priority 100, which beats every other matching rule, so acuity := self_care. \n\nSetting pallor true lowered acuity from emergent to self_care, directly violating the monotonicity property. The reported witness_assignment is the pallor=true state that produces the lowered acuity (self_care); its pallor=false counterpart yields emergent.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

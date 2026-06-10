@@ -1,0 +1,11 @@
+{
+  "item_id": "outreach-d4-hold-103",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The invariant is opted_out implies not sent. The only transition that sets sent:=true is t_send_allowed, which is guarded by `not opted_out`; thus sent can only become true while opted_out is false. The only transition that sets opted_out:=true is t_optout, and it atomically also sets sent:=false in the same update, so the moment opted_out flips true, sent is forced false. While opted_out remains true, t_send_allowed is disabled (guard false), and the only other send_attempt transition (t_send_blocked) plus t_tick both keep sent=false. There is no reachable state with opted_out=true and sent=true. The two conditions are mutually exclusive by construction for executions of any length, so the bounded 8-event check finds no violation. Property holds.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

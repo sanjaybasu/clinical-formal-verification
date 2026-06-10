@@ -1,0 +1,27 @@
+{
+  "item_id": "outreach-d3-viol-04",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "This is a state machine. The property requires that globally, opted_out implies not sent. The transition t_resume_glitch (on send_attempt if opted_out and ticks >= 3: sent := true) directly sets sent=true while opted_out is true, violating the property if reachable.\n\nWitness execution (5 events, within the 7-event bound):\n1. tick: ticks 0->1, sent=false (opted_out=false)\n2. tick: ticks 1->2, sent=false\n3. tick: ticks 2->3, sent=false\n4. optout: opted_out=true, sent=false (ticks stays 3)\n5. send_attempt: guards evaluated \u2014 t_send_allowed (not opted_out) is false; t_send_blocked (opted_out) is true; t_resume_glitch (opted_out and ticks>=3) is true. Since t_resume_glitch is an enabled matching transition, an execution exists where it fires, yielding sent=true while opted_out=true.\n\nResulting state: opted_out=true, sent=true, ticks=3 \u2014 this falsifies (opted_out implies not sent). The property is violated.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

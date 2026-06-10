@@ -1,0 +1,40 @@
+{
+  "item_id": "medication-d5-viol-02",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "hyperkalemia",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": false
+    },
+    {
+      "var": "heart_failure",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "rec_drug_b is set true only by rule rec_b_from_trigger (priority 50) when hepatic_impairment is true; no rule ever sets rec_drug_b false, so rec_drug_b=true iff hepatic_impairment=true. rec_drug_a is set true only by rec_a_from_conjunction (priority 50) when hepatic_impairment AND hyperkalemia AND low_ejection_fraction AND pregnancy AND elderly are all true. Crucially, the conjunction that enables rec_drug_a includes hepatic_impairment, which simultaneously fires rec_b_from_trigger. There is no priority conflict or false-setting rule to suppress either output (both are explicit set-true rules; the default only applies to unset outputs). Therefore any input satisfying the conjunction makes BOTH rec_drug_a and rec_drug_b true, violating the mutual-exclusion property. Concrete counterexample: hepatic_impairment=hyperkalemia=low_ejection_fraction=pregnancy=elderly=true (bradycardia=heart_failure=false). This yields rec_drug_a=true and rec_drug_b=true.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "item_id": "triage-d1-viol-05",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "leg_swelling",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "confusion",
+      "value": false
+    },
+    {
+      "var": "vision_loss",
+      "value": false
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": false
+    },
+    {
+      "var": "fever__base",
+      "value": true
+    },
+    {
+      "var": "confusion__base",
+      "value": false
+    },
+    {
+      "var": "vision_loss__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property is VIOLATED. The rule `interaction_drop` (IF leg_swelling THEN acuity := self_care) carries priority 100, far above every other rule (raise_fever=3, raise_vision_loss=3, raise_confusion=2). Because conflict resolution selects the highest-priority matching rule for the output, whenever leg_swelling is true the interaction_drop rule wins and forces acuity to self_care (the lowest level), overriding any elevating condition.\\n\\nCounterexample (the witness is the 'after' assignment with leg_swelling=true): leg_swelling=true, fever=true, confusion=false, vision_loss=false.\\n- Before (same inputs but leg_swelling=false): only raise_fever matches -> acuity = emergent.\\n- After (leg_swelling=true): interaction_drop (priority 100) outranks raise_fever (priority 3) -> acuity = self_care.\\n\\nSetting leg_swelling true lowers acuity from emergent (highest) to self_care (lowest), a strict decrease, directly violating the requirement that leg_swelling=true never lowers acuity. (The same violation occurs with vision_loss=true giving emergent->self_care, or confusion=true giving urgent->self_care.)\\n\\nFile read: /Users/sanjaybasu/clinical-formal-verification/experiments/runs/_judge_prompts/triage-d1-viol-05.txt",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

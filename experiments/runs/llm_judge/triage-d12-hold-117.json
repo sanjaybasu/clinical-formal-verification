@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d12-hold-117",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The input variable `pallor` does not appear in any rule's condition or action. The 12 rules (lines 21-32) reference only the other 12 inputs (leg_swelling, confusion, back_pain, abdominal_pain, palpitations, hemoptysis, chest_pain, focal_weakness, slurred_speech, dizziness, stiff_neck, rash). The acuity output is therefore a pure function of those 12 variables plus the default rule. Toggling `pallor` from false to true, with all other inputs fixed, does not change the set of matching rules, their priorities, the tie-breaking order, or the default \u2014 so the computed acuity is exactly identical before and after. Identical output trivially satisfies \"no lower than before\" (the monotonicity property). Additionally, every rule only raises acuity to `urgent` or `emergent`; none ever lowers it, and the only path to `routine` is the default when no rule fires \u2014 but pallor never influences whether any rule fires. Hence the property holds across the entire input space (2^13 assignments). File: /Users/sanjaybasu/clinical-formal-verification/experiments/runs/_judge_prompts/triage-d12-hold-117.txt",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

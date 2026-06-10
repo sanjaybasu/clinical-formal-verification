@@ -1,0 +1,60 @@
+{
+  "item_id": "triage-d3-viol-04",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "dyspnea",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "dizziness",
+      "value": true
+    },
+    {
+      "var": "sweating",
+      "value": false
+    },
+    {
+      "var": "leg_swelling",
+      "value": false
+    },
+    {
+      "var": "back_pain",
+      "value": false
+    },
+    {
+      "var": "dyspnea__base",
+      "value": true
+    },
+    {
+      "var": "fever__base",
+      "value": true
+    },
+    {
+      "var": "dizziness__base",
+      "value": false
+    },
+    {
+      "var": "sweating__base",
+      "value": false
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": false
+    },
+    {
+      "var": "back_pain__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property requires that flipping dizziness from false to true (all other inputs fixed) never lowers acuity. It is violated.\n\ndizziness appears in exactly one rule: interaction_drop (priority 100) IF (dyspnea AND fever AND dizziness) THEN acuity := self_care. self_care is the LOWEST acuity value, and priority 100 is the highest in the rule set, so whenever this rule fires it dominates every other rule.\n\nCounterexample transition with dyspnea=true, fever=true, sweating=false, leg_swelling=false, back_pain=false:\n\nBEFORE (dizziness=false): interaction_drop does not fire. Matching rules on acuity are raise_dyspnea (prio 2 -> urgent) and raise_fever (prio 3 -> emergent). Highest priority is raise_fever, so acuity = emergent.\n\nAFTER (dizziness=true): interaction_drop now fires (dyspnea AND fever AND dizziness all true) with priority 100, beating raise_fever (prio 3) and raise_dyspnea (prio 2). acuity = self_care.\n\nacuity drops from emergent to self_care when dizziness is set true, lowering acuity. No higher-priority rule exists to override interaction_drop (100 is the max priority). The witness_assignment records the violating after-state input (dizziness=true) that yields the lowered acuity self_care, versus emergent at the same assignment with dizziness=false.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

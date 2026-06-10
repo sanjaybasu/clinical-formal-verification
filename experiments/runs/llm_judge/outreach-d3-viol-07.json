@@ -1,0 +1,27 @@
+{
+  "item_id": "outreach-d3-viol-07",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "This is a state machine with variables opted_out (bool), sent (bool), ticks (int in [0,3]), starting opted_out=false, sent=false, ticks=0. The property requires globally(opted_out implies not sent): in every reachable state, if opted_out is true then sent must be false.\n\nThe vulnerability is the t_resume_glitch transition: on send_attempt, if (opted_out and ticks >= 3), it sets sent := true. This guard is satisfiable simultaneously with the t_send_blocked guard (opted_out), but the spec states that any transition whose guard holds may apply its update; t_resume_glitch can therefore fire and set sent := true while opted_out is true, directly contradicting the intended block.\n\nCounterexample execution (5 events, within the 7-event bound):\n1. optout: opted_out:=true, sent:=false -> (opted_out=T, sent=F, ticks=0)\n2. tick: ticks:=1, sent:=false -> (T, F, 1)\n3. tick: ticks:=2, sent:=false -> (T, F, 2)\n4. tick: ticks:=3, sent:=false -> (T, F, 3); now opted_out and ticks>=3 holds\n5. send_attempt: t_resume_glitch guard (opted_out and ticks>=3) holds, applies sent:=true -> (opted_out=T, sent=T, ticks=3)\n\nThe state after event 5 has opted_out=true and sent=true, so opted_out implies not sent is false. The globally property is violated. The defaults of ticks capping at 3 do not prevent reaching ticks>=3; t_tick clamps at 3 but ticks=3 already satisfies the glitch guard. Hence the property does not hold.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

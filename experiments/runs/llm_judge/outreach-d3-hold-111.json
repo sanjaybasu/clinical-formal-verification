@@ -1,0 +1,11 @@
+{
+  "item_id": "outreach-d3-hold-111",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The invariant (opted_out implies not sent) holds on all reachable executions. Inductive argument over the four transitions:\n\nInitial state opted_out=false, sent=false satisfies the invariant.\n\nThe ONLY transition that sets sent:=true is t_send_allowed, whose guard is `not opted_out`; firing it leaves opted_out=false, so the resulting state has opted_out=false and the implication is vacuously true. No transition can set sent=true while opted_out is true (there is no enabled send transition under opted_out other than t_send_blocked, which sets sent:=false).\n\nThe ONLY transition that sets opted_out:=true is t_optout, and in the same atomic step it sets sent:=false. So the moment opted_out becomes true, sent is forced false. Thus no step ever transitions INTO a state with opted_out=true and sent=true.\n\nOnce opted_out=true, every applicable event keeps the invariant: a repeated optout sets sent:=false; send_attempt matches only t_send_blocked (guard opted_out) which sets sent:=false; tick sets sent:=false; and t_send_allowed is disabled because its guard requires not opted_out. Hence sent can never be set true while opted_out remains true.\n\nSince every transition either keeps opted_out false (when setting sent true) or forces sent false (when opted_out is/becomes true), the bad state opted_out=true AND sent=true is unreachable. The property holds within the 7-event bound and in fact for all executions.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

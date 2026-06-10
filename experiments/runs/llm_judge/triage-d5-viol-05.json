@@ -1,0 +1,60 @@
+{
+  "item_id": "triage-d5-viol-05",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "back_pain",
+      "value": true
+    },
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain",
+      "value": true
+    },
+    {
+      "var": "leg_swelling",
+      "value": true
+    },
+    {
+      "var": "dizziness",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": false
+    },
+    {
+      "var": "back_pain__base",
+      "value": true
+    },
+    {
+      "var": "severe_headache__base",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain__base",
+      "value": true
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": true
+    },
+    {
+      "var": "dizziness__base",
+      "value": false
+    },
+    {
+      "var": "rash__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that setting dizziness=true (all other inputs fixed) never lowers acuity. dizziness appears in exactly one rule: interaction_drop (priority 100, the highest), which sets acuity := self_care (the LOWEST acuity) and requires dizziness as a conjunct. So flipping dizziness can only enable this lowest-acuity, highest-priority rule, creating a downward jump.\n\nCounterexample baseline: back_pain=T, severe_headache=T, abdominal_pain=T, leg_swelling=T, rash=F, dizziness=F.\n- dizziness=FALSE: interaction_drop does not fire (needs dizziness). Firing rules: raise_back_pain(p2,urgent), raise_abdominal_pain(p2,urgent), raise_severe_headache(p3,emergent), raise_leg_swelling(p3,emergent). Highest priority wins -> priority 3 -> acuity = emergent (3).\n- dizziness=TRUE (witness): now ALL conjuncts of interaction_drop hold, so it fires at priority 100, the highest priority, beating the priority-3 emergent rules. acuity := self_care (0).\n\nacuity drops from emergent (3) to self_care (0) when dizziness is set true, with every other input unchanged. This directly violates monotonicity. The witness records the dizziness=true assignment that produces the lowered output.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

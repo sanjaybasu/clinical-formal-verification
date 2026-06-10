@@ -1,0 +1,44 @@
+{
+  "item_id": "medication-d5-viol-00",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "diabetes",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": false
+    },
+    {
+      "var": "polypharmacy",
+      "value": false
+    },
+    {
+      "var": "hypertension",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "rec_drug_a is set true only by rec_a_from_conjunction (priority 50): IF (g6pd_deficiency AND peptic_ulcer AND seizure_history AND diabetes AND anticoagulated). rec_drug_b is set true only by rec_b_from_trigger (priority 50): IF g6pd_deficiency. The trigger condition for rec_drug_b (g6pd_deficiency) is one of the conjuncts required to fire rec_drug_a, so the set of inputs activating rec_drug_a is a strict subset of those activating rec_drug_b. Therefore whenever rec_drug_a is true, rec_drug_b is necessarily also true. No rule sets either output to false; the default applies only when unset, and priorities are irrelevant since each output has a single setting rule. Setting g6pd_deficiency=peptic_ulcer=seizure_history=diabetes=anticoagulated=true makes rec_drug_a=true and rec_drug_b=true simultaneously, violating mutual exclusion (NOT (rec_drug_a AND rec_drug_b)). The remaining inputs (bradycardia, polypharmacy, hypertension) only affect rec_drug_c and are set false here for concreteness.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

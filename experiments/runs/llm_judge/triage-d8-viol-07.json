@@ -1,0 +1,84 @@
+{
+  "item_id": "triage-d8-viol-07",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "confusion",
+      "value": true
+    },
+    {
+      "var": "hemoptysis",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": true
+    },
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "slurred_speech",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "dizziness",
+      "value": true
+    },
+    {
+      "var": "chest_pain",
+      "value": true
+    },
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "confusion__base",
+      "value": true
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": true
+    },
+    {
+      "var": "back_pain__base",
+      "value": true
+    },
+    {
+      "var": "severe_headache__base",
+      "value": true
+    },
+    {
+      "var": "slurred_speech__base",
+      "value": true
+    },
+    {
+      "var": "rash__base",
+      "value": true
+    },
+    {
+      "var": "dizziness__base",
+      "value": true
+    },
+    {
+      "var": "chest_pain__base",
+      "value": false
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": true
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property requires that flipping chest_pain from false to true (all else equal) never lowers acuity. It is violated.\n\nNo rule raises acuity based on chest_pain alone. The only rule mentioning chest_pain is interaction_drop (priority 100), which sets acuity := self_care (the lowest acuity) when confusion, hemoptysis, back_pain, severe_headache, slurred_speech, rash, dizziness, and chest_pain are all true.\n\nCompare the two inputs that differ only in chest_pain, with confusion, hemoptysis, back_pain, severe_headache, slurred_speech, rash, dizziness, and focal_weakness all true:\n\n- chest_pain = FALSE: interaction_drop does not fire (it needs chest_pain). The highest-priority firing rules are the priority-3 escalators (raise_hemoptysis, raise_severe_headache, raise_rash, raise_focal_weakness), each setting acuity := emergent. Result = emergent (the highest acuity).\n\n- chest_pain = TRUE (the witness assignment): all eight conditions of interaction_drop are now satisfied, so it fires at priority 100 and beats every priority-3 rule, setting acuity := self_care. Result = self_care (the lowest acuity).\n\nThus setting chest_pain true lowers acuity from emergent to self_care, directly violating monotonicity. (focal_weakness is included in the witness only to keep at least one emergent escalator active; it is not part of the interaction_drop condition, making the false-vs-true comparison clean. Even without focal_weakness the comparison still drops from emergent to self_care, since the other emergent rules remain active when chest_pain is false.) The witness_assignment given is the chest_pain=true input that produces the lower (self_care) acuity.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "item_id": "medication-d10-hold-134",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "rec_drug_a := true is produced only by rule rec_a_from_conjunction (priority 50), whose condition C is the 10-way conjunction (pregnancy and bradycardia and low_ejection_fraction and ckd_dialysis and immunosuppressed and seizure_history and elderly and hepatic_impairment and diabetes and peptic_ulcer). Otherwise rec_drug_a defaults to false. So rec_drug_a = true implies C holds (which includes pregnancy = true).\n\nFor rec_drug_b, two rules apply: rec_b_from_trigger (priority 50, fires on pregnancy, sets true) and guard_suppress_b (priority 90, fires on the same condition C, sets false). When C holds (necessary for rec_drug_a = true), both rec_b rules match, but guard_suppress_b has strictly higher priority (90 > 50) and wins, forcing rec_drug_b := false. No tie occurs, so order does not matter.\n\nBecause the guard's condition is exactly identical to the sole rec_drug_a trigger condition, the guard always fires precisely when rec_drug_a is true, and its higher priority always suppresses rec_drug_b to false. Hence rec_drug_a and rec_drug_b can never be simultaneously true. The mutual-exclusion property holds across the entire input space.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

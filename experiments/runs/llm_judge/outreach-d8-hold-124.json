@@ -1,0 +1,11 @@
+{
+  "item_id": "outreach-d8-hold-124",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property globally(opted_out implies not sent) holds for all reachable executions. Proof by invariant induction. Initial state (opted_out=false, sent=false) satisfies opted_out implies not sent trivially (antecedent false). Each transition preserves the invariant: (1) t_optout sets opted_out:=true but atomically sets sent:=false in the same update, yielding opted_out=true, sent=false \u2014 invariant holds. (2) t_send_allowed is the ONLY transition that sets sent:=true, and its guard requires not opted_out; it leaves opted_out unchanged (still false), so the antecedent is false \u2014 invariant holds. (3) t_send_blocked fires only when opted_out and sets sent:=false, yielding opted_out=true, sent=false \u2014 invariant holds. (4) t_tick sets sent:=false and does not change opted_out, so any state remains compliant. The critical observation is that the only way to reach opted_out=true is via t_optout, which simultaneously clears sent, and the only way to set sent=true (t_send_allowed) is gated on not opted_out and never alters opted_out. Thus no reachable state can have opted_out=true and sent=true. The ticks variable is irrelevant to the property. File analyzed: /Users/sanjaybasu/clinical-formal-verification/experiments/runs/_judge_prompts/outreach-d8-hold-124.txt",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

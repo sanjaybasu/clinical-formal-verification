@@ -1,0 +1,42 @@
+{
+  "item_id": "outreach-d8-viol-02",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property globally(opted_out implies not sent) is VIOLATED by the t_resume_glitch transition.\n\nState machine: opted_out, sent (bool), ticks (int [0,8]); initial all false/0. The transition [t_resume_glitch] on send_attempt if (opted_out and ticks >= 8): sent := true sets sent=true while opted_out=true, directly contradicting the property \u2014 provided the guard (opted_out AND ticks>=8) is reachable.\n\nReachability of the guard:\n- 8x tick: each tick does ticks := min(ticks+1, 8), sent := false. After 8 ticks, ticks=8, opted_out=false, sent=false.\n- optout: opted_out := true, sent := false. State: opted_out=true, ticks=8, sent=false (property still holds here).\n- send_attempt: now both t_send_blocked (guard opted_out) and t_resume_glitch (guard opted_out and ticks>=8) are enabled. The spec gives no priority forcing t_send_blocked, so t_resume_glitch is an enabled transition; firing it yields sent := true. Resulting state: opted_out=true AND sent=true, which violates (opted_out implies not sent).\n\nTotal events = 10, within the 12-event bound. Note ticks caps at 8 so >=8 is exactly satisfiable, and the resume-glitch transition is the clear defect: it re-enables sending after opt-out once the tick counter saturates, breaking the opt-out safety guarantee. Even under a non-deterministic-choice reading where t_send_blocked might instead fire, the existence of an enabled violating transition means the safety property does not hold over the entire reachable space.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "item_id": "triage-d1-viol-03",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "leg_swelling",
+      "value": false
+    },
+    {
+      "var": "severe_headache__base",
+      "value": false
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": true
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property is VIOLATED. File: /Users/sanjaybasu/clinical-formal-verification/experiments/runs/_judge_prompts/triage-d1-viol-03.txt\n\nEnum order (low to high): self_care(0) < routine(1) < urgent(2) < emergent(3). Conflict resolution: per output, the matching rule with the highest priority wins.\n\nThe rule named interaction_drop (IF severe_headache THEN acuity := self_care) has priority 100, which dominates the priority-3 rules raise_focal_weakness and raise_leg_swelling (both -> emergent). So setting severe_headache true forces acuity = self_care regardless of the other red-flag symptoms.\n\nCounterexample (comparing the two inputs that differ only in severe_headache):\n- focal_weakness=true, leg_swelling=false, severe_headache=FALSE: interaction_drop does not fire; raise_focal_weakness (priority 3) fires -> acuity = emergent.\n- focal_weakness=true, leg_swelling=false, severe_headache=TRUE: interaction_drop (priority 100) wins over raise_focal_weakness -> acuity = self_care.\n\nSetting severe_headache from false to true changes acuity from emergent (3) down to self_care (0). This lowers acuity, directly violating the monotonicity property \"setting severe_headache true never lowers acuity.\" The witness_assignment is the severe_headache=true input that yields the lowered acuity.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

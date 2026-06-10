@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d3-hold-111",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The input variable back_pain does not appear in any rule condition nor in the default condition. Scanning all five rules: raise_dizziness (on dizziness), raise_slurred_speech (on slurred_speech), raise_leg_swelling (on leg_swelling), raise_sweating (on sweating), raise_vision_loss (on vision_loss). None reference back_pain, and the default acuity := routine is unconditional. Therefore the set of matching rules for the single output (acuity) is a function only of the other five booleans. Holding every other input fixed and flipping back_pain from false to true changes no rule's match status, so priority/tie-break resolution produces an identical acuity value. Equal acuity satisfies \"no lower than before.\" This holds for every point in the input space, so the monotonicity property holds. (back_pain is in fact a dead/irrelevant input, which is the strongest form of monotonicity: the output is invariant under it.)",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

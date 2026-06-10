@@ -1,0 +1,72 @@
+{
+  "item_id": "medication-d12-viol-07",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "hypertension",
+      "value": true
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "ckd_dialysis",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "immunosuppressed",
+      "value": true
+    },
+    {
+      "var": "renal_impairment",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "polypharmacy",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "diabetes",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": false
+    },
+    {
+      "var": "hyperkalemia",
+      "value": false
+    },
+    {
+      "var": "pregnancy",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "rec_drug_a is set by exactly one rule, rec_a_from_conjunction (priority 50), whose guard requires all 12 listed conditions true, INCLUDING hypertension. rec_drug_b is set by exactly one rule, rec_b_from_trigger (priority 50), whose guard is simply hypertension. There are no competing higher-priority rules or overriding writes for either output. Therefore any input that makes rec_drug_a true must have hypertension=true, which independently forces rec_drug_b=true. The two outputs cannot be decoupled: rec_drug_a true implies rec_drug_b true. Setting all 12 conjunction inputs true (anticoagulated/hyperkalemia/pregnancy irrelevant here, left false) makes both rec_drug_a and rec_drug_b true, jointly violating the mutual-exclusion property (rec_drug_a and rec_drug_b). The property is violated.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "item_id": "triage-d3-viol-00",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": true
+    },
+    {
+      "var": "leg_swelling",
+      "value": true
+    },
+    {
+      "var": "slurred_speech",
+      "value": false
+    },
+    {
+      "var": "dizziness",
+      "value": false
+    },
+    {
+      "var": "confusion",
+      "value": false
+    },
+    {
+      "var": "fever__base",
+      "value": true
+    },
+    {
+      "var": "dyspnea__base",
+      "value": true
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": false
+    },
+    {
+      "var": "slurred_speech__base",
+      "value": false
+    },
+    {
+      "var": "dizziness__base",
+      "value": false
+    },
+    {
+      "var": "confusion__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property is violated by the interaction_drop rule, which has the highest priority (100) and forces acuity to self_care (the lowest level) precisely when leg_swelling is true (alongside fever and dyspnea). Take the baseline fever=true, dyspnea=true, leg_swelling=false, all others false: interaction_drop does not match (needs leg_swelling), so the matching rules are raise_dyspnea (pri 3 -> emergent) and raise_fever (pri 2 -> urgent); the highest-priority match is raise_dyspnea, giving acuity=emergent. Now set leg_swelling=true with everything else unchanged: interaction_drop (pri 100) now matches and dominates all the raise_* rules (pri 2-3), forcing acuity=self_care. Acuity drops from emergent to self_care, so setting leg_swelling true lowered acuity, violating the property. The reported witness_assignment is the post-change input (leg_swelling=true) that yields self_care while its leg_swelling=false counterpart yields emergent.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

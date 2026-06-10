@@ -1,0 +1,11 @@
+{
+  "item_id": "medication-d12-hold-108",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property NOT(rec_drug_a AND rec_drug_b) holds for the entire input space. rec_drug_a is set true only by rec_a_from_conjunction (priority 50), requiring the 12-way conjunction C. In the only state where rec_drug_a can be true (C holds), rec_b_from_trigger (priority 50) would set rec_drug_b true via prior_gi_bleed, but guard_suppress_b (priority 90, gated on the same conjunction C) sets rec_drug_b false and wins on priority (90 > 50). So whenever a is true, b is forced false; when C is false, a defaults to false. Thus a AND b is never jointly true.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

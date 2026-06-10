@@ -1,0 +1,84 @@
+{
+  "item_id": "triage-d6-viol-02",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "dizziness",
+      "value": true
+    },
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "chest_pain",
+      "value": true
+    },
+    {
+      "var": "vomiting",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "leg_swelling",
+      "value": false
+    },
+    {
+      "var": "dyspnea",
+      "value": false
+    },
+    {
+      "var": "slurred_speech",
+      "value": false
+    },
+    {
+      "var": "palpitations__base",
+      "value": true
+    },
+    {
+      "var": "dizziness__base",
+      "value": true
+    },
+    {
+      "var": "severe_headache__base",
+      "value": true
+    },
+    {
+      "var": "chest_pain__base",
+      "value": true
+    },
+    {
+      "var": "vomiting__base",
+      "value": true
+    },
+    {
+      "var": "rash__base",
+      "value": false
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": false
+    },
+    {
+      "var": "dyspnea__base",
+      "value": false
+    },
+    {
+      "var": "slurred_speech__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that flipping rash false->true never lowers acuity. rash appears in exactly one rule: interaction_drop [priority 100] IF (palpitations AND dizziness AND severe_headache AND chest_pain AND vomiting AND rash) THEN acuity := self_care. This is the highest-priority rule and sets the LOWEST acuity. Witness input (the rash=true case shown): palpitations=T, dizziness=T, severe_headache=T, chest_pain=T, vomiting=T, leg_swelling=F, dyspnea=F, slurred_speech=F. With rash=FALSE: interaction_drop does not fire; matching rules are raise_chest_pain (pri 3, emergent), raise_dizziness (pri 3, emergent), plus several pri-2 urgent rules; highest priority 3 wins -> acuity = emergent. With rash=TRUE (all else identical): all six conjuncts hold, so interaction_drop (priority 100) fires and beats every priority-3 rule -> acuity = self_care. Flipping rash from false to true drops acuity from emergent (highest) to self_care (lowest), which lowers acuity. Property violated.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

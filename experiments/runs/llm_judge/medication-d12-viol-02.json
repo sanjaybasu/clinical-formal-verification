@@ -1,0 +1,64 @@
+{
+  "item_id": "medication-d12-viol-02",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "immunosuppressed",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "hyperkalemia",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "ckd_dialysis",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "renal_impairment",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires rec_drug_a and rec_drug_b never be jointly true. rec_drug_a is set true ONLY by rec_a_from_conjunction (priority 50), whose guard is a 12-way conjunction that INCLUDES immunosuppressed. rec_drug_b is set true ONLY by rec_b_from_trigger (priority 50), whose guard is just immunosuppressed. Since the rec_drug_a conjunction implies immunosuppressed=true, any input that makes rec_drug_a true necessarily also satisfies the rec_drug_b guard. There is no higher-priority rule overriding either output (each output has a single true-setting rule and no false-setting rule besides the default, which only applies when an output is left unset). Setting all 12 conjunction variables true fires both rules, yielding rec_drug_a=true and rec_drug_b=true simultaneously, violating mutual exclusion. pregnancy is irrelevant (only affects rec_drug_c) and set false for a minimal witness.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

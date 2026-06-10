@@ -1,0 +1,36 @@
+{
+  "item_id": "medication-d4-viol-02",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "polypharmacy",
+      "value": true
+    },
+    {
+      "var": "ckd_dialysis",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "prior_gi_bleed",
+      "value": false
+    },
+    {
+      "var": "qt_prolongation",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that no input makes both rec_drug_a and rec_drug_b true simultaneously.\n\nrec_drug_a can only become true via rule rec_a_from_conjunction (priority 50): IF (polypharmacy AND ckd_dialysis AND seizure_history AND low_ejection_fraction) THEN rec_drug_a := true. Otherwise it defaults to false. So rec_drug_a = true requires all four of those inputs true, which includes polypharmacy = true.\n\nrec_drug_b can only become true via rule rec_b_from_trigger (priority 50): IF polypharmacy THEN rec_drug_b := true. Otherwise it defaults to false. So rec_drug_b = true requires polypharmacy = true.\n\nThe condition for rec_drug_a (which requires polypharmacy among its conjuncts) is fully compatible with the condition for rec_drug_b (which requires polypharmacy). The two outputs are governed by independent rules with no cross-output suppression \u2014 each is the sole non-default rule for its own output, so priority/tie-breaking is irrelevant; both fire whenever their guards hold.\n\nCounterexample input: polypharmacy=true, ckd_dialysis=true, seizure_history=true, low_ejection_fraction=true (prior_gi_bleed and qt_prolongation arbitrary; set false). Under this input:\n- rec_a_from_conjunction fires \u2192 rec_drug_a := true\n- rec_b_from_trigger fires \u2192 rec_drug_b := true\n\nBoth rec_drug_a and rec_drug_b are true, so the mutual-exclusion property (NOT(rec_drug_a AND rec_drug_b)) is violated.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

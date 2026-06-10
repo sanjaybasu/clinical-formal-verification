@@ -1,0 +1,68 @@
+{
+  "item_id": "triage-d6-viol-04",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "leg_swelling",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": true
+    },
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "vision_loss",
+      "value": false
+    },
+    {
+      "var": "severe_headache__base",
+      "value": true
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": true
+    },
+    {
+      "var": "rash__base",
+      "value": true
+    },
+    {
+      "var": "back_pain__base",
+      "value": true
+    },
+    {
+      "var": "dyspnea__base",
+      "value": true
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": false
+    },
+    {
+      "var": "vision_loss__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property is VIOLATED. No rule raises acuity based on focal_weakness; the only rule referencing it is interaction_drop (priority 100), which LOWERS acuity to self_care when all six of severe_headache, leg_swelling, rash, back_pain, dyspnea, and focal_weakness are true.\n\nWitness pair (everything fixed except focal_weakness):\n\nBEFORE (focal_weakness=false): severe_headache=T, leg_swelling=T, rash=T, back_pain=T, dyspnea=T, vision_loss=F. Matching rules: raise_dyspnea(urgent,p2), raise_rash(urgent,p2), raise_severe_headache(urgent,p2), raise_leg_swelling(emergent,p3), raise_back_pain(emergent,p3). interaction_drop does NOT fire (focal_weakness false). Highest priority matching rule is p3 -> acuity = emergent.\n\nAFTER (focal_weakness=true), all else identical: now all six conjuncts of interaction_drop are true, so it fires at priority 100, the highest priority by far, setting acuity := self_care. The p3 emergent rules are overridden.\n\nResult: emergent (before) -> self_care (after). In the ordered enum self_care < routine < urgent < emergent, setting focal_weakness true DROPPED acuity from the highest level to the lowest, contradicting the requirement that it never lower acuity. The witness_assignment records the AFTER state (the input that, compared to its focal_weakness=false counterpart, exhibits the lowering).",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

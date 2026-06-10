@@ -1,0 +1,36 @@
+{
+  "item_id": "medication-d3-viol-03",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "hyperkalemia",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": false
+    },
+    {
+      "var": "seizure_history",
+      "value": false
+    },
+    {
+      "var": "ckd_dialysis",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The mutual-exclusion property NOT(rec_drug_a AND rec_drug_b) is violated. rec_drug_a is set true only by rule rec_a_from_conjunction (priority 50) when hyperkalemia AND bradycardia AND low_ejection_fraction hold. rec_drug_b is set true by rule rec_b_from_trigger (priority 50) whenever hyperkalemia holds. No rule ever sets either output to false (the default only applies when an output is left unset), and there are no higher-priority overriding rules. Therefore, on the input hyperkalemia=true, bradycardia=true, low_ejection_fraction=true, both rules fire: rec_drug_a=true and rec_drug_b=true, making the forbidden conjunction true. The rec_drug_c rules (ckd_dialysis, pregnancy, seizure_history) are irrelevant to this property, so those inputs are set false in the minimal witness. In fact, hyperkalemia is a necessary condition for rec_drug_a, and hyperkalemia alone forces rec_drug_b, so any state with rec_drug_a true necessarily has rec_drug_b true \u2014 the property fails on the entire rec_drug_a region.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d2-hold-101",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The variable stiff_neck does not appear in the condition of any rule. The only rules are raise_back_pain (IF back_pain THEN urgent) and raise_dizziness (IF dizziness THEN urgent), both priority 2, with a default of routine for any unset output. Acuity is therefore a function solely of back_pain and dizziness: urgent if either is true, routine otherwise. Because stiff_neck is never read, toggling it from false to true (with all other inputs fixed) leaves acuity completely unchanged. The monotonicity property requires that setting stiff_neck true yields acuity no lower than before; since acuity is identical (equal), \"no lower\" is trivially satisfied for every one of the input assignments. No input or execution can lower acuity by setting stiff_neck true, so the property holds over the entire input space.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

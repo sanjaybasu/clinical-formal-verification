@@ -1,0 +1,11 @@
+{
+  "item_id": "medication-d3-hold-111",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "rec_drug_a is set true by exactly one rule: rec_a_from_conjunction (priority 50), which fires only when g6pd_deficiency AND diabetes AND low_ejection_fraction are all true; otherwise rec_drug_a defaults to false. So the only way to get rec_drug_a=true is that exact three-way conjunction. In precisely that same condition, two rules match rec_drug_b: guard_suppress_b (priority 90, sets false) with trigger (g6pd AND diabetes AND low_EF), and rec_b_from_trigger (priority 50, sets true) with trigger g6pd. Per-output conflict resolution takes the highest priority, so priority 90 (false) overrides priority 50 (true), forcing rec_drug_b=false whenever the conjunction holds. Therefore rec_drug_a and rec_drug_b can never both be true. hyperkalemia only affects rec_drug_c and is irrelevant. The guard rule's trigger is identical to rec_a's trigger and has strictly higher priority, so the mutual-exclusion property holds across the entire 16-point input space.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

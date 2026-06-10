@@ -1,0 +1,56 @@
+{
+  "item_id": "medication-d10-viol-03",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "renal_impairment",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "immunosuppressed",
+      "value": true
+    },
+    {
+      "var": "ckd_dialysis",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that rec_drug_a and rec_drug_b are never jointly true. rec_drug_b is set true whenever asthma is true (rule rec_b_from_trigger, pri 50). rec_drug_a is set true only when the 10-term conjunction holds (rule rec_a_from_conjunction, pri 50), and that conjunction INCLUDES asthma as one of its conjuncts. Therefore any input that makes rec_drug_a true necessarily also makes asthma true, which in turn makes rec_drug_b true. The two rules write to different output variables (rec_drug_a vs rec_drug_b) with no competing rules, so priorities/ties never suppress either \u2014 both fire independently. Setting all ten conjuncts true (asthma, peptic_ulcer, elderly, qt_prolongation, bradycardia, low_ejection_fraction, anticoagulated, renal_impairment, heart_failure, immunosuppressed) makes both rec_drug_a := true and rec_drug_b := true simultaneously, violating mutual exclusion. ckd_dialysis only affects rec_drug_c and is irrelevant (set false). File: /Users/sanjaybasu/clinical-formal-verification/experiments/runs/_judge_prompts/medication-d10-viol-03.txt",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

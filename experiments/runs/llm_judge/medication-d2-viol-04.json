@@ -1,0 +1,24 @@
+{
+  "item_id": "medication-d2-viol-04",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires NOT(rec_drug_a AND rec_drug_b). rec_drug_a is set true by rec_a_from_conjunction IF (elderly AND g6pd_deficiency). rec_drug_b is set true by rec_b_from_trigger IF elderly. These two rules write to different outputs, so priority/tie-breaking never causes one to suppress the other; each output is computed independently. With elderly=true and g6pd_deficiency=true, both antecedents are satisfied: rec_a_from_conjunction sets rec_drug_a:=true and rec_b_from_trigger sets rec_drug_b:=true. Hence rec_drug_a AND rec_drug_b are jointly true, violating mutual exclusion. qt_prolongation is set false (irrelevant to a and b; it only governs rec_drug_c, which stays false by default). Counterexample: elderly=true, g6pd_deficiency=true, qt_prolongation=false yields rec_drug_a=true, rec_drug_b=true.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

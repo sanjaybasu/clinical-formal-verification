@@ -1,0 +1,44 @@
+{
+  "item_id": "triage-d3-viol-05",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "confusion",
+      "value": true
+    },
+    {
+      "var": "vision_loss",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": true
+    },
+    {
+      "var": "chest_pain",
+      "value": false
+    },
+    {
+      "var": "confusion__base",
+      "value": true
+    },
+    {
+      "var": "vision_loss__base",
+      "value": true
+    },
+    {
+      "var": "back_pain__base",
+      "value": false
+    },
+    {
+      "var": "chest_pain__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property (monotonicity: setting back_pain true never lowers acuity) is VIOLATED.\n\nThe interaction_drop rule has the highest priority (100) and fires only when confusion AND vision_loss AND back_pain are all true, forcing acuity := self_care (the lowest level). Because this rule requires back_pain, flipping back_pain from false to true can activate it and override higher-acuity rules, lowering the output.\n\nCounterexample (fix confusion=true, vision_loss=true, chest_pain=false; vary back_pain):\n\nBEFORE (back_pain=false): confusion=true, vision_loss=true, back_pain=false, chest_pain=false.\n- raise_confusion (p2) -> urgent\n- raise_vision_loss (p3) -> emergent\n- interaction_drop (p100) -> NOT active (back_pain false)\n- Highest-priority match = raise_vision_loss (p3) => acuity = emergent.\n\nAFTER (back_pain=true): confusion=true, vision_loss=true, back_pain=true, chest_pain=false.\n- raise_confusion (p2) -> urgent\n- raise_vision_loss (p3) -> emergent\n- interaction_drop (p100) -> ACTIVE (all three true) -> self_care\n- Highest-priority match = interaction_drop (p100) => acuity = self_care.\n\nAcuity falls from emergent to self_care (a drop of three levels in the order self_care < routine < urgent < emergent) purely by setting back_pain true, with all other inputs unchanged. This directly violates the monotonicity property.\n\nThe witness_assignment given is the AFTER state (back_pain=true) that produces the lowered output self_care; the matching BEFORE state (back_pain=false) yields emergent.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

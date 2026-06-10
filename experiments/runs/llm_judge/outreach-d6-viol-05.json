@@ -1,0 +1,36 @@
+{
+  "item_id": "outreach-d6-viol-05",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property G(opted_out implies not sent) is violated by transition t_resume_glitch.\n\nInitial state: opted_out=false, sent=false, ticks=0.\n\nTrace:\n1. optout (t_optout): opted_out=true, sent=false, ticks=0.\n2-7. tick x6 (t_tick): each increments ticks (capped at 6) and sets sent=false. After 6 ticks: opted_out=true, sent=false, ticks=6.\n8. send_attempt: with opted_out=true and ticks>=6, transition t_resume_glitch [on send_attempt if (opted_out and ticks >= 6): sent := true] is enabled and fires, producing opted_out=true, sent=true.\n\nIn this reachable state opted_out=true AND sent=true, which falsifies \"opted_out implies not sent\". The trace is 8 events, within the 10-event bound.\n\nNote on rule interaction: on send_attempt with opted_out=true and ticks>=6, both t_send_blocked (guard opted_out) and t_resume_glitch (guard opted_out and ticks>=6) are enabled. No priority is specified, so t_resume_glitch is a legitimate enabled choice. Since the property must hold on EVERY reachable execution, the mere existence of this enabled glitch transition that reaches a violating state breaks the safety property. (Were ticks < 6, only t_send_blocked applies and sent stays false; the bug requires ticks to be saturated at 6 first.)",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

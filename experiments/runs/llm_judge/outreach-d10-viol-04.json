@@ -1,0 +1,48 @@
+{
+  "item_id": "outreach-d10-viol-04",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that in every reachable state, opted_out implies not sent. The transition t_resume_glitch breaks this: on a send_attempt when (opted_out and ticks >= 10), it sets sent := true. This directly contradicts t_send_blocked (which would set sent := false under opted_out), and there is no priority ordering protecting the safe transition.\n\nTo reach ticks >= 10, ticks must be incremented from its initial value 0 via the tick event (capped at 10). Witness trace from the initial state (opted_out=false, sent=false, ticks=0):\n- 10x tick: each increments ticks (0->10, capping at 10) and sets sent:=false. After these, ticks=10, opted_out=false, sent=false.\n- optout: opted_out:=true, sent:=false. State: opted_out=true, sent=false, ticks=10.\n- send_attempt: guard of t_resume_glitch (opted_out=true AND ticks>=10) holds, applying sent:=true. Resulting state: opted_out=true, sent=true, ticks=10.\n\nIn this final state opted_out=true and sent=true, so (opted_out implies not sent) is false, violating the global property. The trace is 12 events, within the 14-event bound. The system is therefore violated.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

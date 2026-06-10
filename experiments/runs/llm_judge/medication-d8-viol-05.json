@@ -1,0 +1,56 @@
+{
+  "item_id": "medication-d8-viol-05",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "prior_gi_bleed",
+      "value": true
+    },
+    {
+      "var": "immunosuppressed",
+      "value": true
+    },
+    {
+      "var": "polypharmacy",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "hypertension",
+      "value": false
+    },
+    {
+      "var": "diabetes",
+      "value": false
+    },
+    {
+      "var": "renal_impairment",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires NOT (rec_drug_a AND rec_drug_b). rec_drug_a is set true only by rec_a_from_conjunction (priority 50), which requires the 8-way conjunction peptic_ulcer AND hepatic_impairment AND elderly AND heart_failure AND prior_gi_bleed AND immunosuppressed AND polypharmacy AND bradycardia. rec_drug_b is set true by rec_b_from_trigger (priority 50) whenever peptic_ulcer is true. Crucially, peptic_ulcer is one of the conjuncts required for rec_drug_a. Therefore every input that fires rec_a_from_conjunction also fires rec_b_from_trigger. There is no rule that ever sets rec_drug_a or rec_drug_b to false, and the defaults only apply to outputs left unset, so neither output can be overridden. Setting all 8 conjuncts true (and the irrelevant hypertension/diabetes/renal_impairment false, which only affect rec_drug_c) yields rec_drug_a = true and rec_drug_b = true simultaneously, violating mutual exclusion.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

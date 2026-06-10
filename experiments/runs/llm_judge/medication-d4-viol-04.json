@@ -1,0 +1,36 @@
+{
+  "item_id": "medication-d4-viol-04",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "renal_impairment",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": false
+    },
+    {
+      "var": "immunosuppressed",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The mutual-exclusion property NOT(rec_drug_a AND rec_drug_b) is violated. rec_drug_a is set true only by rule rec_a_from_conjunction, which requires heart_failure AND hepatic_impairment AND renal_impairment AND qt_prolongation. rec_drug_b is set true only by rule rec_b_from_trigger, which requires heart_failure. Therefore every input that makes rec_drug_a true (heart_failure must be among its four required conjuncts) also satisfies the trigger for rec_drug_b. No rule sets either output false, and the default only applies to outputs left unset, so no priority/order interaction prevents both from firing (they target different outputs, so priorities never compete). Concrete counterexample: heart_failure=true, hepatic_impairment=true, renal_impairment=true, qt_prolongation=true, asthma=false, immunosuppressed=false. rec_a_from_conjunction fires -> rec_drug_a=true; rec_b_from_trigger fires -> rec_drug_b=true; both jointly true, violating the property. Source file: /Users/sanjaybasu/clinical-formal-verification/experiments/runs/_judge_prompts/medication-d4-viol-04.txt",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

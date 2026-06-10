@@ -1,0 +1,48 @@
+{
+  "item_id": "outreach-d10-viol-03",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "This is a state machine. The property requires that globally (opted_out implies not sent): whenever opted_out is true, sent must be false.\n\nThe transition t_resume_glitch directly threatens this: [t_resume_glitch] on send_attempt if (opted_out and ticks >= 10): sent := true. This sets sent=true while opted_out is true, which contradicts the property \u2014 provided it is reachable and can fire.\n\nReachability of its guard (opted_out=true AND ticks>=10):\n- ticks reaches 10 via t_tick, which increments ticks while ticks<10 (and resets sent to false). Ten tick events take ticks 0->1->...->10.\n- t_optout fires on optout unconditionally, setting opted_out=true (and sent=false), leaving ticks unchanged.\n\nWitness execution (12 events, within the 14-event bound):\nInitial: opted_out=false, sent=false, ticks=0.\n1-10. tick x10: ticks=10, sent=false, opted_out=false.\n11. optout: opted_out=true, sent=false, ticks=10.\n12. send_attempt: state has opted_out=true and ticks>=10, so t_resume_glitch is enabled and fires, setting sent:=true.\n\nResulting state: opted_out=true AND sent=true, which violates opted_out implies not sent.\n\nNote on transition selection: at the final send_attempt both t_send_blocked (guard opted_out) and t_resume_glitch (guard opted_out and ticks>=10) are enabled. Since the property must hold on EVERY reachable execution, and an execution exists in which the more-specific t_resume_glitch is selected, the property is violated. The glitch transition is precisely the modeled defect (a \"resume after tick cap\" that ignores opt-out).",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

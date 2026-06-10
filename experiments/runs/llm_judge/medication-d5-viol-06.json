@@ -1,0 +1,40 @@
+{
+  "item_id": "medication-d5-viol-06",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "ckd_dialysis",
+      "value": true
+    },
+    {
+      "var": "immunosuppressed",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": false
+    },
+    {
+      "var": "elderly",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires NOT(rec_drug_a AND rec_drug_b). rec_drug_a can only become true via the rule rec_a_from_conjunction (priority 50), whose antecedent is (hepatic_impairment AND ckd_dialysis AND immunosuppressed AND heart_failure AND pregnancy). This requires hepatic_impairment = true. However, hepatic_impairment = true also satisfies the antecedent of rec_b_from_trigger (priority 50), which sets rec_drug_b := true. Each output (a and b) has exactly one rule that can set it to true; there are no overriding rules, so priorities and tie-breaking are irrelevant, and the default false only applies when an output is left unset. Therefore any input making rec_drug_a true necessarily makes rec_drug_b true, violating mutual exclusion. Concrete counterexample: set the five conjunction conjuncts true (hepatic_impairment, ckd_dialysis, immunosuppressed, heart_failure, pregnancy), with qt_prolongation and elderly false (they only affect rec_drug_c). Then rec_a_from_conjunction fires (rec_drug_a = true) and rec_b_from_trigger fires (rec_drug_b = true), so (rec_drug_a AND rec_drug_b) is true. Property violated.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "item_id": "medication-d2-viol-06",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "immunosuppressed",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "diabetes",
+      "value": false
+    },
+    {
+      "var": "ckd_dialysis",
+      "value": false
+    },
+    {
+      "var": "prior_gi_bleed",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "rec_drug_a is set true only by rec_a_from_conjunction (priority 50), which requires immunosuppressed AND asthma. rec_drug_b is set true only by rec_b_from_trigger (priority 50), which requires immunosuppressed. The remaining three rules set only rec_drug_c and are irrelevant. When immunosuppressed=true and asthma=true, both governing rules fire on their respective (distinct) outputs with no competing higher-priority rule to suppress either, so rec_drug_a=true and rec_drug_b=true simultaneously. This makes (rec_drug_a and rec_drug_b) jointly true, violating the mutual-exclusion property. Witness: immunosuppressed=true, asthma=true, others false (their values do not matter; they only affect rec_drug_c). Verification of witness: rec_a_from_conjunction yields rec_drug_a=true; rec_b_from_trigger yields rec_drug_b=true; defaults do not apply since both outputs are set; property violated.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

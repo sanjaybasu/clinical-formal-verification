@@ -1,0 +1,52 @@
+{
+  "item_id": "triage-d2-viol-02",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "hemoptysis",
+      "value": true
+    },
+    {
+      "var": "severe_headache",
+      "value": false
+    },
+    {
+      "var": "stiff_neck",
+      "value": false
+    },
+    {
+      "var": "chest_pain",
+      "value": false
+    },
+    {
+      "var": "fever__base",
+      "value": true
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": false
+    },
+    {
+      "var": "severe_headache__base",
+      "value": false
+    },
+    {
+      "var": "stiff_neck__base",
+      "value": false
+    },
+    {
+      "var": "chest_pain__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property is violated. Hemoptysis appears in exactly one rule, interaction_drop (priority 100, the highest), which fires when (fever AND hemoptysis) and forces acuity := self_care (the lowest acuity). Because it has the dominant priority, it overrides every acuity-raising rule.\n\nCounterexample (the witness is the \"after\" state with hemoptysis=true):\nBEFORE: fever=true, hemoptysis=false, severe_headache=false, stiff_neck=false, chest_pain=false. Only raise_fever (p2) matches -> acuity = urgent.\nAFTER (only hemoptysis flipped to true): fever=true, hemoptysis=true, rest false. raise_fever (p2 -> urgent) and interaction_drop (p100 -> self_care) both match; highest priority wins, so acuity = self_care.\n\nself_care is lower than urgent in the order [self_care < routine < urgent < emergent], so setting hemoptysis true lowered acuity. Property violated. (An even larger drop, emergent -> self_care, occurs if chest_pain is also true, but the fever-only case above is the minimal witness.)",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

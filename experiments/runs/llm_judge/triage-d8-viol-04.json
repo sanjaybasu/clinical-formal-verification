@@ -1,0 +1,84 @@
+{
+  "item_id": "triage-d8-viol-04",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "vomiting",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": true
+    },
+    {
+      "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "hemoptysis",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "dizziness",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "slurred_speech",
+      "value": false
+    },
+    {
+      "var": "rash__base",
+      "value": true
+    },
+    {
+      "var": "vomiting__base",
+      "value": true
+    },
+    {
+      "var": "dyspnea__base",
+      "value": true
+    },
+    {
+      "var": "syncope__base",
+      "value": true
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": true
+    },
+    {
+      "var": "palpitations__base",
+      "value": true
+    },
+    {
+      "var": "dizziness__base",
+      "value": true
+    },
+    {
+      "var": "fever__base",
+      "value": false
+    },
+    {
+      "var": "slurred_speech__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property requires that flipping fever from false to true (all else fixed) never lowers acuity. It is violated because fever appears in exactly one rule: interaction_drop (priority 100) IF (rash and vomiting and dyspnea and syncope and hemoptysis and palpitations and dizziness and fever) THEN acuity := self_care. This high-priority rule lowers acuity and is gated on fever being true.\n\nCounterexample baseline (fever=false): rash, vomiting, dyspnea, syncope, hemoptysis, palpitations, dizziness all true; fever=false; slurred_speech=false. With fever=false, interaction_drop does not fire (it requires fever). Among firing rules, the priority-3 rules raise_vomiting/raise_syncope/raise_palpitations set acuity := emergent, which beats the priority-2 urgent raises. Result: acuity = emergent.\n\nNow flip fever to true (all other inputs unchanged): every conjunct of interaction_drop is now satisfied, so it fires at priority 100, dominating all priority-2 and priority-3 raise rules. Result: acuity = self_care.\n\nself_care is the lowest acuity in the order [self_care, routine, urgent, emergent], while the baseline was emergent (highest). Setting fever true lowered acuity from emergent to self_care, directly violating monotonicity. (slurred_speech is irrelevant to interaction_drop and is set false for a minimal witness; the violation holds regardless of its value.)",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

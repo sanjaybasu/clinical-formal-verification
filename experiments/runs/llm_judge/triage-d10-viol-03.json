@@ -1,0 +1,100 @@
+{
+  "item_id": "triage-d10-viol-03",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "chest_pain",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": true
+    },
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "vomiting",
+      "value": true
+    },
+    {
+      "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "leg_swelling",
+      "value": true
+    },
+    {
+      "var": "dizziness",
+      "value": true
+    },
+    {
+      "var": "vision_loss",
+      "value": false
+    },
+    {
+      "var": "chest_pain__base",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain__base",
+      "value": true
+    },
+    {
+      "var": "dyspnea__base",
+      "value": true
+    },
+    {
+      "var": "severe_headache__base",
+      "value": true
+    },
+    {
+      "var": "vomiting__base",
+      "value": true
+    },
+    {
+      "var": "syncope__base",
+      "value": true
+    },
+    {
+      "var": "rash__base",
+      "value": true
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": true
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": true
+    },
+    {
+      "var": "dizziness__base",
+      "value": false
+    },
+    {
+      "var": "vision_loss__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property (setting dizziness=true never lowers acuity, all else fixed) is VIOLATED.\n\ndizziness appears in exactly one rule: interaction_drop (priority 100), which fires only when chest_pain AND abdominal_pain AND dyspnea AND severe_headache AND vomiting AND syncope AND rash AND focal_weakness AND leg_swelling AND dizziness are all true, setting acuity := self_care (the lowest acuity). dizziness appears nowhere else, so toggling it true\u2192false only affects whether interaction_drop fires.\n\nCounterexample: fix the nine non-dizziness conjuncts (chest_pain, abdominal_pain, dyspnea, severe_headache, vomiting, syncope, rash, focal_weakness, leg_swelling) = true, and vision_loss = false.\n\nBaseline (dizziness=false): interaction_drop does NOT fire (its 10th conjunct dizziness is false). The highest-priority matching rules are the priority-3 emergent rules (severe_headache, abdominal_pain, syncope, focal_weakness), so acuity resolves to emergent (the highest acuity).\n\nAfter flipping dizziness=true (all else unchanged): now all 10 conjuncts of interaction_drop are true, so it fires at priority 100, which exceeds the priority-3 emergent rules. By the per-output highest-priority-wins conflict resolution, interaction_drop wins and acuity := self_care.\n\nResult: acuity drops from emergent (highest) to self_care (lowest) purely by setting dizziness true. Enum order self_care < routine < urgent < emergent means self_care is strictly lower than emergent, so acuity is lower-after-than-before, violating monotonicity.\n\nThe witness_assignment lists the after-state (dizziness=true) input that yields self_care; the comparison baseline is the same assignment with dizziness=false yielding emergent. File: /Users/sanjaybasu/clinical-formal-verification/experiments/runs/_judge_prompts/triage-d10-viol-03.txt",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

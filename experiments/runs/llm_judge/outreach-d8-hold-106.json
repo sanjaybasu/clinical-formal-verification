@@ -1,0 +1,11 @@
+{
+  "item_id": "outreach-d8-hold-106",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property globally(opted_out implies not sent) holds for all reachable executions.\n\nKey observations:\n1. sent is set to true ONLY by t_send_allowed, whose guard is \"not opted_out\". So at any moment sent becomes true, opted_out is false. It is impossible to set sent=true while opted_out is true (t_send_allowed is disabled in that case).\n2. opted_out is monotonic: only t_optout sets it (to true), and no transition ever resets it to false. Once true it stays true.\n3. t_optout sets opted_out:=true AND simultaneously sent:=false, so the instant opted_out becomes true, sent is false \u2014 the invariant is established at the transition point.\n4. Once opted_out is true, the only events that can fire are: optout (sets sent:=false), send_attempt -> t_send_blocked (sets sent:=false; t_send_allowed is guarded off), and tick (sets sent:=false). Every one of these keeps sent=false. No reachable transition can make sent true while opted_out is true.\n\nTherefore in every reachable state, opted_out=true implies sent=false. No counterexample exists within (or beyond) the 12-event bound. The property holds.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "item_id": "medication-d1-hold-118",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "Property: never (rec_drug_a AND rec_drug_b) jointly true. rec_drug_a = true iff ckd_dialysis (rule rec_a_from_conjunction, priority 50; no competing rule; default false). rec_drug_b is governed by two rules both conditioned on ckd_dialysis: rec_b_from_trigger sets it true at priority 50, guard_suppress_b sets it false at priority 90. When ckd_dialysis is true, both match and the priority-90 guard wins, so rec_drug_b := false. When ckd_dialysis is false, neither matches and the default makes rec_drug_b := false. Therefore rec_drug_b is false for every input. Since the higher-priority guard always overrides the trigger, the conjunction rec_drug_a AND rec_drug_b can never be true. hyperkalemia and polypharmacy affect only rec_drug_c, irrelevant here. Enumerating ckd_dialysis: false -> (a=false,b=false); true -> (a=true,b=false). In both cases the conjunction is false. The property holds across the entire input space.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

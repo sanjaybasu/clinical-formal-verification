@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d8-hold-106",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The output `acuity` is computed by priority-based rule resolution over 8 input conditions: fever, syncope, sweating, vision_loss, leg_swelling, focal_weakness, abdominal_pain, vomiting (rules at lines 17-24), with a default of `routine` when unset. The input `dizziness` does not appear in ANY rule condition \u2014 it is a no-op input. Therefore, flipping `dizziness` from false to true while holding all other inputs fixed cannot change which rules match, and the resulting acuity is identical in both cases. Since acuity stays exactly equal (hence \"no lower than before\"), the monotonicity property \u2014 setting dizziness true never lowers acuity \u2014 holds for the entire input space. No counterexample exists.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

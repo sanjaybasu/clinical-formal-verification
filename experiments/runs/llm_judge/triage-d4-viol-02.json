@@ -1,0 +1,60 @@
+{
+  "item_id": "triage-d4-viol-02",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "leg_swelling",
+      "value": true
+    },
+    {
+      "var": "slurred_speech",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "chest_pain",
+      "value": false
+    },
+    {
+      "var": "syncope",
+      "value": false
+    },
+    {
+      "var": "rash__base",
+      "value": true
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": true
+    },
+    {
+      "var": "slurred_speech__base",
+      "value": true
+    },
+    {
+      "var": "palpitations__base",
+      "value": false
+    },
+    {
+      "var": "chest_pain__base",
+      "value": false
+    },
+    {
+      "var": "syncope__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property requires that flipping palpitations false->true (all else unchanged) never lowers acuity. palpitations appears in exactly one rule, interaction_drop (priority 100, the highest), which fires only when rash AND leg_swelling AND slurred_speech AND palpitations are all true and sets acuity to self_care (the lowest enum value). Consider base input rash=T, leg_swelling=T, slurred_speech=T, palpitations=F, chest_pain=F, syncope=F. With palpitations=F: interaction_drop does not fire; the matching rules are raise_leg_swelling (priority 3 -> emergent), raise_rash and raise_slurred_speech (priority 2 -> urgent). Highest priority wins -> acuity = emergent. Now flip palpitations=T (witness assignment): interaction_drop (priority 100) now fires -> self_care, outranking raise_leg_swelling (priority 3) and all priority-2 rules. Result -> acuity = self_care. Acuity drops from emergent to self_care, so setting palpitations true lowered acuity. The property is violated. The witness_assignment is the post-flip (palpitations=true) input demonstrating the low output; the comparison baseline is the same input with palpitations=false yielding emergent.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

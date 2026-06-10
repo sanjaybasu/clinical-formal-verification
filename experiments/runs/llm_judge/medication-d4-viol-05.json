@@ -1,0 +1,36 @@
+{
+  "item_id": "medication-d4-viol-05",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "hyperkalemia",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": false
+    },
+    {
+      "var": "heart_failure",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires rec_drug_a and rec_drug_b never to be jointly true. rec_drug_b is set true by rule rec_b_from_trigger whenever qt_prolongation is true. rec_drug_a is set true by rule rec_a_from_conjunction when qt_prolongation AND g6pd_deficiency AND hyperkalemia AND pregnancy are all true. These two rules target different outputs (rec_drug_b vs rec_drug_a), so the per-output priority/tie-breaking conflict resolution never makes them compete \u2014 both fire independently. The conjunction rule's antecedent is a strict superset condition that includes qt_prolongation, so any input firing rec_a_from_conjunction also fires rec_b_from_trigger. With qt_prolongation=true, g6pd_deficiency=true, hyperkalemia=true, pregnancy=true (asthma/heart_failure irrelevant, set false), rec_drug_a=true and rec_drug_b=true simultaneously, violating mutual exclusion. The default clause does not help because both outputs are explicitly set true. Hence the property is violated.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

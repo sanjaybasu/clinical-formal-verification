@@ -1,0 +1,72 @@
+{
+  "item_id": "medication-d12-viol-03",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "polypharmacy",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "immunosuppressed",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "prior_gi_bleed",
+      "value": true
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "hypertension",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "diabetes",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": false
+    },
+    {
+      "var": "renal_impairment",
+      "value": false
+    },
+    {
+      "var": "bradycardia",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that rec_drug_a and rec_drug_b are never jointly true. rec_drug_a is set true only by rec_a_from_conjunction (priority 50), whose guard is the 12-way conjunction including polypharmacy. rec_drug_b is set true by rec_b_from_trigger (priority 50) whenever polypharmacy is true. Crucially, the conjunction for rec_drug_a INCLUDES polypharmacy as one of its conjuncts. Therefore any input that satisfies the rec_a conjunction necessarily also satisfies rec_b_from_trigger (polypharmacy). No other rule writes rec_drug_a or rec_drug_b (the remaining three rules only set rec_drug_c), so there is no higher-priority or tie-order rule that could suppress either output, and the defaults apply only to outputs left unset \u2014 both are set here. Setting the 12 conjuncts (polypharmacy, elderly, immunosuppressed, hepatic_impairment, prior_gi_bleed, g6pd_deficiency, qt_prolongation, pregnancy, seizure_history, hypertension, anticoagulated, diabetes) all true makes rec_a_from_conjunction fire (rec_drug_a=true) AND rec_b_from_trigger fire (rec_drug_b=true). The remaining inputs (heart_failure, renal_impairment, bradycardia) are irrelevant and set false. Both outputs are true simultaneously, violating mutual exclusion.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

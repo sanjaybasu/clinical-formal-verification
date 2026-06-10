@@ -1,0 +1,44 @@
+{
+  "item_id": "triage-d2-viol-04",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "hemoptysis",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": false
+    },
+    {
+      "var": "vision_loss",
+      "value": false
+    },
+    {
+      "var": "rash__base",
+      "value": true
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": false
+    },
+    {
+      "var": "palpitations__base",
+      "value": false
+    },
+    {
+      "var": "vision_loss__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property is VIOLATED. hemoptysis appears only in the interaction_drop rule [priority 100]: IF (rash and hemoptysis) THEN acuity := self_care. Because this rule has the highest priority (100, vs 2 for all raise_* rules), it overrides everything when active.\n\nConsider the baseline with rash=true, hemoptysis=FALSE, palpitations=false, vision_loss=false: only raise_rash (priority 2) fires, yielding acuity = urgent.\n\nNow set hemoptysis=TRUE with all else unchanged (rash=true, palpitations=false, vision_loss=false): raise_rash still matches (urgent, priority 2), but interaction_drop now also matches (rash and hemoptysis) and wins with priority 100, forcing acuity := self_care.\n\nEnum order low-to-high is self_care < routine < urgent < emergent. Setting hemoptysis true lowered acuity from urgent to self_care, which is strictly lower \u2014 a violation of the requirement that hemoptysis true never lowers acuity.\n\nThe witness_assignment given is the post-flip (\"hemoptysis set true\") input producing self_care; the corresponding pre-flip input is identical except hemoptysis=false, producing urgent.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

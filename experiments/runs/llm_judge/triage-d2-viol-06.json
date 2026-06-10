@@ -1,0 +1,52 @@
+{
+  "item_id": "triage-d2-viol-06",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "hemoptysis",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": false
+    },
+    {
+      "var": "confusion",
+      "value": false
+    },
+    {
+      "var": "abdominal_pain",
+      "value": false
+    },
+    {
+      "var": "severe_headache__base",
+      "value": true
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": false
+    },
+    {
+      "var": "rash__base",
+      "value": false
+    },
+    {
+      "var": "confusion__base",
+      "value": false
+    },
+    {
+      "var": "abdominal_pain__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property is VIOLATED. The interaction_drop rule (priority 100, the highest) forces acuity := self_care (the lowest acuity) whenever severe_headache AND hemoptysis are both true, dominating all other rules.\n\nCounterexample (the input shown is the 'after' state with hemoptysis=true):\n- BEFORE: severe_headache=true, hemoptysis=FALSE, rash=false, confusion=false, abdominal_pain=false. Only raise_severe_headache (p2) fires => acuity = urgent (index 2). interaction_drop is inactive because hemoptysis is false.\n- AFTER (flip hemoptysis to true): severe_headache=true, hemoptysis=TRUE, others unchanged. Now interaction_drop (p100) fires and overrides raise_severe_headache (p2) => acuity = self_care (index 0).\n\nSetting hemoptysis true lowered acuity from urgent (2) to self_care (0), which is strictly lower. This contradicts the property that hemoptysis=true must never lower acuity. Hence the property does not hold.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "item_id": "triage-d5-viol-02",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "slurred_speech",
+      "value": true
+    },
+    {
+      "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": false
+    },
+    {
+      "var": "vision_loss",
+      "value": false
+    },
+    {
+      "var": "confusion",
+      "value": false
+    },
+    {
+      "var": "rash__base",
+      "value": true
+    },
+    {
+      "var": "fever__base",
+      "value": true
+    },
+    {
+      "var": "slurred_speech__base",
+      "value": true
+    },
+    {
+      "var": "syncope__base",
+      "value": true
+    },
+    {
+      "var": "severe_headache__base",
+      "value": false
+    },
+    {
+      "var": "back_pain__base",
+      "value": false
+    },
+    {
+      "var": "vision_loss__base",
+      "value": false
+    },
+    {
+      "var": "confusion__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "severe_headache appears in exactly one rule: interaction_drop (priority 100), IF (rash and fever and slurred_speech and syncope and severe_headache) THEN acuity := self_care. This is the highest-priority rule and it sets the LOWEST acuity. Because severe_headache is a required conjunct, toggling it flips this rule on/off.\n\nCompare the baseline input rash=T, fever=T, slurred_speech=T, syncope=T with severe_headache=FALSE (all others false): interaction_drop does not match. The highest-priority matching rules are raise_fever (priority 3) and raise_syncope (priority 3), both yielding emergent. So acuity = emergent (the highest level).\n\nNow set severe_headache=TRUE with everything else unchanged: all five conjuncts of interaction_drop are now true, so it matches. With priority 100 it dominates all priority-3 rules, setting acuity := self_care (the lowest level).\n\nThus flipping severe_headache from false to true lowers acuity from emergent to self_care, directly violating the monotonicity property that setting severe_headache true must never lower acuity. The witness_assignment given is the post-toggle (severe_headache=true) state; the corresponding pre-toggle state differs only in severe_headache=false and yields emergent.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

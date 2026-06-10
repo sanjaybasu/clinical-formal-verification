@@ -1,0 +1,36 @@
+{
+  "item_id": "triage-d1-viol-07",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain",
+      "value": true
+    },
+    {
+      "var": "stiff_neck",
+      "value": false
+    },
+    {
+      "var": "severe_headache__base",
+      "value": false
+    },
+    {
+      "var": "abdominal_pain__base",
+      "value": true
+    },
+    {
+      "var": "stiff_neck__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property is VIOLATED. The interaction_drop rule (priority 100, far higher than any other) forces acuity := self_care (the lowest enum value) whenever severe_headache is true, overriding the higher-acuity rules.\n\nCounterexample (input variable held constant: abdominal_pain=true, stiff_neck=false):\n- Baseline severe_headache=false: only raise_abdominal_pain (priority 2) matches, so acuity = urgent.\n- Perturbed severe_headache=true (witness assignment): interaction_drop (priority 100) wins over raise_abdominal_pain (priority 2), so acuity = self_care.\n\nSetting severe_headache true lowers acuity from urgent to self_care, which is strictly below the prior value. This breaks the property 'setting severe_headache true never lowers acuity.' (Equivalently, with stiff_neck=true the drop is even larger: emergent -> self_care.) The witness_assignment gives the perturbed input (severe_headache=true) at which the lowered acuity self_care is produced relative to its severe_headache=false baseline.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

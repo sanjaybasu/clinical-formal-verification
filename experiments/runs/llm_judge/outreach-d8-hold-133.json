@@ -1,0 +1,11 @@
+{
+  "item_id": "outreach-d8-hold-133",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property globally(opted_out implies not sent) holds. Key invariant analysis: (1) sent becomes true ONLY via t_send_allowed, whose guard requires `not opted_out`, so at the instant sent is set true, opted_out is false. (2) opted_out becomes true ONLY via t_optout, which never resets to false (no transition sets opted_out := false), so once true it is permanently true; crucially t_optout simultaneously sets sent := false. (3) While opted_out is true, the only transition that could set sent := true (t_send_allowed) is permanently disabled by its guard; the remaining enabled transitions all set or keep sent = false: t_send_blocked sets sent := false, t_tick sets sent := false, and a repeated optout sets sent := false. Therefore every reachable state with opted_out = true also has sent = false. The invariant holds on every execution, including within the 12-event bound. No counterexample exists. The file is at /Users/sanjaybasu/clinical-formal-verification/experiments/runs/_judge_prompts/outreach-d8-hold-133.txt.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

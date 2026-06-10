@@ -1,0 +1,76 @@
+{
+  "item_id": "triage-d6-viol-07",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "leg_swelling",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": true
+    },
+    {
+      "var": "vomiting",
+      "value": true
+    },
+    {
+      "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "dizziness",
+      "value": true
+    },
+    {
+      "var": "hemoptysis",
+      "value": true
+    },
+    {
+      "var": "chest_pain",
+      "value": false
+    },
+    {
+      "var": "back_pain",
+      "value": false
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": true
+    },
+    {
+      "var": "dyspnea__base",
+      "value": true
+    },
+    {
+      "var": "vomiting__base",
+      "value": true
+    },
+    {
+      "var": "syncope__base",
+      "value": true
+    },
+    {
+      "var": "dizziness__base",
+      "value": true
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": false
+    },
+    {
+      "var": "chest_pain__base",
+      "value": false
+    },
+    {
+      "var": "back_pain__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "hemoptysis appears in exactly one rule: interaction_drop (priority 100, the highest), which sets acuity := self_care (the lowest enum value) when leg_swelling, dyspnea, vomiting, syncope, dizziness, and hemoptysis are ALL true. Because hemoptysis only ever participates in a downgrade-to-self_care rule, turning it on can activate the highest-priority drop. Take the baseline input leg_swelling=T, dyspnea=T, vomiting=T, syncope=T, dizziness=T, hemoptysis=F (chest_pain=F, back_pain=F). With hemoptysis=F, interaction_drop does not fire; the matching rules are raise_leg_swelling/raise_vomiting/raise_dizziness (urgent, p2) and raise_dyspnea/raise_syncope (emergent, p3), so the highest-priority winner gives acuity = emergent. Now flip hemoptysis to true with everything else unchanged: all six conjuncts of interaction_drop are satisfied, so the priority-100 rule fires and overrides every other rule, yielding acuity = self_care. emergent -> self_care is a strict decrease, so setting hemoptysis true lowers acuity. The monotonicity property is violated. The witness_assignment is the post-flip input (hemoptysis=true) that produces self_care, whose baseline counterpart (same inputs but hemoptysis=false) produces emergent.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

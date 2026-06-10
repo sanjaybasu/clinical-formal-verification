@@ -1,0 +1,30 @@
+{
+  "item_id": "outreach-d4-viol-05",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property globally(opted_out implies not sent) is VIOLATED by the t_resume_glitch transition (line 14): \"on send_attempt if (opted_out and ticks >= 4): sent := true\". This transition explicitly sets sent=true while opted_out is true, directly contradicting the intended invariant.\n\nReachability of the bad state: To enable t_resume_glitch we need both opted_out=true and ticks>=4. ticks is bumped by tick events (t_tick increments ticks until it caps at 4) and opted_out is set by an optout event. Both are easily reached.\n\nWitness execution (6 events, within the 8-event bound):\n1. tick -> opted_out=false, sent=false, ticks=1 (t_tick)\n2. tick -> ticks=2 (t_tick)\n3. tick -> ticks=3 (t_tick)\n4. tick -> ticks=4 (t_tick; ticks now capped at 4)\n5. optout -> opted_out=true, sent=false (t_optout)\n6. send_attempt -> opted_out=true and ticks=4>=4, so t_resume_glitch is enabled and fires: sent:=true. Resulting state: opted_out=true, sent=true, ticks=4.\n\nIn the resulting state opted_out=true AND sent=true, so (opted_out implies not sent) is false, violating the global invariant.\n\nRule-interaction note: on the final send_attempt both t_send_blocked (guard opted_out) and t_resume_glitch (guard opted_out and ticks>=4) are enabled. The spec assigns no priority that disables t_resume_glitch, so an execution in which the glitch transition fires is a legal reachable execution. Since the property must hold on EVERY reachable execution, the existence of this one is sufficient to falsify it. The other send transitions (t_send_allowed requires not opted_out; t_send_blocked sets sent=false) are safe; the glitch rule is the sole defect.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

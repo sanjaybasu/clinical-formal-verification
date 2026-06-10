@@ -1,0 +1,11 @@
+{
+  "item_id": "medication-d2-hold-119",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "rec_drug_a is set true only by rec_a_from_conjunction (priority 50), whose condition is exactly (qt_prolongation AND seizure_history); otherwise it defaults false. So rec_drug_a = true requires (qt_prolongation AND seizure_history).\n\nrec_drug_b is affected by two rules: rec_b_from_trigger (priority 50, fires on qt_prolongation -> true) and guard_suppress_b (priority 90, fires on (qt_prolongation AND seizure_history) -> false). Per the per-output highest-priority-wins resolution, when both match, guard_suppress_b (90) beats rec_b_from_trigger (50), forcing rec_drug_b = false.\n\nThe guard's firing condition (qt_prolongation AND seizure_history) is identical to the only condition that makes rec_drug_a true. Therefore, in every input where rec_drug_a = true, the guard also fires and suppresses rec_drug_b to false. There is no input that makes both rec_drug_a and rec_drug_b true. The mutual-exclusion property holds across the entire input space. (The heart_failure/prior_gi_bleed/hyperkalemia rules only affect rec_drug_c and are irrelevant to the a/b property.)",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "item_id": "outreach-d6-hold-123",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property G(opted_out -> not sent) holds on all reachable executions. The only transition that sets sent:=true is t_send_allowed, which is guarded by `not opted_out`, so immediately after it fires opted_out is false. The only transition that sets opted_out:=true is t_optout, and it simultaneously sets sent:=false in the same update, so every entry into opted_out=true forces sent=false. While opted_out is already true, the only enabled transitions are t_optout (sets sent=false), t_send_blocked (send_attempt under opted_out, sets sent=false), and t_tick (sets sent=false); none can set sent=true because t_send_allowed's guard `not opted_out` is unsatisfied. The initial state (false,false) satisfies the property vacuously. Therefore no reachable state has opted_out=true and sent=true simultaneously, so the invariant holds for the entire input space (and trivially within 10 events).",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

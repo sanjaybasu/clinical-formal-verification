@@ -1,0 +1,27 @@
+{
+  "item_id": "outreach-d3-viol-00",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "This is a state machine. The property G(opted_out implies not sent) is violated by the t_resume_glitch transition.\n\nInitial state: opted_out=false, sent=false, ticks=0.\n\nTrace of witness events:\n1. optout -> t_optout (guard true): opted_out=true, sent=false. State: (opted_out=true, sent=false, ticks=0).\n2. tick -> t_tick (guard true): ticks=1, sent=false. State: (true, false, 1).\n3. tick -> t_tick: ticks=2, sent=false. State: (true, false, 2).\n4. tick -> t_tick: ticks=3, sent=false. State: (true, false, 3).\n5. send_attempt -> On this event, t_send_allowed is disabled (guard \"not opted_out\" is false). Both t_send_blocked (guard \"opted_out\" = true) and t_resume_glitch (guard \"opted_out and ticks>=3\" = true since ticks=3) are enabled. The t_resume_glitch transition applies sent := true, yielding State: (opted_out=true, sent=true, ticks=3).\n\nIn this reachable state opted_out=true AND sent=true, so \"opted_out implies not sent\" is false, violating the global property. This occurs in 5 events, within the 7-event bound. The transition is aptly named \"resume_glitch\": after the opt-out window has elapsed (ticks reaches the cap of 3) a send_attempt re-enables sending despite opted_out remaining true, which is exactly the safety hazard the property forbids.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "item_id": "outreach-d2-hold-119",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The invariant \"opted_out implies not sent\" is an inductive invariant preserved by every transition, so it holds on all reachable executions regardless of length.\n\nInitial state: opted_out=false, sent=false -> antecedent false -> invariant holds.\n\nExamine each transition's post-state:\n- t_optout (on optout, always): sets opted_out=true AND sent=false simultaneously. Consequent (not sent) is true -> holds.\n- t_send_allowed (on send_attempt, guard not opted_out): sets sent=true but leaves opted_out=false. Antecedent false -> holds.\n- t_send_blocked (on send_attempt, guard opted_out): sets sent=false. Consequent true -> holds.\n- t_tick (on tick, always): sets sent=false (and bumps ticks). Consequent true -> holds regardless of opted_out.\n- No enabled transition: state unchanged; invariant carries over by induction.\n\nKey structural argument: sent can only be set true by t_send_allowed, which is guarded by not opted_out and does not modify opted_out \u2014 so when sent becomes true, opted_out is false. The only transition that sets opted_out=true (t_optout) forces sent=false in the same step. There is no transition that makes opted_out=true while leaving sent=true, and none that sets sent=true while opted_out is already true. Hence the dangerous state (opted_out=true AND sent=true) is unreachable. The 6-event bound is not binding because preservation is unconditional. Property holds.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

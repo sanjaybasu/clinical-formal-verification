@@ -1,0 +1,11 @@
+{
+  "item_id": "outreach-d3-hold-129",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property G(opted_out implies not sent) holds on all reachable executions. Proof by showing the invariant I = not(opted_out and sent) is inductive across every transition:\n\n- Initial state (opted_out=false, sent=false): I holds.\n- t_optout (on optout): atomically sets opted_out:=true AND sent:=false, so post-state has sent=false; I holds.\n- t_send_allowed (on send_attempt, guard not opted_out): sets sent:=true but is only enabled when opted_out=false, and opted_out is unchanged, so post-state has opted_out=false; I holds.\n- t_send_blocked (on send_attempt, guard opted_out): sets sent:=false; I holds.\n- t_tick (on tick): sets sent:=false (and increments ticks); I holds.\n- No-op (event with no enabled transition): state unchanged, so I is preserved.\n\nEvery transition yields a post-state satisfying I regardless of the pre-state, so I is inductive and holds on every reachable state for any execution length, including the 7-event bound.\n\nThe two ways the conjunction could arise are both blocked: (1) the only transition that makes opted_out true (t_optout) simultaneously forces sent false; (2) the only transition that makes sent true (t_send_allowed) is guarded by not opted_out, and once opted_out is true it can never be cleared (no transition resets opted_out to false), so send_attempt thereafter only fires t_send_blocked, keeping sent false. Therefore no reachable state has both opted_out and sent true.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

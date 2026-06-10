@@ -1,0 +1,52 @@
+{
+  "item_id": "medication-d8-viol-04",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "hypertension",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "renal_impairment",
+      "value": true
+    },
+    {
+      "var": "hyperkalemia",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": false
+    },
+    {
+      "var": "elderly",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that rec_drug_a and rec_drug_b are never jointly true. rec_drug_a is set true only by rule rec_a_from_conjunction (priority 50), whose antecedent is a conjunction that includes low_ejection_fraction (along with hypertension, hepatic_impairment, pregnancy, renal_impairment, hyperkalemia, peptic_ulcer, heart_failure). rec_drug_b is set true by rule rec_b_from_trigger (priority 50) whenever low_ejection_fraction is true. Because low_ejection_fraction is one of the conjuncts required for rec_drug_a, ANY input that fires rec_drug_a necessarily also fires rec_drug_b. The two rules write to different outputs (rec_drug_a vs rec_drug_b), so the per-output priority/tie-breaking conflict resolution does not prevent both from firing \u2014 each wins on its own output. Defaults are irrelevant here since both outputs are actively set. Concrete counterexample: set all eight conjuncts (low_ejection_fraction, hypertension, hepatic_impairment, pregnancy, renal_impairment, hyperkalemia, peptic_ulcer, heart_failure) to true; qt_prolongation and elderly only affect rec_drug_c and are set false. Then rec_a_from_conjunction fires (rec_drug_a = true) and rec_b_from_trigger fires (rec_drug_b = true), so rec_drug_a AND rec_drug_b is true, violating mutual exclusion.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

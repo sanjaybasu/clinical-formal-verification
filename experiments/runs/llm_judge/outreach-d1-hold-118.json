@@ -1,0 +1,11 @@
+{
+  "item_id": "outreach-d1-hold-118",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property globally(opted_out implies not sent) holds on all reachable executions. Proof by induction on the invariant. Initial state: opted_out=false, so implication is vacuously true. Inductive step over the four transitions: (1) t_optout sets opted_out=true but simultaneously sets sent=false, so the implication holds (sent false). (2) t_send_allowed is the ONLY transition that sets sent=true, but it is guarded by 'not opted_out' and does not touch opted_out, so the resulting state has opted_out=false (vacuously true). (3) t_send_blocked sets sent=false with opted_out=true, implication holds. (4) t_tick sets sent=false regardless, implication holds. No transition can produce a state where opted_out=true AND sent=true, because the only way to set sent=true requires opted_out to be false at that step, and the only way to set opted_out=true clears sent. The invariant is therefore preserved by every event from any state satisfying it, covering all reachable states including the bounded 5-event horizon.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

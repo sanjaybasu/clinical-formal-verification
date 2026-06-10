@@ -1,0 +1,11 @@
+{
+  "item_id": "outreach-d10-hold-125",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property globally(opted_out implies not sent) holds on all reachable executions. Proof by induction on the invariant I := (opted_out implies not sent). Initial state opted_out=false satisfies I vacuously. Inductive step over every transition: t_optout sets opted_out:=true AND sent:=false simultaneously, so post-state has sent=false (I holds). t_send_allowed is the ONLY transition that sets sent:=true, but it is guarded by not opted_out, so it can only fire when opted_out=false, leaving opted_out=false in the post-state (I holds vacuously). t_send_blocked sets sent:=false (I holds). t_tick sets sent:=false (I holds). A no-op (no enabled transition) preserves the state and hence I. Crucially, there is no transition that sets opted_out:=false (no opt-back-in), so once opted out, opted_out stays true and the only writes to sent are sent:=false (via t_send_blocked or t_tick). Thus no reachable state can have opted_out=true with sent=true. The invariant is maintained at every step, well within the 14-event bound. File analyzed: /Users/sanjaybasu/clinical-formal-verification/experiments/runs/_judge_prompts/outreach-d10-hold-125.txt",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d8-hold-124",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property concerns toggling `confusion` from false to true while holding all other inputs fixed, requiring that acuity never decreases. Examining all eight rules (raise_leg_swelling, raise_vomiting, raise_sweating, raise_chest_pain, raise_back_pain, raise_hemoptysis, raise_pallor, raise_syncope), none of them reference the `confusion` input at all \u2014 each rule's condition tests only leg_swelling, vomiting, sweating, chest_pain, back_pain, hemoptysis, pallor, or syncope respectively. The default (acuity := routine) likewise does not depend on confusion. Therefore the set of firing rules, the priority-based conflict resolution, and the default are all completely independent of confusion. Setting confusion to true with every other input unchanged produces exactly the same acuity value as before. Since the output is identical, it is trivially no lower than before, so the property holds for the entire input space. The file is at /Users/sanjaybasu/clinical-formal-verification/experiments/runs/_judge_prompts/triage-d8-hold-124.txt.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

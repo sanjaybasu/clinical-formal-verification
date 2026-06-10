@@ -1,0 +1,40 @@
+{
+  "item_id": "medication-d5-viol-07",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "renal_impairment",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": false
+    },
+    {
+      "var": "seizure_history",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that rec_drug_a and rec_drug_b are never jointly true. rec_drug_a is set true only by rule rec_a_from_conjunction, whose condition is (elderly AND renal_impairment AND low_ejection_fraction AND bradycardia AND g6pd_deficiency). That conjunction includes elderly as a conjunct. rec_drug_b is set true by rule rec_b_from_trigger whenever elderly is true. Therefore, any input that makes rec_drug_a true necessarily makes elderly true, which fires rec_b_from_trigger and makes rec_drug_b true. There are no rules that set rec_drug_a or rec_drug_b to false (defaults only apply to unset outputs, and both rules set their output to true), so priority/order tie-breaking is irrelevant \u2014 nothing can override the true assignments. Concrete counterexample: elderly=true, renal_impairment=true, low_ejection_fraction=true, bradycardia=true, g6pd_deficiency=true (hepatic_impairment and seizure_history false, since they only affect rec_drug_c). Under this input, rec_a_from_conjunction fires -> rec_drug_a=true, and rec_b_from_trigger fires -> rec_drug_b=true, making (rec_drug_a AND rec_drug_b) true and violating mutual exclusion.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

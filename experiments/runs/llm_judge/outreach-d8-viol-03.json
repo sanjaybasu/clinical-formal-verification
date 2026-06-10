@@ -1,0 +1,42 @@
+{
+  "item_id": "outreach-d8-viol-03",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "This is a state machine. The property G(opted_out implies not sent) requires that whenever opted_out is true, sent is false. The transition [t_resume_glitch] on send_attempt with guard (opted_out and ticks >= 8) sets sent := true while opted_out remains true. This directly violates the property; nothing in the spec gives t_send_blocked priority over t_resume_glitch, so once its guard holds, this enabled transition can fire and set sent := true.\n\nWitness execution (10 events, within the 12-event bound):\n- Initial: opted_out=false, sent=false, ticks=0\n- optout (t_optout): opted_out:=true, sent:=false -> (true, false, 0)\n- tick x8 (t_tick): each increments ticks (capped at 8) and sets sent:=false -> after 8 ticks: (true, false, 8)\n- send_attempt: now opted_out=true and ticks>=8, so t_resume_glitch is enabled and sets sent:=true -> (true, true, 8)\n\nFinal state has opted_out=true and sent=true, violating opted_out implies not sent. Property is VIOLATED.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

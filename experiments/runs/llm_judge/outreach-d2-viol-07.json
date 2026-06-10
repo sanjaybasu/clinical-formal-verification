@@ -1,0 +1,24 @@
+{
+  "item_id": "outreach-d2-viol-07",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "This is a state machine. State vars: opted_out, sent (bool), ticks (int [0,2]); init opted_out=false, sent=false, ticks=0. Property: globally (opted_out implies not sent), i.e., no reachable state has opted_out=true AND sent=true (within 6 events).\n\nThe transition t_resume_glitch fires on send_attempt when (opted_out and ticks >= 2) and sets sent := true. This directly creates a state with opted_out=true and sent=true, violating the property, provided its guard is reachable and the transition can fire.\n\nReachability trace:\n1. optout (t_optout, guard true): opted_out=true, sent=false, ticks=0 -> (T,F,0). Holds.\n2. tick (t_tick, guard true): ticks=min(2,1)=1, sent=false -> (T,F,1). opted_out unchanged (no transition resets it except optout). Holds.\n3. tick (t_tick): ticks=2, sent=false -> (T,F,2). Holds.\n4. send_attempt: guards in play are t_send_blocked (opted_out -> sent:=false) AND t_resume_glitch (opted_out and ticks>=2 -> sent:=true). Both are enabled. Under standard audit semantics (multiple matching transitions => nondeterministic choice; the more specific glitch rule is reachable and listed last/highest-priority), t_resume_glitch fires: sent:=true -> (T,T,2). This state has opted_out=true and sent=true.\n\nState 4 violates opted_out implies not sent. The counterexample is 4 events, within the 6-event bound. Hence the property is VIOLATED. The t_resume_glitch rule is an explicit defect that allows a send after opt-out once two ticks have elapsed.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d3-hold-102",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property (monotonicity in hemoptysis: setting hemoptysis=true never lowers acuity) holds. The input variable `hemoptysis` does not appear in any rule's condition or action. All five rules are gated only on the other five inputs: raise_stiff_neck (stiff_neck), raise_dyspnea (dyspnea), raise_abdominal_pain (abdominal_pain), raise_back_pain (back_pain), raise_vision_loss (vision_loss). The default acuity:=routine fills the output when no rule fires. Since hemoptysis is never read, toggling it (with all other inputs fixed) cannot change which rules match, cannot change the per-output priority resolution, and cannot change the default. Therefore acuity is invariant to hemoptysis: acuity(hemoptysis=true) equals acuity(hemoptysis=false) for every assignment of the other inputs. Equal acuity is trivially \"no lower than before,\" so the monotonicity property is satisfied across the entire input space. File analyzed: /Users/sanjaybasu/clinical-formal-verification/experiments/runs/_judge_prompts/triage-d3-hold-102.txt",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "item_id": "medication-d6-viol-07",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "diabetes",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "prior_gi_bleed",
+      "value": true
+    },
+    {
+      "var": "hypertension",
+      "value": true
+    },
+    {
+      "var": "renal_impairment",
+      "value": true
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": false
+    },
+    {
+      "var": "heart_failure",
+      "value": false
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that rec_drug_a and rec_drug_b are never jointly true. rec_drug_b is set true only by rec_b_from_trigger (priority 50): IF diabetes. rec_drug_a is set true only by rec_a_from_conjunction (priority 50): IF (diabetes AND low_ejection_fraction AND prior_gi_bleed AND hypertension AND renal_impairment AND g6pd_deficiency). The conjunction itself includes diabetes as a conjunct, so whenever rec_drug_a fires, diabetes is true, which necessarily also fires rec_b_from_trigger. No other rules affect these two outputs (the rec_c rules are irrelevant), so there is no competing rule to override either via priority, and defaults only apply to unset outputs. Setting all six conjuncts true (diabetes, low_ejection_fraction, prior_gi_bleed, hypertension, renal_impairment, g6pd_deficiency) makes both rec_drug_a := true and rec_drug_b := true simultaneously, violating mutual exclusion. The other three inputs (qt_prolongation, heart_failure, hepatic_impairment) only influence rec_drug_c and are set false.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

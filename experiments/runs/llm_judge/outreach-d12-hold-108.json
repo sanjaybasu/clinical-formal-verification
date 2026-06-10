@@ -1,0 +1,11 @@
+{
+  "item_id": "outreach-d12-hold-108",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The invariant is opted_out implies not sent. Initial state has opted_out=false, so it holds vacuously. I checked each transition as an inductive invariant preservation: (1) t_optout sets opted_out:=true but SIMULTANEOUSLY sets sent:=false, so the post-state has sent=false and the invariant holds. (2) t_send_allowed is the ONLY transition that sets sent:=true, but its guard requires not opted_out, so in the resulting state opted_out=false and the invariant holds vacuously. (3) t_send_blocked fires only when opted_out is true and sets sent:=false, preserving the invariant. (4) t_tick sets sent:=false and never touches opted_out, so it cannot break the invariant. There is no path to a state with opted_out=true AND sent=true: the only way to set sent=true requires opted_out=false at that moment, and the only way to set opted_out=true also clears sent. No transition raises opted_out while leaving sent true. The invariant is preserved by all transitions and holds initially, so globally(opted_out implies not sent) holds on every reachable execution. Property holds.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

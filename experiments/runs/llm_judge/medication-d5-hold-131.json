@@ -1,0 +1,11 @@
+{
+  "item_id": "medication-d5-hold-131",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "rec_drug_a is set true only by rec_a_from_conjunction (priority 50), which requires the full conjunction renal_impairment AND immunosuppressed AND bradycardia AND asthma AND pregnancy; otherwise it defaults to false. Thus rec_drug_a=true implies that full conjunction holds. rec_drug_b is set true by rec_b_from_trigger (priority 50, fires on renal_impairment) but is suppressed by guard_suppress_b (priority 90) under exactly the same full conjunction. Conflict resolution is per-output highest-priority-wins, so whenever the full conjunction holds, guard_suppress_b (priority 90) beats rec_b_from_trigger (priority 50) and forces rec_drug_b=false. Therefore in every input where rec_drug_a could be true, rec_drug_b is forced false. The set of inputs making both true is empty, so the mutual-exclusion property holds across the entire 2^8 input space.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

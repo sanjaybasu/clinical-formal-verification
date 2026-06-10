@@ -1,0 +1,116 @@
+{
+  "item_id": "triage-d12-viol-00",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "leg_swelling",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": true
+    },
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "chest_pain",
+      "value": true
+    },
+    {
+      "var": "sweating",
+      "value": true
+    },
+    {
+      "var": "vision_loss",
+      "value": true
+    },
+    {
+      "var": "stiff_neck",
+      "value": true
+    },
+    {
+      "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "pallor",
+      "value": true
+    },
+    {
+      "var": "dizziness",
+      "value": true
+    },
+    {
+      "var": "confusion",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": false
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": true
+    },
+    {
+      "var": "dyspnea__base",
+      "value": true
+    },
+    {
+      "var": "severe_headache__base",
+      "value": true
+    },
+    {
+      "var": "chest_pain__base",
+      "value": true
+    },
+    {
+      "var": "sweating__base",
+      "value": true
+    },
+    {
+      "var": "vision_loss__base",
+      "value": true
+    },
+    {
+      "var": "stiff_neck__base",
+      "value": true
+    },
+    {
+      "var": "syncope__base",
+      "value": true
+    },
+    {
+      "var": "fever__base",
+      "value": true
+    },
+    {
+      "var": "pallor__base",
+      "value": true
+    },
+    {
+      "var": "dizziness__base",
+      "value": true
+    },
+    {
+      "var": "confusion__base",
+      "value": false
+    },
+    {
+      "var": "palpitations__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property requires that flipping confusion from false to true never lowers acuity. It is violated.\n\nconfusion appears in only one rule: [interaction_drop, priority 100] IF (leg_swelling AND dyspnea AND severe_headache AND chest_pain AND sweating AND vision_loss AND stiff_neck AND syncope AND fever AND pallor AND dizziness AND confusion) THEN acuity := self_care. No rule raises acuity based on confusion; the only confusion-dependent rule lowers it, and it has the dominating priority (100, far above the priority-3 emergent rules).\n\nCounterexample (the witness, with confusion=true): all of leg_swelling, dyspnea, severe_headache, chest_pain, sweating, vision_loss, stiff_neck, syncope, fever, pallor, dizziness = true; palpitations = false; confusion = true.\n\nCompare the two inputs differing only in confusion:\n- confusion=false: interaction_drop does not fire (its conjunction is false). The highest-priority firing rules are the priority-3 emergent rules (pallor, dyspnea, vision_loss, chest_pain, syncope), so acuity = emergent.\n- confusion=true (witness): now all 12 conjuncts of interaction_drop hold, so it fires with priority 100, which beats every priority-3 rule. acuity = self_care.\n\nEnum order self_care(0) < routine(1) < urgent(2) < emergent(3): acuity drops from emergent to self_care when confusion is set true. This lowers acuity, violating monotonicity. The reported witness_assignment is the violating (confusion=true) input.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

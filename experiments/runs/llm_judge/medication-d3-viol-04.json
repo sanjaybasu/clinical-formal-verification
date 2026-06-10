@@ -1,0 +1,32 @@
+{
+  "item_id": "medication-d3-viol-04",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "hypertension",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": false
+    },
+    {
+      "var": "immunosuppressed",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires NOT(rec_drug_a AND rec_drug_b). Two rules write to these distinct outputs and can both fire simultaneously: rec_b_from_trigger (priority 50) sets rec_drug_b := true whenever bradycardia is true; rec_a_from_conjunction (priority 50) sets rec_drug_a := true whenever (bradycardia AND heart_failure AND hypertension). Because they target different outputs, there is no priority/tie conflict between them \u2014 both fire independently, and defaults only apply to outputs left unset, so they cannot prevent either assignment. With bradycardia=true, heart_failure=true, hypertension=true, rec_b_from_trigger fires (rec_drug_b=true) and rec_a_from_conjunction fires (rec_drug_a=true), making both jointly true and violating mutual exclusion. low_ejection_fraction and immunosuppressed are irrelevant (they only affect rec_drug_c) and are set to false. The c-rules sharing priority 40 are unrelated to this property.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

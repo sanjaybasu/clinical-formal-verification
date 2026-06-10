@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d2-hold-119",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The output `acuity` is determined entirely by three rules (raise_sweating, raise_severe_headache, raise_fever), each of which sets acuity := urgent when its respective trigger is true, plus a default of routine when none fires. All three rules share priority 2 and the same effect (urgent), so any conflict is irrelevant: if at least one of sweating/fever/severe_headache is true, acuity = urgent; otherwise acuity = routine.\n\nCrucially, the input `pallor` appears in no rule condition and in no default. Therefore, for any fixed assignment of (sweating, fever, severe_headache), the value of acuity is independent of pallor. Flipping pallor from false to true changes none of the rule activations and changes no default, so acuity is identical before and after. An unchanged output is trivially \"no lower than before,\" so the monotonicity property (setting pallor true never lowers acuity) holds across the entire input space. No counterexample exists.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

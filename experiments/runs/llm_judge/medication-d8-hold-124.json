@@ -1,0 +1,11 @@
+{
+  "item_id": "medication-d8-hold-124",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property (never rec_drug_a AND rec_drug_b jointly true) HOLDS.\n\nrec_drug_a can only be set true by exactly one rule: rec_a_from_conjunction (priority 50), which fires only when the full 8-way conjunction holds (hypertension AND ckd_dialysis AND bradycardia AND polypharmacy AND pregnancy AND hyperkalemia AND g6pd_deficiency AND elderly). No other rule touches rec_drug_a, and the default is false. Thus rec_drug_a = true REQUIRES that exact 8-way conjunction to be satisfied (which in particular requires hypertension = true).\n\nFor rec_drug_b, two rules can match: rec_b_from_trigger (priority 50, sets true when hypertension) and guard_suppress_b (priority 90, sets false on the identical 8-way conjunction). Conflict resolution is by priority per output, ties broken by order.\n\nThe decisive point is that guard_suppress_b's condition is IDENTICAL to rec_a_from_conjunction's condition. So in any input where rec_drug_a becomes true, the 8-way conjunction necessarily holds, meaning guard_suppress_b also matches. Since guard_suppress_b has priority 90 \u2014 strictly higher than rec_b_from_trigger's priority 50 and any other rec_drug_b-setting rule \u2014 it wins and forces rec_drug_b := false. There is no rule that sets rec_drug_b := true at priority > 50.\n\nTherefore, every input that makes rec_drug_a true simultaneously triggers the priority-90 suppression of rec_drug_b, forcing rec_drug_b false. The two outputs can never be jointly true. No counterexample exists; the property holds over the entire input space.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "item_id": "medication-d1-viol-04",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "prior_gi_bleed",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": false
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": false
+    },
+    {
+      "var": "polypharmacy",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that no input makes (rec_drug_a AND rec_drug_b) jointly true. Both outputs are driven by the SAME trigger condition, prior_gi_bleed: rule rec_a_from_conjunction [priority 50] sets rec_drug_a := true when prior_gi_bleed, and rule rec_b_from_trigger [priority 50] sets rec_drug_b := true when prior_gi_bleed. These are the only rules touching rec_drug_a and rec_drug_b (the other three rules all target rec_drug_c). With prior_gi_bleed = true, both rules fire, setting rec_drug_a = true and rec_drug_b = true simultaneously. No priority conflict exists (each output has a single matching rule), and the defaults (false) apply only to outputs left unset, which is not the case here. The remaining inputs (peptic_ulcer, g6pd_deficiency, polypharmacy) only influence rec_drug_c and are irrelevant; set to false. Therefore prior_gi_bleed = true is a concrete counterexample where rec_drug_a and rec_drug_b are both true, violating mutual exclusion.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

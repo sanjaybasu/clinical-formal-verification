@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d4-hold-130",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The input variable `syncope` does not appear in the condition of any of the four rules (raise_vision_loss depends on vision_loss, raise_vomiting on vomiting, raise_hemoptysis on hemoptysis, raise_abdominal_pain on abdominal_pain). Because syncope is referenced by no rule and by no default condition, toggling syncope from false to true while holding the other four inputs fixed leaves the set of matching rules, their priorities, the tie-breaking order, and the default fallback completely unchanged. Hence acuity(syncope=true) equals acuity(syncope=false) for every assignment of the other inputs. The monotonicity property requires acuity(syncope=true) >= acuity(syncope=false); equality satisfies \"no lower than before.\" Therefore the property holds across the entire input space, with no violating input.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

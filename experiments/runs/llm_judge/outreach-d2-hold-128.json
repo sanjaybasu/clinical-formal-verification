@@ -1,0 +1,11 @@
+{
+  "item_id": "outreach-d2-hold-128",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property G(opted_out -> not sent) holds on all reachable executions; it is an inductive invariant. Initial state: opted_out=false, sent=false, so the implication holds vacuously. Inductive step over every transition: (1) t_optout sets opted_out:=true AND sent:=false atomically, so the post-state has opted_out=true, sent=false -> holds. (2) t_send_allowed sets sent:=true but is guarded by 'not opted_out', so it only fires when opted_out=false; post-state has opted_out=false -> antecedent false, holds. (3) t_send_blocked (guard opted_out) sets sent:=false -> holds. (4) t_tick sets sent:=false (and bumps ticks) and never changes opted_out -> if opted_out was true, sent is now false; if it was false, antecedent false; holds. The only way to make sent true is t_send_allowed, which requires opted_out=false, and the only way to make opted_out true is t_optout, which simultaneously clears sent. While opted_out=true, every sent-affecting event (send_attempt via t_send_blocked, tick, optout) sets sent:=false, and t_send_allowed is disabled. Hence no reachable state has opted_out=true with sent=true. The ticks variable and the 6-event bound are irrelevant since ticks never couples to opted_out/sent and the invariant holds for executions of any length.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

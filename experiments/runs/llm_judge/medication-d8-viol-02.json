@@ -1,0 +1,52 @@
+{
+  "item_id": "medication-d8-viol-02",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "diabetes",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "renal_impairment",
+      "value": false
+    },
+    {
+      "var": "prior_gi_bleed",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that rec_drug_a and rec_drug_b are never jointly true. rec_drug_a is set true only by rule rec_a_from_conjunction (priority 50), which fires when the 8-way conjunction (seizure_history AND anticoagulated AND asthma AND g6pd_deficiency AND elderly AND diabetes AND pregnancy AND qt_prolongation) holds. rec_drug_b is set true by rule rec_b_from_trigger (priority 50) whenever seizure_history is true. Conflict resolution is per-output, so the two outputs are resolved independently and there is no priority interaction that could suppress one. Critically, the conjunction that enables rec_drug_a includes seizure_history as a conjunct; therefore any input satisfying the conjunction necessarily has seizure_history=true, which independently fires rec_b_from_trigger and sets rec_drug_b=true. Thus the single input that satisfies all 8 conjuncts yields rec_drug_a=true and rec_drug_b=true simultaneously, violating mutual exclusion. The witness sets the 8 conjunction inputs true; renal_impairment and prior_gi_bleed are irrelevant (set false) \u2014 they only affect rec_drug_c. The defaults do not save the property because both rules actively set their outputs to true. Violation confirmed.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

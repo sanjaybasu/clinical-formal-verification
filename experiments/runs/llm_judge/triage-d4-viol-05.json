@@ -1,0 +1,68 @@
+{
+  "item_id": "triage-d4-viol-05",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "leg_swelling",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "pallor",
+      "value": true
+    },
+    {
+      "var": "hemoptysis",
+      "value": true
+    },
+    {
+      "var": "severe_headache",
+      "value": false
+    },
+    {
+      "var": "back_pain",
+      "value": false
+    },
+    {
+      "var": "fever",
+      "value": false
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": true
+    },
+    {
+      "var": "palpitations__base",
+      "value": true
+    },
+    {
+      "var": "pallor__base",
+      "value": true
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": false
+    },
+    {
+      "var": "severe_headache__base",
+      "value": false
+    },
+    {
+      "var": "back_pain__base",
+      "value": false
+    },
+    {
+      "var": "fever__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that flipping hemoptysis from false to true (all else fixed) never lowers acuity. hemoptysis appears in exactly one rule: interaction_drop (priority 100) IF (leg_swelling AND palpitations AND pallor AND hemoptysis) THEN acuity := self_care. Priority 100 dominates every other rule (all priority 2 or 3), so whenever interaction_drop matches it forces acuity to self_care, the lowest value. hemoptysis appears in no acuity-raising rule. Counterexample: take base input leg_swelling=true, palpitations=true, pallor=true, hemoptysis=false, severe_headache=false, back_pain=false, fever=false. BEFORE (hemoptysis=false): interaction_drop does not match (needs hemoptysis); matching rules are raise_leg_swelling (pri2\u2192urgent), raise_pallor (pri2\u2192urgent), raise_palpitations (pri3\u2192emergent); highest priority is raise_palpitations, so acuity = emergent. AFTER (hemoptysis=true), all else unchanged: interaction_drop (pri100) now matches \u2192 self_care, which dominates all others; acuity = self_care. Acuity drops from emergent to self_care, lowering it. This violates monotonicity. The witness_assignment is the AFTER (hemoptysis=true) violating input; the BEFORE input is identical except hemoptysis=false. severe_headache/back_pain/fever are set false but are irrelevant because interaction_drop at priority 100 dominates regardless of their values.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

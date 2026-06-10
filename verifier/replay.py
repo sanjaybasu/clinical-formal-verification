@@ -61,35 +61,43 @@ def _confirm_decision(item: Item, witness: list[dict]) -> bool:
 
 
 def _confirm_transition(item: Item, witness: list[dict]) -> bool:
+    """A transition witness is confirmed if some execution consistent with the event sequence
+    reaches a state violating the invariant. When a step names a transition that branch is taken;
+    otherwise every enabled transition for the event is explored, since an event-only witness
+    leaves the transition choice nondeterministic.
+    """
     ts: TransitionSystem = item.ruleset
     phi = _global_body(item.property.formula)
     typing = typing_of(ts.state_vars)
-    state = _init_state(ts)
-    if not eval_bool(phi, state, typing):
+    start = _init_state(ts)
+    if not eval_bool(phi, start, typing):
         return True
+
+    frontier = [start]
     for step in witness:
-        if step["event"] == "stutter":
+        if step.get("event") == "stutter":
             continue
-        tr = _pick_transition(ts, state, typing, step)
-        if tr is not None:
-            state = _apply_update(ts, state, tr.update, {})
-        if not eval_bool(phi, state, typing):
-            return True
+        named = step.get("transition")
+        event = step["event"]
+        event_exists = any(t.event == event for t in ts.transitions)
+        nxt_frontier = []
+        for state in frontier:
+            matched = False
+            for tr in ts.transitions:
+                if tr.event != event or (named is not None and tr.id != named):
+                    continue
+                if tr.guard is not None and not eval_bool(tr.guard, state, typing):
+                    continue
+                matched = True
+                nxt = _apply_update(ts, state, tr.update, {})
+                if not eval_bool(phi, nxt, typing):
+                    return True
+                nxt_frontier.append(nxt)
+            if not matched and not event_exists:
+                nxt_frontier.append(state)  # event the system ignores: stutter
+        if nxt_frontier:
+            frontier = nxt_frontier
     return False
-
-
-def _pick_transition(ts: TransitionSystem, state: dict, typing: dict, step: dict):
-    """Choose the transition named in the trace step, else the first enabled match."""
-    named = step.get("transition")
-    candidates = [t for t in ts.transitions if t.event == step["event"]]
-    if named is not None:
-        for t in candidates:
-            if t.id == named:
-                return t
-    for t in candidates:
-        if t.guard is None or eval_bool(t.guard, state, typing):
-            return t
-    return None
 
 
 def render_decision_scenario(item: Item, witness: list[dict]) -> str:

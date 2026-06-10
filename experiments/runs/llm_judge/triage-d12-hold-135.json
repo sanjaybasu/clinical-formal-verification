@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d12-hold-135",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The input `rash` is declared (line 15) but is never referenced by any rule. All 12 rules (lines 21-32) condition only on the other inputs: focal_weakness, palpitations, sweating, stiff_neck, syncope, vomiting, back_pain, slurred_speech, severe_headache, fever, pallor, hemoptysis. Because `rash` does not appear in any antecedent, the set of fired rules, the priority-based conflict resolution, and the routine default are all completely independent of `rash`. Therefore, for any fixed assignment of the other 12 inputs, flipping rash from false to true leaves acuity unchanged (acuity_after = acuity_before). The monotonicity property requires acuity_after >= acuity_before (no lower than before); equality satisfies this for every input in the entire space. The property holds; no counterexample exists.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

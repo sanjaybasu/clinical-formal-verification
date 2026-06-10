@@ -1,0 +1,11 @@
+{
+  "item_id": "medication-d10-hold-107",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "Property: never (rec_drug_a AND rec_drug_b). rec_drug_a is set true by exactly one rule, rec_a_from_conjunction (priority 50), which fires only when the full 10-way conjunction C holds (asthma, g6pd_deficiency, immunosuppressed, low_ejection_fraction, hyperkalemia, diabetes, seizure_history, peptic_ulcer, ckd_dialysis, prior_gi_bleed). No other rule sets rec_drug_a, and the default is false. Hence rec_drug_a = true iff C holds. rec_drug_b is governed by two rules: rec_b_from_trigger (priority 50, IF asthma THEN true) and guard_suppress_b (priority 90, IF C THEN false). Per-output conflict resolution selects the highest-priority matching rule. In the only case where rec_drug_a is true (C holds, which includes asthma), both b-rules match, but guard_suppress_b at priority 90 dominates the priority-50 trigger, forcing rec_drug_b = false. Therefore whenever rec_drug_a is true, rec_drug_b is necessarily false. The converse case (asthma true but C false) leaves rec_drug_a false by default, so no conflict arises either. The guard's higher priority covers exactly the dangerous overlap, so the mutual-exclusion property holds over the entire input space.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

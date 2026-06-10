@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d4-hold-121",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The input `rash` does not appear in the condition of any rule. All five rules trigger on fever, dizziness, syncope, dyspnea, or chest_pain respectively; none reference rash. The single output `acuity` is determined by the highest-priority matching rule among those five conditions (ties broken by listed order), with default routine if none match. Since flipping rash from false to true leaves every other input unchanged, the set of matching rules is identical in both cases, so the conflict-resolution result is identical: acuity(rash=true) = acuity(rash=false) for every otherwise-identical input. Equality satisfies the monotonicity requirement that acuity be \"no lower than before.\" Because rash is wholly irrelevant to the output, there is no input where setting rash true lowers acuity. The property holds for the entire input space.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

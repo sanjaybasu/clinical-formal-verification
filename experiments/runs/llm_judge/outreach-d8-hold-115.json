@@ -1,0 +1,11 @@
+{
+  "item_id": "outreach-d8-hold-115",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property globally(opted_out implies not sent) holds on every reachable execution.\n\nKey observation: sent can only be set to true by transition t_send_allowed, whose guard is \"not opted_out\". Therefore at the exact moment sent becomes true, opted_out is necessarily false.\n\nTo violate the invariant we would need a reachable state where opted_out=true AND sent=true. There are two ways to reach opted_out=true, and neither produces sent=true:\n\n1. The transition t_optout is the ONLY transition that sets opted_out := true, and it atomically also sets sent := false in the same update. So immediately after optout, the state is opted_out=true, sent=false. Invariant holds.\n\n2. While opted_out remains true, can sent become true? The only events are:\n   - send_attempt: with opted_out=true, the guard of t_send_allowed (not opted_out) is false, so t_send_blocked fires instead, setting sent := false. sent cannot become true.\n   - tick: sets sent := false unconditionally.\n   - optout: sets opted_out := true, sent := false.\n   None of these set sent to true while opted_out is true.\n\nThus there is no transition that makes opted_out true while leaving/making sent true, and no transition that makes sent true while opted_out is true. The invariant is inductive and holds for all reachable states regardless of execution length (well within the 12-event / ticks-capped-at-8 bound). The ticks variable only ranges [0,8] and is orthogonal to the property. Property holds; no counterexample exists.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

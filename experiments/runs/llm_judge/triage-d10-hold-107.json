@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d10-hold-107",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property is monotonicity with respect to the `syncope` input: setting syncope true (with all other inputs unchanged) must never lower acuity. The decisive observation is that `syncope` is declared as an input (line 13) but appears in NONE of the 10 rules (lines 19-28). The rule conditions reference only dizziness, pallor, palpitations, rash, back_pain, severe_headache, confusion, vision_loss, fever, and dyspnea. Because no rule's condition mentions syncope, the set of matching rules \u2014 and therefore the priority-resolved/default-resolved acuity \u2014 is a pure function of the other ten inputs and is completely independent of syncope's value. Holding all other inputs fixed and toggling syncope from false to true changes nothing about which rules fire, so acuity is identical (equal) before and after. Equality satisfies \"no lower than before,\" so the monotonicity property holds across the entire input space. No counterexample exists.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

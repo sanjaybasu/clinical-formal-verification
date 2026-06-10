@@ -1,0 +1,11 @@
+{
+  "item_id": "medication-d5-hold-104",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "Property: never (rec_drug_a AND rec_drug_b) jointly true.\n\nrec_drug_a is set true only by rule rec_a_from_conjunction (priority 50) when C = (elderly AND peptic_ulcer AND hypertension AND g6pd_deficiency AND immunosuppressed) holds; otherwise it defaults to false. So rec_drug_a = true IFF C holds.\n\nrec_drug_b is affected by two rules: rec_b_from_trigger (priority 50, IF elderly THEN true) and guard_suppress_b (priority 90, IF C THEN false). Per-output conflict resolution takes the matching rule with the highest priority.\n\nCase analysis:\n- When C holds: rec_drug_a = true. For rec_drug_b, both rules match (C implies elderly), but guard_suppress_b at priority 90 strictly outranks the trigger at priority 50, so rec_drug_b := false. Hence (a AND b) = (true AND false) = false.\n- When C does not hold: rec_drug_a = false (its only producing rule does not fire; default false). Hence (a AND b) = false regardless of b.\n\nThe guard condition is exactly identical to the rec_drug_a trigger condition, and its priority (90) strictly exceeds the trigger's (50), so it deterministically wins with no tie. rec_drug_c rules and the all-false defaults cannot create the conflict. Therefore rec_drug_a AND rec_drug_b can never both be true across the entire 2^8 input space. The property holds.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

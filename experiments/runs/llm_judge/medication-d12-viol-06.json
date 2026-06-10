@@ -1,0 +1,68 @@
+{
+  "item_id": "medication-d12-viol-06",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "polypharmacy",
+      "value": true
+    },
+    {
+      "var": "immunosuppressed",
+      "value": true
+    },
+    {
+      "var": "prior_gi_bleed",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "ckd_dialysis",
+      "value": true
+    },
+    {
+      "var": "renal_impairment",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": false
+    },
+    {
+      "var": "hypertension",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires NOT(rec_drug_a AND rec_drug_b). rec_drug_a is set true only by rule rec_a_from_conjunction (priority 50), whose antecedent is a 12-way conjunction that INCLUDES pregnancy as a conjunct. rec_drug_b is set true only by rule rec_b_from_trigger (priority 50), whose antecedent is simply pregnancy. Because the conjunction for rec_drug_a entails pregnancy, any input that fires the rec_drug_a rule necessarily also satisfies the rec_drug_b trigger. The two rules target different outputs, so priority/tie-breaking (which only applies per-output) does not suppress either. Setting all 12 conjuncts (pregnancy, g6pd_deficiency, polypharmacy, immunosuppressed, prior_gi_bleed, qt_prolongation, peptic_ulcer, ckd_dialysis, renal_impairment, elderly, asthma, anticoagulated) to true makes rec_drug_a := true and, via pregnancy=true, rec_drug_b := true simultaneously. seizure_history and hypertension only affect rec_drug_c and are irrelevant; set false. Thus rec_drug_a and rec_drug_b are jointly true, violating the mutual-exclusion property.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

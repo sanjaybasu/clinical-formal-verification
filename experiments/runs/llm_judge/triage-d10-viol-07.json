@@ -1,0 +1,100 @@
+{
+  "item_id": "triage-d10-viol-07",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "vomiting",
+      "value": true
+    },
+    {
+      "var": "stiff_neck",
+      "value": true
+    },
+    {
+      "var": "sweating",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": true
+    },
+    {
+      "var": "pallor",
+      "value": true
+    },
+    {
+      "var": "dizziness",
+      "value": true
+    },
+    {
+      "var": "leg_swelling",
+      "value": true
+    },
+    {
+      "var": "slurred_speech",
+      "value": true
+    },
+    {
+      "var": "chest_pain",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": false
+    },
+    {
+      "var": "vomiting__base",
+      "value": true
+    },
+    {
+      "var": "stiff_neck__base",
+      "value": true
+    },
+    {
+      "var": "sweating__base",
+      "value": true
+    },
+    {
+      "var": "back_pain__base",
+      "value": true
+    },
+    {
+      "var": "pallor__base",
+      "value": true
+    },
+    {
+      "var": "dizziness__base",
+      "value": true
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": true
+    },
+    {
+      "var": "slurred_speech__base",
+      "value": true
+    },
+    {
+      "var": "chest_pain__base",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain__base",
+      "value": false
+    },
+    {
+      "var": "fever__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "abdominal_pain appears in exactly one rule: interaction_drop (priority 100, the highest priority), whose guard is the conjunction of all ten symptom booleans (vomiting, stiff_neck, sweating, back_pain, pallor, dizziness, leg_swelling, slurred_speech, chest_pain, abdominal_pain). When it fires it sets acuity := self_care (lowest) and dominates all other rules because priority 100 outranks every other rule (max other priority is 3). Counterexample comparison: take the assignment with the nine other conjuncts true (vomiting, stiff_neck, sweating, back_pain, pallor, dizziness, leg_swelling, slurred_speech, chest_pain all true; fever false). BEFORE (abdominal_pain=false): interaction_drop cannot fire; the highest-priority firing rules are the priority-3 emergent rules (raise_slurred_speech, raise_back_pain, raise_stiff_neck, raise_dizziness), so acuity = emergent. AFTER (abdominal_pain=true, all else identical): all ten conjuncts hold, interaction_drop fires at priority 100, overriding everything and setting acuity = self_care. Enum order is self_care < routine < urgent < emergent, so acuity drops from emergent to self_care when abdominal_pain is turned on. That lowers acuity, violating the monotonicity property. The witness_assignment given is the 'after' state (abdominal_pain=true) that yields self_care; the same assignment with abdominal_pain=false yields emergent, exhibiting the decrease.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

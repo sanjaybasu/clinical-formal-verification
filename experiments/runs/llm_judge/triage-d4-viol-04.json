@@ -1,0 +1,52 @@
+{
+  "item_id": "triage-d4-viol-04",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "confusion",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "dizziness",
+      "value": true
+    },
+    {
+      "var": "pallor",
+      "value": true
+    },
+    {
+      "var": "syncope",
+      "value": false
+    },
+    {
+      "var": "confusion__base",
+      "value": true
+    },
+    {
+      "var": "rash__base",
+      "value": true
+    },
+    {
+      "var": "dizziness__base",
+      "value": true
+    },
+    {
+      "var": "pallor__base",
+      "value": false
+    },
+    {
+      "var": "syncope__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property (monotonicity in pallor) is VIOLATED. pallor appears in exactly one rule: interaction_drop (priority 100, the highest), whose antecedent is (confusion AND rash AND dizziness AND pallor) and whose consequent sets acuity to self_care, the LOWEST acuity. Because pallor only gates this dominant downgrade rule, setting pallor true can newly enable it and override higher-acuity outcomes.\n\nCounterexample pair (toggle pallor with everything else fixed at confusion=true, rash=true, dizziness=true, syncope=false):\n\nWith pallor=false: rules that fire are raise_rash (prio 3 -> emergent), raise_dizziness (prio 2 -> urgent), raise_confusion (prio 2 -> urgent). interaction_drop does NOT fire (pallor false). Highest priority among fired rules is raise_rash (prio 3), so acuity = emergent.\n\nWith pallor=true (the reported witness): raise_rash (prio 3 -> emergent), raise_dizziness (prio 2 -> urgent), raise_confusion (prio 2 -> urgent), and now interaction_drop (prio 100 -> self_care) fires. The highest-priority matching rule is interaction_drop (prio 100), so acuity = self_care.\n\nSetting pallor true lowers acuity from emergent to self_care, the maximum possible drop, directly violating the requirement that pallor never lowers acuity. The witness_assignment records the pallor=true input producing self_care; its pallor=false counterpart produces emergent.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

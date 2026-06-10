@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d6-hold-123",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property (monotonicity in `sweating`) holds for the entire input space. The decisive fact is that the input variable `sweating` does not appear in the condition of ANY rule. Enumerating all eight rules: raise_slurred_speech fires on slurred_speech, raise_dizziness on dizziness, raise_vomiting on vomiting, raise_back_pain on back_pain, raise_chest_pain on chest_pain, raise_syncope on syncope, raise_confusion on confusion, raise_stiff_neck on stiff_neck. None of them tests `sweating`. The Default (acuity := routine) applies only when no rule sets the output, and it also has no dependence on `sweating`.\n\nTherefore, for any fixed assignment of the other eight inputs, the set of rules that fire is exactly the same whether `sweating` is false or true. Conflict resolution by priority (highest-priority matching rule wins, ties by listed order) and the default both operate solely on that firing set, so they produce an identical `acuity` value in both cases. That is, acuity(sweating=true) = acuity(sweating=false) for every assignment of the remaining inputs.\n\nThe property requires acuity(sweating=true) >= acuity(sweating=false) (no lower than before). Equality trivially satisfies a >= requirement, so the monotonicity property is never violated. No counterexample exists; both witness arrays are left empty.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "item_id": "medication-d1-hold-109",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property NOT(rec_drug_a AND rec_drug_b) holds for the entire input space because rec_drug_b is always false.\n\nFor rec_drug_b there are two rules, both gated on `elderly`:\n- rec_b_from_trigger (priority 50): IF elderly THEN rec_drug_b := true\n- guard_suppress_b (priority 90): IF elderly THEN rec_drug_b := false\n\nConflict resolution is per-output highest-priority-wins. When elderly=true, both rules match but the guard (priority 90) beats the trigger (priority 50), so rec_drug_b := false. When elderly=false, neither rule fires, so the default sets rec_drug_b := false. Therefore rec_drug_b is false under every input.\n\nrec_drug_a is set true only when elderly=true (rec_a_from_conjunction, priority 50; the only rule for output a), otherwise default false. But regardless of rec_drug_a's value, rec_drug_b is always false, so the conjunction (rec_drug_a AND rec_drug_b) can never be true.\n\nCase check:\n- elderly=true: rec_drug_a=true, rec_drug_b=false (guard wins) -> conjunction false.\n- elderly=false: rec_drug_a=false, rec_drug_b=false -> conjunction false.\n\nThe inputs diabetes, immunosuppressed, low_ejection_fraction only affect rec_drug_c, which is irrelevant to this property. The property holds in all 16 input combinations.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

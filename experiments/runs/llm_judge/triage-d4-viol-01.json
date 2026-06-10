@@ -1,0 +1,52 @@
+{
+  "item_id": "triage-d4-viol-01",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "leg_swelling",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": true
+    },
+    {
+      "var": "vision_loss",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": false
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": true
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": true
+    },
+    {
+      "var": "back_pain__base",
+      "value": true
+    },
+    {
+      "var": "vision_loss__base",
+      "value": false
+    },
+    {
+      "var": "dyspnea__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "vision_loss appears in exactly one rule, interaction_drop (priority 100), which sets acuity to self_care (lowest) when focal_weakness AND leg_swelling AND back_pain AND vision_loss are all true. Because priority 100 dominates every other rule, turning vision_loss on can collapse a high acuity down to self_care.\n\nCounterexample baseline: focal_weakness=true, leg_swelling=true, back_pain=true, dyspnea=false, vision_loss=false. Fired rules: raise_leg_swelling (prio 3 -> emergent), raise_back_pain (prio 2 -> urgent), raise_focal_weakness (prio 2 -> urgent). Highest priority wins -> emergent.\n\nNow set vision_loss=true (all else unchanged): interaction_drop (prio 100) fires -> self_care, dominating all lower-priority rules -> acuity = self_care.\n\nAcuity drops emergent -> self_care when vision_loss is set true, which violates monotonicity (setting vision_loss true must never lower acuity). The witness_assignment is the vision_loss=true input that yields the lowered acuity.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

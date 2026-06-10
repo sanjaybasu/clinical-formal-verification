@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d12-hold-108",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property concerns setting hemoptysis to true while holding all other inputs fixed. Examining all 12 rules (raise_vision_loss, raise_fever, raise_vomiting, raise_palpitations, raise_leg_swelling, raise_chest_pain, raise_dyspnea, raise_pallor, raise_confusion, raise_stiff_neck, raise_focal_weakness, raise_abdominal_pain), none of them reference hemoptysis in their condition. The hemoptysis input is declared but completely unused. Since acuity is computed only from the matching rules (resolved by highest priority, ties by listed order) with a routine default when nothing matches, and hemoptysis affects no rule's match status, flipping hemoptysis from false to true while keeping the other 12 inputs unchanged leaves the set of firing rules, the conflict-resolution winner, and the default behavior all identical. Thus acuity is exactly unchanged for every input. Unchanged acuity is trivially \"no lower than before,\" so the property holds across the entire input space. No counterexample exists.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

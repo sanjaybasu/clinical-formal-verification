@@ -1,0 +1,52 @@
+{
+  "item_id": "triage-d2-viol-07",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "abdominal_pain",
+      "value": true
+    },
+    {
+      "var": "vomiting",
+      "value": true
+    },
+    {
+      "var": "pallor",
+      "value": false
+    },
+    {
+      "var": "leg_swelling",
+      "value": false
+    },
+    {
+      "var": "confusion",
+      "value": false
+    },
+    {
+      "var": "abdominal_pain__base",
+      "value": true
+    },
+    {
+      "var": "vomiting__base",
+      "value": false
+    },
+    {
+      "var": "pallor__base",
+      "value": false
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": false
+    },
+    {
+      "var": "confusion__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property is VIOLATED. The interaction_drop rule has the dominant priority 100 and fires only when (abdominal_pain AND vomiting), driving acuity to self_care (the lowest level). Because this rule requires vomiting=true, flipping vomiting from false to true can activate it and lower acuity.\n\nCounterexample (the witness is the vomiting=true 'after' state): abdominal_pain=true, vomiting=true, pallor=false, leg_swelling=false, confusion=false.\n\nBefore (vomiting=false, all else identical): only raise_abdominal_pain (priority 2) matches -> acuity = urgent. (interaction_drop does not match because vomiting is false; pallor/leg_swelling/confusion rules do not match.)\n\nAfter (vomiting=true): both raise_abdominal_pain (p2 -> urgent) and interaction_drop (p100 -> self_care) match. The highest-priority matching rule is interaction_drop (priority 100), so acuity = self_care.\n\nAcuity drops from urgent to self_care when vomiting is set true, lowering acuity. With the enum order self_care < routine < urgent < emergent, this directly contradicts the requirement that setting vomiting true never lowers acuity. No higher-priority rule overrides interaction_drop in the after state since pallor, leg_swelling, and confusion are all false.\n\nFile analyzed: /Users/sanjaybasu/clinical-formal-verification/experiments/runs/_judge_prompts/triage-d2-viol-07.txt",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

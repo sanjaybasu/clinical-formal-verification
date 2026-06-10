@@ -1,0 +1,27 @@
+{
+  "item_id": "outreach-d3-viol-01",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "This is a state machine. The property G(opted_out -> not sent) requires sent to be false in every reachable state where opted_out is true. The transition t_resume_glitch directly breaks this: on send_attempt, if (opted_out and ticks >= 3), it sets sent := true while opted_out remains true. Reaching its guard is easy: optout sets opted_out=true (sent=false, ticks=0); three ticks raise ticks to 1, 2, 3 (each tick also keeps sent=false and leaves opted_out=true). Now opted_out=true and ticks=3. On send_attempt, t_resume_glitch is enabled (opted_out true and 3>=3) and its update sets sent:=true, yielding the state opted_out=true, sent=true, ticks=3 \u2014 which violates opted_out -> not sent. Although t_send_blocked is also enabled on this event (and would keep sent=false), the property quantifies over every reachable execution; the nondeterministic choice of t_resume_glitch is a valid enabled transition producing a reachable violating state. The counterexample uses 5 events, within the 7-event bound.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

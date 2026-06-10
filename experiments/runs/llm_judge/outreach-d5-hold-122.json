@@ -1,0 +1,11 @@
+{
+  "item_id": "outreach-d5-hold-122",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property G(opted_out implies not sent) holds. sent becomes true only via [t_send_allowed], whose guard is \"not opted_out\", so any state where sent is freshly set has opted_out=false. opted_out becomes true only via [t_optout], which in the same update sets sent:=false. Once opted_out=true it never reverts to false (no transition sets opted_out:=false). While opted_out=true: send_attempt matches only [t_send_blocked] (guard opted_out) since [t_send_allowed] is disabled, setting sent:=false; tick sets sent:=false; optout keeps sent:=false. Thus no transition can produce a state with opted_out=true and sent=true. The invariant holds initially (opted_out=false, sent=false) and is preserved by every transition (t_optout: opted_out=true,sent=false OK; t_send_allowed: opted_out=false OK; t_send_blocked: sent=false OK; t_tick: sent=false OK). Property holds across the entire reachable space, well within the 9-event bound.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

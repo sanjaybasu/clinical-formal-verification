@@ -1,0 +1,60 @@
+{
+  "item_id": "triage-d5-viol-06",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "chest_pain",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "hemoptysis",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "slurred_speech",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": false
+    },
+    {
+      "var": "chest_pain__base",
+      "value": true
+    },
+    {
+      "var": "palpitations__base",
+      "value": true
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": true
+    },
+    {
+      "var": "rash__base",
+      "value": true
+    },
+    {
+      "var": "slurred_speech__base",
+      "value": false
+    },
+    {
+      "var": "dyspnea__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "slurred_speech appears in exactly one rule: interaction_drop (priority 100), the highest-priority rule, which sets acuity := self_care (the LOWEST acuity) when chest_pain AND palpitations AND hemoptysis AND rash AND slurred_speech are all true. The monotonicity property requires that flipping slurred_speech from false to true (other inputs fixed) never lowers acuity.\n\nCounterexample compares two inputs identical except slurred_speech, with chest_pain=palpitations=hemoptysis=rash=true, dyspnea=false:\n\nBEFORE (slurred_speech=false): interaction_drop does not fire. Matching rules: raise_chest_pain(urgent,p2), raise_hemoptysis(urgent,p2), raise_rash(emergent,p3), raise_palpitations(emergent,p3). Highest priority among matches is p3 -> acuity = emergent (highest enum value).\n\nAFTER (slurred_speech=true): interaction_drop now fires (all five conjuncts true) at priority 100, beating every other rule -> acuity := self_care (lowest enum value). The other rules (p2/p3) are dominated by p100.\n\nEnum order low-to-high is [self_care, routine, urgent, emergent], so acuity drops from emergent (highest) to self_care (lowest) when slurred_speech is set true. This lowers acuity, directly violating the monotonicity property. The witness_assignment is the AFTER state (slurred_speech=true) whose acuity (self_care) is strictly lower than its slurred_speech=false counterpart (emergent).",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

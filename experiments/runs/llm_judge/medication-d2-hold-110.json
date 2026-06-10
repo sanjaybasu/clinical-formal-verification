@@ -1,0 +1,11 @@
+{
+  "item_id": "medication-d2-hold-110",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "rec_drug_a is set true only by rec_a_from_conjunction (priority 50), which fires exactly when (hyperkalemia AND bradycardia). rec_drug_b is set true by rec_b_from_trigger (priority 50, IF hyperkalemia) and set false by guard_suppress_b (priority 90, IF hyperkalemia AND bradycardia). Conflict resolution is per-output highest-priority-wins, so when (hyperkalemia AND bradycardia) both rec_drug_b rules match and the priority-90 guard overrides the priority-50 trigger, forcing rec_drug_b := false. Thus the ONLY input state in which rec_drug_a is true is (hyperkalemia=T, bradycardia=T), and that is precisely the state in which rec_drug_b is suppressed to false. Enumerating the hyperkalemia/bradycardia combinations: (F,F)->a=F,b=F(default); (F,T)->a=F,b=F(default); (T,F)->a=F,b=T(trigger, guard inactive); (T,T)->a=T,b=F(guard wins). In no case are rec_drug_a and rec_drug_b jointly true. renal_impairment and hypertension affect only rec_drug_c and are irrelevant to this property. Therefore (rec_drug_a AND rec_drug_b) is unsatisfiable and the mutual-exclusion property holds across the entire input space.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

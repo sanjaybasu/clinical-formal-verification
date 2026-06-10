@@ -1,0 +1,11 @@
+{
+  "item_id": "medication-d8-hold-106",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "rec_drug_a is set true only by rec_a_from_conjunction (priority 50), which requires the full 8-way conjunction C = (anticoagulated and asthma and low_ejection_fraction and ckd_dialysis and g6pd_deficiency and diabetes and elderly and hepatic_impairment). No other rule sets rec_drug_a, so rec_drug_a is true iff C holds (otherwise default false). For rec_drug_b: guard_suppress_b (priority 90) sets it false under exactly C, while rec_b_from_trigger (priority 50) sets it true under anticoagulated. Whenever rec_drug_a is true, C holds, which implies anticoagulated, so both b-rules match; the higher priority (90 > 50) guard_suppress_b wins and forces rec_drug_b := false. Thus rec_drug_a and rec_drug_b can never be jointly true: when C holds, a=true but b is suppressed to false; when C fails, a=false. The mutual-exclusion property holds across the entire 2^10 input space. File: /Users/sanjaybasu/clinical-formal-verification/experiments/runs/_judge_prompts/medication-d8-hold-106.txt",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

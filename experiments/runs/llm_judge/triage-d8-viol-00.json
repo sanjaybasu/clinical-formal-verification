@@ -1,0 +1,84 @@
+{
+  "item_id": "triage-d8-viol-00",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "stiff_neck",
+      "value": true
+    },
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "pallor",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "dizziness",
+      "value": true
+    },
+    {
+      "var": "slurred_speech",
+      "value": false
+    },
+    {
+      "var": "severe_headache__base",
+      "value": true
+    },
+    {
+      "var": "palpitations__base",
+      "value": true
+    },
+    {
+      "var": "stiff_neck__base",
+      "value": true
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": true
+    },
+    {
+      "var": "fever__base",
+      "value": true
+    },
+    {
+      "var": "pallor__base",
+      "value": true
+    },
+    {
+      "var": "rash__base",
+      "value": true
+    },
+    {
+      "var": "dizziness__base",
+      "value": false
+    },
+    {
+      "var": "slurred_speech__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property requires that flipping dizziness from false to true (all else fixed) never lowers acuity. It is violated by the interaction_drop rule.\n\nCompare two inputs differing only in dizziness, with severe_headache, palpitations, stiff_neck, focal_weakness, fever, pallor, rash all = true and slurred_speech = false:\n\nBEFORE (dizziness = false): interaction_drop requires dizziness=true, so it does NOT fire. The firing rules include raise_palpitations, raise_focal_weakness, and raise_pallor (each priority 3 -> emergent), plus several priority-2 urgent rules. Highest priority wins => acuity = emergent.\n\nAFTER (dizziness = true, the witness assignment): interaction_drop's full conjunction (severe_headache AND palpitations AND stiff_neck AND focal_weakness AND fever AND pallor AND rash AND dizziness) is now satisfied. It has priority 100, far above the priority-3 emergent rules, so it wins => acuity := self_care.\n\nThus setting dizziness true changes acuity from emergent (highest) to self_care (lowest), a decrease. This directly violates the property 'setting dizziness true never lowers acuity'. The witness_assignment is the dizziness=true input yielding self_care; its dizziness=false counterpart yields emergent.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

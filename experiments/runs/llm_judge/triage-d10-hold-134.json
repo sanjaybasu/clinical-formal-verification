@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d10-hold-134",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property holds. The monotonicity property requires that setting dizziness=true (with all other inputs unchanged) never lowers acuity. Examining all 10 rules in the spec, none of them reference the dizziness input in their conditions. The rules only depend on: severe_headache, sweating, leg_swelling, syncope, confusion, fever, abdominal_pain, chest_pain, vomiting, and back_pain. Because dizziness appears in no rule's IF condition, it is entirely inert: for any fixed assignment of the other inputs, flipping dizziness from false to true does not change which rules match, does not change priority/tie resolution, and does not change whether the default applies. The resulting acuity is therefore identical before and after setting dizziness=true. Equal acuity satisfies \"no lower than before\" (enum order self_care < routine < urgent < emergent). Hence no input can witness a violation, and the property holds across the entire input space. File analyzed: /Users/sanjaybasu/clinical-formal-verification/experiments/runs/_judge_prompts/triage-d10-hold-134.txt",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

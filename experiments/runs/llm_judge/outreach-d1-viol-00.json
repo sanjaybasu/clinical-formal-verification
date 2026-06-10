@@ -1,0 +1,21 @@
+{
+  "item_id": "outreach-d1-viol-00",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "tick"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "This is a state machine. The safety property is globally(opted_out implies not sent): in every reachable state, opted_out=true must imply sent=false.\n\nThe planted defect is transition [t_resume_glitch] on send_attempt if (opted_out and ticks >= 1): sent := true. This sets sent:=true precisely while opted_out is true, directly contradicting the property. It only requires reaching a state with opted_out=true AND ticks>=1, then firing a send_attempt.\n\nCounterexample execution (3 events, within the 5-event bound):\n1. tick -> t_tick (guard true): ticks goes 0->1, sent:=false. State: opted_out=false, sent=false, ticks=1.\n2. optout -> t_optout (guard true): opted_out:=true, sent:=false. State: opted_out=true, sent=false, ticks=1.\n3. send_attempt -> here both t_send_blocked (enabled: opted_out) and t_resume_glitch (enabled: opted_out and ticks>=1) match. Taking t_resume_glitch sets sent:=true. State: opted_out=true, sent=true, ticks=1.\n\nThe resulting state has opted_out=true and sent=true, violating opted_out implies not sent. Because the property must hold on EVERY reachable execution, the existence of this enabled transition that produces sent=true under opt-out is sufficient to violate it (even under listing-order priority, the glitch transition could be selected, and a sound check must reject any system where a violating execution is reachable). Hence the property is violated.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

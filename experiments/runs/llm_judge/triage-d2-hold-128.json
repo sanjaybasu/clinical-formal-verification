@@ -1,0 +1,11 @@
+{
+  "item_id": "triage-d2-hold-128",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The monotonicity property requires that setting confusion=true (all else unchanged) never lowers acuity. The variable `confusion` does not appear in the condition of any rule (raise_syncope, raise_dizziness, raise_slurred_speech) nor in the default. The acuity output is therefore a function solely of dizziness, syncope, and slurred_speech. For any fixed assignment of those three variables, the matched rules, priority resolution, tie-breaking, and default are identical whether confusion is false or true, so acuity is exactly equal in both cases. Equal acuity is trivially \"no lower than before.\" Since this holds for every point in the input space, the property holds with no counterexample.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "item_id": "triage-d3-viol-02",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "var": "dizziness",
+      "value": true
+    },
+    {
+      "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "slurred_speech",
+      "value": true
+    },
+    {
+      "var": "hemoptysis",
+      "value": false
+    },
+    {
+      "var": "dizziness__base",
+      "value": true
+    },
+    {
+      "var": "syncope__base",
+      "value": true
+    },
+    {
+      "var": "slurred_speech__base",
+      "value": false
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": false
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that flipping slurred_speech from false to true (other inputs fixed) never lowers acuity. Enum order: self_care(0) < routine(1) < urgent(2) < emergent(3).\n\nTake base input dizziness=true, syncope=true, hemoptysis=false, slurred_speech=FALSE:\n- raise_dizziness (pri 2) -> urgent\n- raise_syncope (pri 3) -> emergent\n- interaction_drop does not fire (slurred_speech false)\nHighest-priority matching rule is raise_syncope (pri 3), so acuity = emergent.\n\nNow flip slurred_speech=TRUE, everything else unchanged (the witness assignment):\n- raise_dizziness (pri 2) -> urgent\n- raise_syncope (pri 3) -> emergent\n- interaction_drop (pri 100) fires because dizziness AND syncope AND slurred_speech are all true -> self_care\nHighest-priority matching rule is interaction_drop (pri 100), so acuity = self_care.\n\nSetting slurred_speech true changes acuity from emergent (3, highest) to self_care (0, lowest), a strict decrease. This violates monotonicity. The witness reports the slurred_speech=true assignment that produces the lowered acuity.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}
