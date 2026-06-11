@@ -22,15 +22,22 @@ env/
 .env
 *.local
 
-# experiment scratch from the initial (leaked) judge run, regenerated from code
-experiments/runs*/_judge_prompts/
-experiments/runs*/_pilot_ids.json
-experiments/runs*/_judge_full_workflow.js
-experiments/runs/*/raw/
 *.log
-# the blinded judge artifacts ARE committed for reproducibility:
-#   _judge_prompts_blind/, _blind_map.json, _judge_blind_workflow.js
+
+# This public repository holds the toolkit and the released benchmark only. The manuscript,
+# appendix, figures, results, raw run outputs, references, case studies, and status notes are
+# maintained privately and are regenerated from the code here; they are not tracked.
+paper/
+casestudies/
+references/
+docs/status/
+experiments/runs/
+experiments/runs_hard/
+experiments/runs_compute/
+experiments/results/
+experiments/results_hard/
+experiments/results_compute/
+experiments/results_combined.md
 
 # never commit proprietary or PHI-derived splits
 benchmark/private/
-casestudies/private/
