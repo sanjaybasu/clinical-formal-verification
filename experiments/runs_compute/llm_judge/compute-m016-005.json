@@ -1,0 +1,30 @@
+{
+  "item_id": "compute-m016-005",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "step_1"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The safety property G(opted_out -> not sent) is VIOLATED. The faulty t_resume_glitch transition fires send (sent:=true) on send_attempt when opted_out is true AND acc==2, so the question reduces to whether acc==2 is reachable from acc=0. The three step events implement modular recurrences over acc in [0,15]: step_0 maps acc -> (3*acc+7) mod 16, while step_1 and step_2 both map acc -> (3*acc+1) mod 16 (the nested if-chains just compute mod-16 via up-to-three subtractions of 16, which fully covers the range since max 3*15+7=52 < 16*4). BFS over the reachable acc values shows all of [0..15] are reachable, including the target 2. A concrete minimal path: acc 0 ->(step_0) 7 ->(step_0) 12 ->(step_0) 11 ->(step_1) 2. acc=11 gives 3*11+1=34, 34-16=18, 18-16=2. Then optout sets opted_out=true (acc unchanged at 2, sent reset to false), and send_attempt now matches t_resume_glitch (opted_out and acc==2) and sets sent:=true. Full simulation through the state machine confirms the final state has opted_out=true and sent=true, violating the invariant in 6 events (well within the 18-event bound). Note: the step events set sent:=false but do not change opted_out, and optout does not change acc, so doing all four steps first then optout then send_attempt cleanly preserves acc=2 at the send_attempt. Verdict: violated.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

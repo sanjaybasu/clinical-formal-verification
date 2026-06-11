@@ -1,0 +1,48 @@
+{
+  "item_id": "lock-len10-viol-01",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property globally(opted_out implies not sent) is VIOLATED. sent can be set true while opted_out is true via the [t_resume_glitch] transition: on send_attempt if (opted_out and stage >= 10): sent := true. The optout event sets opted_out=true but does not reset stage, and there is no transition out of stage 10, so I advance the lock to stage 10, opt out, then send.\n\nThe 10-key combination to reach stage 10 (one advancing key per stage): adv_0=key_0 (0->1), adv_1=key_2 (1->2), adv_2=key_2 (2->3), adv_3=key_0 (3->4), adv_4=key_1 (4->5), adv_5=key_0 (5->6), adv_6=key_0 (6->7), adv_7=key_2 (7->8), adv_8=key_2 (8->9), adv_9=key_0 (9->10).\n\nTrace (opted_out, sent, stage): start (F,F,0); key_0->(F,F,1); key_2->(F,F,2); key_2->(F,F,3); key_0->(F,F,4); key_1->(F,F,5); key_0->(F,F,6); key_0->(F,F,7); key_2->(F,F,8); key_2->(F,F,9); key_0->(F,F,10); optout->(T,F,10); send_attempt: guards checked are t_send_allowed (not opted_out = false), t_send_blocked (opted_out and stage<10 = false since stage=10), t_resume_glitch (opted_out and stage>=10 = TRUE) -> sent:=true, giving (T,T,10).\n\nFinal state has opted_out=true and sent=true, violating the property. The witness is 12 events, within the 13-event bound. File: /Users/sanjaybasu/clinical-formal-verification/experiments/runs_hard/_judge_prompts/lock-len10-viol-01.txt",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

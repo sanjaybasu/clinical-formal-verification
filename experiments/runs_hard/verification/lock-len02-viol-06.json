@@ -1,0 +1,32 @@
+{
+  "item_id": "lock-len02-viol-06",
+  "method": "verification",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "send_attempt",
+      "transition": "t_send_allowed"
+    },
+    {
+      "event": "key_2",
+      "transition": "adv_0"
+    },
+    {
+      "event": "key_2",
+      "transition": "adv_1"
+    },
+    {
+      "event": "optout",
+      "transition": "t_optout"
+    },
+    {
+      "event": "send_attempt",
+      "transition": "t_resume_glitch"
+    }
+  ],
+  "seconds": 0.009,
+  "extra": {
+    "proof_scope": "traces up to length 5",
+    "method_note": "sat: a reachable trace reaches a state violating the invariant"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "item_id": "lock-len12-viol-07",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property opted_out implies not sent is VIOLATED via the t_resume_glitch transition (line 49): on send_attempt if (opted_out and stage >= 12): sent := true. Since stage maxes at 12, this fires exactly when opted_out is true and stage == 12, directly producing opted_out=true AND sent=true.\n\nReachability of stage 12 under opt-out: t_optout (line 10) sets opted_out:=true but does NOT reset stage. Every stage-advancing transition (adv_0..adv_11) guards only on stage value, never on opted_out, so the lock advances freely after opt-out. The required combination to walk stage 0->12 is: adv_0 key_2 (0->1), adv_1 key_1 (1->2), adv_2 key_2 (2->3), adv_3 key_1 (3->4), adv_4 key_2 (4->5), adv_5 key_2 (5->6), adv_6 key_1 (6->7), adv_7 key_0 (7->8), adv_8 key_1 (8->9), adv_9 key_0 (9->10), adv_10 key_0 (10->11), adv_11 key_0 (11->12).\n\nCounterexample trace (14 events, within the 15-event bound):\n1. optout: opted_out=T, sent=F, stage=0\n2-13. the 12-key combination above advances stage 0->12 (each adv_* also sets sent:=F), opted_out stays T throughout (no advance transition touches opted_out)\n14. send_attempt: t_send_allowed disabled (opted_out true); t_send_blocked disabled (requires stage<12 but stage==12); t_resume_glitch ENABLED (opted_out true and stage>=12) -> sent:=true.\n\nFinal state: opted_out=T, sent=T, stage=12, which falsifies globally(opted_out implies not sent). The witness_events list is the full ordered sequence.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

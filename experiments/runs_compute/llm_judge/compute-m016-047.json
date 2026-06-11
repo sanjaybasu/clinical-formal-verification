@@ -1,0 +1,11 @@
+{
+  "item_id": "compute-m016-047",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The step updates all reduce to acc := (3*acc + c) mod 16, where the nested if-then-else simply performs the mod-16 reduction (subtracting 16 up to three times covers the max value 3*15+13=58). step_0 and step_1 use c=13; step_2 uses c=9. The faulty resume transition t_resume_glitch fires (sending after opt-out) only when opted_out and acc==10.\n\nKey invariant (mod 4): both constants 13 and 9 are congruent to 1 (mod 4), and 3*acc \u2261 -acc (mod 4), so each step maps acc mod 4 as 0->1 and 1->0, never producing 2 or 3 (mod 4). Starting at acc=0 (\u22610 mod 4), acc is permanently confined to {0,1,4,5,8,9,12,13} (the values \u2261 0 or 1 mod 4). BFS over all step sequences confirms the reachable acc set is exactly {0,1,4,5,8,9,12,13} and is closed.\n\nThe target 10 \u2261 2 (mod 4) lies outside this set, so it is unreachable by any sequence of step events. The optout event leaves acc unchanged, so interleaving optout at any point cannot reach 10. Consequently t_resume_glitch can never be enabled; after opt-out every send_attempt takes t_send_blocked (acc != 10) and keeps sent=false. The property globally(opted_out implies not sent) holds on every reachable execution within (and beyond) the 18-event bound.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

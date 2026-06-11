@@ -1,0 +1,8 @@
+{
+  "item": "lock-len12-hold-111",
+  "ground_truth": "holds",
+  "witness": null,
+  "seeded": false,
+  "interaction_depth": 0,
+  "basis": "manual_proof"
+}

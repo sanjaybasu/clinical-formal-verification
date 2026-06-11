@@ -1,0 +1,42 @@
+{
+  "item_id": "lock-len08-viol-05",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property globally(opted_out implies not sent) is VIOLATED via the t_resume_glitch transition (line 37): on send_attempt if (opted_out and stage >= 8): sent := true. This sets sent=true while opted_out is still true.\n\nThe lock combination to reach stage 8 (each adv_* guards only on stage, never on opted_out): stage0->1 needs key_1 (adv_0), 1->2 key_0 (adv_1), 2->3 key_0 (adv_2), 3->4 key_2 (adv_3), 4->5 key_0 (adv_4), 5->6 key_2 (adv_5), 6->7 key_0 (adv_6), 7->8 key_2 (adv_7).\n\nCrucially, optout (line 10) only sets opted_out:=true and sent:=false; it does NOT reset stage. The key events do not touch opted_out. So opting out first and then climbing the lock leaves opted_out=true the entire time.\n\nTrace (10 events, within the 11-event bound):\n1. optout: opted_out=true, sent=false, stage=0\n2. key_1 (adv_0, stage==0): stage=1\n3. key_0 (adv_1, stage==1): stage=2\n4. key_0 (adv_2, stage==2): stage=3\n5. key_2 (adv_3, stage==3): stage=4\n6. key_0 (adv_4, stage==4): stage=5\n7. key_2 (adv_5, stage==5): stage=6\n8. key_0 (adv_6, stage==6): stage=7\n9. key_2 (adv_7, stage==7): stage=8\n10. send_attempt: opted_out=true and stage>=8, so t_resume_glitch fires, sent:=true.\n\nFinal state: opted_out=true AND sent=true, violating opted_out implies not sent. The t_send_blocked guard (stage < 8) does not apply at stage 8, leaving t_resume_glitch as the only matching send transition.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

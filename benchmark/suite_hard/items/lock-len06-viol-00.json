@@ -1,0 +1,723 @@
+{
+  "id": "lock-len06-viol-00",
+  "domain": "outreach",
+  "metadata": {
+    "description": "messaging state machine behind a combination lock; no message after opt-out",
+    "source": "synthetic",
+    "clinical_intent": "once a member opts out, no event sequence may cause a message to be sent"
+  },
+  "ruleset": {
+    "id": "lock-6-0",
+    "kind": "transition_system",
+    "state_vars": [
+      {
+        "name": "opted_out",
+        "type": "bool"
+      },
+      {
+        "name": "sent",
+        "type": "bool"
+      },
+      {
+        "name": "stage",
+        "type": "int",
+        "bounds": [
+          0,
+          6
+        ]
+      }
+    ],
+    "events": [
+      {
+        "name": "optout"
+      },
+      {
+        "name": "send_attempt"
+      },
+      {
+        "name": "key_0"
+      },
+      {
+        "name": "key_1"
+      },
+      {
+        "name": "key_2"
+      }
+    ],
+    "init": [
+      {
+        "var": "opted_out",
+        "value": false
+      },
+      {
+        "var": "sent",
+        "value": false
+      },
+      {
+        "var": "stage",
+        "value": 0
+      }
+    ],
+    "transitions": [
+      {
+        "id": "t_optout",
+        "event": "optout",
+        "update": [
+          {
+            "var": "opted_out",
+            "expr": {
+              "const": true
+            }
+          },
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "t_send_allowed",
+        "event": "send_attempt",
+        "guard": {
+          "op": "not",
+          "args": [
+            {
+              "var": "opted_out"
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "sent",
+            "expr": {
+              "const": true
+            }
+          }
+        ],
+        "emits": [
+          {
+            "action": "send_message"
+          }
+        ]
+      },
+      {
+        "id": "adv_0",
+        "event": "key_0",
+        "guard": {
+          "op": "eq",
+          "args": [
+            {
+              "var": "stage"
+            },
+            {
+              "const": 0
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "stage",
+            "expr": {
+              "const": 1
+            }
+          },
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "rst_0_1",
+        "event": "key_1",
+        "guard": {
+          "op": "eq",
+          "args": [
+            {
+              "var": "stage"
+            },
+            {
+              "const": 0
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "stage",
+            "expr": {
+              "const": 0
+            }
+          },
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "rst_0_2",
+        "event": "key_2",
+        "guard": {
+          "op": "eq",
+          "args": [
+            {
+              "var": "stage"
+            },
+            {
+              "const": 0
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "stage",
+            "expr": {
+              "const": 0
+            }
+          },
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "adv_1",
+        "event": "key_1",
+        "guard": {
+          "op": "eq",
+          "args": [
+            {
+              "var": "stage"
+            },
+            {
+              "const": 1
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "stage",
+            "expr": {
+              "const": 2
+            }
+          },
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "rst_1_0",
+        "event": "key_0",
+        "guard": {
+          "op": "eq",
+          "args": [
+            {
+              "var": "stage"
+            },
+            {
+              "const": 1
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "stage",
+            "expr": {
+              "const": 0
+            }
+          },
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "rst_1_2",
+        "event": "key_2",
+        "guard": {
+          "op": "eq",
+          "args": [
+            {
+              "var": "stage"
+            },
+            {
+              "const": 1
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "stage",
+            "expr": {
+              "const": 0
+            }
+          },
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "adv_2",
+        "event": "key_1",
+        "guard": {
+          "op": "eq",
+          "args": [
+            {
+              "var": "stage"
+            },
+            {
+              "const": 2
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "stage",
+            "expr": {
+              "const": 3
+            }
+          },
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "rst_2_0",
+        "event": "key_0",
+        "guard": {
+          "op": "eq",
+          "args": [
+            {
+              "var": "stage"
+            },
+            {
+              "const": 2
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "stage",
+            "expr": {
+              "const": 0
+            }
+          },
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "rst_2_2",
+        "event": "key_2",
+        "guard": {
+          "op": "eq",
+          "args": [
+            {
+              "var": "stage"
+            },
+            {
+              "const": 2
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "stage",
+            "expr": {
+              "const": 0
+            }
+          },
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "adv_3",
+        "event": "key_0",
+        "guard": {
+          "op": "eq",
+          "args": [
+            {
+              "var": "stage"
+            },
+            {
+              "const": 3
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "stage",
+            "expr": {
+              "const": 4
+            }
+          },
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "rst_3_1",
+        "event": "key_1",
+        "guard": {
+          "op": "eq",
+          "args": [
+            {
+              "var": "stage"
+            },
+            {
+              "const": 3
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "stage",
+            "expr": {
+              "const": 0
+            }
+          },
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "rst_3_2",
+        "event": "key_2",
+        "guard": {
+          "op": "eq",
+          "args": [
+            {
+              "var": "stage"
+            },
+            {
+              "const": 3
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "stage",
+            "expr": {
+              "const": 0
+            }
+          },
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "adv_4",
+        "event": "key_2",
+        "guard": {
+          "op": "eq",
+          "args": [
+            {
+              "var": "stage"
+            },
+            {
+              "const": 4
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "stage",
+            "expr": {
+              "const": 5
+            }
+          },
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "rst_4_0",
+        "event": "key_0",
+        "guard": {
+          "op": "eq",
+          "args": [
+            {
+              "var": "stage"
+            },
+            {
+              "const": 4
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "stage",
+            "expr": {
+              "const": 0
+            }
+          },
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "rst_4_1",
+        "event": "key_1",
+        "guard": {
+          "op": "eq",
+          "args": [
+            {
+              "var": "stage"
+            },
+            {
+              "const": 4
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "stage",
+            "expr": {
+              "const": 0
+            }
+          },
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "adv_5",
+        "event": "key_0",
+        "guard": {
+          "op": "eq",
+          "args": [
+            {
+              "var": "stage"
+            },
+            {
+              "const": 5
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "stage",
+            "expr": {
+              "const": 6
+            }
+          },
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "rst_5_1",
+        "event": "key_1",
+        "guard": {
+          "op": "eq",
+          "args": [
+            {
+              "var": "stage"
+            },
+            {
+              "const": 5
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "stage",
+            "expr": {
+              "const": 0
+            }
+          },
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "rst_5_2",
+        "event": "key_2",
+        "guard": {
+          "op": "eq",
+          "args": [
+            {
+              "var": "stage"
+            },
+            {
+              "const": 5
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "stage",
+            "expr": {
+              "const": 0
+            }
+          },
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "t_send_blocked",
+        "event": "send_attempt",
+        "guard": {
+          "op": "and",
+          "args": [
+            {
+              "var": "opted_out"
+            },
+            {
+              "op": "lt",
+              "args": [
+                {
+                  "var": "stage"
+                },
+                {
+                  "const": 6
+                }
+              ]
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "t_resume_glitch",
+        "event": "send_attempt",
+        "guard": {
+          "op": "and",
+          "args": [
+            {
+              "var": "opted_out"
+            },
+            {
+              "op": "ge",
+              "args": [
+                {
+                  "var": "stage"
+                },
+                {
+                  "const": 6
+                }
+              ]
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "sent",
+            "expr": {
+              "const": true
+            }
+          }
+        ],
+        "emits": [
+          {
+            "action": "send_message"
+          }
+        ]
+      }
+    ]
+  },
+  "property": {
+    "id": "no-send-after-optout",
+    "kind": "temporal",
+    "formula": {
+      "op": "G",
+      "args": [
+        {
+          "op": "implies",
+          "args": [
+            {
+              "var": "opted_out"
+            },
+            {
+              "op": "not",
+              "args": [
+                {
+                  "var": "sent"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "bound": 9,
+    "intent": "in every reachable state with opted_out true, sent is false"
+  }
+}

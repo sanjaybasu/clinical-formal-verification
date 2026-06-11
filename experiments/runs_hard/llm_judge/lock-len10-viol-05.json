@@ -1,0 +1,48 @@
+{
+  "item_id": "lock-len10-viol-05",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property G(opted_out -> not sent) is VIOLATED via the t_resume_glitch transition.\n\nKey observations:\n1. t_resume_glitch fires on send_attempt when (opted_out AND stage >= 10), setting sent := true. Since stage is capped at 10, this means stage == 10. This sets sent true while opted_out is true \u2014 directly violating the property.\n2. t_optout only sets opted_out := true and sent := false; it does NOT reset stage. So the lock stage persists across opt-out.\n3. The advancing/reset transitions (adv_*, rst_*) are guarded only on stage, with no opted_out guard. So the lock can be dialed to stage 10 even while opted_out is true.\n\nThe advancing combination to reach stage 10: stage0->1 key_2, 1->2 key_1, 2->3 key_2, 3->4 key_1, 4->5 key_2, 5->6 key_0, 6->7 key_1, 7->8 key_1, 8->9 key_2, 9->10 key_1.\n\nConcrete trace (opted_out, sent, stage):\ninit (F,F,0)\noptout -> t_optout (T,F,0)\nkey_2 -> adv_0 (T,F,1)\nkey_1 -> adv_1 (T,F,2)\nkey_2 -> adv_2 (T,F,3)\nkey_1 -> adv_3 (T,F,4)\nkey_2 -> adv_4 (T,F,5)\nkey_0 -> adv_5 (T,F,6)\nkey_1 -> adv_6 (T,F,7)\nkey_1 -> adv_7 (T,F,8)\nkey_2 -> adv_8 (T,F,9)\nkey_1 -> adv_9 (T,F,10)\nsend_attempt -> t_resume_glitch (opted_out and stage>=10) (T,T,10)  <-- VIOLATION\n\nFinal state has opted_out=true and sent=true. Total events = 12, within the 13-event bound.\n\nFile analyzed: /Users/sanjaybasu/clinical-formal-verification/experiments/runs_hard/_judge_prompts/lock-len10-viol-05.txt",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

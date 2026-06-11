@@ -1,0 +1,11 @@
+{
+  "item_id": "compute-m048-002",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The only property-violating transition is t_resume_glitch, which sets sent:=true when (opted_out and acc==46) on send_attempt. All other send/optout/step transitions either require not opted_out (t_send_allowed) or set sent:=false. So a violation requires reaching acc==46 with opted_out true. acc is changed only by step events (optout and send_attempt leave acc unchanged); each step computes acc' = (3*acc + c) mod 48 with c in {21 (step_0), 8 (step_1), 47 (step_2)}. Modulo 3 these constants are {0, 2, 2}, so after any step acc \u2261 0 or 2 (mod 3), never \u2261 1. Starting from acc=0, every reachable acc value has acc mod 3 in {0,2}. The target 46 has 46 mod 3 = 1, hence unreachable. A full BFS over the step recurrence confirms the reachable acc set is exactly the 32 values with acc mod 3 != 1, and 46 is not in it. Therefore t_resume_glitch can never fire, and globally(opted_out implies not sent) holds on every reachable execution within (and beyond) 50 events. The target is unreachable; no counterexample exists.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

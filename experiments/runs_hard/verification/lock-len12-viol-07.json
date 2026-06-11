@@ -1,0 +1,72 @@
+{
+  "item_id": "lock-len12-viol-07",
+  "method": "verification",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "key_2",
+      "transition": "adv_0"
+    },
+    {
+      "event": "key_1",
+      "transition": "adv_1"
+    },
+    {
+      "event": "key_2",
+      "transition": "adv_2"
+    },
+    {
+      "event": "send_attempt",
+      "transition": "t_send_allowed"
+    },
+    {
+      "event": "key_1",
+      "transition": "adv_3"
+    },
+    {
+      "event": "key_2",
+      "transition": "adv_4"
+    },
+    {
+      "event": "key_2",
+      "transition": "adv_5"
+    },
+    {
+      "event": "key_1",
+      "transition": "adv_6"
+    },
+    {
+      "event": "optout",
+      "transition": "t_optout"
+    },
+    {
+      "event": "key_0",
+      "transition": "adv_7"
+    },
+    {
+      "event": "key_1",
+      "transition": "adv_8"
+    },
+    {
+      "event": "key_0",
+      "transition": "adv_9"
+    },
+    {
+      "event": "key_0",
+      "transition": "adv_10"
+    },
+    {
+      "event": "key_0",
+      "transition": "adv_11"
+    },
+    {
+      "event": "send_attempt",
+      "transition": "t_resume_glitch"
+    }
+  ],
+  "seconds": 0.2291,
+  "extra": {
+    "proof_scope": "traces up to length 15",
+    "method_note": "sat: a reachable trace reaches a state violating the invariant"
+  }
+}

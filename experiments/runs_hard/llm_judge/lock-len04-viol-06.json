@@ -1,0 +1,30 @@
+{
+  "item_id": "lock-len04-viol-06",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The lock advances to stage 4 via the combination key_1 (stage 0->1, adv_0), key_2 (1->2, adv_1), key_1 (2->3, adv_2), key_0 (3->4, adv_3). Crucially, the optout transition [t_optout] sets opted_out:=true and sent:=false but does NOT reset stage, and the stage-advance guards depend only on stage, not on opted_out. The send-blocking transition [t_send_blocked] only fires when (opted_out and stage < 4). The [t_resume_glitch] transition fires on send_attempt when (opted_out and stage >= 4), setting sent:=true. Therefore: advance to stage 4 while not opted out, then optout (opted_out=true, sent=false, stage stays 4), then send_attempt -> t_resume_glitch fires (opted_out=true and stage 4 >= 4) -> sent:=true. Final state: opted_out=true, sent=true, violating globally(opted_out implies not sent). The trace is 6 events, within the 7-event bound. Full trace: start (F,F,0) -> key_1 (F,F,1) -> key_2 (F,F,2) -> key_1 (F,F,3) -> key_0 (F,F,4) -> optout (T,F,4) -> send_attempt (T,T,4) [VIOLATION].",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

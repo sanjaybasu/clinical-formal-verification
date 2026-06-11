@@ -1,0 +1,24 @@
+{
+  "item_id": "compute-m008-006",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "step_1"
+    },
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The step updates compute (3*acc + c) mod 8 via three conditional subtractions of 8 (the triple-nested if covers the range, since max input 3*7+7=28 needs three subtractions to fall below 8). So: step_0 = (3*acc+5) mod 8, step_1 = step_2 = (3*acc+7) mod 8. The faulty resume path t_resume_glitch fires on send_attempt when (opted_out and acc==2), setting sent:=true, which would violate G(opted_out implies not sent). The target acc==2 is reachable from the initial acc=0: step_1 takes 0 -> (0+7) mod 8 = 7, then step_0 takes 7 -> (21+5) mod 8 = 26 mod 8 = 2. After reaching acc=2, optout sets opted_out:=true (acc unchanged at 2, sent:=false). Then send_attempt matches t_resume_glitch (opted_out true and acc==2), setting sent:=true while opted_out is true. This reachable state has opted_out=true and sent=true, violating the property. Full sequence (4 events, within the 10-event bound): step_1, step_0, optout, send_attempt. (BFS confirms all of acc in 0..7 are reachable, and the shortest path to acc=2 is step_1 then step_0.)",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "item_id": "compute-m032-038",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The only transition that can set sent:=true while opted_out is true is t_resume_glitch, which is guarded by (opted_out and acc == 14). So a violation requires reaching acc==14 via step events, then optout, then send_attempt.\n\nEach step event applies acc := (3*acc + c) mod 32 (the nested if-then-else just subtracts 32 up to 3 times; max input 3*31+31=124 needs at most 3 subtractions, so it correctly computes mod 32; verified all 32 inputs land in [0,31]). Constants: step_0 c=31, step_1 c=7, step_2 c=23.\n\nI ran an exhaustive BFS over the acc state space (only 32 possible values, so the full reachable set is found regardless of the 34-event budget). Starting from acc=0, the reachable acc values are exactly {0,3,4,7,8,11,12,15,16,19,20,23,24,27,28,31} (16 values). acc=14 is NOT in this set.\n\nThere is a clean invariant explaining this: the constants 31, 7, 23 are all congruent to 3 (mod 4), and the multiplier 3 is -1 (mod 4). From acc=0, every reachable value is congruent to 0 or 3 (mod 4). The target 14 is congruent to 2 (mod 4), hence unreachable.\n\nSince acc==14 is never reachable, t_resume_glitch is never enabled. After optout, every send_attempt matches t_send_blocked (opted_out and acc!=14), setting sent:=false. Therefore globally(opted_out implies not sent) holds on every reachable execution. The property holds; no counterexample exists.\n\nFile analyzed: /Users/sanjaybasu/clinical-formal-verification/experiments/runs_compute/_judge_prompts/compute-m032-038.txt",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

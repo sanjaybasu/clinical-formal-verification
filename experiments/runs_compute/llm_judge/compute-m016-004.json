@@ -1,0 +1,24 @@
+{
+  "item_id": "compute-m016-004",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "step_2"
+    },
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The step events apply acc := (3*acc + c) mod 16 (the nested if/subtract-16 chain is exactly mod-16 reduction): step_0 uses c=1, step_1 uses c=5, step_2 uses c=3. The faulty resume transition t_resume_glitch fires on send_attempt when (opted_out and acc == 10), setting sent := true, which violates globally(opted_out implies not sent). So a violation exists iff acc can be driven to 10 before opt-out. BFS over the reachable acc-values from acc=0 shows all of 0..15 are reachable, and acc=10 is reached in two steps. Concrete witness: starting acc=0; step_2 gives (3*0+3) mod 16 = 3; step_0 gives (3*3+1) mod 16 = 10. Then optout sets opted_out=true (acc unchanged at 10, sent=false). Then send_attempt matches t_resume_glitch because opted_out is true and acc==10, setting sent=true. Final state opted_out=true AND sent=true violates the property. Faithful simulation using the literal nested-conditional updates confirms each transition. The sequence is 4 events, within the 18-event bound.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "item_id": "lock-len08-hold-109",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property globally(opted_out implies not sent) holds on every reachable execution.\n\nKey facts:\n1. opted_out is set true only by [t_optout] on `optout`, and NO transition ever sets opted_out back to false. So once opt-out occurs, opted_out is permanently true.\n2. sent is set to true only by [t_send_allowed] on `send_attempt`, whose guard is `not opted_out`. Thus sent can only become true while opted_out is false; that transition does not modify opted_out, so the resulting state has opted_out=false, sent=true \u2014 which satisfies the invariant.\n3. [t_optout] itself sets sent := false in the same step it sets opted_out := true, so the post-opt-out state has sent=false.\n4. After opted_out is true: the only sent-setter [t_send_allowed] is permanently disabled (guard not opted_out can never hold again). Every `send_attempt` instead fires [t_send_blocked], setting sent := false. Every key_0/key_1/key_2 transition (all advance and reset rules of the combination lock) sets sent := false. The lock stages only mutate `stage`; they never touch opted_out and never set sent := true.\n\nTherefore in every reachable state, opted_out=true implies sent=false. The combination-lock stage logic is irrelevant to the safety property: there is no path \u2014 at any stage value 0..8, in any order \u2014 by which a send can be recorded (sent=true) while opted_out is true. No counterexample exists within 11 events (or any length).",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

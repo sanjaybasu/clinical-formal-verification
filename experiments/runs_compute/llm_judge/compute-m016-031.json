@@ -1,0 +1,11 @@
+{
+  "item_id": "compute-m016-031",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The only way to violate globally(opted_out implies not sent) is transition t_resume_glitch, which sets sent:=true while opted_out is true, but it is guarded by acc==3. So a violation requires reaching acc==3 (optout and send_attempt do not modify acc; only step events do).\n\nEach step event's nested if-then-else is exactly a modular linear recurrence acc := (3*acc + k) mod 16: step_0 uses k=14, step_1 uses k=6, step_2 uses k=2. I verified by exhaustive check that the triple-subtract nested-if equals (3*acc+k) mod 16 for every acc in [0,15] and every k in {14,6,2}.\n\nParity invariant: acc starts at 0 (even). For even acc, 3*acc is even; adding an even constant (14, 6, or 2) keeps the value even; reducing mod 16 (an even modulus) preserves parity. Hence acc is even on every reachable state. Exhaustive forward reachability confirms the reachable acc set is exactly {0,2,4,6,8,10,12,14}.\n\nThe target acc==3 is odd, therefore unreachable under any sequence of step events (and optout/send_attempt cannot change acc). The glitch guard can never be satisfied, so no message is ever sent after opt-out. The property holds on all reachable executions (well within the 18-event bound). This is an unreachable-target case; arrays left empty.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

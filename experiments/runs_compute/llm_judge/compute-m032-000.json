@@ -1,0 +1,27 @@
+{
+  "item_id": "compute-m032-000",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "step_1"
+    },
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "step_2"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The three step events implement the modular linear recurrences acc := (3*acc + c) mod 32, where the triple-nested \"if >= 32 then -32\" reduces mod 32 (max input 3*31+23=116 < 128 needs at most 3 subtractions): step_0 uses c=23, step_1 uses c=15, step_2 uses c=2. The safety property globally(opted_out -> not sent) is violated by transition t_resume_glitch [send_attempt if opted_out and acc==14: sent:=true]. optout leaves acc unchanged, so I need to drive acc from 0 to 14 with step events. BFS found the sequence step_1, step_0, step_2: acc 0 ->(step_1) (15)mod32=15 ->(step_0) (3*15+23=68)mod32=4 ->(step_2) (3*4+2=14)mod32=14. Then optout sets opted_out=true, sent=false (acc still 14). Then send_attempt matches t_resume_glitch (opted_out and acc==14), setting sent=true while opted_out is true. Final state opted_out=true, sent=true violates the property. The witness is 5 events, within the 34-event bound. Verified by direct simulation of the full state machine.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

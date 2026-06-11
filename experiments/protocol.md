@@ -75,7 +75,10 @@ language-model judge, NeMo Guardrails, Llama Guard.
 
 ## Determinism and reproducibility
 
-- The benchmark regenerates identically from `benchmark/generate.py` (seeded, no wall-clock).
+- The released, canonical benchmark is the version-controlled suite under `benchmark/suite*/`;
+  the generators are deterministic (seeds derive from a stable sha256 of the construction
+  parameters) and document and reproduce an equivalent suite. All results are computed on the
+  committed suite.
 - The unit-test seed is 20260610; N = 1000.
 - The judge runs at temperature 0 with a pinned model id recorded in the outputs.
 - Each run writes raw per-item outputs to `experiments/runs/<method>/` with atomic writes and

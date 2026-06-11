@@ -1,0 +1,30 @@
+{
+  "item_id": "lock-len04-viol-01",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The lock is a 4-stage combination unlocked by the key sequence key_1 (adv_0: 0->1), key_0 (adv_1: 1->2), key_1 (adv_2: 2->3), key_2 (adv_3: 3->4). Each advance/reset sets sent:=false, and any non-matching key leaves state unchanged. Critically, the optout transition (t_optout) sets opted_out:=true and sent:=false but does NOT reset stage, so the unlocked stage 4 persists after opt-out. There are three send_attempt transitions: t_send_allowed fires only if not opted_out; t_send_blocked fires if (opted_out and stage<4) keeping sent=false; but t_resume_glitch fires if (opted_out and stage>=4) and sets sent:=true. This last transition is the defect.\n\nWitness trace: (1) key_1 at stage0 -> stage1 [opted_out=F,sent=F,stage=1]; (2) key_0 at stage1 -> stage2 [stage=2]; (3) key_1 at stage2 -> stage3 [stage=3]; (4) key_2 at stage3 -> stage4 [opted_out=F,sent=F,stage=4]; (5) optout -> opted_out=T,sent=F, stage unchanged =4 [opted_out=T,sent=F,stage=4]; (6) send_attempt: t_send_allowed disabled (opted_out true), t_send_blocked disabled (stage not <4), t_resume_glitch ENABLED (opted_out and stage>=4) -> sent:=true. Final state opted_out=T, sent=T violates globally(opted_out implies not sent). Six events, within the 7-event bound.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

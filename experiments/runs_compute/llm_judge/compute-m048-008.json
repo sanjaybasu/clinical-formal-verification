@@ -1,0 +1,27 @@
+{
+  "item_id": "compute-m048-008",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "step_1"
+    },
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "step_1"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "Each step event applies a modular linear recurrence acc := (3*acc + c) mod 48 (step_0: c=5, step_1: c=27, step_2: c=11). The nested if-then-else in the file subtracts 48 up to three times; since the maximum pre-reduction value is 3*47+27 = 168 < 192 = 48*4, three subtractions always suffice, so the update is exactly (3*acc + c) mod 48. The faulty resume path t_resume_glitch sets sent := true on a send_attempt when (opted_out and acc == 45), so the safety property globally(opted_out implies not sent) is violated iff acc can reach the target 45 via step events.\n\nI performed a BFS over reachable acc values from acc=0 under the three step functions. The target 45 IS reachable (26 of 48 residues are reachable, including 45). A shortest witness step sequence is step_1, step_0, step_1, giving acc trace 0 -> 27 -> 38 -> 45.\n\nFull state-machine simulation of the witness (verified): start (opted_out=false, sent=false, acc=0). step_1 -> acc=27; step_0 -> acc=38; step_1 -> acc=45 (all steps also set sent:=false, irrelevant). optout -> opted_out=true, sent=false, acc unchanged=45. send_attempt -> guard (opted_out and acc==45) matches t_resume_glitch -> sent:=true while opted_out=true. Final state opted_out=true AND sent=true, which violates the property. Hence VIOLATED with the concrete event sequence [step_1, step_0, step_1, optout, send_attempt].",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

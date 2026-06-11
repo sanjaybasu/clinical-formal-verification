@@ -1,0 +1,30 @@
+{
+  "item_id": "compute-m048-011",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "step_2"
+    },
+    {
+      "event": "step_1"
+    },
+    {
+      "event": "step_2"
+    },
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The safety property G(opted_out -> not sent) is VIOLATED. The faulty t_resume_glitch transition sets sent:=true on a send_attempt when (opted_out and acc==14). optout only flips opted_out (and zeroes sent) without touching acc, so reaching acc==14 before optout and then firing send_attempt triggers the glitch.\n\nEach step event applies acc := (3*acc + c) mod 48 (the nested up-to-3 subtractions of 48 are exactly mod 48; verified for all acc in [0,47]): step_0 c=35, step_1 c=43, step_2 c=36. I ran BFS over the 48-state space from acc=0; target 14 IS reachable.\n\nConcrete trace (6 events, within the 50-event bound), starting acc=0:\n- step_2: acc=(3*0+36)%48=36\n- step_1: acc=(3*36+43)%48=151%48=7\n- step_2: acc=(3*7+36)%48=57%48=9\n- step_0: acc=(3*9+35)%48=62%48=14\n- optout: opted_out=true, sent=false, acc stays 14\n- send_attempt: opted_out=true and acc==14 -> t_resume_glitch fires -> sent=true\n\nFinal state has opted_out=true AND sent=true, contradicting opted_out -> not sent. Full state simulation confirms the violation. File analyzed: /Users/sanjaybasu/clinical-formal-verification/experiments/runs_compute/_judge_prompts/compute-m048-011.txt",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

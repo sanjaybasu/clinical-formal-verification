@@ -1,0 +1,30 @@
+{
+  "item_id": "lock-len04-viol-02",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property G(opted_out implies not sent) is VIOLATED via the t_resume_glitch transition (line 25): on send_attempt if (opted_out and stage >= 4), sent := true. This sets sent=true while opted_out is true.\n\nKey facts about the lock:\n- The combination to reach stage 4 is key_2 (adv_0: 0->1), key_1 (adv_1: 1->2), key_1 (adv_2: 2->3), key_0 (adv_3: 3->4).\n- The optout event (line 10) sets opted_out:=true and sent:=false but does NOT reset stage. No stage transition is guarded on opted_out, so the lock can be advanced to stage 4 even after opt-out.\n\nCounterexample (6 events, within the 7-event bound):\n1. optout -> opted_out=true, sent=false, stage=0\n2. key_2 -> adv_0 fires: stage=1, sent=false (opted_out still true)\n3. key_1 -> adv_1 fires: stage=2\n4. key_1 -> adv_2 fires: stage=3\n5. key_0 -> adv_3 fires: stage=4\n6. send_attempt -> of the three send transitions: t_send_allowed disabled (requires not opted_out), t_send_blocked disabled (requires stage<4, but stage=4), t_resume_glitch ENABLED (opted_out and stage>=4) -> sent:=true.\n\nFinal state: opted_out=true, sent=true => opted_out implies not sent is FALSE. Property violated.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

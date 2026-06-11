@@ -1,0 +1,24 @@
+{
+  "item_id": "lock-len02-viol-00",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires that globally opted_out implies not sent, i.e., no reachable state has opted_out=true AND sent=true. The only transition that sets sent:=true while opted_out=true is [t_resume_glitch] (on send_attempt if opted_out and stage>=2). This is reachable because the optout event ([t_optout]) only sets opted_out:=true and sent:=false; it does NOT reset stage. So the lock can be advanced to stage 2 before opting out, leaving a 'resume glitch' that allows a send after opt-out.\n\nTrace (initial: opted_out=F, sent=F, stage=0):\n1. key_0 at stage 0 -> [adv_0]: stage:=1, sent:=F. (opted_out=F, sent=F, stage=1)\n2. key_0 at stage 1 -> [adv_1]: stage:=2, sent:=F. (opted_out=F, sent=F, stage=2)\n3. optout -> [t_optout]: opted_out:=T, sent:=F; stage stays 2. (opted_out=T, sent=F, stage=2)\n4. send_attempt: [t_send_allowed] disabled (opted_out true); [t_send_blocked] disabled (stage<2 false, stage==2); [t_resume_glitch] enabled (opted_out and stage>=2) -> sent:=T. Resulting state: opted_out=T, sent=T, stage=2.\n\nThis state has opted_out=true and sent=true, violating globally(opted_out implies not sent). The counterexample uses 4 events, within the 5-event bound.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

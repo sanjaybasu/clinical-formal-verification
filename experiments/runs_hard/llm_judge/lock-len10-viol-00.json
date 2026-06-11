@@ -1,0 +1,48 @@
+{
+  "item_id": "lock-len10-viol-00",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property globally(opted_out implies not sent) is VIOLATED.\n\nThe vulnerability is the t_resume_glitch transition (line 43): on send_attempt if (opted_out and stage >= 10): sent := true. This allows a send to go through even after opt-out, provided the lock has been advanced to stage 10.\n\nCritically, the t_optout transition (line 10) sets opted_out := true and sent := false but does NOT reset stage. Likewise, all the lock advance transitions set sent := false but never clear opted_out. So once opted_out is set true, it stays true while the stage can still be advanced.\n\nThe combination lock advances as follows: stage0->1 key_0, stage1->2 key_0, stage2->3 key_2, stage3->4 key_2, stage4->5 key_2, stage5->6 key_1, stage6->7 key_2, stage7->8 key_1, stage8->9 key_1, stage9->10 key_0.\n\nCounterexample trace (12 events, within the 13-event bound):\n1. optout: opted_out=true, sent=false, stage=0\n2. key_0 (adv_0): stage=1\n3. key_0 (adv_1): stage=2\n4. key_2 (adv_2): stage=3\n5. key_2 (adv_3): stage=4\n6. key_2 (adv_4): stage=5\n7. key_1 (adv_5): stage=6\n8. key_2 (adv_6): stage=7\n9. key_1 (adv_7): stage=8\n10. key_1 (adv_8): stage=9\n11. key_0 (adv_9): stage=10\n12. send_attempt: opted_out=true and stage>=10, so t_resume_glitch fires -> sent=true\n\nFinal state has opted_out=true AND sent=true, violating opted_out implies not sent.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "item_id": "lock-len08-viol-00",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property globally(opted_out implies not sent) is VIOLATED. The lock advances through stages via the combination key_0(0->1), key_2(1->2), key_1(2->3), key_0(3->4), key_2(4->5), key_0(5->6), key_2(6->7), key_2(7->8). Crucially, (a) optout only sets opted_out:=true and sent:=false but does NOT reset stage, and (b) none of the advance transitions are guarded on opted_out, so the lock can be driven to stage 8 even after opting out. The rule [t_resume_glitch] on send_attempt if (opted_out and stage >= 8) sets sent := true. Trace: optout -> opted_out=true,stage=0; then the 8 advancing keys drive stage 0->8 (each adv_* leaves opted_out=true); finally send_attempt at stage 8 with opted_out=true: t_send_allowed is disabled (requires not opted_out), t_send_blocked is disabled (requires stage<8), so t_resume_glitch fires and sets sent=true. Resulting state has opted_out=true AND sent=true, violating the property. The witness is 10 events, within the 11-event bound.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

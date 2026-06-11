@@ -1,0 +1,36 @@
+{
+  "item_id": "lock-len06-viol-00",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property \"globally(opted_out implies not sent)\" is VIOLATED.\n\nThe combination lock advances stage 0->6 via this unique key sequence (each adv_N guard depends only on stage): adv_0 (key_0: 0->1), adv_1 (key_1: 1->2), adv_2 (key_1: 2->3), adv_3 (key_0: 3->4), adv_4 (key_2: 4->5), adv_5 (key_0: 5->6). So the combination is key_0, key_1, key_1, key_0, key_2, key_0.\n\nTwo facts make a violation possible:\n1. t_optout (line 10) sets opted_out:=true but does NOT reset stage. The lock state persists across opt-out.\n2. The advance transitions adv_0..adv_5 are guarded only on stage, never on opted_out, so the lock can still be driven forward after opt-out.\n\nThe fault transition is t_resume_glitch (line 31): on send_attempt if (opted_out and stage >= 6): sent := true. This sets sent true while opted_out is true, directly contradicting the property \u2014 provided stage 6 is reached while opted out.\n\nConcrete trace (8 events, within the 9-event bound):\n- init: opted_out=F, sent=F, stage=0\n- optout (t_optout): opted_out=T, sent=F, stage=0\n- key_0 (adv_0): stage=1\n- key_1 (adv_1): stage=2\n- key_1 (adv_2): stage=3\n- key_0 (adv_3): stage=4\n- key_2 (adv_4): stage=5\n- key_0 (adv_5): stage=6\n- send_attempt: opted_out=T so t_send_allowed (needs not opted_out) is disabled; t_send_blocked needs stage<6 (disabled at stage 6); t_resume_glitch (opted_out and stage>=6) is enabled -> sent:=true.\n\nFinal state: opted_out=T, sent=T. The property fails. Note opt-out can occur anywhere before the send (e.g. last, since opt-out preserves stage and clears sent), but placing it first is the simplest witness.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

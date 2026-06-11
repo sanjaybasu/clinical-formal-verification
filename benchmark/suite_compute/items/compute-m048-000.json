@@ -1,0 +1,2604 @@
+{
+  "id": "compute-m048-000",
+  "domain": "outreach",
+  "metadata": {
+    "description": "messaging state machine gated by a computed accumulator; no message after opt-out",
+    "source": "synthetic",
+    "clinical_intent": "once a member opts out, no event sequence may cause a message to be sent"
+  },
+  "ruleset": {
+    "id": "compute-48-0",
+    "kind": "transition_system",
+    "state_vars": [
+      {
+        "name": "opted_out",
+        "type": "bool"
+      },
+      {
+        "name": "sent",
+        "type": "bool"
+      },
+      {
+        "name": "acc",
+        "type": "int",
+        "bounds": [
+          0,
+          47
+        ]
+      }
+    ],
+    "events": [
+      {
+        "name": "optout"
+      },
+      {
+        "name": "send_attempt"
+      },
+      {
+        "name": "step_0"
+      },
+      {
+        "name": "step_1"
+      },
+      {
+        "name": "step_2"
+      }
+    ],
+    "init": [
+      {
+        "var": "opted_out",
+        "value": false
+      },
+      {
+        "var": "sent",
+        "value": false
+      },
+      {
+        "var": "acc",
+        "value": 0
+      }
+    ],
+    "transitions": [
+      {
+        "id": "t_optout",
+        "event": "optout",
+        "update": [
+          {
+            "var": "opted_out",
+            "expr": {
+              "const": true
+            }
+          },
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "t_send_allowed",
+        "event": "send_attempt",
+        "guard": {
+          "op": "not",
+          "args": [
+            {
+              "var": "opted_out"
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "sent",
+            "expr": {
+              "const": true
+            }
+          }
+        ],
+        "emits": [
+          {
+            "action": "send_message"
+          }
+        ]
+      },
+      {
+        "id": "t_send_blocked",
+        "event": "send_attempt",
+        "guard": {
+          "op": "and",
+          "args": [
+            {
+              "var": "opted_out"
+            },
+            {
+              "op": "neq",
+              "args": [
+                {
+                  "var": "acc"
+                },
+                {
+                  "const": 20
+                }
+              ]
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "t_resume_glitch",
+        "event": "send_attempt",
+        "guard": {
+          "op": "and",
+          "args": [
+            {
+              "var": "opted_out"
+            },
+            {
+              "op": "eq",
+              "args": [
+                {
+                  "var": "acc"
+                },
+                {
+                  "const": 20
+                }
+              ]
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "sent",
+            "expr": {
+              "const": true
+            }
+          }
+        ],
+        "emits": [
+          {
+            "action": "send_message"
+          }
+        ]
+      },
+      {
+        "id": "step_0",
+        "event": "step_0",
+        "update": [
+          {
+            "var": "acc",
+            "expr": {
+              "op": "ite",
+              "args": [
+                {
+                  "op": "ge",
+                  "args": [
+                    {
+                      "op": "ite",
+                      "args": [
+                        {
+                          "op": "ge",
+                          "args": [
+                            {
+                              "op": "ite",
+                              "args": [
+                                {
+                                  "op": "ge",
+                                  "args": [
+                                    {
+                                      "op": "add",
+                                      "args": [
+                                        {
+                                          "op": "mul",
+                                          "args": [
+                                            {
+                                              "const": 3
+                                            },
+                                            {
+                                              "var": "acc"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "const": 40
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 48
+                                    }
+                                  ]
+                                },
+                                {
+                                  "op": "sub",
+                                  "args": [
+                                    {
+                                      "op": "add",
+                                      "args": [
+                                        {
+                                          "op": "mul",
+                                          "args": [
+                                            {
+                                              "const": 3
+                                            },
+                                            {
+                                              "var": "acc"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "const": 40
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 48
+                                    }
+                                  ]
+                                },
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 40
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "const": 48
+                            }
+                          ]
+                        },
+                        {
+                          "op": "sub",
+                          "args": [
+                            {
+                              "op": "ite",
+                              "args": [
+                                {
+                                  "op": "ge",
+                                  "args": [
+                                    {
+                                      "op": "add",
+                                      "args": [
+                                        {
+                                          "op": "mul",
+                                          "args": [
+                                            {
+                                              "const": 3
+                                            },
+                                            {
+                                              "var": "acc"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "const": 40
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 48
+                                    }
+                                  ]
+                                },
+                                {
+                                  "op": "sub",
+                                  "args": [
+                                    {
+                                      "op": "add",
+                                      "args": [
+                                        {
+                                          "op": "mul",
+                                          "args": [
+                                            {
+                                              "const": 3
+                                            },
+                                            {
+                                              "var": "acc"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "const": 40
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 48
+                                    }
+                                  ]
+                                },
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 40
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "const": 48
+                            }
+                          ]
+                        },
+                        {
+                          "op": "ite",
+                          "args": [
+                            {
+                              "op": "ge",
+                              "args": [
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 40
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 48
+                                }
+                              ]
+                            },
+                            {
+                              "op": "sub",
+                              "args": [
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 40
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 48
+                                }
+                              ]
+                            },
+                            {
+                              "op": "add",
+                              "args": [
+                                {
+                                  "op": "mul",
+                                  "args": [
+                                    {
+                                      "const": 3
+                                    },
+                                    {
+                                      "var": "acc"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 40
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "const": 48
+                    }
+                  ]
+                },
+                {
+                  "op": "sub",
+                  "args": [
+                    {
+                      "op": "ite",
+                      "args": [
+                        {
+                          "op": "ge",
+                          "args": [
+                            {
+                              "op": "ite",
+                              "args": [
+                                {
+                                  "op": "ge",
+                                  "args": [
+                                    {
+                                      "op": "add",
+                                      "args": [
+                                        {
+                                          "op": "mul",
+                                          "args": [
+                                            {
+                                              "const": 3
+                                            },
+                                            {
+                                              "var": "acc"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "const": 40
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 48
+                                    }
+                                  ]
+                                },
+                                {
+                                  "op": "sub",
+                                  "args": [
+                                    {
+                                      "op": "add",
+                                      "args": [
+                                        {
+                                          "op": "mul",
+                                          "args": [
+                                            {
+                                              "const": 3
+                                            },
+                                            {
+                                              "var": "acc"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "const": 40
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 48
+                                    }
+                                  ]
+                                },
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 40
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "const": 48
+                            }
+                          ]
+                        },
+                        {
+                          "op": "sub",
+                          "args": [
+                            {
+                              "op": "ite",
+                              "args": [
+                                {
+                                  "op": "ge",
+                                  "args": [
+                                    {
+                                      "op": "add",
+                                      "args": [
+                                        {
+                                          "op": "mul",
+                                          "args": [
+                                            {
+                                              "const": 3
+                                            },
+                                            {
+                                              "var": "acc"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "const": 40
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 48
+                                    }
+                                  ]
+                                },
+                                {
+                                  "op": "sub",
+                                  "args": [
+                                    {
+                                      "op": "add",
+                                      "args": [
+                                        {
+                                          "op": "mul",
+                                          "args": [
+                                            {
+                                              "const": 3
+                                            },
+                                            {
+                                              "var": "acc"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "const": 40
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 48
+                                    }
+                                  ]
+                                },
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 40
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "const": 48
+                            }
+                          ]
+                        },
+                        {
+                          "op": "ite",
+                          "args": [
+                            {
+                              "op": "ge",
+                              "args": [
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 40
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 48
+                                }
+                              ]
+                            },
+                            {
+                              "op": "sub",
+                              "args": [
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 40
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 48
+                                }
+                              ]
+                            },
+                            {
+                              "op": "add",
+                              "args": [
+                                {
+                                  "op": "mul",
+                                  "args": [
+                                    {
+                                      "const": 3
+                                    },
+                                    {
+                                      "var": "acc"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 40
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "const": 48
+                    }
+                  ]
+                },
+                {
+                  "op": "ite",
+                  "args": [
+                    {
+                      "op": "ge",
+                      "args": [
+                        {
+                          "op": "ite",
+                          "args": [
+                            {
+                              "op": "ge",
+                              "args": [
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 40
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 48
+                                }
+                              ]
+                            },
+                            {
+                              "op": "sub",
+                              "args": [
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 40
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 48
+                                }
+                              ]
+                            },
+                            {
+                              "op": "add",
+                              "args": [
+                                {
+                                  "op": "mul",
+                                  "args": [
+                                    {
+                                      "const": 3
+                                    },
+                                    {
+                                      "var": "acc"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 40
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "const": 48
+                        }
+                      ]
+                    },
+                    {
+                      "op": "sub",
+                      "args": [
+                        {
+                          "op": "ite",
+                          "args": [
+                            {
+                              "op": "ge",
+                              "args": [
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 40
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 48
+                                }
+                              ]
+                            },
+                            {
+                              "op": "sub",
+                              "args": [
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 40
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 48
+                                }
+                              ]
+                            },
+                            {
+                              "op": "add",
+                              "args": [
+                                {
+                                  "op": "mul",
+                                  "args": [
+                                    {
+                                      "const": 3
+                                    },
+                                    {
+                                      "var": "acc"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 40
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "const": 48
+                        }
+                      ]
+                    },
+                    {
+                      "op": "ite",
+                      "args": [
+                        {
+                          "op": "ge",
+                          "args": [
+                            {
+                              "op": "add",
+                              "args": [
+                                {
+                                  "op": "mul",
+                                  "args": [
+                                    {
+                                      "const": 3
+                                    },
+                                    {
+                                      "var": "acc"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 40
+                                }
+                              ]
+                            },
+                            {
+                              "const": 48
+                            }
+                          ]
+                        },
+                        {
+                          "op": "sub",
+                          "args": [
+                            {
+                              "op": "add",
+                              "args": [
+                                {
+                                  "op": "mul",
+                                  "args": [
+                                    {
+                                      "const": 3
+                                    },
+                                    {
+                                      "var": "acc"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 40
+                                }
+                              ]
+                            },
+                            {
+                              "const": 48
+                            }
+                          ]
+                        },
+                        {
+                          "op": "add",
+                          "args": [
+                            {
+                              "op": "mul",
+                              "args": [
+                                {
+                                  "const": 3
+                                },
+                                {
+                                  "var": "acc"
+                                }
+                              ]
+                            },
+                            {
+                              "const": 40
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "step_1",
+        "event": "step_1",
+        "update": [
+          {
+            "var": "acc",
+            "expr": {
+              "op": "ite",
+              "args": [
+                {
+                  "op": "ge",
+                  "args": [
+                    {
+                      "op": "ite",
+                      "args": [
+                        {
+                          "op": "ge",
+                          "args": [
+                            {
+                              "op": "ite",
+                              "args": [
+                                {
+                                  "op": "ge",
+                                  "args": [
+                                    {
+                                      "op": "add",
+                                      "args": [
+                                        {
+                                          "op": "mul",
+                                          "args": [
+                                            {
+                                              "const": 3
+                                            },
+                                            {
+                                              "var": "acc"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "const": 12
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 48
+                                    }
+                                  ]
+                                },
+                                {
+                                  "op": "sub",
+                                  "args": [
+                                    {
+                                      "op": "add",
+                                      "args": [
+                                        {
+                                          "op": "mul",
+                                          "args": [
+                                            {
+                                              "const": 3
+                                            },
+                                            {
+                                              "var": "acc"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "const": 12
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 48
+                                    }
+                                  ]
+                                },
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 12
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "const": 48
+                            }
+                          ]
+                        },
+                        {
+                          "op": "sub",
+                          "args": [
+                            {
+                              "op": "ite",
+                              "args": [
+                                {
+                                  "op": "ge",
+                                  "args": [
+                                    {
+                                      "op": "add",
+                                      "args": [
+                                        {
+                                          "op": "mul",
+                                          "args": [
+                                            {
+                                              "const": 3
+                                            },
+                                            {
+                                              "var": "acc"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "const": 12
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 48
+                                    }
+                                  ]
+                                },
+                                {
+                                  "op": "sub",
+                                  "args": [
+                                    {
+                                      "op": "add",
+                                      "args": [
+                                        {
+                                          "op": "mul",
+                                          "args": [
+                                            {
+                                              "const": 3
+                                            },
+                                            {
+                                              "var": "acc"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "const": 12
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 48
+                                    }
+                                  ]
+                                },
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 12
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "const": 48
+                            }
+                          ]
+                        },
+                        {
+                          "op": "ite",
+                          "args": [
+                            {
+                              "op": "ge",
+                              "args": [
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 12
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 48
+                                }
+                              ]
+                            },
+                            {
+                              "op": "sub",
+                              "args": [
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 12
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 48
+                                }
+                              ]
+                            },
+                            {
+                              "op": "add",
+                              "args": [
+                                {
+                                  "op": "mul",
+                                  "args": [
+                                    {
+                                      "const": 3
+                                    },
+                                    {
+                                      "var": "acc"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 12
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "const": 48
+                    }
+                  ]
+                },
+                {
+                  "op": "sub",
+                  "args": [
+                    {
+                      "op": "ite",
+                      "args": [
+                        {
+                          "op": "ge",
+                          "args": [
+                            {
+                              "op": "ite",
+                              "args": [
+                                {
+                                  "op": "ge",
+                                  "args": [
+                                    {
+                                      "op": "add",
+                                      "args": [
+                                        {
+                                          "op": "mul",
+                                          "args": [
+                                            {
+                                              "const": 3
+                                            },
+                                            {
+                                              "var": "acc"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "const": 12
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 48
+                                    }
+                                  ]
+                                },
+                                {
+                                  "op": "sub",
+                                  "args": [
+                                    {
+                                      "op": "add",
+                                      "args": [
+                                        {
+                                          "op": "mul",
+                                          "args": [
+                                            {
+                                              "const": 3
+                                            },
+                                            {
+                                              "var": "acc"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "const": 12
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 48
+                                    }
+                                  ]
+                                },
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 12
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "const": 48
+                            }
+                          ]
+                        },
+                        {
+                          "op": "sub",
+                          "args": [
+                            {
+                              "op": "ite",
+                              "args": [
+                                {
+                                  "op": "ge",
+                                  "args": [
+                                    {
+                                      "op": "add",
+                                      "args": [
+                                        {
+                                          "op": "mul",
+                                          "args": [
+                                            {
+                                              "const": 3
+                                            },
+                                            {
+                                              "var": "acc"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "const": 12
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 48
+                                    }
+                                  ]
+                                },
+                                {
+                                  "op": "sub",
+                                  "args": [
+                                    {
+                                      "op": "add",
+                                      "args": [
+                                        {
+                                          "op": "mul",
+                                          "args": [
+                                            {
+                                              "const": 3
+                                            },
+                                            {
+                                              "var": "acc"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "const": 12
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 48
+                                    }
+                                  ]
+                                },
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 12
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "const": 48
+                            }
+                          ]
+                        },
+                        {
+                          "op": "ite",
+                          "args": [
+                            {
+                              "op": "ge",
+                              "args": [
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 12
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 48
+                                }
+                              ]
+                            },
+                            {
+                              "op": "sub",
+                              "args": [
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 12
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 48
+                                }
+                              ]
+                            },
+                            {
+                              "op": "add",
+                              "args": [
+                                {
+                                  "op": "mul",
+                                  "args": [
+                                    {
+                                      "const": 3
+                                    },
+                                    {
+                                      "var": "acc"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 12
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "const": 48
+                    }
+                  ]
+                },
+                {
+                  "op": "ite",
+                  "args": [
+                    {
+                      "op": "ge",
+                      "args": [
+                        {
+                          "op": "ite",
+                          "args": [
+                            {
+                              "op": "ge",
+                              "args": [
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 12
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 48
+                                }
+                              ]
+                            },
+                            {
+                              "op": "sub",
+                              "args": [
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 12
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 48
+                                }
+                              ]
+                            },
+                            {
+                              "op": "add",
+                              "args": [
+                                {
+                                  "op": "mul",
+                                  "args": [
+                                    {
+                                      "const": 3
+                                    },
+                                    {
+                                      "var": "acc"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 12
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "const": 48
+                        }
+                      ]
+                    },
+                    {
+                      "op": "sub",
+                      "args": [
+                        {
+                          "op": "ite",
+                          "args": [
+                            {
+                              "op": "ge",
+                              "args": [
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 12
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 48
+                                }
+                              ]
+                            },
+                            {
+                              "op": "sub",
+                              "args": [
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 12
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 48
+                                }
+                              ]
+                            },
+                            {
+                              "op": "add",
+                              "args": [
+                                {
+                                  "op": "mul",
+                                  "args": [
+                                    {
+                                      "const": 3
+                                    },
+                                    {
+                                      "var": "acc"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 12
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "const": 48
+                        }
+                      ]
+                    },
+                    {
+                      "op": "ite",
+                      "args": [
+                        {
+                          "op": "ge",
+                          "args": [
+                            {
+                              "op": "add",
+                              "args": [
+                                {
+                                  "op": "mul",
+                                  "args": [
+                                    {
+                                      "const": 3
+                                    },
+                                    {
+                                      "var": "acc"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 12
+                                }
+                              ]
+                            },
+                            {
+                              "const": 48
+                            }
+                          ]
+                        },
+                        {
+                          "op": "sub",
+                          "args": [
+                            {
+                              "op": "add",
+                              "args": [
+                                {
+                                  "op": "mul",
+                                  "args": [
+                                    {
+                                      "const": 3
+                                    },
+                                    {
+                                      "var": "acc"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 12
+                                }
+                              ]
+                            },
+                            {
+                              "const": 48
+                            }
+                          ]
+                        },
+                        {
+                          "op": "add",
+                          "args": [
+                            {
+                              "op": "mul",
+                              "args": [
+                                {
+                                  "const": 3
+                                },
+                                {
+                                  "var": "acc"
+                                }
+                              ]
+                            },
+                            {
+                              "const": 12
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "step_2",
+        "event": "step_2",
+        "update": [
+          {
+            "var": "acc",
+            "expr": {
+              "op": "ite",
+              "args": [
+                {
+                  "op": "ge",
+                  "args": [
+                    {
+                      "op": "ite",
+                      "args": [
+                        {
+                          "op": "ge",
+                          "args": [
+                            {
+                              "op": "ite",
+                              "args": [
+                                {
+                                  "op": "ge",
+                                  "args": [
+                                    {
+                                      "op": "add",
+                                      "args": [
+                                        {
+                                          "op": "mul",
+                                          "args": [
+                                            {
+                                              "const": 3
+                                            },
+                                            {
+                                              "var": "acc"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "const": 35
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 48
+                                    }
+                                  ]
+                                },
+                                {
+                                  "op": "sub",
+                                  "args": [
+                                    {
+                                      "op": "add",
+                                      "args": [
+                                        {
+                                          "op": "mul",
+                                          "args": [
+                                            {
+                                              "const": 3
+                                            },
+                                            {
+                                              "var": "acc"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "const": 35
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 48
+                                    }
+                                  ]
+                                },
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 35
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "const": 48
+                            }
+                          ]
+                        },
+                        {
+                          "op": "sub",
+                          "args": [
+                            {
+                              "op": "ite",
+                              "args": [
+                                {
+                                  "op": "ge",
+                                  "args": [
+                                    {
+                                      "op": "add",
+                                      "args": [
+                                        {
+                                          "op": "mul",
+                                          "args": [
+                                            {
+                                              "const": 3
+                                            },
+                                            {
+                                              "var": "acc"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "const": 35
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 48
+                                    }
+                                  ]
+                                },
+                                {
+                                  "op": "sub",
+                                  "args": [
+                                    {
+                                      "op": "add",
+                                      "args": [
+                                        {
+                                          "op": "mul",
+                                          "args": [
+                                            {
+                                              "const": 3
+                                            },
+                                            {
+                                              "var": "acc"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "const": 35
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 48
+                                    }
+                                  ]
+                                },
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 35
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "const": 48
+                            }
+                          ]
+                        },
+                        {
+                          "op": "ite",
+                          "args": [
+                            {
+                              "op": "ge",
+                              "args": [
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 35
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 48
+                                }
+                              ]
+                            },
+                            {
+                              "op": "sub",
+                              "args": [
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 35
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 48
+                                }
+                              ]
+                            },
+                            {
+                              "op": "add",
+                              "args": [
+                                {
+                                  "op": "mul",
+                                  "args": [
+                                    {
+                                      "const": 3
+                                    },
+                                    {
+                                      "var": "acc"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 35
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "const": 48
+                    }
+                  ]
+                },
+                {
+                  "op": "sub",
+                  "args": [
+                    {
+                      "op": "ite",
+                      "args": [
+                        {
+                          "op": "ge",
+                          "args": [
+                            {
+                              "op": "ite",
+                              "args": [
+                                {
+                                  "op": "ge",
+                                  "args": [
+                                    {
+                                      "op": "add",
+                                      "args": [
+                                        {
+                                          "op": "mul",
+                                          "args": [
+                                            {
+                                              "const": 3
+                                            },
+                                            {
+                                              "var": "acc"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "const": 35
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 48
+                                    }
+                                  ]
+                                },
+                                {
+                                  "op": "sub",
+                                  "args": [
+                                    {
+                                      "op": "add",
+                                      "args": [
+                                        {
+                                          "op": "mul",
+                                          "args": [
+                                            {
+                                              "const": 3
+                                            },
+                                            {
+                                              "var": "acc"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "const": 35
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 48
+                                    }
+                                  ]
+                                },
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 35
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "const": 48
+                            }
+                          ]
+                        },
+                        {
+                          "op": "sub",
+                          "args": [
+                            {
+                              "op": "ite",
+                              "args": [
+                                {
+                                  "op": "ge",
+                                  "args": [
+                                    {
+                                      "op": "add",
+                                      "args": [
+                                        {
+                                          "op": "mul",
+                                          "args": [
+                                            {
+                                              "const": 3
+                                            },
+                                            {
+                                              "var": "acc"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "const": 35
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 48
+                                    }
+                                  ]
+                                },
+                                {
+                                  "op": "sub",
+                                  "args": [
+                                    {
+                                      "op": "add",
+                                      "args": [
+                                        {
+                                          "op": "mul",
+                                          "args": [
+                                            {
+                                              "const": 3
+                                            },
+                                            {
+                                              "var": "acc"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "const": 35
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 48
+                                    }
+                                  ]
+                                },
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 35
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "const": 48
+                            }
+                          ]
+                        },
+                        {
+                          "op": "ite",
+                          "args": [
+                            {
+                              "op": "ge",
+                              "args": [
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 35
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 48
+                                }
+                              ]
+                            },
+                            {
+                              "op": "sub",
+                              "args": [
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 35
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 48
+                                }
+                              ]
+                            },
+                            {
+                              "op": "add",
+                              "args": [
+                                {
+                                  "op": "mul",
+                                  "args": [
+                                    {
+                                      "const": 3
+                                    },
+                                    {
+                                      "var": "acc"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 35
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "const": 48
+                    }
+                  ]
+                },
+                {
+                  "op": "ite",
+                  "args": [
+                    {
+                      "op": "ge",
+                      "args": [
+                        {
+                          "op": "ite",
+                          "args": [
+                            {
+                              "op": "ge",
+                              "args": [
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 35
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 48
+                                }
+                              ]
+                            },
+                            {
+                              "op": "sub",
+                              "args": [
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 35
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 48
+                                }
+                              ]
+                            },
+                            {
+                              "op": "add",
+                              "args": [
+                                {
+                                  "op": "mul",
+                                  "args": [
+                                    {
+                                      "const": 3
+                                    },
+                                    {
+                                      "var": "acc"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 35
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "const": 48
+                        }
+                      ]
+                    },
+                    {
+                      "op": "sub",
+                      "args": [
+                        {
+                          "op": "ite",
+                          "args": [
+                            {
+                              "op": "ge",
+                              "args": [
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 35
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 48
+                                }
+                              ]
+                            },
+                            {
+                              "op": "sub",
+                              "args": [
+                                {
+                                  "op": "add",
+                                  "args": [
+                                    {
+                                      "op": "mul",
+                                      "args": [
+                                        {
+                                          "const": 3
+                                        },
+                                        {
+                                          "var": "acc"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "const": 35
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 48
+                                }
+                              ]
+                            },
+                            {
+                              "op": "add",
+                              "args": [
+                                {
+                                  "op": "mul",
+                                  "args": [
+                                    {
+                                      "const": 3
+                                    },
+                                    {
+                                      "var": "acc"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 35
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "const": 48
+                        }
+                      ]
+                    },
+                    {
+                      "op": "ite",
+                      "args": [
+                        {
+                          "op": "ge",
+                          "args": [
+                            {
+                              "op": "add",
+                              "args": [
+                                {
+                                  "op": "mul",
+                                  "args": [
+                                    {
+                                      "const": 3
+                                    },
+                                    {
+                                      "var": "acc"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 35
+                                }
+                              ]
+                            },
+                            {
+                              "const": 48
+                            }
+                          ]
+                        },
+                        {
+                          "op": "sub",
+                          "args": [
+                            {
+                              "op": "add",
+                              "args": [
+                                {
+                                  "op": "mul",
+                                  "args": [
+                                    {
+                                      "const": 3
+                                    },
+                                    {
+                                      "var": "acc"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "const": 35
+                                }
+                              ]
+                            },
+                            {
+                              "const": 48
+                            }
+                          ]
+                        },
+                        {
+                          "op": "add",
+                          "args": [
+                            {
+                              "op": "mul",
+                              "args": [
+                                {
+                                  "const": 3
+                                },
+                                {
+                                  "var": "acc"
+                                }
+                              ]
+                            },
+                            {
+                              "const": 35
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "property": {
+    "id": "no-send-after-optout",
+    "kind": "temporal",
+    "formula": {
+      "op": "G",
+      "args": [
+        {
+          "op": "implies",
+          "args": [
+            {
+              "var": "opted_out"
+            },
+            {
+              "op": "not",
+              "args": [
+                {
+                  "var": "sent"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "bound": 50,
+    "intent": "in every reachable state with opted_out true, sent is false"
+  }
+}

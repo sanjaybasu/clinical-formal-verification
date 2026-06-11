@@ -1,0 +1,54 @@
+{
+  "item_id": "lock-len12-viol-06",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property globally(opted_out implies not sent) is VIOLATED. The defect is the t_resume_glitch transition: on send_attempt if (opted_out and stage >= 12): sent := true. Although t_send_blocked correctly suppresses sends while opted out for stage < 12, once stage reaches 12 the glitch rule fires and sets sent := true even though opted_out is true.\n\nThe lock is a 12-stage combination requiring this advance key per stage (each wrong key resets stage to 0): stage0->key_1, stage1->key_2, stage2->key_2, stage3->key_2, stage4->key_0, stage5->key_2, stage6->key_1, stage7->key_0, stage8->key_1, stage9->key_1, stage10->key_2, stage11->key_0. None of the stage transitions are guarded on opted_out, and opting out does not reset stage, so an opted-out state can persist at stage 12.\n\nTrace (initial: opted_out=false, sent=false, stage=0):\n- key_1..key_0 (12 events): advance stage 0->1->2->...->12; each sets sent=false. End: opted_out=false, sent=false, stage=12.\n- optout (t_optout): opted_out=true, sent=false, stage=12.\n- send_attempt: guard (opted_out and stage>=12) holds -> t_resume_glitch sets sent=true. Resulting state opted_out=true, sent=true violates the invariant.\n\nTotal 14 events, within the 15-event bound. Verified by simulation.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

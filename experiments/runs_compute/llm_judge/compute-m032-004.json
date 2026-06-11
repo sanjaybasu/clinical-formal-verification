@@ -1,0 +1,36 @@
+{
+  "item_id": "compute-m032-004",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "step_2"
+    },
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The four nested if-then-else expressions in each step transition implement (3*acc + c) mod 32: c=11 for step_0/step_1, c=12 for step_2. For acc in [0,31], 3*acc+c maxes at 105, requiring at most 3 subtractions of 32, so the triple-nesting computes the modulus exactly. The safety property requires globally(opted_out implies not sent). The faulty transition t_resume_glitch fires on send_attempt when opted_out and acc==21, setting sent:=true. So the property is violated iff acc can reach 21 (then optout, then send_attempt). BFS over the reachable acc values from the initial acc=0 shows acc=21 IS reachable (reachable set is {0..31}\\{10}, which includes 21). Shortest witness path of step events: step_0 (0->11), step_2 (11->13), step_0 (13->18), step_0 (18->1), step_0 (1->14), step_0 (14->21). Then optout sets opted_out:=true (acc unchanged at 21, sent:=false), then send_attempt matches t_resume_glitch (opted_out and acc==21) and sets sent:=true. Full simulation confirms final state opted_out=True, sent=True at acc=21 \u2014 a reachable violation of (opted_out implies not sent). The 8-event sequence is well within the 34-event bound. Targets were not assumed reachable; reachability was verified by explicit BFS and the full state-machine trace.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

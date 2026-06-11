@@ -1,0 +1,11 @@
+{
+  "item_id": "compute-m064-003",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property globally(opted_out implies not sent) holds. The only way to set sent=true while opted_out is the faulty t_resume_glitch transition, which requires (opted_out and acc == 63). I checked whether acc can reach 63 from the initial acc=0 via any sequence of step events.\n\nEach step event updates acc := (3*acc + c) mod 64 (the triple-nested if-then-else in the file is exactly a mod-64 reduction; for acc in [0,63], 3*acc+c <= 225, and three conditional subtractions of 64 fully reduce it). The constants are c=2 (step_0), c=36 (step_1), c=10 (step_2) \u2014 all even, and the modulus 64 is even.\n\nParity invariant: acc starts at 0 (even). 3*acc has the same parity as acc; adding an even constant keeps it even; subtracting 64 (even) preserves parity. Hence acc is even on every reachable execution. I confirmed by exhaustive forward closure from 0: the reachable acc set is exactly the 32 even values {0,2,4,...,62}; 63 (odd) is never reachable. A BFS for a step sequence reaching 63 returned no path.\n\nSince acc==63 is unreachable, t_resume_glitch never fires. After optout, a send_attempt always matches t_send_blocked (opted_out and acc != 63), which sets sent := false. The step transitions also set sent := false and never inspect opted_out. Therefore in every reachable state with opted_out true, sent is false. No event sequence (within or beyond the 66-event bound) can drive acc to the target after opt-out, so no violation exists.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

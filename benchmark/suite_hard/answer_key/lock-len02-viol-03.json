@@ -1,0 +1,26 @@
+{
+  "item": "lock-len02-viol-03",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "event": "optout",
+      "transition": "t_optout"
+    },
+    {
+      "event": "key_0",
+      "transition": "adv_0"
+    },
+    {
+      "event": "key_0",
+      "transition": "adv_1"
+    },
+    {
+      "event": "send_attempt",
+      "transition": "t_resume_glitch"
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 2,
+  "basis": "concrete_replay",
+  "seeded_bug": "a combination lock of length 2 gates a faulty opted-out send; the violation requires entering the exact secret key sequence"
+}

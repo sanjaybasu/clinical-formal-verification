@@ -1,0 +1,27 @@
+{
+  "item_id": "compute-m064-005",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "step_1"
+    },
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "step_2"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property G(opted_out implies not sent) is violated via the t_resume_glitch transition: on send_attempt when (opted_out and acc == 37), sent := true.\n\nEach step event applies acc := (3*acc + c) mod 64 (the nested if-then-else subtracts 64 up to three times, which is exactly mod 64 since 3*63+63 = 252 < 256). Constants: step_0 c=63, step_1 c=15, step_2 c=33.\n\nI ran a BFS over acc values reachable from acc=0 and confirmed 37 is reachable. A shortest witness path:\n- step_1: acc 0 -> (0+15) mod 64 = 15\n- step_0: acc 15 -> (45+63) mod 64 = 108 mod 64 = 44\n- step_2: acc 44 -> (132+33) mod 64 = 165 mod 64 = 37\n\nThe step events must come before optout because (a) each step recomputes acc (so they must finish placing acc at 37 first) and (b) every step also sets sent := false, while optout sets opted_out := true and sent := false but does not change acc. After the three steps acc=37; then optout makes opted_out=true (acc stays 37); then send_attempt matches t_resume_glitch (opted_out and acc==37) and sets sent := true. Final state opted_out=true, sent=true violates the invariant.\n\nFull simulation of the sequence [step_1, step_0, step_2, optout, send_attempt] confirms opted_out=true and sent=true at the end (a message sent after opt-out). Sequence length 5 <= 66 event bound.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

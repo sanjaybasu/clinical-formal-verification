@@ -1,0 +1,30 @@
+{
+  "item_id": "lock-len04-viol-03",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The lock advances 0->1 on key_0 (adv_0), 1->2 on key_0 (adv_1), 2->3 on key_2 (adv_2), 3->4 on key_0 (adv_3), so the combination key_0,key_0,key_2,key_0 reaches stage 4. The opt-out transition t_optout sets opted_out:=true and sent:=false but does NOT reset stage, so stage=4 is preserved across opt-out. The transition t_resume_glitch fires on send_attempt when (opted_out and stage>=4) and sets sent:=true, overriding the intended block (t_send_blocked only covers opted_out and stage<4). Trace: (0) opted_out=F,sent=F,stage=0; key_0->stage=1; key_0->stage=2; key_2->stage=3; key_0->stage=4; optout->opted_out=T,sent=F,stage=4; send_attempt->guard (opted_out and stage>=4) holds via t_resume_glitch->sent=T. Final state opted_out=T and sent=T violates globally(opted_out implies not sent). Sequence is 6 events, within the 7-event bound.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

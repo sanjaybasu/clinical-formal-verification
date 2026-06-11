@@ -1,0 +1,21 @@
+{
+  "item_id": "compute-m008-001",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The step updates reduce to acc := (3*acc + c) mod 8, where c = 1 (step_0), 3 (step_1), 2 (step_2). I verified the nested triple if-subtract-8 reduction equals mod 8 over all relevant inputs (max 3*7+3 = 24, three subtractions reach the residue). The faulty resume path t_resume_glitch fires send when opted_out AND acc == 1, setting sent := true, violating globally(opted_out implies not sent). Target acc == 1 is reachable from initial acc 0 in a single step: step_0 gives (3*0 + 1) mod 8 = 1. Full simulation: init (opted_out=F, sent=F, acc=0); step_0 -> (F,F,1); optout -> (T,F,1) (optout does not touch acc, and acc=1 persists since no further step resets it); send_attempt -> guard (opted_out and acc==1) holds so sent := true -> (T,T,1), an opted_out state with sent true. Property violated within 3 events (well under the 10-event bound).",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

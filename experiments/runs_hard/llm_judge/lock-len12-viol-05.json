@@ -1,0 +1,54 @@
+{
+  "item_id": "lock-len12-viol-05",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property \"globally(opted_out implies not sent)\" is VIOLATED. The vulnerability is the t_resume_glitch transition (line 49): on send_attempt if (opted_out and stage >= 12): sent := true. This sends a message while opted out, but only at stage 12.\n\nTwo facts make the violation reachable: (1) t_optout (line 10) sets only opted_out:=true and sent:=false; it does NOT reset stage. (2) None of the stage-advance transitions (adv_0 .. adv_11) guard on opted_out, so the lock can be fully advanced after opting out.\n\nThe combination to reach stage 12 (the key that advances each stage): stage0->1 key_1, 1->2 key_1, 2->3 key_0, 3->4 key_0, 4->5 key_2, 5->6 key_2, 6->7 key_1, 7->8 key_1, 8->9 key_2, 9->10 key_2, 10->11 key_1, 11->12 key_2.\n\nTrace (14 events, within the 15-event bound):\n1. optout: opted_out=true, sent=false, stage=0\n2-13. key_1,key_1,key_0,key_0,key_2,key_2,key_1,key_1,key_2,key_2,key_1,key_2: stage advances 0->1->2->3->4->5->6->7->8->9->10->11->12 (each via the matching adv_ transition; sent stays false)\n14. send_attempt: t_send_allowed is disabled (opted_out true) and t_send_blocked requires stage<12 (false), so the priority-free matching enabled transition is t_resume_glitch (opted_out and stage>=12): sent:=true.\n\nFinal state: opted_out=true, sent=true. This directly violates \"opted_out implies not sent.\" An opted-out send goes through because the opt-out does not reset the lock stage, allowing the full combination to be entered post-opt-out to trip the stage>=12 resume glitch.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

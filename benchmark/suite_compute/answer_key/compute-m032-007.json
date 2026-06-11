@@ -1,0 +1,30 @@
+{
+  "item": "compute-m032-007",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "event": "optout",
+      "transition": "t_optout"
+    },
+    {
+      "event": "step_0",
+      "transition": "step_0"
+    },
+    {
+      "event": "step_2",
+      "transition": "step_2"
+    },
+    {
+      "event": "step_1",
+      "transition": "step_1"
+    },
+    {
+      "event": "send_attempt",
+      "transition": "t_resume_glitch"
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 32,
+  "basis": "concrete_replay",
+  "seeded_bug": "accumulator modulus 32; target reachable by a computed step sequence of length 3; the arming sequence is not stated in the specification"
+}

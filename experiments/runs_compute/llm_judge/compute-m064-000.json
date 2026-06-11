@@ -1,0 +1,21 @@
+{
+  "item_id": "compute-m064-000",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "File: /Users/sanjaybasu/clinical-formal-verification/experiments/runs_compute/_judge_prompts/compute-m064-000.txt\n\nThe property G(opted_out implies not sent) is VIOLATED. The faulty transition t_resume_glitch fires on send_attempt when (opted_out and acc == 32), setting sent := true after opt-out. So a violation exists iff acc can be driven to 32.\n\nEach step event sets acc := (3*acc + c) mod 64, where the nested if-then-else is exactly subtract-64-up-to-3-times, which I verified equals (3*acc + c) mod 64 for all acc in [0,63] (max raw = 3*63+32 = 221, reduced in <=3 steps). Constants: step_0 = +32, step_1 = +18, step_2 = +23.\n\nFrom the initial acc = 0, a single step_0 gives (3*0 + 32) mod 64 = 32, hitting the target immediately (BFS confirmed reachability with path length 1). \n\nFull violating execution (simulated step by step):\n1. step_0: acc 0 -> 32, sent stays false.\n2. optout: opted_out -> true, sent -> false.\n3. send_attempt: guard not opted_out fails; guard (opted_out and acc != 32) fails because acc == 32; guard t_resume_glitch (opted_out and acc == 32) holds, so sent := true.\n\nFinal state: opted_out = true AND sent = true, which violates the safety property. Sequence length 3, well within the 66-event bound.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

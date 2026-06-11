@@ -1,0 +1,11 @@
+{
+  "item_id": "lock-len04-hold-107",
+  "method": "unit_test",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": 0.0295,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

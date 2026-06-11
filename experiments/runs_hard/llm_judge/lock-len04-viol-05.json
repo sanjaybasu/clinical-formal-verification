@@ -1,0 +1,30 @@
+{
+  "item_id": "lock-len04-viol-05",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property globally(opted_out implies not sent) is VIOLATED.\n\nThe only rule that sets sent:=true while opted_out is true is [t_resume_glitch] on send_attempt if (opted_out and stage >= 4). Stage caps at 4, so this fires when opted_out=true and stage==4. Crucially, the stage-advancement transitions (adv_0..adv_3) guard only on stage value, not on opted_out, so opting out does not block the lock from advancing to stage 4.\n\nThe advancing key for each stage: stage0->1 via key_0 (adv_0), stage1->2 via key_2 (adv_1), stage2->3 via key_0 (adv_2), stage3->4 via key_2 (adv_3). Combination = key_0, key_2, key_0, key_2.\n\nTrace (6 events, within 7-event bound), starting opted_out=false, sent=false, stage=0:\n1. optout [t_optout]: opted_out=true, sent=false, stage=0\n2. key_0 [adv_0, stage==0]: stage=1, sent=false\n3. key_2 [adv_1, stage==1]: stage=2, sent=false\n4. key_0 [adv_2, stage==2]: stage=3, sent=false\n5. key_2 [adv_3, stage==3]: stage=4, sent=false\n6. send_attempt: opted_out=true disables t_send_allowed; stage=4 disables t_send_blocked (needs stage<4); t_resume_glitch (opted_out and stage>=4) fires -> sent=true\n\nFinal: opted_out=true AND sent=true. The invariant (opted_out implies not sent) is broken, so an opted-out send goes through. Violation confirmed.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

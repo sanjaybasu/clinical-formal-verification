@@ -1,0 +1,42 @@
+{
+  "item_id": "lock-len08-viol-04",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property G(opted_out implies not sent) is VIOLATED via the t_resume_glitch transition.\n\nTwo transitions can set sent:=true: t_send_allowed (guarded by NOT opted_out, so harmless) and t_resume_glitch on send_attempt if (opted_out AND stage >= 8), which sets sent:=true while opted_out is true. This is the violation vector. Reaching it requires opted_out=true and stage=8.\n\nThe combination lock advancing keys (adv_N) are: stage0->1 key_0, stage1->2 key_2, stage2->3 key_2, stage3->4 key_0, stage4->5 key_1, stage5->6 key_1, stage6->7 key_1, stage7->8 key_1. So the full combination is key_0,key_2,key_2,key_0,key_1,key_1,key_1,key_1.\n\nCritically, t_optout sets opted_out:=true and sent:=false but does NOT reset stage. And the adv_N transitions do not check opted_out, so the stage still advances after opt-out. Therefore opting out first and then entering the full combination drives stage to 8 while opted_out stays true.\n\nTrace (10 events, within the 11-event bound):\n1. optout: opted_out=T, sent=F, stage=0\n2. key_0 (adv_0): stage=1\n3. key_2 (adv_1): stage=2\n4. key_2 (adv_2): stage=3\n5. key_0 (adv_3): stage=4\n6. key_1 (adv_4): stage=5\n7. key_1 (adv_5): stage=6\n8. key_1 (adv_6): stage=7\n9. key_1 (adv_7): stage=8\n10. send_attempt: opted_out=T and stage>=8 -> t_resume_glitch fires -> sent=T\n\nFinal state: opted_out=T, sent=T, stage=8. This violates (opted_out implies not sent). An opted-out send goes through once the resume glitch's stage gate is satisfied.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

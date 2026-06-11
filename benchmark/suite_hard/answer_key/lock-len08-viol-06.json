@@ -1,0 +1,50 @@
+{
+  "item": "lock-len08-viol-06",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "event": "optout",
+      "transition": "t_optout"
+    },
+    {
+      "event": "key_0",
+      "transition": "adv_0"
+    },
+    {
+      "event": "key_2",
+      "transition": "adv_1"
+    },
+    {
+      "event": "key_1",
+      "transition": "adv_2"
+    },
+    {
+      "event": "key_1",
+      "transition": "adv_3"
+    },
+    {
+      "event": "key_2",
+      "transition": "adv_4"
+    },
+    {
+      "event": "key_1",
+      "transition": "adv_5"
+    },
+    {
+      "event": "key_1",
+      "transition": "adv_6"
+    },
+    {
+      "event": "key_0",
+      "transition": "adv_7"
+    },
+    {
+      "event": "send_attempt",
+      "transition": "t_resume_glitch"
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 8,
+  "basis": "concrete_replay",
+  "seeded_bug": "a combination lock of length 8 gates a faulty opted-out send; the violation requires entering the exact secret key sequence"
+}

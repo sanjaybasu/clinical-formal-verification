@@ -1,0 +1,24 @@
+{
+  "item_id": "compute-m008-000",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The three step events decode to modular recurrences (the nested if/>=8 chain is just reduce-by-8 i.e. mod 8): step_0: acc := (3*acc + 1) mod 8; step_1 and step_2 (identical): acc := (3*acc + 6) mod 8. The safety property is globally(opted_out implies not sent). The faulty transition t_resume_glitch fires on send_attempt when (opted_out and acc == 4), setting sent := true while opted_out is true \u2014 so the target value is acc == 4. None of optout, send_attempt change acc, so I can drive acc to 4 with steps first, then opt out, then attempt a send. BFS over acc in [0,7] shows the reachable set from 0 under the step maps is {0,1,3,4,6}, so 4 IS reachable: 0 --step_0--> (3*0+1)=1, then 1 --step_0--> (3*1+1)=4. Full simulation of [step_0, step_0, optout, send_attempt]: acc goes 0->1->4 (sent stays false on each step); optout sets opted_out=true, sent=false, acc unchanged=4; send_attempt now matches t_resume_glitch (opted_out true and acc==4) and sets sent=true. Resulting state has opted_out=true AND sent=true, violating the property. This is 4 events, within the 10-event bound. Hence the property is VIOLATED with this concrete counterexample.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

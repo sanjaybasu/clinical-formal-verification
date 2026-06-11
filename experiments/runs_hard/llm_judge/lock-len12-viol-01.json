@@ -1,0 +1,54 @@
+{
+  "item_id": "lock-len12-viol-01",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property \"globally (opted_out implies not sent)\" is VIOLATED, reachable within the 15-event bound (14 events used).\n\nThe dangerous rule is [t_resume_glitch]: on send_attempt if (opted_out and stage >= 12): sent := true. Because stage maxes at 12, reaching stage 12 then opting out then attempting a send sets sent=true while opted_out=true \u2014 exactly the forbidden state. The normal block rule [t_send_blocked] only fires when stage < 12, so it does not protect the maxed-out lock.\n\nThe 12-key unlock combination (each adv_N transition's required key from stage N to N+1) is:\n  stage 0->1 key_2 (adv_0)\n  stage 1->2 key_1 (adv_1)\n  stage 2->3 key_0 (adv_2)\n  stage 3->4 key_0 (adv_3)\n  stage 4->5 key_2 (adv_4)\n  stage 5->6 key_2 (adv_5)\n  stage 6->7 key_2 (adv_6)\n  stage 7->8 key_2 (adv_7)\n  stage 8->9 key_0 (adv_8)\n  stage 9->10 key_1 (adv_9)\n  stage 10->11 key_0 (adv_10)\n  stage 11->12 key_2 (adv_11)\n\nEach adv sets sent:=false (and any wrong key at a stage resets stage to 0, so the sequence must be exactly correct, which it is here). Trace:\n  init: opted_out=F, sent=F, stage=0\n  key_2 -> stage1; key_1 -> stage2; key_0 -> stage3; key_0 -> stage4; key_2 -> stage5; key_2 -> stage6; key_2 -> stage7; key_2 -> stage8; key_0 -> stage9; key_1 -> stage10; key_0 -> stage11; key_2 -> stage12\n  optout -> opted_out=T, sent=F, stage=12 (stage unchanged)\n  send_attempt -> opted_out=T and stage>=12, so [t_resume_glitch] fires: sent:=T\n\nFinal state: opted_out=T AND sent=T. This is a reachable state where opted_out is true but sent is true, violating the safety property (a message is sent after opt-out).\n\nFile analyzed: /Users/sanjaybasu/clinical-formal-verification/experiments/runs_hard/_judge_prompts/lock-len12-viol-01.txt",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

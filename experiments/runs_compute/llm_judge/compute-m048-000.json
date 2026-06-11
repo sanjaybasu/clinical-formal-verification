@@ -1,0 +1,27 @@
+{
+  "item_id": "compute-m048-000",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "step_2"
+    },
+    {
+      "event": "step_2"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "Each step event updates acc via the recurrence (3*acc + c) mod 48, where the file's triple-nested conditional unrolls the modular reduction (at most 3 subtractions of 48 suffice because 3*47+40 = 181 < 192 = 4*48). I verified the unrolled expression equals (3*acc+c) mod 48 for all acc in [0,47] and all three constants (step_0 adds 40, step_1 adds 12, step_2 adds 35).\n\nThe faulty transition t_resume_glitch fires on send_attempt when (opted_out and acc == 20), setting sent := true while opted_out is true \u2014 directly violating the property globally(opted_out implies not sent). So I needed to reach acc == 20.\n\nBFS over the recurrence from the initial acc = 0 found target 20 reachable in 3 steps: step_0: 0 -> 40; step_2: 40 -> 11; step_2: 11 -> 20.\n\nFull-state simulation of the sequence [step_0, step_2, step_2, optout, send_attempt]:\n- step_0: acc 0->40, sent=false\n- step_2: acc 40->11, sent=false\n- step_2: acc 11->20, sent=false\n- optout: opted_out=true, sent=false, acc stays 20\n- send_attempt: opted_out is true and acc == 20, so t_resume_glitch applies and sets sent := true\n\nFinal reachable state: opted_out=true AND sent=true (5 events, well under the 50-event bound). This is a concrete counterexample, so the property is VIOLATED.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

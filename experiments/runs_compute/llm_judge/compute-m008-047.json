@@ -1,0 +1,11 @@
+{
+  "item_id": "compute-m008-047",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The state machine has acc in [0,7] starting at 0. All three step events (step_0/step_1/step_2) apply the identical update, which the nested if-then-else encodes as acc := (3*acc + 2) mod 8 (subtracting 8 up to three times brings any value in range into [0,7]). The faulty resume transition t_resume_glitch sets sent:=true while opted_out is true ONLY when acc == 5; that is the sole way to violate G(opted_out -> not sent), since t_send_allowed requires not opted_out, t_send_blocked keeps sent:=false, and t_optout resets sent:=false.\n\nI simulated the recurrence from acc=0: f(0)=2, f(2)=(6+2) mod 8=0, so acc oscillates strictly within {0,2} forever, independent of which step events fire or their order (all steps are the same map). A BFS over reachable acc values confirms the reachable set is exactly {0,2}; acc=5 is unreachable. Hence t_resume_glitch is never enabled, sent is never set true while opted_out is true, and the safety property holds on every reachable execution. The target acc==5 is one of the unreachable targets, so no counterexample exists.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "item_id": "compute-m008-005",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The step events apply acc := (3*acc + c) mod 8 (the triple-nested if-then-else subtracts 8 up to three times, which fully reduces 3*acc+c < 32 into [0,7], i.e. mod 8). Constants: step_0 c=6, step_1 c=5, step_2 c=1. Initial acc=0. The faulty resume path t_resume_glitch fires on send_attempt when (opted_out and acc==6), setting sent:=true, which violates the safety property globally(opted_out implies not sent).\n\nBFS over the recurrence from acc=0 shows reachable acc values {0,1,5,6}; target acc=6 IS reachable. The shortest path is a single step_0: (3*0 + 6) mod 8 = 6.\n\nFull simulation of the state machine on the sequence step_0, optout, send_attempt:\n- step_0: acc 0 -> 6, sent=false, opted_out=false\n- optout: opted_out=true, sent=false (t_optout)\n- send_attempt: opted_out=true and acc==6, so t_resume_glitch fires -> sent=true\nFinal state has opted_out=true and sent=true, violating the property in 3 events (well within the 10-event bound). The witness sequence orders the step(s) first to set acc to the target, then optout, then send_attempt to trigger the glitch send after opt-out.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

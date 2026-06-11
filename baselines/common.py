@@ -20,8 +20,9 @@ from typing import Callable
 from verifier.model import Item
 
 ROOT = Path(__file__).resolve().parent.parent
-SUITE = ROOT / "benchmark" / "suite"
-RUNS = ROOT / "experiments" / "runs"
+# Suite and run directories are configurable so the same runners serve CIV-Bench and CIV-Bench-Hard.
+SUITE = ROOT / os.environ.get("CIVBENCH_SUITE", "benchmark/suite")
+RUNS = ROOT / os.environ.get("CIVBENCH_RUNS", "experiments/runs")
 
 
 def item_paths(subset: list[str] | None = None) -> list[Path]:

@@ -1,0 +1,482 @@
+[
+  {
+    "id": "lock-len02-viol-00",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": null
+  },
+  {
+    "id": "lock-len02-viol-01",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": null
+  },
+  {
+    "id": "lock-len02-viol-02",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": null
+  },
+  {
+    "id": "lock-len02-viol-03",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": null
+  },
+  {
+    "id": "lock-len02-viol-04",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": null
+  },
+  {
+    "id": "lock-len02-viol-05",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": null
+  },
+  {
+    "id": "lock-len02-viol-06",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": null
+  },
+  {
+    "id": "lock-len02-viol-07",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2,
+    "space": null
+  },
+  {
+    "id": "lock-len04-viol-00",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": null
+  },
+  {
+    "id": "lock-len04-viol-01",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": null
+  },
+  {
+    "id": "lock-len04-viol-02",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": null
+  },
+  {
+    "id": "lock-len04-viol-03",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": null
+  },
+  {
+    "id": "lock-len04-viol-04",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": null
+  },
+  {
+    "id": "lock-len04-viol-05",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": null
+  },
+  {
+    "id": "lock-len04-viol-06",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": null
+  },
+  {
+    "id": "lock-len04-viol-07",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4,
+    "space": null
+  },
+  {
+    "id": "lock-len06-viol-00",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6,
+    "space": null
+  },
+  {
+    "id": "lock-len06-viol-01",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6,
+    "space": null
+  },
+  {
+    "id": "lock-len06-viol-02",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6,
+    "space": null
+  },
+  {
+    "id": "lock-len06-viol-03",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6,
+    "space": null
+  },
+  {
+    "id": "lock-len06-viol-04",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6,
+    "space": null
+  },
+  {
+    "id": "lock-len06-viol-05",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6,
+    "space": null
+  },
+  {
+    "id": "lock-len06-viol-06",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6,
+    "space": null
+  },
+  {
+    "id": "lock-len06-viol-07",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6,
+    "space": null
+  },
+  {
+    "id": "lock-len08-viol-00",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 8,
+    "space": null
+  },
+  {
+    "id": "lock-len08-viol-01",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 8,
+    "space": null
+  },
+  {
+    "id": "lock-len08-viol-02",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 8,
+    "space": null
+  },
+  {
+    "id": "lock-len08-viol-03",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 8,
+    "space": null
+  },
+  {
+    "id": "lock-len08-viol-04",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 8,
+    "space": null
+  },
+  {
+    "id": "lock-len08-viol-05",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 8,
+    "space": null
+  },
+  {
+    "id": "lock-len08-viol-06",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 8,
+    "space": null
+  },
+  {
+    "id": "lock-len08-viol-07",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 8,
+    "space": null
+  },
+  {
+    "id": "lock-len10-viol-00",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 10,
+    "space": null
+  },
+  {
+    "id": "lock-len10-viol-01",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 10,
+    "space": null
+  },
+  {
+    "id": "lock-len10-viol-02",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 10,
+    "space": null
+  },
+  {
+    "id": "lock-len10-viol-03",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 10,
+    "space": null
+  },
+  {
+    "id": "lock-len10-viol-04",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 10,
+    "space": null
+  },
+  {
+    "id": "lock-len10-viol-05",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 10,
+    "space": null
+  },
+  {
+    "id": "lock-len10-viol-06",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 10,
+    "space": null
+  },
+  {
+    "id": "lock-len10-viol-07",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 10,
+    "space": null
+  },
+  {
+    "id": "lock-len12-viol-00",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 12,
+    "space": null
+  },
+  {
+    "id": "lock-len12-viol-01",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 12,
+    "space": null
+  },
+  {
+    "id": "lock-len12-viol-02",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 12,
+    "space": null
+  },
+  {
+    "id": "lock-len12-viol-03",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 12,
+    "space": null
+  },
+  {
+    "id": "lock-len12-viol-04",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 12,
+    "space": null
+  },
+  {
+    "id": "lock-len12-viol-05",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 12,
+    "space": null
+  },
+  {
+    "id": "lock-len12-viol-06",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 12,
+    "space": null
+  },
+  {
+    "id": "lock-len12-viol-07",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 12,
+    "space": null
+  },
+  {
+    "id": "lock-len02-hold-100",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 9
+  },
+  {
+    "id": "lock-len04-hold-101",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 15
+  },
+  {
+    "id": "lock-len06-hold-102",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 21
+  },
+  {
+    "id": "lock-len08-hold-103",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 27
+  },
+  {
+    "id": "lock-len10-hold-104",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 33
+  },
+  {
+    "id": "lock-len12-hold-105",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 39
+  },
+  {
+    "id": "lock-len02-hold-106",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 9
+  },
+  {
+    "id": "lock-len04-hold-107",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 15
+  },
+  {
+    "id": "lock-len06-hold-108",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 21
+  },
+  {
+    "id": "lock-len08-hold-109",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 27
+  },
+  {
+    "id": "lock-len10-hold-110",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 33
+  },
+  {
+    "id": "lock-len12-hold-111",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "space": 39
+  }
+]

@@ -1,0 +1,36 @@
+{
+  "item_id": "lock-len06-viol-06",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property globally(opted_out implies not sent) is VIOLATED. The bug is rule [t_resume_glitch]: on send_attempt if (opted_out and stage >= 6): sent := true. This sets sent true while opted_out is still true.\n\nKey/stage analysis (advancing keys, each guard keyed only on stage, never on opted_out): stage0->1 needs key_2 (adv_0); 1->2 needs key_1 (adv_1); 2->3 needs key_2 (adv_2); 3->4 needs key_0 (adv_3); 4->5 needs key_1 (adv_4); 5->6 needs key_1 (adv_5). So the combination to reach stage 6 is key_2,key_1,key_2,key_0,key_1,key_1. Wrong keys at any stage reset to stage 0 (rst_* rules), and key_0 at stage 6+ would not apply, but we never need a wrong key here.\n\nCrucially, opting out does not freeze the lock: optout only sets opted_out:=true and sent:=false; the adv_* guards do not test opted_out, so the lock can still be driven all the way to stage 6 after opt-out.\n\nTrace (8 events, within the 9-event bound):\n1. optout: opted_out=true, sent=false, stage=0\n2. key_2 (adv_0): stage=1\n3. key_1 (adv_1): stage=2\n4. key_2 (adv_2): stage=3\n5. key_0 (adv_3): stage=4\n6. key_1 (adv_4): stage=5\n7. key_1 (adv_5): stage=6\n8. send_attempt: opted_out=true so t_send_allowed (guard not opted_out) is disabled; t_send_blocked needs stage<6 (false); t_resume_glitch needs stage>=6 (true) -> fires -> sent=true.\n\nFinal state: opted_out=true AND sent=true, which violates opted_out implies not sent. Each key event has exactly one enabled transition per stage value (guards mutually exclusive), so the trace is deterministic and the witness is valid.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

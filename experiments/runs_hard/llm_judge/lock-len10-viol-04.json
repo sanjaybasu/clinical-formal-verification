@@ -1,0 +1,48 @@
+{
+  "item_id": "lock-len10-viol-04",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property \"globally(opted_out implies not sent)\" is VIOLATED. The bug is the t_resume_glitch transition: [t_resume_glitch] on send_attempt if (opted_out and stage >= 10): sent := true. This lets an opted-out user's send go through once stage reaches 10.\n\nCritically, the optout event ([t_optout] on optout if true: opted_out := true, sent := false) only sets opted_out and clears sent \u2014 it does NOT reset stage. And all the stage-advancing transitions (adv_0..adv_9) guard only on stage, never on opted_out. So opting out does not prevent or reset progress toward stage 10. An attacker can opt out first, then drive the lock all the way to stage 10 while opted_out remains true, then trigger the resume glitch.\n\nThe unlocking combination (advancing key per stage) is:\n- stage 0 -> 1: key_2 (adv_0)\n- stage 1 -> 2: key_0 (adv_1)\n- stage 2 -> 3: key_0 (adv_2)\n- stage 3 -> 4: key_0 (adv_3)\n- stage 4 -> 5: key_1 (adv_4)\n- stage 5 -> 6: key_2 (adv_5)\n- stage 6 -> 7: key_0 (adv_6)\n- stage 7 -> 8: key_0 (adv_7)\n- stage 8 -> 9: key_2 (adv_8)\n- stage 9 -> 10: key_1 (adv_9)\n\nTrace (12 events, within the 13-event bound):\n1. optout: opted_out=true, sent=false, stage=0\n2. key_2 (adv_0): stage=1\n3. key_0 (adv_1): stage=2\n4. key_0 (adv_2): stage=3\n5. key_0 (adv_3): stage=4\n6. key_1 (adv_4): stage=5\n7. key_2 (adv_5): stage=6\n8. key_0 (adv_6): stage=7\n9. key_0 (adv_7): stage=8\n10. key_2 (adv_8): stage=9\n11. key_1 (adv_9): stage=10\n12. send_attempt: opted_out=true and stage>=10, so t_resume_glitch fires -> sent:=true\n\nFinal state: opted_out=true AND sent=true. This directly violates \"opted_out implies not sent\". File analyzed: /Users/sanjaybasu/clinical-formal-verification/experiments/runs_hard/_judge_prompts/lock-len10-viol-04.txt",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

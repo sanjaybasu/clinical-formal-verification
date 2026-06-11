@@ -14,10 +14,8 @@ import json
 import sys
 from pathlib import Path
 
-from baselines.common import RUNS, _atomic_write
+from baselines.common import RUNS, SUITE, _atomic_write
 from verifier.model import Item
-
-SUITE = Path(__file__).resolve().parent.parent / "benchmark" / "suite"
 
 
 def _normalize_witness(item: Item, rec: dict):

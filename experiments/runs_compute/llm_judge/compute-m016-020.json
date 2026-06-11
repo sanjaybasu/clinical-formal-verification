@@ -1,0 +1,11 @@
+{
+  "item_id": "compute-m016-020",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The three step updates simplify to modular linear recurrences mod 16 (the nested if-then-else just performs up to three subtractions of 16, i.e. reduction mod 16, since 3*acc+c with acc in [0,15] is at most 57): step_0 = (3*acc+12) mod 16, step_1 = (3*acc+8) mod 16, step_2 = (3*acc+8) mod 16. Starting from acc=0, the full reachable set of acc values under all three step events is exactly {0, 4, 8, 12} (verified by computing the closure: from 0 -> {12,8}; from 12 -> 3*12+12=48=0, 3*12+8=44=12; from 8 -> 3*8+12=36=4, 3*8+8=32=0; from 4 -> 3*4+12=24=8, 3*4+8=20=4). Every reachable acc value is congruent to 0 mod 4, so the target value 14 is unreachable. The optout and send_attempt events do not modify acc. The only transition that sets sent:=true while opted_out is true is t_resume_glitch, guarded by (opted_out and acc==14). Because acc can never equal 14 on any reachable execution, t_resume_glitch is never enabled; after optout, send_attempt only ever triggers t_send_blocked (sent:=false), and step events also set sent:=false. Hence in every reachable state with opted_out true, sent is false. The safety property globally(opted_out implies not sent) holds. This is the unreachable-target case; no violating sequence exists.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

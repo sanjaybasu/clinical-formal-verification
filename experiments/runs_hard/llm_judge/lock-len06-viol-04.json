@@ -1,0 +1,36 @@
+{
+  "item_id": "lock-len06-viol-04",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property G(opted_out implies not sent) is VIOLATED. The escape hatch is t_resume_glitch [line 31]: on send_attempt, if (opted_out and stage >= 6), it sets sent := true. So if the lock reaches stage 6 while opted_out is true, a send goes through despite the opt-out.\n\nAdvancement chain (which key advances each stage): stage0->1 key_2 (adv_0), 1->2 key_2 (adv_1), 2->3 key_0 (adv_2), 3->4 key_2 (adv_3), 4->5 key_2 (adv_4), 5->6 key_2 (adv_5). The combination is therefore key_2,key_2,key_0,key_2,key_2,key_2. The wrong key (key_0 or key_1) at most stages, and key_1/key_2 at stage 2, reset stage to 0. Crucially, none of the adv/rst transitions read or modify opted_out, and t_optout preserves stage. So opting out first does NOT block stage progression and does NOT reset the lock.\n\nTrace of optout, key_2, key_2, key_0, key_2, key_2, key_2, send_attempt:\ninit: opted_out=F, sent=F, stage=0\noptout -> t_optout: opted_out=T, sent=F, stage=0\nkey_2 (stage0) -> adv_0: stage=1 (opted_out=T)\nkey_2 (stage1) -> adv_1: stage=2\nkey_0 (stage2) -> adv_2: stage=3\nkey_2 (stage3) -> adv_3: stage=4\nkey_2 (stage4) -> adv_4: stage=5\nkey_2 (stage5) -> adv_5: stage=6\nsend_attempt: opted_out=T, not-opted-out guard fails so t_send_allowed off; t_send_blocked needs stage<6 (false); t_resume_glitch fires (opted_out and stage>=6) -> sent=T.\n\nFinal state: opted_out=T AND sent=T, which violates (opted_out implies not sent). Length is 8 events, within the 9-event bound. Note send_attempt could equivalently be placed at any point after stage reaches 6.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

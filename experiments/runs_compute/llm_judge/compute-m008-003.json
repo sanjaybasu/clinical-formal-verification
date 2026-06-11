@@ -1,0 +1,30 @@
+{
+  "item_id": "compute-m008-003",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "step_1"
+    },
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The three step transitions each compute acc := (3*acc + c) mod 8 via triple-nested conditional subtraction (verified that the nested ifs equal mod-8 for all acc in [0,7]): step_0 uses c=7, step_1 and step_2 both use c=6. The faulty resume path t_resume_glitch fires send_attempt when (opted_out and acc==5), setting sent:=true, which violates globally(opted_out implies not sent). Target acc==5 IS reachable from initial acc=0: BFS found the shortest step sequence step_0,step_0,step_1,step_0. Trace: acc 0 -[step_0]-> 7 -[step_0]-> 4 -[step_1]-> 2 -[step_0]-> 5. optout/send_attempt do not modify acc, so applying optout (opted_out:=true, sent:=false, acc still 5) then send_attempt makes t_resume_glitch's guard (opted_out and acc==5) hold, firing sent:=true while opted_out is true. The full sequence is 6 events, within the 10-event bound, producing a reachable state with opted_out=true and sent=true. Property is VIOLATED.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

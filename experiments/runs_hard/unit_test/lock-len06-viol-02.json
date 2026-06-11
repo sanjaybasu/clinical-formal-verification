@@ -1,0 +1,11 @@
+{
+  "item_id": "lock-len06-viol-02",
+  "method": "unit_test",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": 0.1729,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

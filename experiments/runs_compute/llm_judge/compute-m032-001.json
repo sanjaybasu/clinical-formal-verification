@@ -1,0 +1,21 @@
+{
+  "item_id": "compute-m032-001",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "step_2"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "File: /Users/sanjaybasu/clinical-formal-verification/experiments/runs_compute/_judge_prompts/compute-m032-001.txt\n\nThe deeply-nested if-then-else on each step event is just repeated subtraction of 32, which computes a modular linear recurrence over acc in [0,31]: step_0 = (3*acc+20) mod 32, step_1 = (3*acc+6) mod 32, step_2 = (3*acc+18) mod 32. (Verified the nested form equals mod-32 for all acc in [0,31]; at most 3 reductions are needed since 3*31+20 = 113 < 128.)\n\nThe faulty resume path t_resume_glitch fires on send_attempt when (opted_out and acc == 18), setting sent := true, which violates the global invariant opted_out implies not sent. The target acc value is therefore 18.\n\nacc starts at 0. optout does not modify acc, and step events after optout still update acc. So I need a step sequence from acc=0 reaching acc=18. A single step_2 from acc=0 gives (3*0+18) mod 32 = 18 \u2014 the target is reachable.\n\nFull simulation of the witness sequence:\n- step_2: opted_out=false, sent=false, acc=0 -> 18\n- optout: opted_out=true, sent=false, acc=18 (guard t_optout always true)\n- send_attempt: opted_out=true and acc==18 -> t_resume_glitch fires -> sent=true\n\nFinal state opted_out=true AND sent=true violates globally(opted_out implies not sent). The sequence is 3 events, well within the 34-event bound. Property is VIOLATED.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

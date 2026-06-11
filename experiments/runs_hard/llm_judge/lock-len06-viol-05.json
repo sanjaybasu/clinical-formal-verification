@@ -1,0 +1,36 @@
+{
+  "item_id": "lock-len06-viol-05",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The lock advances through stages with this key sequence: stage 0->1 on key_2 (adv_0), 1->2 on key_0 (adv_1), 2->3 on key_1 (adv_2), 3->4 on key_0 (adv_3), 4->5 on key_2 (adv_4), 5->6 on key_0 (adv_5). A wrong key at any stage resets to 0. Crucially, all adv_*/rst_* transitions guard only on stage, never on opted_out, so the lock can be driven to stage 6 even after opt-out.\n\nNormally t_send_blocked (line 30) forces sent:=false on send_attempt when opted_out, but its guard requires stage < 6. The buggy t_resume_glitch (line 31) fires on send_attempt when (opted_out and stage >= 6) and sets sent:=true. So if we reach stage==6 while opted_out, a send_attempt sends despite opt-out.\n\nTrace from initial (opted_out=false, sent=false, stage=0):\n1. optout -> (true, false, 0) via t_optout\n2. key_2 -> (true, false, 1) via adv_0\n3. key_0 -> (true, false, 2) via adv_1\n4. key_1 -> (true, false, 3) via adv_2\n5. key_0 -> (true, false, 4) via adv_3\n6. key_2 -> (true, false, 5) via adv_4\n7. key_0 -> (true, false, 6) via adv_5\n8. send_attempt -> (true, TRUE, 6) via t_resume_glitch (t_send_blocked is disabled since stage is not < 6)\n\nAt step 8 opted_out=true AND sent=true, violating globally(opted_out implies not sent). The witness is 8 events, within the 9-event bound.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

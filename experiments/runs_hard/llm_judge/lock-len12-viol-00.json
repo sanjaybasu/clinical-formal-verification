@@ -1,0 +1,54 @@
+{
+  "item_id": "lock-len12-viol-00",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property requires globally(opted_out implies not sent), i.e., no reachable state has opted_out=true AND sent=true. The only transition that sets sent:=true while opted_out is true is [t_resume_glitch] (line 49): on send_attempt if (opted_out and stage >= 12). Since stage's max is 12, this needs stage==12 with opted_out true.\n\nCrucially, the optout transition (line 10) sets opted_out:=true but does NOT reset stage, and the stage-advancing transitions never touch opted_out. So the attack is: first drive the lock fully open to stage 12, then opt out (stage is preserved), then send_attempt triggers the resume-glitch.\n\nThe unique advancing key per stage (from adv_0..adv_11): 0->1 key_2, 1->2 key_2, 2->3 key_1, 3->4 key_0, 4->5 key_1, 5->6 key_0, 6->7 key_2, 7->8 key_2, 8->9 key_2, 9->10 key_0, 10->11 key_2, 11->12 key_1. That gives the 12-key combination.\n\nTrace from initial (opted_out=false, sent=false, stage=0):\n1 key_2: stage 0->1\n2 key_2: stage 1->2\n3 key_1: stage 2->3\n4 key_0: stage 3->4\n5 key_1: stage 4->5\n6 key_0: stage 5->6\n7 key_2: stage 6->7\n8 key_2: stage 7->8\n9 key_2: stage 8->9\n10 key_0: stage 9->10\n11 key_2: stage 10->11\n12 key_1: stage 11->12\n13 optout: opted_out=true, sent=false, stage stays 12\n14 send_attempt: guard (opted_out and stage>=12) holds, [t_resume_glitch] fires -> sent:=true.\n\nResulting state: opted_out=true AND sent=true, violating the property. The sequence is 14 events, within the 15-event bound. A send goes through after opt-out.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

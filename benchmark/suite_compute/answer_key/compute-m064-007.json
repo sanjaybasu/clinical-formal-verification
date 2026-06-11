@@ -1,0 +1,26 @@
+{
+  "item": "compute-m064-007",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "event": "optout",
+      "transition": "t_optout"
+    },
+    {
+      "event": "step_1",
+      "transition": "step_1"
+    },
+    {
+      "event": "step_1",
+      "transition": "step_1"
+    },
+    {
+      "event": "send_attempt",
+      "transition": "t_resume_glitch"
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 64,
+  "basis": "concrete_replay",
+  "seeded_bug": "accumulator modulus 64; target reachable by a computed step sequence of length 2; the arming sequence is not stated in the specification"
+}

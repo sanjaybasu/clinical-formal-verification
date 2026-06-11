@@ -23,7 +23,7 @@ env/
 *.local
 
 # experiment scratch that is regenerated from code (rendered prompts, workflow scripts, pilot ids)
-experiments/runs/_*
+experiments/runs*/_*
 experiments/runs/*/raw/
 *.log
 

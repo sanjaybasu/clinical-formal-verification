@@ -1,0 +1,8 @@
+{
+  "item": "compute-m008-047",
+  "ground_truth": "holds",
+  "witness": null,
+  "seeded": false,
+  "interaction_depth": 0,
+  "basis": "manual_proof"
+}

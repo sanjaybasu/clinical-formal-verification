@@ -1,0 +1,11 @@
+{
+  "item_id": "lock-len02-hold-100",
+  "method": "verification",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": 0.0182,
+  "extra": {
+    "proof_scope": "all reachable states (k-induction)",
+    "method_note": "BMC to 5 plus a 5-induction step: property holds without bound"
+  }
+}

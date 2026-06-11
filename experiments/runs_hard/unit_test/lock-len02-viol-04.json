@@ -1,0 +1,32 @@
+{
+  "item_id": "lock-len02-viol-04",
+  "method": "unit_test",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "key_1",
+      "transition": "rst_0_1"
+    },
+    {
+      "event": "key_2",
+      "transition": "adv_0"
+    },
+    {
+      "event": "key_1",
+      "transition": "adv_1"
+    },
+    {
+      "event": "optout",
+      "transition": "t_optout"
+    },
+    {
+      "event": "send_attempt",
+      "transition": "t_resume_glitch"
+    }
+  ],
+  "seconds": 0.0006,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}

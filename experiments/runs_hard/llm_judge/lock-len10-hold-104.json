@@ -1,0 +1,11 @@
+{
+  "item_id": "lock-len10-hold-104",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property globally(opted_out implies not sent) holds on every reachable execution. Analysis: (1) sent is set to true ONLY by [t_send_allowed] (on send_attempt), whose guard is \"not opted_out\" \u2014 so a send can set sent=true only when opted_out is false. (2) opted_out is set to true ONLY by [t_optout], which simultaneously sets sent:=false, so immediately after opt-out the bad conjunction cannot exist. (3) No transition ever sets opted_out back to false; once true it is permanent. (4) While opted_out is true, the only enabled send transition is [t_send_blocked] (guard opted_out), which sets sent:=false; [t_send_allowed] is disabled because its guard \"not opted_out\" is false. Every key_0/key_1/key_2 transition also sets sent:=false. The stage combination lock (advancing 0->1->...->10 via the specific key sequence key_1,key_2,key_0,key_1,key_0,key_1,key_0,key_2,key_2,key_2) is a decoy: the send guards depend solely on opted_out, never on stage, so reaching stage 10 confers no ability to send after opt-out. Therefore no reachable state satisfies opted_out \u2227 sent, and no event sequence (within 13 events or otherwise) can violate the property.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

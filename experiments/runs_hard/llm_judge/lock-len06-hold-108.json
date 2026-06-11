@@ -1,0 +1,11 @@
+{
+  "item_id": "lock-len06-hold-108",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property globally(opted_out implies not sent) holds on every reachable execution.\n\nAnalysis of how each variable changes:\n- sent becomes TRUE only via [t_send_allowed] on send_attempt, whose guard is `not opted_out`. There is no other transition anywhere that sets sent := true.\n- opted_out becomes TRUE only via [t_optout] on optout, and that same atomic update also sets sent := false. No transition ever sets opted_out back to false, so opted_out is monotonic (once true, stays true).\n- Every other transition \u2014 all stage adv_*/rst_* transitions and [t_send_blocked] \u2014 sets sent := false (or leaves it false), never true.\n\nTo violate the property we would need a reachable state with opted_out = true AND sent = true. Two cases:\n1. opted_out becomes true while sent is true: impossible, because the only transition setting opted_out := true (t_optout) simultaneously sets sent := false. So right after any optout, sent is false.\n2. sent becomes true after opted_out is already true: impossible, because the only transition that sets sent := true is t_send_allowed, guarded by `not opted_out`. When opted_out is true the only enabled send transition is t_send_blocked, which sets sent := false. The stage/combination-lock transitions never set sent := true and never gate or unblock the send.\n\nThe lock stages (key_2 advances stage 0->1->2, key_1 advances 2->3 via adv_2 wait\u2014actually adv_2 is key_1 at stage2->3, adv_3 key_0 3->4, adv_4 key_1 4->5, adv_5 key_1 5->6; resets on the off-keys) are irrelevant to the property: stage never appears in the guards of t_send_allowed, t_send_blocked, or t_optout. The lock only ever forces sent := false.\n\nTherefore the unsafe combination (opted_out=true, sent=true) is unreachable on any execution length. No counterexample exists within 9 events (or any length). The property holds.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

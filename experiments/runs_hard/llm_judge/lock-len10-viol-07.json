@@ -1,0 +1,48 @@
+{
+  "item_id": "lock-len10-viol-07",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The safety property globally(opted_out implies not sent) is VIOLATED.\n\nThe lock has a 10-stage combination. The advancing key at each stage is: stage0->key_1, stage1->key_1, stage2->key_2, stage3->key_1, stage4->key_1, stage5->key_0, stage6->key_0, stage7->key_1, stage8->key_1, stage9->key_1, reaching stage 10. Any non-advancing key resets stage to 0.\n\nTwo facts enable the violation:\n1. [t_optout] sets opted_out:=true (and sent:=false), and NO transition ever resets opted_out back to false. So opted_out is monotonic \u2014 once true, forever true.\n2. All advancing key transitions only update stage and set sent:=false; none of them touch opted_out. So the lock can be fully advanced to stage 10 while opted_out remains true.\n\nThe decisive rule is [t_resume_glitch]: on send_attempt if (opted_out and stage >= 10): sent := true. This is the back door. While [t_send_blocked] correctly forces sent:=false when opted_out and stage<10, the glitch rule re-enables sending once stage reaches 10 \u2014 even though opted_out is still true.\n\nCounterexample (12 events, within the 13-event bound): opt out first (opted_out=true, stage=0), then enter the full correct combination key_1,key_1,key_2,key_1,key_1,key_0,key_0,key_1,key_1,key_1 to drive stage 0->10 (opted_out stays true throughout), then send_attempt fires t_resume_glitch, setting sent:=true while opted_out=true. Final state opted_out=true AND sent=true violates the property. Simulation confirms each step; violation occurs at the final send_attempt.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

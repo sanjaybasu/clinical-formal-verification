@@ -1,0 +1,21 @@
+{
+  "item_id": "compute-m016-006",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "step_1"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The safety property G(opted_out implies not sent) is VIOLATED. The faulty resume path t_resume_glitch fires on send_attempt when (opted_out and acc == 12), setting sent := true. The target acc value is 12.\n\nEach step event updates acc by (3*acc + c) mod 16 (the triple nested if-then-else subtracts 16 up to three times = modular reduction mod 16 for in-range inputs). step_0 uses c=10; step_1 and step_2 both use c=12.\n\nReaching the target is trivial: from the initial acc=0, a single step_1 gives 3*0 + 12 = 12 (< 16, no reduction), so acc = 12. (step_2 is identical and would work equally.) BFS over reachable acc values from 0 confirms {0, 8, 10, 12} are reachable and a length-1 path reaches 12.\n\nCounterexample sequence (3 events, well within the 18-event bound), simulated end to end:\n- init: opted_out=false, sent=false, acc=0\n- step_1: acc := (3*0+12)=12, sent:=false. State: opted_out=false, sent=false, acc=12\n- optout: opted_out:=true, sent:=false (acc unchanged = 12). State: opted_out=true, sent=false, acc=12\n- send_attempt: opted_out=true and acc==12, so t_send_blocked guard (opted_out and acc!=12) is false and only t_resume_glitch is enabled -> sent:=true. State: opted_out=true, sent=true, acc=12 -> VIOLATION (opted_out true AND sent true).\n\nA message is sent after opt-out precisely because acc was driven to the glitch target 12 before opt-out, and optout does not modify acc.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

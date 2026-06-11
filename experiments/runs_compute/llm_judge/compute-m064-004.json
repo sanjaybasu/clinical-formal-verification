@@ -1,0 +1,33 @@
+{
+  "item_id": "compute-m064-004",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "step_1"
+    },
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "step_2"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The state machine has variables opted_out (bool), sent (bool), acc (int in [0,63]), all initially false/false/0. Each step_k event updates acc by acc := (3*acc + c_k) mod 64, where the nested if-then-else expressions just implement mod 64 by subtracting 64 up to 3 times (max raw value 3*63+57=246 < 4*64, so at most 3 subtractions). The constants are c=34 (step_0), c=57 (step_1), c=50 (step_2). step events fire unconditionally (guard true) and set sent:=false.\n\nThe safety property is G(opted_out -> not sent). The faulty resume path t_resume_glitch fires on send_attempt when (opted_out and acc==49), setting sent:=true \u2014 a send after opt-out, violating the property, but only at the specific target acc==49.\n\nTo violate, I need a reachable state with opted_out=true and acc==49 followed by send_attempt. Since step events fire regardless of opt-out and keep updating acc, I issued optout first, then drove acc from 0 to 49 via step events, then send_attempt. BFS over acc values 0..63 found a shortest step sequence reaching 49: step_0, step_0, step_1, step_0, step_2. Simulating from acc=0: 0 ->(step_0,+34)-> 34 ->(step_0: 3*34+34=136 mod64)-> 8 ->(step_1: 3*8+57=81 mod64)-> 17 ->(step_0: 3*17+34=85 mod64)-> 21 ->(step_2: 3*21+50=113 mod64)-> 49. Target 49 reached.\n\nFull verified trace (7 events, within the 66-event bound): optout sets opted_out=true,sent=false,acc=0; the five step events leave opted_out=true, sent=false, and bring acc to 34, 8, 17, 21, 49; the final send_attempt matches t_resume_glitch (opted_out and acc==49) and sets sent=true. At that point opted_out=true AND sent=true, so opted_out -> not sent is false. Property VIOLATED.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

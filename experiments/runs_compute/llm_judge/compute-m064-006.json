@@ -1,0 +1,11 @@
+{
+  "item_id": "compute-m064-006",
+  "method": "llm_judge",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": null,
+  "extra": {
+    "reasoning": "The safety property globally(opted_out implies not sent) can only be violated by transition t_resume_glitch, which sets sent:=true under opted_out and requires acc==21 (the target). The optout and send_attempt events never modify acc; only step events change it via acc := (3*acc + c) mod 64, with c in {35, 31, 63} for step_0/step_1/step_2 respectively (the nested-if expressions are exactly three conditional subtractions of 64, equal to mod-64 reduction since 3*63+63=252<256). Starting from acc=0, there is a mod-4 invariant: each constant satisfies c mod 4 = 3, so the update gives acc' mod 4 = (3*acc + 3) mod 4 = 3*(acc+1) mod 4, mapping residue 0 -> 3 and residue 3 -> 0. The set {0,3} mod 4 is closed and contains the initial value 0. The target 21 has 21 mod 4 = 1, which is never reachable. A full BFS over all reachable acc values from 0 yields exactly 32 values {0,3,4,7,8,...,63} (all residues 0 and 3 mod 4) and confirms 21 is not among them. Hence acc==21 is unreachable, t_resume_glitch is never enabled, and no send occurs after opt-out. The property holds on every reachable execution. File analyzed: /Users/sanjaybasu/clinical-formal-verification/experiments/runs_compute/_judge_prompts/compute-m064-006.txt",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

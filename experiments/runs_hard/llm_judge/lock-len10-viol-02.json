@@ -1,0 +1,48 @@
+{
+  "item_id": "lock-len10-viol-02",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property globally(opted_out implies not sent) is VIOLATED via the t_resume_glitch backdoor.\n\nHow sent can become true: only [t_send_allowed] (guard: not opted_out) or [t_resume_glitch] on send_attempt with guard (opted_out and stage >= 10), which sets sent := true. The latter directly contradicts the safety property whenever it can fire, so the goal is to reach opted_out=true AND stage==10, then fire send_attempt.\n\nKey reasoning about the lock: The advancing keys per stage are 0->1:key_2, 1->2:key_2, 2->3:key_0, 3->4:key_2, 4->5:key_0, 5->6:key_0, 6->7:key_1, 7->8:key_0, 8->9:key_1, 9->10:key_2. Every non-advancing key at a stage resets stage to 0. Crucially, opt-out ([t_optout]: opted_out:=true, sent:=false) does NOT reset stage, and NONE of the advance transitions (adv_0..adv_9) are guarded on opted_out. Therefore opting out does not block lock advancement.\n\nTrace (each named event matches exactly one enabled transition):\n0. init: opted_out=false, sent=false, stage=0\n1. optout -> opted_out=true, sent=false, stage=0\n2. key_2 (adv_0) -> stage=1\n3. key_2 (adv_1) -> stage=2\n4. key_0 (adv_2) -> stage=3\n5. key_2 (adv_3) -> stage=4\n6. key_0 (adv_4) -> stage=5\n7. key_0 (adv_5) -> stage=6\n8. key_1 (adv_6) -> stage=7\n9. key_0 (adv_7) -> stage=8\n10. key_1 (adv_8) -> stage=9\n11. key_2 (adv_9) -> stage=10\n12. send_attempt: guard (opted_out=true and stage>=10) holds -> t_resume_glitch -> sent=true\n\nFinal state: opted_out=true AND sent=true, violating opted_out implies not sent. This is 12 events, within the 13-event bound.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

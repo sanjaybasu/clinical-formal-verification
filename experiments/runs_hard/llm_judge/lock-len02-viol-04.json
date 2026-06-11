@@ -1,0 +1,24 @@
+{
+  "item_id": "lock-len02-viol-04",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property \"globally (opted_out implies not sent)\" is VIOLATED. The dangerous transition is t_resume_glitch (line 19): on send_attempt, if (opted_out and stage >= 2), it sets sent := true even though the patient has opted out. So an opted-out send goes through whenever the lock has reached stage 2.\n\nThe combination to reach stage 2: from stage 0, adv_0 advances to stage 1 on key_2 (line 12); from stage 1, adv_1 advances to stage 2 on key_1 (line 15). Stage 2 is sticky \u2014 no transition resets it (resets rst_*_* only fire at stage 0 or stage 1). optout (t_optout, line 10) sets opted_out:=true and sent:=false but leaves stage unchanged.\n\nCounterexample trace (4 events, within the 5-event bound):\n1. key_2 at stage 0: adv_0 fires -> stage=1, sent=false. State: opted_out=F, sent=F, stage=1.\n2. key_1 at stage 1: adv_1 fires -> stage=2, sent=false. State: opted_out=F, sent=F, stage=2.\n3. optout: t_optout fires -> opted_out=true, sent=false; stage stays 2. State: opted_out=T, sent=F, stage=2.\n4. send_attempt with opted_out=T and stage=2: t_send_allowed guard (not opted_out) fails; t_send_blocked guard (opted_out and stage<2) fails since stage=2; t_resume_glitch guard (opted_out and stage>=2) holds -> sent:=true. State: opted_out=T, sent=T, stage=2.\n\nAfter event 4, opted_out=true and sent=true simultaneously, so (opted_out implies not sent) is false \u2014 a message is sent after opt-out. Property violated.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

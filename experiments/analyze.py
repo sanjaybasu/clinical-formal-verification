@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import json
 import math
+import os
 from pathlib import Path
 
 import numpy as np
@@ -20,9 +21,9 @@ from verifier.model import Item
 from verifier.replay import confirm_witness
 
 ROOT = Path(__file__).resolve().parent.parent
-SUITE = ROOT / "benchmark" / "suite"
-RUNS = ROOT / "experiments" / "runs"
-RESULTS = ROOT / "experiments" / "results"
+SUITE = ROOT / os.environ.get("CIVBENCH_SUITE", "benchmark/suite")
+RUNS = ROOT / os.environ.get("CIVBENCH_RUNS", "experiments/runs")
+RESULTS = ROOT / os.environ.get("CIVBENCH_RESULTS", "experiments/results")
 METHOD_ORDER = ["verification", "unit_test", "llm_judge", "nemo_guardrails", "llama_guard"]
 METHOD_LABEL = {
     "verification": "complete verification",
@@ -157,7 +158,8 @@ def _pct(x):
 
 def _render_tables(summary: dict) -> str:
     present = [m for m in METHOD_ORDER if m in summary["methods"]]
-    L = ["# CIV-Bench v0 head-to-head results",
+    suite_name = SUITE.name.replace("suite_", "CIV-Bench-").replace("suite", "CIV-Bench v0")
+    L = [f"# {suite_name} head-to-head results",
          "",
          f"Items: {summary['n_items']} ({summary['n_violated']} violated, {summary['n_holds']} holds). "
          "Proportions carry 95% Wilson score intervals.",

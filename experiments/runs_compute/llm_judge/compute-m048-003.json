@@ -1,0 +1,27 @@
+{
+  "item_id": "compute-m048-003",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "step_2"
+    },
+    {
+      "event": "step_2"
+    },
+    {
+      "event": "step_2"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The accumulator update for each step is acc := (3*acc + c) mod 48, where the deeply nested if-expressions just reduce (3*acc + c) modulo 48 by subtracting 48 up to three times (sufficient since max value 3*47+46=187 < 4*48). Constants: step_0 c=14, step_1 c=46, step_2 c=39.\n\nThe property fails because of [t_resume_glitch]: on send_attempt, if opted_out and acc==27, then sent:=true, which makes (opted_out and sent) true and violates globally(opted_out implies not sent).\n\nI needed acc==27 reachable from acc=0. BFS over the three step events found acc=27 is reachable; shortest path is three step_2 events:\n- start acc=0\n- step_2: (3*0+39) mod 48 = 39\n- step_2: (3*39+39)=156, 156-48-48-48 = 12 -> 12\n- step_2: (3*12+39)=75, 75-48 = 27 -> 27\n\nFull simulation of the 5-event sequence step_2, step_2, step_2, optout, send_attempt:\n- after 3 step_2: opted_out=false, sent=false, acc=27\n- optout: opted_out=true, sent=false, acc=27\n- send_attempt: opted_out is true and acc==27, so [t_resume_glitch] fires, sent:=true.\n\nFinal state opted_out=true and sent=true => property violated. Sequence length 5, within the 50-event bound.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

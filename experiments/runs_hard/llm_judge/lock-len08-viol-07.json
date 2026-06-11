@@ -1,0 +1,42 @@
+{
+  "item_id": "lock-len08-viol-07",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The combination lock advances 0->1 via key_0 (adv_0), 1->2 via key_0 (adv_1), 2->3 via key_1 (adv_2), 3->4 via key_1 (adv_3), 4->5 via key_1 (adv_4), 5->6 via key_1 (adv_5), 6->7 via key_0 (adv_6), 7->8 via key_2 (adv_7). So the unlock combination is key_0,key_0,key_1,key_1,key_1,key_1,key_0,key_2, reaching stage 8. Every advance/reset also sets sent:=false, and stage 8 has no outgoing transitions (stable). The send_attempt logic is the vulnerability: t_send_blocked (opted_out and stage<8) keeps sent false, but t_resume_glitch (opted_out and stage>=8) sets sent:=true. Witness: drive the lock to stage 8 with the 8-key combination (opted_out still false, sent false), then optout sets opted_out:=true, sent:=false, stage unchanged at 8. Then send_attempt: t_send_allowed fails (opted_out true), t_send_blocked fails (stage not <8), t_resume_glitch fires (opted_out true and stage>=8) -> sent:=true. Final state: opted_out=true AND sent=true, violating globally(opted_out implies not sent). Sequence length 10 events, within the 11-event bound. The safety property is VIOLATED: an opted-out send goes through once the lock has reached stage 8.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

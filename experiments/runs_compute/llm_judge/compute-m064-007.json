@@ -1,0 +1,24 @@
+{
+  "item_id": "compute-m064-007",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "step_1"
+    },
+    {
+      "event": "step_1"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The recurrence is acc := ((3*acc) + c) mod 64, where the nested if-then-else simply performs modular reduction by subtracting 64 up to three times (sufficient because max 3*63+45=234 requires at most 3 subtractions). I verified the file's exact nested-if reduction equals mod 64 over the full domain [0,63] for every step. Constants: step_0 adds 45, step_1 adds 9, step_2 adds 26. The faulty t_resume_glitch transition sends a message after opt-out only when acc==36. BFS over the recurrence from acc=0 found acc=36 reachable in 2 events: step_1 takes 0 -> (3*0+9)%64 = 9; step_1 again takes 9 -> (3*9+9)%64 = 36%64 = 36. Then optout sets opted_out=true (sent reset to false), and send_attempt with opted_out=true and acc==36 fires t_resume_glitch, setting sent=true. This reaches a state with opted_out=true and sent=true, violating globally(opted_out implies not sent). Simulating the full ordered trace confirms the final state opted_out=true, sent=true. Property is violated.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

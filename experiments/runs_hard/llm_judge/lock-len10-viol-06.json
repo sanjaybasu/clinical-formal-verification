@@ -1,0 +1,48 @@
+{
+  "item_id": "lock-len10-viol-06",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "optout"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The property globally(opted_out implies not sent) is VIOLATED via the [t_resume_glitch] rule (line 43): on send_attempt, if (opted_out and stage >= 10), it sets sent := true. This is a send after opt-out.\n\nThe escape hatch is reaching stage 10. The lock advances one stage per correct key, and critically NONE of the stage-advancing (adv_*) or reset (rst_*) rules guard on opted_out, nor does optout reset stage. So we can opt out first and then climb the entire lock while opted out.\n\nCombination to climb stage 0->10 (each key is the unique adv_* transition for that stage):\n- adv_0: stage 0 --key_2--> 1\n- adv_1: stage 1 --key_1--> 2\n- adv_2: stage 2 --key_0--> 3\n- adv_3: stage 3 --key_0--> 4\n- adv_4: stage 4 --key_0--> 5\n- adv_5: stage 5 --key_2--> 6\n- adv_6: stage 6 --key_2--> 7\n- adv_7: stage 7 --key_2--> 8\n- adv_8: stage 8 --key_2--> 9\n- adv_9: stage 9 --key_2--> 10\n\nTrace (start opted_out=false, sent=false, stage=0):\n1. optout -> opted_out=true, sent=false, stage=0\n2. key_2 (adv_0) -> stage=1\n3. key_1 (adv_1) -> stage=2\n4. key_0 (adv_2) -> stage=3\n5. key_0 (adv_3) -> stage=4\n6. key_0 (adv_4) -> stage=5\n7. key_2 (adv_5) -> stage=6\n8. key_2 (adv_6) -> stage=7\n9. key_2 (adv_7) -> stage=8\n10. key_2 (adv_8) -> stage=9\n11. key_2 (adv_9) -> stage=10\n12. send_attempt -> opted_out=true AND stage>=10 -> t_resume_glitch fires -> sent=true\n\nFinal state: opted_out=true AND sent=true, violating the property. The witness uses 12 events, within the 13-event bound. Note t_send_blocked (opted_out and stage<10) keeps sends harmless before stage 10, but the stage-10 glitch defeats the safety guarantee.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

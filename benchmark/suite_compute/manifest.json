@@ -1,0 +1,506 @@
+[
+  {
+    "id": "compute-m008-000",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 8,
+    "modulus": 8,
+    "space": null
+  },
+  {
+    "id": "compute-m008-001",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 8,
+    "modulus": 8,
+    "space": null
+  },
+  {
+    "id": "compute-m008-002",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 8,
+    "modulus": 8,
+    "space": null
+  },
+  {
+    "id": "compute-m008-003",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 8,
+    "modulus": 8,
+    "space": null
+  },
+  {
+    "id": "compute-m008-004",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 8,
+    "modulus": 8,
+    "space": null
+  },
+  {
+    "id": "compute-m008-005",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 8,
+    "modulus": 8,
+    "space": null
+  },
+  {
+    "id": "compute-m008-006",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 8,
+    "modulus": 8,
+    "space": null
+  },
+  {
+    "id": "compute-m008-007",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 8,
+    "modulus": 8,
+    "space": null
+  },
+  {
+    "id": "compute-m008-024",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "modulus": 8,
+    "space": 12
+  },
+  {
+    "id": "compute-m008-047",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "modulus": 8,
+    "space": 6
+  },
+  {
+    "id": "compute-m016-000",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 16,
+    "modulus": 16,
+    "space": null
+  },
+  {
+    "id": "compute-m016-001",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 16,
+    "modulus": 16,
+    "space": null
+  },
+  {
+    "id": "compute-m016-002",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 16,
+    "modulus": 16,
+    "space": null
+  },
+  {
+    "id": "compute-m016-003",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 16,
+    "modulus": 16,
+    "space": null
+  },
+  {
+    "id": "compute-m016-004",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 16,
+    "modulus": 16,
+    "space": null
+  },
+  {
+    "id": "compute-m016-005",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 16,
+    "modulus": 16,
+    "space": null
+  },
+  {
+    "id": "compute-m016-006",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 16,
+    "modulus": 16,
+    "space": null
+  },
+  {
+    "id": "compute-m016-007",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 16,
+    "modulus": 16,
+    "space": null
+  },
+  {
+    "id": "compute-m016-017",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "modulus": 16,
+    "space": 24
+  },
+  {
+    "id": "compute-m016-020",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "modulus": 16,
+    "space": 12
+  },
+  {
+    "id": "compute-m016-031",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "modulus": 16,
+    "space": 24
+  },
+  {
+    "id": "compute-m016-047",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "modulus": 16,
+    "space": 24
+  },
+  {
+    "id": "compute-m032-000",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 32,
+    "modulus": 32,
+    "space": null
+  },
+  {
+    "id": "compute-m032-001",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 32,
+    "modulus": 32,
+    "space": null
+  },
+  {
+    "id": "compute-m032-002",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 32,
+    "modulus": 32,
+    "space": null
+  },
+  {
+    "id": "compute-m032-003",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 32,
+    "modulus": 32,
+    "space": null
+  },
+  {
+    "id": "compute-m032-004",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 32,
+    "modulus": 32,
+    "space": null
+  },
+  {
+    "id": "compute-m032-005",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 32,
+    "modulus": 32,
+    "space": null
+  },
+  {
+    "id": "compute-m032-006",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 32,
+    "modulus": 32,
+    "space": null
+  },
+  {
+    "id": "compute-m032-007",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 32,
+    "modulus": 32,
+    "space": null
+  },
+  {
+    "id": "compute-m032-038",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "modulus": 32,
+    "space": 48
+  },
+  {
+    "id": "compute-m032-054",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "modulus": 32,
+    "space": 48
+  },
+  {
+    "id": "compute-m048-000",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 48,
+    "modulus": 48,
+    "space": null
+  },
+  {
+    "id": "compute-m048-001",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 48,
+    "modulus": 48,
+    "space": null
+  },
+  {
+    "id": "compute-m048-002",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "modulus": 48,
+    "space": 96
+  },
+  {
+    "id": "compute-m048-003",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 48,
+    "modulus": 48,
+    "space": null
+  },
+  {
+    "id": "compute-m048-004",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 48,
+    "modulus": 48,
+    "space": null
+  },
+  {
+    "id": "compute-m048-005",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 48,
+    "modulus": 48,
+    "space": null
+  },
+  {
+    "id": "compute-m048-006",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "modulus": 48,
+    "space": 72
+  },
+  {
+    "id": "compute-m048-007",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "modulus": 48,
+    "space": 51
+  },
+  {
+    "id": "compute-m048-008",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 48,
+    "modulus": 48,
+    "space": null
+  },
+  {
+    "id": "compute-m048-009",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "modulus": 48,
+    "space": 96
+  },
+  {
+    "id": "compute-m048-010",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 48,
+    "modulus": 48,
+    "space": null
+  },
+  {
+    "id": "compute-m048-011",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 48,
+    "modulus": 48,
+    "space": null
+  },
+  {
+    "id": "compute-m064-000",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 64,
+    "modulus": 64,
+    "space": null
+  },
+  {
+    "id": "compute-m064-001",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 64,
+    "modulus": 64,
+    "space": null
+  },
+  {
+    "id": "compute-m064-002",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 64,
+    "modulus": 64,
+    "space": null
+  },
+  {
+    "id": "compute-m064-003",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "modulus": 64,
+    "space": 96
+  },
+  {
+    "id": "compute-m064-004",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 64,
+    "modulus": 64,
+    "space": null
+  },
+  {
+    "id": "compute-m064-005",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 64,
+    "modulus": 64,
+    "space": null
+  },
+  {
+    "id": "compute-m064-006",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "modulus": 64,
+    "space": 96
+  },
+  {
+    "id": "compute-m064-007",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 64,
+    "modulus": 64,
+    "space": null
+  },
+  {
+    "id": "compute-m064-008",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 64,
+    "modulus": 64,
+    "space": null
+  },
+  {
+    "id": "compute-m064-009",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 64,
+    "modulus": 64,
+    "space": null
+  },
+  {
+    "id": "compute-m064-024",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "modulus": 64,
+    "space": 96
+  },
+  {
+    "id": "compute-m064-050",
+    "domain": "outreach",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0,
+    "modulus": 64,
+    "space": 96
+  }
+]

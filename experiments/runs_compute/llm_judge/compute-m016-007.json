@@ -1,0 +1,30 @@
+{
+  "item_id": "compute-m016-007",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "step_2"
+    },
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The step updates are acc := ((3*acc) + c) mod 16, where the nested if-then-else chain is just a mod-16 reduction (three conditional subtractions of 16). For step_0 and step_1, c = 15; for step_2, c = 10. The resume-glitch transition t_resume_glitch fires on send_attempt when opted_out and acc == 9, setting sent := true, which breaks G(opted_out implies not sent). I checked whether acc == 9 (the glitch target) is reachable from the initial acc = 0 via the step recurrence using BFS over the 16-element state space; all residues 0..15 are reachable, and acc == 9 is reachable. Concrete trace from acc = 0: step_0 -> (3*0+15) mod 16 = 15; step_0 -> (3*15+15) mod 16 = 60 mod 16 = 12; step_2 -> (3*12+10) mod 16 = 46 mod 16 = 14; step_0 -> (3*14+15) mod 16 = 57 mod 16 = 9. Now acc = 9. Then optout sets opted_out = true (and resets sent = false). Then send_attempt: opted_out is true and acc == 9, so t_resume_glitch is enabled and sets sent := true. Final state opted_out = true and sent = true violates the property. The sequence is 6 events, within the 18-event bound. All intermediate acc values stay in [0,15]. Full state-machine simulation confirms the violation (sent becomes true while opted_out is true).",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

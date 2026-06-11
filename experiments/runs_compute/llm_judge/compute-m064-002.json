@@ -1,0 +1,24 @@
+{
+  "item_id": "compute-m064-002",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "step_1"
+    },
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "Each step event updates acc via the same modular linear recurrence acc := (3*acc + c) mod 64, where the deeply nested if-expressions merely subtract 64 up to three times (sufficient since the max pre-reduction value 3*63+32 = 221 < 256). The constant c is: step_0 -> 3, step_1 -> 32, step_2 -> 1. Opt-out does not change acc, and step events remain enabled after opt-out (guard true). The faulty resume path t_resume_glitch fires on send_attempt when (opted_out and acc == 35), setting sent := true, which violates globally(opted_out implies not sent).\n\nThe target acc == 35 IS reachable from the initial acc = 0. BFS over the 64 residues found a 2-step path: step_1 then step_0. Simulating with the exact nested-if semantics from the file: start acc=0; step_1 -> (3*0+32) mod 64 = 32; step_0 -> (3*32+3) mod 64 = 99 mod 64 = 35. Then optout sets opted_out=true (acc unchanged = 35); then send_attempt matches t_resume_glitch (opted_out and acc==35) and sets sent=true. In that state opted_out=true and sent=true, contradicting the global invariant. The full counterexample sequence is step_1, step_0, optout, send_attempt (4 events, well within the 66-event bound). I confirmed the exact 3-level nested-if computation equals (3*acc + c) mod 64 for all acc in [0,63] and always yields a value in [0,63].",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "item_id": "compute-m032-006",
+  "method": "llm_judge",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "step_1"
+    },
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "step_1"
+    },
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "step_0"
+    },
+    {
+      "event": "optout"
+    },
+    {
+      "event": "send_attempt"
+    }
+  ],
+  "seconds": null,
+  "extra": {
+    "reasoning": "The safety property G(opted_out -> not sent) is VIOLATED. The faulty transition t_resume_glitch fires on send_attempt when (opted_out and acc == 10), setting sent := true after opt-out. A violation therefore requires reaching acc == 10, then optout, then send_attempt.\n\nThe three step events each apply a modular linear recurrence mod 32 (the deeply nested if-then-else expressions simply subtract 32 repeatedly to reduce the value into [0,31]; since acc in [0,31], 3*acc+const is at most 117, and three conditional subtractions suffice \u2014 verified exact equivalence to mod 32):\n  step_0: acc := (3*acc + 24) mod 32\n  step_1: acc := (3*acc + 11) mod 32\n  step_2: acc := (3*acc + 11) mod 32  (identical to step_1)\n\nBFS from the initial acc=0 finds acc=10 is reachable via: step_1, step_0, step_1, step_0, step_0, step_0. Simulating exactly:\n  0 -(step_1)-> 11 -(step_0)-> 25 -(step_1)-> 22 -(step_0)-> 26 -(step_0)-> 6 -(step_0)-> 10.\nStep events also set sent:=false but do not change opted_out (still false here). Then optout sets opted_out:=true (acc unchanged at 10). Then send_attempt: guard (opted_out and acc==10) holds, so t_resume_glitch sets sent:=true. Resulting state has opted_out=true and sent=true, violating the property. The witness is 8 events, within the 34-event bound.",
+    "judge": "claude-opus-4-8-class-agent"
+  }
+}

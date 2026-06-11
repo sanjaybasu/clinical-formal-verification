@@ -339,8 +339,9 @@ def _check_transition(item: Item, timeout_ms: int) -> Result:
                       "sat: a reachable trace reaches a state violating the invariant", secs)
     s.pop()
 
-    # k-induction step for an unbounded result on G(phi)
-    inductive = _k_induction_step(ts, phi, bound, timeout_ms)
+    # k-induction step for an unbounded result on G(phi); time-boxed so a hard arithmetic
+    # instance falls back to the sound bounded result rather than stalling.
+    inductive = _k_induction_step(ts, phi, bound, min(timeout_ms, 5000))
     secs = time.perf_counter() - t0
     if inductive:
         return Result(item.id, "holds", "all reachable states (k-induction)", None,

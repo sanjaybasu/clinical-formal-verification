@@ -7,11 +7,14 @@ concrete replay. The interaction depth is the number of conditions or events tha
 to produce the violation, and is the axis along which the compositionality hypothesis is tested:
 probabilistic methods are expected to miss violations at greater depth.
 
-Determinism: every item is built from an explicit integer seed; no wall-clock or unseeded
-randomness is used, so the suite regenerates identically.
+Determinism: seeds derive from a stable sha256 of the construction parameters (Python's tuple
+hash is salted per process and must not be used), so the generator is deterministic across runs
+and machines. The released, canonical benchmark is the version-controlled suite under
+benchmark/suite/; this generator documents and reproduces an equivalent suite of identical
+construction. All reported results are computed on the committed suite.
 
     python benchmark/generate.py            # write suite to benchmark/suite/
-    python benchmark/generate.py --check     # regenerate in memory and verify, write nothing
+    python benchmark/generate.py --check     # build in memory and verify, write nothing
 """
 
 from __future__ import annotations
@@ -23,6 +26,13 @@ from pathlib import Path
 
 from jsonschema import Draft202012Validator
 
+import hashlib
+
+
+def _seed(*parts):
+    """Deterministic 32-bit seed; Python's tuple hash is salted per process."""
+    return int(hashlib.sha256("-".join(map(str, parts)).encode()).hexdigest(), 16) % (2**32)
+
 from verifier.execute import oracle
 from verifier.model import Item
 from verifier.replay import confirm_witness
@@ -33,17 +43,24 @@ SUITE = ROOT / "benchmark" / "suite"
 ITEM_SCHEMA = json.loads((ROOT / "benchmark" / "schema" / "benchmark.schema.json").read_text())
 
 ACUITY = ["self_care", "routine", "urgent", "emergent"]
-DEPTHS = [1, 2, 3, 4]
-N_VIOLATED_PER_DEPTH = 10
-N_HOLDS = 20
+# Depth is the number of conditions or events that must coincide for the violation. It controls
+# both the rarity of a counterexample under random sampling (about 2^-depth) and the length of
+# the compositional reasoning a model must perform. The range spans shallow faults that sampling
+# catches to deep faults whose witnesses are rare relative to a 1000-case test budget.
+DEPTHS = [1, 2, 3, 4, 5, 6, 8, 10, 12]
+N_VIOLATED_PER_DEPTH = 8
+N_HOLDS = 36
 
 SYMPTOMS = [
-    "chest_pain", "dyspnea", "syncope", "focal_weakness", "severe_headache",
-    "abdominal_pain", "fever", "vomiting", "rash", "dizziness", "palpitations", "vision_loss",
+    "chest_pain", "dyspnea", "syncope", "focal_weakness", "severe_headache", "abdominal_pain",
+    "fever", "vomiting", "rash", "dizziness", "palpitations", "vision_loss", "confusion",
+    "hemoptysis", "stiff_neck", "slurred_speech", "leg_swelling", "back_pain", "pallor", "sweating",
 ]
 CONDITIONS = [
     "anticoagulated", "renal_impairment", "hepatic_impairment", "pregnancy", "qt_prolongation",
     "peptic_ulcer", "asthma", "heart_failure", "elderly", "polypharmacy", "diabetes", "hypertension",
+    "immunosuppressed", "seizure_history", "g6pd_deficiency", "prior_gi_bleed", "ckd_dialysis",
+    "low_ejection_fraction", "hyperkalemia", "bradycardia",
 ]
 
 
@@ -57,8 +74,8 @@ def _and(names):
 
 
 def triage_item(depth: int, seed: int, holds: bool) -> dict:
-    rng = random.Random(("triage", depth, seed, holds).__hash__() & 0xFFFFFFFF)
-    n_extra = rng.randint(1, 3)
+    rng = random.Random(_seed("triage", depth, seed, holds))
+    n_extra = 1 if depth >= 8 else rng.randint(1, 3)  # keep the enumeration oracle fast at depth
     flags = rng.sample(SYMPTOMS, depth + n_extra)
     conj = flags[:depth]
     target = conj[-1]
@@ -115,7 +132,7 @@ def triage_item(depth: int, seed: int, holds: bool) -> dict:
 
 
 def medication_item(depth: int, seed: int, holds: bool) -> dict:
-    rng = random.Random(("med", depth, seed, holds).__hash__() & 0xFFFFFFFF)
+    rng = random.Random(_seed("med", depth, seed, holds))
     n_extra = rng.randint(1, 3)
     conds = rng.sample(CONDITIONS, depth + n_extra)
     conj = conds[:depth]  # rec_a fires on the conjunction of these
