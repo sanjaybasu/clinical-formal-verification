@@ -67,6 +67,27 @@ The evaluation protocol is pre-registered in `experiments/protocol.md` and is fi
 baseline is run. Results, metrics, and confidence intervals are computed by code in
 `experiments/`; this repository does not contain hand-entered result numbers.
 
+## Results
+
+The head-to-head on CIV-Bench (440 items across three suites; ground truth set by an independent
+oracle, every counterexample replay-confirmed) is in `experiments/results_combined.md`, generated
+from the raw per-item outputs by `experiments/analyze.py` with no hand-entered numbers. In short:
+across all 440 items complete verification returned no verdict that contradicted ground truth (it
+proves, refutes with a replayable counterexample, or abstains); the unit-test suite returned a
+false statement of safety on 63 violated items, with detection falling as interaction depth rose;
+and a frontier language-model judge detected every violation but supplies no proof or coverage
+guarantee. No method detected every violation across all regimes. The distinguishing property of
+complete verification is the class of evidence it returns, not a higher detection rate.
+
+Reproduce:
+
+```
+python -m baselines.run_verification && python -m baselines.run_unit_test
+python experiments/analyze.py && python experiments/figures_all.py
+```
+
+The manuscript and appendix are in `paper/`.
+
 ## Licensing
 
 Code is released under Apache-2.0 (`LICENSE`). The benchmark, including rule sets, properties,
@@ -76,5 +97,8 @@ released.
 
 ## Status
 
-This repository is under active construction and is built in milestones. See
-`docs/status/` for the status note at each milestone.
+Built in milestones, with a status note for each in `docs/status/`. Complete: verified references
+and the architectural-limits review (M1); the Z3 verifier with self-tests, CIV-Bench v0, and the
+pre-registered protocol (M2); the head-to-head with two harder suites, soundness analysis,
+figures, and case studies (M3); the toolkit documentation (M4); and the manuscript, appendix, and
+submission materials (M5).
