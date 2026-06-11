@@ -1,0 +1,76 @@
+{
+  "item_id": "compute-m016-004",
+  "method": "verification",
+  "verdict": "violated",
+  "witness": [
+    {
+      "event": "send_attempt",
+      "transition": "t_send_allowed"
+    },
+    {
+      "event": "step_2",
+      "transition": "step_2"
+    },
+    {
+      "event": "stutter"
+    },
+    {
+      "event": "step_0",
+      "transition": "step_0"
+    },
+    {
+      "event": "stutter"
+    },
+    {
+      "event": "send_attempt",
+      "transition": "t_send_allowed"
+    },
+    {
+      "event": "optout",
+      "transition": "t_optout"
+    },
+    {
+      "event": "stutter"
+    },
+    {
+      "event": "stutter"
+    },
+    {
+      "event": "send_attempt",
+      "transition": "t_resume_glitch"
+    },
+    {
+      "event": "stutter"
+    },
+    {
+      "event": "optout",
+      "transition": "t_optout"
+    },
+    {
+      "event": "stutter"
+    },
+    {
+      "event": "stutter"
+    },
+    {
+      "event": "stutter"
+    },
+    {
+      "event": "stutter"
+    },
+    {
+      "event": "send_attempt",
+      "transition": "t_resume_glitch"
+    },
+    {
+      "event": "send_attempt",
+      "transition": "t_resume_glitch"
+    }
+  ],
+  "seconds": 0.0953,
+  "extra": {
+    "proof_scope": "traces up to length 18",
+    "method_note": "sat: a reachable trace reaches a state violating the invariant",
+    "timeout_ms": 15000
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "item_id": "compute-m064-004",
+  "method": "verification",
+  "verdict": "unknown",
+  "witness": null,
+  "seconds": 15.3454,
+  "extra": {
+    "proof_scope": "bounded search to length 66",
+    "method_note": "solver returned unknown (resource bound) on the bounded reachability query",
+    "timeout_ms": 15000
+  }
+}

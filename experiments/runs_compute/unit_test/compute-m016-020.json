@@ -1,0 +1,11 @@
+{
+  "item_id": "compute-m016-020",
+  "method": "unit_test",
+  "verdict": "holds",
+  "witness": null,
+  "seconds": 0.2256,
+  "extra": {
+    "n_samples": 1000,
+    "seed": 20260610
+  }
+}
