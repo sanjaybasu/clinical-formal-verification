@@ -53,9 +53,14 @@ def _extract_records(blob):
 def main(path: str) -> int:
     blob = _extract_records(json.loads(Path(path).read_text()))
     items = {p.stem: Item.load(p) for p in (SUITE / "items").glob("*.json")}
+    blind_map_path = RUNS / "_blind_map.json"
+    blind_map = json.loads(blind_map_path.read_text()) if blind_map_path.exists() else {}
     written = 0
     for rec in blob:
         if not rec or "id" not in rec:
+            continue
+        rec["id"] = blind_map.get(rec["id"], rec["id"])  # map blind hash -> real id if blinded
+        if rec["id"] not in items:
             continue
         item = items[rec["id"]]
         witness = _normalize_witness(item, rec)

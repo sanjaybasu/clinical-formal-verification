@@ -6,7 +6,7 @@ confirmed by concrete replay (running the rule set on the witness), independent 
 The clinical mechanisms are drawn from the documented failure modes in the companion
 retrospective and the clinical-AI-safety literature; the rule sets are synthetic.
 
-## Case 1: a polite message after opt-out (a violation unit testing reports as safe)
+## Case 1: a message after opt-out via a state sequence (combination-lock stress test; not clinically realistic)
 
 Item `lock-len10-viol-00` (outreach). A member opts out of messaging. Over the following
 interactions the workflow advances an internal engagement-state counter through ten steps, each
@@ -60,7 +60,7 @@ safe; the unit-test suite returns holds (false safe), because a twelve-way conju
 with probability on the order of two to the power minus twelve; the language-model judge returns
 violated. The interaction depth is the axis on which sampling-based assurance fails.
 
-## Case 3: a violation the verifier cannot decide in budget (verification abstains, soundly)
+## Case 3: a violation the verifier cannot decide in budget (modular-accumulator stress test; verification abstains, soundly)
 
 Item `compute-m064-000` (outreach, computed accumulator, modulus 64). After opt-out a resume
 path sends a message when an internal accumulator, updated by a modular recurrence on each event,

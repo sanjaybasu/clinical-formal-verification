@@ -26,7 +26,7 @@ RUNS = ROOT / os.environ.get("CIVBENCH_RUNS", "experiments/runs")
 RESULTS = ROOT / os.environ.get("CIVBENCH_RESULTS", "experiments/results")
 METHOD_ORDER = ["verification", "unit_test", "llm_judge", "nemo_guardrails", "llama_guard"]
 METHOD_LABEL = {
-    "verification": "complete verification",
+    "verification": "SMT verification",
     "unit_test": "unit-test suite",
     "llm_judge": "language-model judge",
     "nemo_guardrails": "NeMo Guardrails",
@@ -71,6 +71,16 @@ def logistic_slope(depths: list[int], y: list[int]):
     cov = np.linalg.inv(X.T @ (W[:, None] * X))
     se = math.sqrt(cov[1, 1])
     return (beta[1], beta[1] - Z * se, beta[1] + Z * se)
+
+
+def mcnemar_exact(b: int, c: int) -> float:
+    """Two-sided exact McNemar p-value from discordant counts b and c."""
+    n = b + c
+    if n == 0:
+        return 1.0
+    k = min(b, c)
+    tail = sum(math.comb(n, i) for i in range(0, k + 1)) * (0.5 ** n)
+    return min(1.0, 2 * tail)
 
 
 def load_runs(method: str) -> dict:
@@ -151,6 +161,18 @@ def main() -> int:
             "depth_logistic_slope": ({"slope": slope[0], "ci": [slope[1], slope[2]]} if slope else None),
             "mean_seconds": mean_sec,
         }
+
+    # pre-specified paired inferential test: SMT verification vs unit-test detection on violated items
+    vr, ur = load_runs("verification"), load_runs("unit_test")
+    if vr and ur:
+        b = c = 0  # b: verifier detects, unit-test misses; c: verifier misses, unit-test detects
+        for i in violated:
+            if i not in vr or i not in ur:
+                continue
+            vd, ud = vr[i]["verdict"] == "violated", ur[i]["verdict"] == "violated"
+            b += vd and not ud
+            c += (not vd) and ud
+        summary["mcnemar_verif_vs_unittest"] = {"b": b, "c": c, "p_value": mcnemar_exact(b, c)}
 
     RESULTS.mkdir(parents=True, exist_ok=True)
     (RESULTS / "summary.json").write_text(json.dumps(summary, indent=2) + "\n")

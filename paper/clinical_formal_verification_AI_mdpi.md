@@ -16,18 +16,24 @@ evidence a guardrail produces is a pass rate over a sampled test set, not a stat
 input space. Methods: We formalise the resulting assurance gap, build CIV-Bench, a benchmark of
 440 machine-readable clinical rule sets paired with safety properties across triage, medication,
 and outreach, with ground truth established by an independent oracle and every counterexample
-confirmed by concrete replay, and run a head-to-head of complete satisfiability-modulo-theories
-verification against the current quality-assurance practices: a unit-test suite, a frontier
-language-model judge, and content-safety guardrails. Results: Complete verification returned no
-verdict that contradicted ground truth on any of the 440 items, proving a property over the full
-input space, exhibiting a replayable counterexample, or abstaining; it never reported false
-safety. The unit-test suite returned a false statement of safety on 63 violated items, with
-detection falling as interaction depth rose (86.6% to 33% across depth on one suite; to zero on
-another). A frontier language-model judge detected every violation but supplies no proof and no
-coverage guarantee. No method detected every violation across all regimes. Conclusion: The
-property that distinguishes formal verification is the class of evidence it returns, not a higher
-detection rate; the design question for clinical AI is which decisions are placed in the
-provable layer, a question new model releases do not change.
+confirmed by concrete replay, and run a head-to-head of
+satisfiability-modulo-theories (SMT) verification, which is sound and a decision procedure on the
+finite rule fragment though abstention-capable on stateful systems, against the current
+quality-assurance practices: a unit-test suite, a frontier language-model judge run blinded, and
+content-safety guardrails. Results: SMT verification returned no verdict that contradicted ground
+truth on any of the 440 items, proving a property over the full input space, exhibiting a replayable
+counterexample, or abstaining; it never reported false safety. The unit-test suite returned a false
+statement of safety on 63 violated items, with detection falling as interaction depth rose (86.6% to
+33% across depth on one suite; to zero on another). The blinded language-model judge detected every
+violation but supplies no proof and no coverage guarantee, and on the most stateful suite both
+probabilistic methods exceeded SMT verification on detection because the verifier abstained when the
+state space exceeded its solver budget. No method detected every violation across all regimes, and
+SMT verification did not achieve the highest detection rate. Conclusion: The property that
+distinguishes formal verification is the class of evidence it returns, a proof or a counterexample
+or an explicit abstention, not a higher detection rate; the design question for clinical AI is which
+decisions are placed in the provable layer, a question new model releases do not change. We do not
+claim provable safety: the guarantee is conditional on the specification, which is the residual
+risk.
 
 Keywords: formal verification; clinical decision support; large language models; AI safety;
 satisfiability modulo theories; guardrails; benchmark; assurance
@@ -46,11 +52,12 @@ input-output safeguard such as a fine-tuned classifier [4], programmable dialogu
 retrieval grounding. Each of these components is itself a statistical system. Empirical work shows
 that learned guardrails are bypassable, with character-injection and adversarial techniques
 driving detection accuracy down by tens of percentage points [6], and a systematisation of
-jailbreak guardrails finds no single guardrail robust across attack families [7]. A companion
-retrospective from our group quantifies the operational consequence: a four-component guardrail
-stack reduced commission but introduced a safety-critical omission tax of approximately twelve
-percentage points, which a downstream verification layer reversed while catching about half of
-the guardrail-missed omissions and missing none the guardrails caught [26].
+jailbreak guardrails finds no single guardrail robust across attack families [7]. A same-author
+companion manuscript, under review and not yet peer-reviewed, reports a related operational
+consequence on a model's free-text outputs, that a four-component guardrail stack reduced
+commission but introduced a safety-critical omission tax that a downstream verification layer
+reversed [26]; it is noted for context only, and none of the present paper's conclusions depend on
+its numbers.
 
 The recurring objection to any study of this kind is that the next model release will close the
 gap. Three independent results make that unlikely for the model class. A computability argument
@@ -67,11 +74,15 @@ context only [11]. Reasoning limits compound where clinical logic lives: fixed-d
 transformers are contained in the circuit class TC0 and cannot express certain compositional
 problems regardless of scale [12], a chain of thought relaxes but does not remove this for a
 bounded number of steps [13], and compositional accuracy decays empirically with problem depth
-[14]. Verifying the trained network instead is intractable, since deciding properties of a
-rectified-linear network is NP-complete [15].
+[14]. Verifying the trained network instead is intractable at scale, since deciding a reachability
+or robustness property of a rectified-linear network is worst-case NP-complete [15] and, despite
+real progress, exact verification does not reach frontier scale.
 
-Two boundaries frame the design space. On one side, the semantic properties of arbitrary programs
-are undecidable [16] and neural-network verification is intractable [15]. On the other, a finite
+Two boundaries frame the design space. On one side, every non-trivial semantic property of the
+partial function a program computes is undecidable for arbitrary programs (Rice's theorem) [16],
+and exact neural-network verification is worst-case intractable [15]. The benchmark's finite
+rule sets are not arbitrary programs, which is exactly why their properties are decidable; the
+boundary marks the general case the symbolic layer is chosen to avoid. On the other, a finite
 and explicit rule layer over finite-domain variables is a decidable object whose properties a
 satisfiability-modulo-theories solver decides, returning a proof over the entire space or a
 counterexample [17]. The guaranteed-safe AI programme articulates this macro-architecture, a world
@@ -80,7 +91,7 @@ and a 2025 wave of systems has applied formal and runtime methods to language-mo
 A 2026 systematic review of formal methods for safety-critical machine learning reaches a
 consonant conclusion from the verification side [25]. What this literature does not contain is a
 public benchmark of clinical safety invariants with independently established ground truth, a
-head-to-head of complete verification against the probabilistic methods on clinical rule sets, or
+head-to-head of SMT verification against the probabilistic methods on clinical rule sets, or
 a characterisation of where each method fails. This paper supplies them. The contribution is, in
 order, the formalisation of the assurance gap, the CIV-Bench benchmark, the head-to-head
 measurement, and a tiered assurance framework that places content-safety guardrails, runtime
@@ -145,6 +156,22 @@ state violates the property; a k-induction step is attempted for an unbounded re
 time-boxed. A solver result of unknown is reported as an abstention, never as a proof of safety.
 Every counterexample is replayed by concrete execution to confirm it exhibits the violation.
 
+We use SMT verification to mean the following precisely: on the finite decision-rule fragment the
+procedure is a decision procedure, always returning a decisive proof or counterexample; on
+transition systems it is bounded model checking with a time-boxed k-induction step, so it is
+abstention-capable rather than complete, returning unknown when it cannot decide within its
+resource bound. Its soundness rests on the SMT encoding faithfully refining the rule-set semantics;
+the encoding is trusted code, and we validate it empirically by agreement with the independent
+oracle on every item and by replaying every counterexample. The benchmark variables here are
+boolean, ordered enum, and bounded integer, which keeps each item decidable; a real clinical rule
+layer that uses real-valued thresholds, doses, or time intervals would be encoded in linear-real or
+bit-vector theories that remain decidable but enlarge the state space, and open-vocabulary inputs
+fall outside the symbolic layer entirely and are not the object of this verification. The three
+safety properties were specified by the author, a physician; they are illustrative invariants, and
+real triage routing, contraindications, and opt-out exceptions are frequently conditional rather
+than absolute, which the specification must capture and which is part of the residual specification
+risk discussed in Section 4.5.
+
 ### 2.4. Comparison methods
 
 Each method receives the identical items and returns holds, violated, or, for the verifier,
@@ -178,23 +205,23 @@ code and outputs.
 
 ### 3.1. Detection across three regimes
 
-On CIV-Bench v0, complete verification detected 216 of 216 violations (100%, 95% CI 98.3 to 100.0)
+On CIV-Bench v0, SMT verification detected 216 of 216 violations (100%, 95% CI 98.3 to 100.0)
 and the language-model judge detected 216 of 216 (100%, 95% CI 98.3 to 100.0), while the unit-test
 suite detected 187 of 216 (86.6%, 95% CI 81.4 to 90.5). Unit-test detection fell with interaction
 depth, from 100% through depth six to 33.3% (95% CI 18.0 to 53.3) at depth twelve, with a logistic
 slope on depth of -0.81 (95% CI -1.09 to -0.52); verification and the judge did not vary with
-depth (Figure 1, left). On CIV-Bench-Hard, complete verification and the language-model judge each
+depth (Figure 1, left). On CIV-Bench-Hard, SMT verification and the language-model judge each
 detected 48 of 48 (100%, 95% CI 92.6 to 100.0), while the unit-test suite detected 14 of 48
 (29.2%, 95% CI 18.2 to 43.2) and reached zero from lock length six (Figure 1, centre). On
 CIV-Bench-Compute the pattern inverted: the unit-test suite and the language-model judge each
-detected 40 of 40 (100%, 95% CI 91.2 to 100.0), while complete verification detected 29 of 40
+detected 40 of 40 (100%, 95% CI 91.2 to 100.0), while SMT verification detected 29 of 40
 (72.5%, 95% CI 57.2 to 83.9), with detection falling as the modulus rose because the bounded
 model-checking query exceeded its fifteen-second resource bound and the verifier abstained
 (Figure 1, right). No method detected every violation across all three regimes.
 
 ### 3.2. Soundness, abstention, and false safety
 
-The distinguishing axis is soundness (Figure 2). Across all 440 items complete verification
+The distinguishing axis is soundness (Figure 2). Across all 440 items SMT verification
 returned no verdict that contradicted ground truth: it proved the property, exhibited a replayable
 counterexample, or abstained, with 25 abstentions, all on CIV-Bench-Compute at large modulus. The
 unit-test suite returned a false statement of safety on 63 violated items (29 on v0, 34 on Hard):
@@ -207,26 +234,29 @@ seconds on CIV-Bench-Compute, where the symbolic state space is largest.
 
 ### 3.3. Counterexample case studies
 
-Three counterexamples illustrate the regimes (full traces in the repository). In the first, a
-member opts out of messaging; an ordinary ten-step interaction sequence advances an internal state
-counter, after which a resume path sends a message although the opt-out was never rescinded. The
-message is individually polite; the violation is in the state sequence. Complete verification
-returns this trace; the unit-test suite returns holds, a false statement of safety, because random
-event sequences essentially never reproduce the exact combination; the language-model judge returns
-violated. In the second, twelve patient conditions coincide and the rule set co-recommends a
-contraindicated pair, a mechanism mirroring the association of an interacting drug with warfarin
-and an approximately four-fold increase in haemorrhage-related hospitalisation [26]; complete
-verification and the judge return violated, the unit-test suite returns a false safe because a
-twelve-way conjunction is sampled with probability of order two to the power minus twelve. In the
-third, a violation is genuinely reachable but complete verification exceeds its resource bound on a
-modulus-sixty-four accumulator and returns unknown, an abstention; the unit-test suite and the
-judge return violated. The third case is the honest boundary of the method.
+Three counterexamples illustrate the regimes (full traces in the repository); the first and third
+are drawn from the abstract stress-test suites and are not presented as clinically realistic, while
+the second is the clinically grounded case. In the first, from the combination-lock suite, an
+abstract ten-step event sequence drives a state counter to the value that opens a faulty resume
+path, after which a message is sent although an opt-out was never rescinded; this is a witness-
+rarity stress test, not a claim that a real outreach system gates on a ten-step sequence. SMT
+verification returns this trace; the unit-test suite returns holds, a false statement of safety,
+because random event sequences essentially never reproduce the exact combination; the language-model
+judge returns violated. In the second, clinically grounded, case, twelve patient conditions coincide
+and the rule set co-recommends a contraindicated pair, a mechanism mirroring the documented
+association of an interacting drug with warfarin and an increase in haemorrhage-related
+hospitalisation; SMT verification and the judge return violated, the unit-test suite returns a false
+safe because a twelve-way conjunction is sampled with probability of order two to the power minus
+twelve. In the third, from the modular-accumulator stress-test suite, a violation is genuinely
+reachable but SMT verification exceeds its resource bound at modulus sixty-four and returns unknown,
+an abstention; the unit-test suite and the judge return violated. The third case is the honest
+boundary of the method, on a deliberately adversarial state machine rather than a clinical artifact.
 
 ## 4. Discussion
 
 ### 4.1. Principal findings
 
-We set out to measure where complete verification and the probabilistic assurance methods used in
+We set out to measure where SMT verification and the probabilistic assurance methods used in
 practice each fail, on clinical rule sets with known safety properties. No method detected every
 violation across all three regimes. The unit-test suite, the dominant quality-assurance practice,
 failed when a violation's witness was rare, and reported a false statement of safety on 63 of 304
@@ -239,31 +269,39 @@ average-case detection, and a strong average-case detection rate by a model prov
 
 ### 4.2. The gap is in the class of evidence, not the detection rate
 
-The pre-registered hypothesis that complete verification would detect more violations than the
+The pre-registered hypothesis that SMT verification would detect more violations than the
 probabilistic methods held for the unit-test suite but not for the language-model judge, which
-matched verification on detection. We report this plainly. The property that distinguishes complete
-verification is therefore not a higher detection rate but the class of evidence it returns: a proof
-over the entire input space, a replayable counterexample, or an explicit abstention, with zero
-unsound verdicts. A pass rate over a sample, however high, is a statement about the inputs that
-were drawn, not the inputs that were not; the unit-test suite's 63 false statements of safety are
-that distinction made concrete, and the language-model judge's perfect score is a sample statistic
-with no coverage or soundness guarantee. During the evaluation we found and fixed an unsoundness in
-our own verifier, a solver timeout briefly reported as holds; that this could occur, and was caught
-by the soundness metric, is the thesis in miniature.
+matched verification on detection where the verifier did not abstain and exceeded it on the most
+stateful suite. We report this plainly. To rule out that the judge's detection was an artifact of
+being handed the answer, we re-ran it blinded, with item identifiers replaced by content hashes
+that encode neither the label nor the difficulty and with rule and transition identifiers
+neutralised; its detection was unchanged, so its performance reflects reasoning over the rule logic
+rather than label leakage. The property that distinguishes SMT verification is therefore not a
+higher detection rate but the class of evidence it returns: a proof over the entire input space, a
+replayable counterexample, or an explicit abstention, with zero unsound verdicts. A pass rate over a
+sample, however high, is a statement about the inputs that were drawn, not the inputs that were not;
+the unit-test suite's 63 false statements of safety are that distinction made concrete, and the
+language-model judge's score, however high, is a sample statistic with no coverage or soundness
+guarantee. During the evaluation we found and fixed an unsoundness in our own verifier, a solver
+timeout briefly reported as holds; that this could occur, and was caught by the soundness metric, is
+the thesis in miniature.
 
-### 4.3. A tiered assurance framework
+### 4.3. A proposed tiered assurance framework
 
-These results motivate a maturity model in which assurance methods occupy distinct evidence classes
-rather than competing as substitutes. Content-safety guardrails and the language-model judge are
-probabilistic monitors, useful for breadth and for content not expressible as a rule, but providing
-no guarantee; the unit-test suite adds concrete evidence for failures it happens to sample;
-runtime monitors enforce properties during execution; a satisfiability-modulo-theories-verified
-rule layer provides a proof over the full input space where the state space is tractable; and a
-theorem-proved core provides the strongest guarantee for the smallest, most critical decisions. The
-design question for a clinical AI system is which decisions are placed in the provable layer. A
-model release changes how good the model is; it does not change the decidability of a finite
-symbolic layer or the undecidability of the general case, because those are properties of the
-objects rather than of the model.
+These results motivate a proposed maturity model, a position rather than an evaluated artifact, in
+which assurance methods occupy distinct evidence classes rather than competing as substitutes.
+Content-safety guardrails and the language-model judge are probabilistic monitors, useful for
+breadth and for content not expressible as a rule, but providing no guarantee; the unit-test suite
+adds concrete evidence for failures it happens to sample; runtime monitors enforce properties during
+execution; a satisfiability-modulo-theories-verified rule layer provides a proof over the full input
+space where the state space is tractable; and a theorem-proved core provides the strongest guarantee
+for the smallest, most critical decisions. This study evaluated only two of these tiers directly,
+the unit-test suite and the SMT-verified rule layer, together with one probabilistic monitor, the
+language-model judge; the runtime-monitor and theorem-proved tiers, and the deployed content-safety
+guardrails, are positioned but not measured here. The design question for a clinical AI system is
+which decisions are placed in the provable layer. A model release changes how good the model is; it
+does not change the decidability of a finite symbolic layer or the undecidability of the general
+case, because those are properties of the objects rather than of the model.
 
 ### 4.4. Comparison with prior work
 
@@ -271,48 +309,64 @@ The guaranteed-safe AI programme provides the macro-architecture this work insta
 clinical rule sets [20,21], the intractability of neural-network verification is its premise [15],
 and a 2025 wave of agent-verification systems shares its move of placing safety in a verifiable
 layer, but evaluates general agent behaviour rather than clinical rule sets and runs no head-to-head
-against probabilistic guardrails on a public clinical benchmark. The companion retrospective
-measured the effect of a verification layer on a model's natural-language outputs and found that
-standard guardrails impose an omission tax that the layer reverses [26]; the present work is its
-formal complement, characterising and measuring the assurance gap on the symbolic control layer and
-releasing the benchmark on which the measurement is reproducible. The two are reported separately
-because the object of study differs.
+against probabilistic guardrails on a public clinical benchmark. Reference [26] is a same-author
+companion manuscript under review and not yet peer-reviewed; it measured the effect of a verification
+layer on a model's natural-language outputs and reported that standard guardrails impose an omission
+tax that the layer reverses. We cite it for context and disclose it to the handling editor; the
+present paper's conclusions do not depend on its numbers, which a reader cannot yet verify. The
+present work is its formal complement, on a different object of study, the symbolic control layer
+rather than the model's free-text outputs, and releases the benchmark on which its own measurement
+is reproducible; the two are reported separately for that reason.
 
 ### 4.5. Limitations
 
-The content-safety guardrails were not run in this environment and the language-model judge
-represents the learned-guard class in the comparison; this is a stated limitation rather than a gap
-in the argument, since the judge is the strongest member of that class. The benchmark rule sets are
-synthetic or public-source derived and finite; real clinical rule layers are larger, and complete
-verification's cost grows with the state space, as CIV-Bench-Compute shows. The guarantee is
-conditional on the specification, and specification error is the residual risk [18,19]; a verified
-rule layer can still cause harm if the property is the wrong one to require, which is why the
-properties are objects of clinical review. The two harder suites were exploratory extensions added
-after the pre-registered v0 result, and are reported as such.
+The content-safety guardrails were not run in this environment, so the language-model judge stands
+in for the learned-guard class; a judge handed a clean rendering of the rule set is a different and
+more capable artifact than a content-safety filter operating on conversational text, so the
+comparison should be read as against an upper bound of that class rather than against the products
+clinical teams deploy. The benchmark rule sets are synthetic or public-source derived and finite
+over boolean, enum, and bounded-integer variables; real clinical rule layers are larger, use
+real-valued and temporal quantities, and the central premise that a safety-critical clinical control
+layer reduces to such a decidable object is demonstrated here only on constructed artifacts, not on
+a deployed protocol, and SMT verification's cost grows with the state space as CIV-Bench-Compute
+shows. On that suite roughly fourteen of the sixteen holds items were abstentions rather than proofs
+of safety, so on the most stateful regime the verifier's guarantee was frequently unavailable within
+budget. What is not proved is therefore explicit: not the clinical correctness of the specification,
+not the faithfulness of the abstraction to the deployed system, and nothing outside the finite
+symbolic layer; the guarantee is conditional on the specification, and specification error is the
+residual risk [18,19]. The two harder suites are exploratory scalability and witness-rarity stress
+tests added after the pre-registered v0 result, with no claim of clinical realism.
 
-### 4.6. Why this matters first in a safety-net population
+### 4.6. Why assurance of this kind matters in a safety-net setting
 
-The facts that matter in Medicaid care are individual and rare, which is precisely where the
-calibration bound predicts hallucination [9], and the populations served have the least margin to
-absorb a confidently wrong recommendation. Assurance that returns a proof or an explicit
-abstention, rather than a confident pass rate, is most valuable exactly where the cost of a false
-statement of safety is borne by those least able to bear it.
+This subsection is motivational; the released benchmark contains no Medicaid-derived content, and
+the operational split is reported only in aggregate. The argument is not that the calibration bound
+[9], which concerns a model's free-text factual recall, applies to the symbolic layer the verifier
+certifies; it does not. The argument is narrower and about cost: populations served by safety-net
+programs have the least margin to absorb a confidently wrong recommendation, so an assurance method
+that returns a proof or an explicit abstention rather than a confident pass rate is most valuable
+exactly where the cost of a false statement of safety is borne by those least able to bear it. The
+clinical control logic of a Medicaid outreach or triage workflow is a plausible early home for a
+provable layer precisely because much of it is rule-shaped, but demonstrating that on a deployed
+workflow is future work, not a claim of this paper.
 
 ## 5. Conclusions
 
 Probabilistic guardrails are statistical systems and cannot supply a proof over the input space;
 the dominant quality-assurance practice, unit testing, reports false safety when a violation's
 witness is rare; and a frontier language model, while strong at detection, provides no guarantee.
-Complete verification of a finite symbolic clinical rule layer returns a different class of evidence,
-a proof, a counterexample, or an abstention, and is sound by construction. The benchmark, verifier,
-and analysis are released so any health system or vendor can run the measurement on its own rule
-sets. The design question for clinical AI is which decisions live in the provable layer.
+SMT verification of a finite symbolic clinical rule layer returns a different class of evidence, a
+proof, a counterexample, or an explicit abstention, and on this benchmark, under a discipline that
+reports a solver timeout as an abstention rather than as safety, it returned no verdict that
+contradicted ground truth. The benchmark, verifier, and analysis are released so any health system
+or vendor can run the measurement on its own rule sets. The design question for clinical AI is which
+decisions live in the provable layer.
 
 ## Back matter
 
 Author Contributions: Conceptualization, methodology, software, formal analysis, investigation,
-data curation, writing, and visualization were carried out by the author. All authors have read and
-agreed to the published version of the manuscript.
+data curation, writing, and visualization were carried out by the author, who has read and agreed to
+the published version of the manuscript.
 
 Funding: This research received no external funding.
 
@@ -333,7 +387,7 @@ Acknowledgments: During the preparation of this manuscript the author used a lar
 (Claude) for code generation, analysis, and a first text draft; the author has reviewed and edited
 the output and takes full responsibility for the content of this publication.
 
-Conflicts of Interest: The authors are employees of Waymark, a public benefit organization that
+Conflicts of Interest: The author is an employee of Waymark, a public benefit organization that
 provides free social and medical services for patients receiving Medicaid.
 
 ## References

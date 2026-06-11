@@ -11,6 +11,7 @@ witnesses are rare, which is expected to worsen with interaction depth.
 
 from __future__ import annotations
 
+import hashlib
 import random
 
 from baselines.common import run_method
@@ -102,7 +103,8 @@ def _test_transition(item: Item, rng) -> tuple:
 
 
 def verdict_for(item: Item):
-    rng = random.Random((SEED, item.id).__hash__() & 0xFFFFFFFF)
+    # stable, process-independent seed (Python's tuple hash is salted per process)
+    rng = random.Random(int(hashlib.sha256(f"{SEED}:{item.id}".encode()).hexdigest(), 16) % (2**32))
     if item.is_decision:
         if item.property.kind == "monotonicity":
             verdict, witness = _test_monotonicity(item, rng)
