@@ -3,27 +3,27 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "syncope",
+      "var": "confusion",
       "value": true
     },
     {
-      "var": "fever",
+      "var": "hemoptysis",
       "value": false
     },
     {
-      "var": "vomiting",
+      "var": "slurred_speech",
       "value": false
     },
     {
-      "var": "syncope__base",
+      "var": "confusion__base",
       "value": false
     },
     {
-      "var": "fever__base",
+      "var": "hemoptysis__base",
       "value": false
     },
     {
-      "var": "vomiting__base",
+      "var": "slurred_speech__base",
       "value": false
     }
   ],

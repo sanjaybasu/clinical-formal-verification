@@ -1,0 +1,228 @@
+{
+  "id": "triage-d8-viol-01",
+  "domain": "triage",
+  "metadata": {
+    "description": "symptom-to-acuity rules; adding a red flag must not lower acuity",
+    "source": "synthetic",
+    "clinical_intent": "no red-flag symptom, once present, may lower the assigned acuity"
+  },
+  "ruleset": {
+    "id": "triage-8-1",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "fever",
+        "type": "bool"
+      },
+      {
+        "name": "leg_swelling",
+        "type": "bool"
+      },
+      {
+        "name": "rash",
+        "type": "bool"
+      },
+      {
+        "name": "chest_pain",
+        "type": "bool"
+      },
+      {
+        "name": "focal_weakness",
+        "type": "bool"
+      },
+      {
+        "name": "abdominal_pain",
+        "type": "bool"
+      },
+      {
+        "name": "pallor",
+        "type": "bool"
+      },
+      {
+        "name": "stiff_neck",
+        "type": "bool"
+      },
+      {
+        "name": "back_pain",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "acuity",
+        "type": "enum",
+        "domain": [
+          "self_care",
+          "routine",
+          "urgent",
+          "emergent"
+        ]
+      }
+    ],
+    "rules": [
+      {
+        "id": "interaction_drop",
+        "priority": 100,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "fever"
+            },
+            {
+              "var": "leg_swelling"
+            },
+            {
+              "var": "rash"
+            },
+            {
+              "var": "chest_pain"
+            },
+            {
+              "var": "focal_weakness"
+            },
+            {
+              "var": "abdominal_pain"
+            },
+            {
+              "var": "pallor"
+            },
+            {
+              "var": "stiff_neck"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "self_care"
+          }
+        ]
+      },
+      {
+        "id": "raise_rash",
+        "priority": 2,
+        "when": {
+          "var": "rash"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_fever",
+        "priority": 2,
+        "when": {
+          "var": "fever"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_leg_swelling",
+        "priority": 3,
+        "when": {
+          "var": "leg_swelling"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_abdominal_pain",
+        "priority": 3,
+        "when": {
+          "var": "abdominal_pain"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_back_pain",
+        "priority": 2,
+        "when": {
+          "var": "back_pain"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_pallor",
+        "priority": 2,
+        "when": {
+          "var": "pallor"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_focal_weakness",
+        "priority": 2,
+        "when": {
+          "var": "focal_weakness"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_chest_pain",
+        "priority": 3,
+        "when": {
+          "var": "chest_pain"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "acuity",
+        "value": "routine"
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "redflag-never-lowers-acuity",
+    "kind": "monotonicity",
+    "monotonicity": {
+      "perturbation": {
+        "var": "stiff_neck",
+        "change": "set_true"
+      },
+      "monotone_var": "acuity",
+      "direction": "nondecreasing"
+    },
+    "intent": "setting stiff_neck true never lowers acuity"
+  }
+}

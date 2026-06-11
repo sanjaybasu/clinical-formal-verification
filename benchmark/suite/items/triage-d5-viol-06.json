@@ -1,0 +1,168 @@
+{
+  "id": "triage-d5-viol-06",
+  "domain": "triage",
+  "metadata": {
+    "description": "symptom-to-acuity rules; adding a red flag must not lower acuity",
+    "source": "synthetic",
+    "clinical_intent": "no red-flag symptom, once present, may lower the assigned acuity"
+  },
+  "ruleset": {
+    "id": "triage-5-6",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "chest_pain",
+        "type": "bool"
+      },
+      {
+        "name": "palpitations",
+        "type": "bool"
+      },
+      {
+        "name": "hemoptysis",
+        "type": "bool"
+      },
+      {
+        "name": "rash",
+        "type": "bool"
+      },
+      {
+        "name": "slurred_speech",
+        "type": "bool"
+      },
+      {
+        "name": "dyspnea",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "acuity",
+        "type": "enum",
+        "domain": [
+          "self_care",
+          "routine",
+          "urgent",
+          "emergent"
+        ]
+      }
+    ],
+    "rules": [
+      {
+        "id": "raise_chest_pain",
+        "priority": 2,
+        "when": {
+          "var": "chest_pain"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "interaction_drop",
+        "priority": 100,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "chest_pain"
+            },
+            {
+              "var": "palpitations"
+            },
+            {
+              "var": "hemoptysis"
+            },
+            {
+              "var": "rash"
+            },
+            {
+              "var": "slurred_speech"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "self_care"
+          }
+        ]
+      },
+      {
+        "id": "raise_rash",
+        "priority": 3,
+        "when": {
+          "var": "rash"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_palpitations",
+        "priority": 3,
+        "when": {
+          "var": "palpitations"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_dyspnea",
+        "priority": 2,
+        "when": {
+          "var": "dyspnea"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_hemoptysis",
+        "priority": 2,
+        "when": {
+          "var": "hemoptysis"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "acuity",
+        "value": "routine"
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "redflag-never-lowers-acuity",
+    "kind": "monotonicity",
+    "monotonicity": {
+      "perturbation": {
+        "var": "slurred_speech",
+        "change": "set_true"
+      },
+      "monotone_var": "acuity",
+      "direction": "nondecreasing"
+    },
+    "intent": "setting slurred_speech true never lowers acuity"
+  }
+}

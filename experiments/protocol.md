@@ -38,16 +38,16 @@ violated verdict an optional witness.
 
 1. Complete verification: the Z3 harness in `verifier/`. Returns a proof over the full input
    space or a counterexample. Deterministic.
-2. Unit-test suite: `baselines/unit_test.py`. Draws N = 1000 uniform random inputs (or random
+2. Unit-test suite: `baselines/run_unit_test.py`. Draws N = 1000 uniform random inputs (or random
    event sequences up to the bound) per item with a fixed seed, executes the rule set, and
    returns violated if any sampled point violates the property, else holds. This represents
    current quality-assurance practice.
-3. Language-model judge: `baselines/llm_judge.py`. Presents the rule set and property to a
+3. Language-model judge: `baselines/render.py` + the judge workflow (`_judge_blind_workflow.js`) + `baselines/ingest_judge.py`. Presents the rule set and property to a
    frontier model and asks for a verdict and, if violated, a witness. Model and decoding are
    fixed (temperature 0); the exact prompt is in the runner and archived with the outputs.
-4. NeMo Guardrails: `baselines/nemo_guardrails_runner.py`, configured per vendor guidance with a
+4. NeMo Guardrails: `baselines/run_nemo_guardrails.py`, configured per vendor guidance with a
    fixed language-model backend. Framing in the runner header.
-5. Llama Guard: `baselines/llama_guard_runner.py`, latest available version. Framing in the
+5. Llama Guard: `baselines/run_llama_guard.py`, latest available version. Framing in the
    runner header.
 
 Method availability in this run is recorded in `experiments/environment.md`. A method that

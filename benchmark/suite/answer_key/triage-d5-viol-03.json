@@ -1,0 +1,74 @@
+{
+  "item": "triage-d5-viol-03",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "vomiting",
+      "value": true
+    },
+    {
+      "var": "stiff_neck",
+      "value": true
+    },
+    {
+      "var": "vision_loss",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": false
+    },
+    {
+      "var": "focal_weakness",
+      "value": false
+    },
+    {
+      "var": "slurred_speech",
+      "value": false
+    },
+    {
+      "var": "palpitations__base",
+      "value": true
+    },
+    {
+      "var": "vomiting__base",
+      "value": true
+    },
+    {
+      "var": "stiff_neck__base",
+      "value": true
+    },
+    {
+      "var": "vision_loss__base",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain__base",
+      "value": false
+    },
+    {
+      "var": "fever__base",
+      "value": false
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": false
+    },
+    {
+      "var": "slurred_speech__base",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 5,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 5 produces the violation; see generate.py for the construction"
+}

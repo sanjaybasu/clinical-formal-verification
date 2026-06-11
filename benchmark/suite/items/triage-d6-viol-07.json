@@ -1,0 +1,205 @@
+{
+  "id": "triage-d6-viol-07",
+  "domain": "triage",
+  "metadata": {
+    "description": "symptom-to-acuity rules; adding a red flag must not lower acuity",
+    "source": "synthetic",
+    "clinical_intent": "no red-flag symptom, once present, may lower the assigned acuity"
+  },
+  "ruleset": {
+    "id": "triage-6-7",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "leg_swelling",
+        "type": "bool"
+      },
+      {
+        "name": "dyspnea",
+        "type": "bool"
+      },
+      {
+        "name": "vomiting",
+        "type": "bool"
+      },
+      {
+        "name": "syncope",
+        "type": "bool"
+      },
+      {
+        "name": "dizziness",
+        "type": "bool"
+      },
+      {
+        "name": "hemoptysis",
+        "type": "bool"
+      },
+      {
+        "name": "chest_pain",
+        "type": "bool"
+      },
+      {
+        "name": "back_pain",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "acuity",
+        "type": "enum",
+        "domain": [
+          "self_care",
+          "routine",
+          "urgent",
+          "emergent"
+        ]
+      }
+    ],
+    "rules": [
+      {
+        "id": "raise_vomiting",
+        "priority": 2,
+        "when": {
+          "var": "vomiting"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_leg_swelling",
+        "priority": 2,
+        "when": {
+          "var": "leg_swelling"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_chest_pain",
+        "priority": 2,
+        "when": {
+          "var": "chest_pain"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_back_pain",
+        "priority": 3,
+        "when": {
+          "var": "back_pain"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_dizziness",
+        "priority": 2,
+        "when": {
+          "var": "dizziness"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_dyspnea",
+        "priority": 3,
+        "when": {
+          "var": "dyspnea"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "interaction_drop",
+        "priority": 100,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "leg_swelling"
+            },
+            {
+              "var": "dyspnea"
+            },
+            {
+              "var": "vomiting"
+            },
+            {
+              "var": "syncope"
+            },
+            {
+              "var": "dizziness"
+            },
+            {
+              "var": "hemoptysis"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "self_care"
+          }
+        ]
+      },
+      {
+        "id": "raise_syncope",
+        "priority": 3,
+        "when": {
+          "var": "syncope"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "acuity",
+        "value": "routine"
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "redflag-never-lowers-acuity",
+    "kind": "monotonicity",
+    "monotonicity": {
+      "perturbation": {
+        "var": "hemoptysis",
+        "change": "set_true"
+      },
+      "monotone_var": "acuity",
+      "direction": "nondecreasing"
+    },
+    "intent": "setting hemoptysis true never lowers acuity"
+  }
+}

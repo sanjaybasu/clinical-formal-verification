@@ -9,7 +9,7 @@
     },
     {
       "var": "leg_swelling",
-      "value": true
+      "value": false
     },
     {
       "var": "abdominal_pain",
@@ -21,7 +21,7 @@
     },
     {
       "var": "leg_swelling__base",
-      "value": true
+      "value": false
     },
     {
       "var": "abdominal_pain__base",
@@ -30,7 +30,7 @@
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "The property (setting fever true never lowers acuity) is VIOLATED. The fever rule interaction_drop has priority 100, which dominates every other rule (priorities 2 and 3). Whenever fever is true, interaction_drop fires and wins conflict resolution, forcing acuity := self_care (the lowest enum value), overriding any raise from leg_swelling or abdominal_pain. Counterexample with leg_swelling=true, abdominal_pain=false: with fever=FALSE, only raise_leg_swelling matches, so acuity = emergent (highest). Flipping fever to TRUE (other inputs unchanged) makes interaction_drop (priority 100) win over raise_leg_swelling (priority 3), giving acuity = self_care (lowest). Acuity drops from emergent to self_care, so fever=true lowered acuity. The witness assignment is the fever=true state demonstrating acuity=self_care; the same inputs with fever=false yield emergent, establishing the monotonicity violation. (Any case with leg_swelling or abdominal_pain set would similarly violate.)",
+    "reasoning": "The property requires that setting fever=true (other inputs unchanged) never lowers acuity. It is violated because r1 (IF fever THEN acuity := self_care) has the highest priority (100) and maps fever to the LOWEST acuity level (self_care), so whenever fever becomes true it overrides every other rule and the default, forcing acuity down.\n\nConcrete counterexample (the witness assignment is the fever=true state; compare against the same inputs with fever=false):\n- Baseline fever=false, leg_swelling=false, abdominal_pain=false: no rule matches, default applies -> acuity = routine.\n- After setting fever=true, leg_swelling=false, abdominal_pain=false: r1 matches (priority 100, only match) -> acuity = self_care.\nSince self_care < routine in the listed enum order [self_care, routine, urgent, emergent], setting fever true LOWERED acuity, violating monotonicity.\n\nAn even more dramatic violation exists at leg_swelling=true, abdominal_pain=false: fever=false yields emergent (r3), while fever=true makes r1 (priority 100) beat r3 (priority 3), yielding self_care -- a drop from the highest to the lowest acuity. The reported witness uses the simplest all-false baseline.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

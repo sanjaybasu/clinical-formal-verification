@@ -13,7 +13,7 @@
     },
     {
       "var": "palpitations",
-      "value": false
+      "value": true
     },
     {
       "var": "vision_loss",
@@ -29,7 +29,7 @@
     },
     {
       "var": "palpitations__base",
-      "value": false
+      "value": true
     },
     {
       "var": "vision_loss__base",

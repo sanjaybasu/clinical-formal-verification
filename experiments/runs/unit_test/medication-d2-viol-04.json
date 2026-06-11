@@ -13,7 +13,7 @@
     },
     {
       "var": "qt_prolongation",
-      "value": false
+      "value": true
     }
   ],
   "seconds": 0.0,

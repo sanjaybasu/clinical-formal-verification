@@ -3,15 +3,15 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "fever",
+      "var": "sweating",
       "value": true
     },
     {
-      "var": "syncope",
+      "var": "rash",
       "value": true
     },
     {
-      "var": "dizziness",
+      "var": "focal_weakness",
       "value": true
     },
     {
@@ -19,19 +19,23 @@
       "value": false
     },
     {
-      "var": "rash",
+      "var": "hemoptysis",
       "value": false
     },
     {
-      "var": "fever__base",
+      "var": "chest_pain",
+      "value": false
+    },
+    {
+      "var": "sweating__base",
       "value": true
     },
     {
-      "var": "syncope__base",
+      "var": "rash__base",
       "value": true
     },
     {
-      "var": "dizziness__base",
+      "var": "focal_weakness__base",
       "value": false
     },
     {
@@ -39,7 +43,11 @@
       "value": false
     },
     {
-      "var": "rash__base",
+      "var": "hemoptysis__base",
+      "value": false
+    },
+    {
+      "var": "chest_pain__base",
       "value": false
     }
   ],

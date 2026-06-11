@@ -11,15 +11,19 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "qt_prolongation",
+        "name": "prior_gi_bleed",
         "type": "bool"
       },
       {
-        "name": "polypharmacy",
+        "name": "peptic_ulcer",
         "type": "bool"
       },
       {
-        "name": "elderly",
+        "name": "asthma",
+        "type": "bool"
+      },
+      {
+        "name": "diabetes",
         "type": "bool"
       }
     ],
@@ -39,10 +43,10 @@
     ],
     "rules": [
       {
-        "id": "rec_c_from_elderly",
+        "id": "rec_c_from_asthma",
         "priority": 40,
         "when": {
-          "var": "elderly"
+          "var": "asthma"
         },
         "then": [
           {
@@ -55,7 +59,7 @@
         "id": "rec_a_from_conjunction",
         "priority": 50,
         "when": {
-          "var": "qt_prolongation"
+          "var": "prior_gi_bleed"
         },
         "then": [
           {
@@ -65,27 +69,40 @@
         ]
       },
       {
-        "id": "rec_b_from_trigger",
-        "priority": 50,
+        "id": "rec_c_from_diabetes",
+        "priority": 40,
         "when": {
-          "var": "qt_prolongation"
+          "var": "diabetes"
         },
         "then": [
           {
-            "var": "rec_drug_b",
+            "var": "rec_drug_c",
             "value": true
           }
         ]
       },
       {
-        "id": "rec_c_from_polypharmacy",
+        "id": "rec_c_from_peptic_ulcer",
         "priority": 40,
         "when": {
-          "var": "polypharmacy"
+          "var": "peptic_ulcer"
         },
         "then": [
           {
             "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_b_from_trigger",
+        "priority": 50,
+        "when": {
+          "var": "prior_gi_bleed"
+        },
+        "then": [
+          {
+            "var": "rec_drug_b",
             "value": true
           }
         ]

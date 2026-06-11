@@ -3,19 +3,19 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "anticoagulated",
+      "var": "elderly",
       "value": true
     },
     {
-      "var": "polypharmacy",
+      "var": "g6pd_deficiency",
       "value": true
     },
     {
-      "var": "asthma",
+      "var": "heart_failure",
       "value": true
     },
     {
-      "var": "renal_impairment",
+      "var": "immunosuppressed",
       "value": false
     }
   ],

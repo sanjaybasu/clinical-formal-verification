@@ -1,0 +1,74 @@
+{
+  "item": "triage-d5-viol-02",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "slurred_speech",
+      "value": true
+    },
+    {
+      "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": false
+    },
+    {
+      "var": "vision_loss",
+      "value": false
+    },
+    {
+      "var": "confusion",
+      "value": false
+    },
+    {
+      "var": "rash__base",
+      "value": true
+    },
+    {
+      "var": "fever__base",
+      "value": true
+    },
+    {
+      "var": "slurred_speech__base",
+      "value": true
+    },
+    {
+      "var": "syncope__base",
+      "value": true
+    },
+    {
+      "var": "severe_headache__base",
+      "value": false
+    },
+    {
+      "var": "back_pain__base",
+      "value": false
+    },
+    {
+      "var": "vision_loss__base",
+      "value": false
+    },
+    {
+      "var": "confusion__base",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 5,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 5 produces the violation; see generate.py for the construction"
+}

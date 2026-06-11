@@ -18,7 +18,7 @@
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "rec_drug_a is set true only by rule rec_a_from_conjunction (IF bradycardia AND immunosuppressed). rec_drug_b is set true only by rule rec_b_from_trigger (IF bradycardia). Priority/tie resolution is per-output, so the two rules govern different outputs and never compete; each fires independently. With bradycardia=true and immunosuppressed=true, rec_b_from_trigger sets rec_drug_b:=true (bradycardia holds) and rec_a_from_conjunction sets rec_drug_a:=true (both hold). The defaults never apply to these outputs because both are set. Thus rec_drug_a AND rec_drug_b are jointly true, violating the mutual-exclusion property NOT(rec_drug_a AND rec_drug_b). diabetes is irrelevant (only affects rec_drug_c); set to false for a minimal witness.",
+    "reasoning": "rec_drug_a is set true only by r3 (IF bradycardia AND immunosuppressed). rec_drug_b is set true only by r2 (IF bradycardia). These touch different outputs, so per-output priority resolution does not let one suppress the other, and no rule ever sets either to false except the default (which only applies when an output is left unset). With bradycardia=true and immunosuppressed=true: r2 fires -> rec_drug_b=true, and r3 fires -> rec_drug_a=true (diabetes can be false; r1 is irrelevant to a and b). Thus rec_drug_a AND rec_drug_b are jointly true, violating the mutual-exclusion property.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

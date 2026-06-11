@@ -11,23 +11,15 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "vomiting",
+        "name": "confusion",
         "type": "bool"
       },
       {
-        "name": "dizziness",
+        "name": "vision_loss",
         "type": "bool"
       },
       {
-        "name": "severe_headache",
-        "type": "bool"
-      },
-      {
-        "name": "palpitations",
-        "type": "bool"
-      },
-      {
-        "name": "dyspnea",
+        "name": "back_pain",
         "type": "bool"
       },
       {
@@ -49,28 +41,28 @@
     ],
     "rules": [
       {
-        "id": "raise_palpitations",
-        "priority": 3,
-        "when": {
-          "var": "palpitations"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "emergent"
-          }
-        ]
-      },
-      {
-        "id": "raise_vomiting",
+        "id": "raise_confusion",
         "priority": 2,
         "when": {
-          "var": "vomiting"
+          "var": "confusion"
         },
         "then": [
           {
             "var": "acuity",
             "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_vision_loss",
+        "priority": 3,
+        "when": {
+          "var": "vision_loss"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
           }
         ]
       },
@@ -94,13 +86,13 @@
           "op": "and",
           "args": [
             {
-              "var": "vomiting"
+              "var": "confusion"
             },
             {
-              "var": "dizziness"
+              "var": "vision_loss"
             },
             {
-              "var": "severe_headache"
+              "var": "back_pain"
             }
           ]
         },
@@ -108,32 +100,6 @@
           {
             "var": "acuity",
             "value": "self_care"
-          }
-        ]
-      },
-      {
-        "id": "raise_dizziness",
-        "priority": 3,
-        "when": {
-          "var": "dizziness"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "emergent"
-          }
-        ]
-      },
-      {
-        "id": "raise_dyspnea",
-        "priority": 2,
-        "when": {
-          "var": "dyspnea"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "urgent"
           }
         ]
       }
@@ -151,12 +117,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "severe_headache",
+        "var": "back_pain",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting severe_headache true never lowers acuity"
+    "intent": "setting back_pain true never lowers acuity"
   }
 }

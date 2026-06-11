@@ -11,23 +11,15 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "syncope",
+        "name": "back_pain",
         "type": "bool"
       },
       {
-        "name": "abdominal_pain",
+        "name": "stiff_neck",
         "type": "bool"
       },
       {
-        "name": "severe_headache",
-        "type": "bool"
-      },
-      {
-        "name": "vision_loss",
-        "type": "bool"
-      },
-      {
-        "name": "chest_pain",
+        "name": "dizziness",
         "type": "bool"
       }
     ],
@@ -45,10 +37,10 @@
     ],
     "rules": [
       {
-        "id": "raise_syncope",
+        "id": "raise_back_pain",
         "priority": 2,
         "when": {
-          "var": "syncope"
+          "var": "back_pain"
         },
         "then": [
           {
@@ -58,36 +50,10 @@
         ]
       },
       {
-        "id": "raise_severe_headache",
-        "priority": 3,
-        "when": {
-          "var": "severe_headache"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "emergent"
-          }
-        ]
-      },
-      {
-        "id": "raise_chest_pain",
-        "priority": 3,
-        "when": {
-          "var": "chest_pain"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "emergent"
-          }
-        ]
-      },
-      {
-        "id": "raise_vision_loss",
+        "id": "raise_dizziness",
         "priority": 2,
         "when": {
-          "var": "vision_loss"
+          "var": "dizziness"
         },
         "then": [
           {
@@ -110,12 +76,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "abdominal_pain",
+        "var": "stiff_neck",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting abdominal_pain true never lowers acuity"
+    "intent": "setting stiff_neck true never lowers acuity"
   }
 }

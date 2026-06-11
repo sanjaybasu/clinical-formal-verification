@@ -4,43 +4,43 @@
   "verdict": "violated",
   "witness": [
     {
+      "event": "key_0"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
       "event": "optout"
-    },
-    {
-      "event": "key_0"
-    },
-    {
-      "event": "key_1"
-    },
-    {
-      "event": "key_2"
-    },
-    {
-      "event": "key_1"
-    },
-    {
-      "event": "key_1"
-    },
-    {
-      "event": "key_1"
-    },
-    {
-      "event": "key_1"
-    },
-    {
-      "event": "key_0"
-    },
-    {
-      "event": "key_1"
-    },
-    {
-      "event": "key_0"
-    },
-    {
-      "event": "key_0"
-    },
-    {
-      "event": "key_2"
     },
     {
       "event": "send_attempt"
@@ -48,7 +48,7 @@
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "The property GLOBALLY(opted_out implies not sent) is VIOLATED. The vulnerability is the [t_resume_glitch] transition (line 49): on send_attempt, if (opted_out and stage >= 12), then sent := true. This directly produces a state where opted_out=true and sent=true. The exploit requires reaching stage 12 while opted_out is true. Crucially, optout (line 10) sets opted_out:=true but leaves stage unchanged, and the stage-advancing transitions ([adv_0]..[adv_11]) are unguarded by opted_out, so the combination lock can be driven to completion AFTER opting out. The advance keys per stage are: s0->key_0, s1->key_1, s2->key_2, s3->key_1, s4->key_1, s5->key_1, s6->key_1, s7->key_0, s8->key_1, s9->key_0, s10->key_0, s11->key_2, yielding the 12-key unlock combination key_0,key_1,key_2,key_1,key_1,key_1,key_1,key_0,key_1,key_0,key_0,key_2. Every adv and optout transition resets sent:=false along the way, but that is irrelevant since the final send_attempt re-sets it. Trace: start (opted_out=F,sent=F,stage=0); optout -> opted_out=T,stage=0; the 12 keys advance stage 0->1->2->3->4->5->6->7->8->9->10->11->12 (no resets because each key matches its stage's advance guard); then send_attempt at stage=12: t_send_blocked guard (opted_out and stage<12) is false, t_send_allowed guard (not opted_out) is false, so only t_resume_glitch (opted_out and stage>=12) fires, setting sent:=true. Final state opted_out=T, sent=T violates the invariant. Total = 1 optout + 12 keys + 1 send_attempt = 14 events, within the 15-event bound.",
+    "reasoning": "The property globally(opted_out implies not sent) is VIOLATED. The defect lies in transition t40: on send_attempt, if (opted_out and stage >= 12), sent := true. This is the only transition that can set sent=true while opted_out is true. Every other transition either requires not opted_out (t2), or sets sent:=false (t1, t39, all key transitions t3-t38). So the question reduces to: can opted_out=true co-occur with stage>=12?\n\nSince stage only changes via key events and optout (t1) does NOT reset stage, the attacker can first drive stage up to its maximum (12) and then opt out. The stage acts as a 12-step combination lock with one correct key per stage: 0->1 key_0 (t3), 1->2 key_1 (t6), 2->3 key_2 (t9), 3->4 key_1 (t12), 4->5 key_1 (t15), 5->6 key_1 (t18), 6->7 key_1 (t21), 7->8 key_0 (t24), 8->9 key_1 (t27), 9->10 key_0 (t30), 10->11 key_0 (t33), 11->12 key_2 (t36). That is 12 key presses to reach stage 12.\n\nAfter reaching stage 12: optout (t1) sets opted_out=true, sent=false, stage stays 12. Then send_attempt: since opted_out is true and stage>=12, t40 fires and sets sent=true. Now opted_out=true AND sent=true, violating the invariant.\n\nTotal events: 14 (within the 15-event bound). Simulated and confirmed: after event 14 (send_attempt), state is opted_out=true, sent=true, stage=12. The full ordered witness event sequence is given in witness_events.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

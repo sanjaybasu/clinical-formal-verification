@@ -1,0 +1,46 @@
+{
+  "item": "medication-d8-viol-01",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "diabetes",
+      "value": true
+    },
+    {
+      "var": "hypertension",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "ckd_dialysis",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 8,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 8 produces the violation; see generate.py for the construction"
+}

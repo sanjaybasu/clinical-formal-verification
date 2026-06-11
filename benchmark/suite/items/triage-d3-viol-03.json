@@ -11,15 +11,15 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "fever",
+        "name": "sweating",
         "type": "bool"
       },
       {
-        "name": "syncope",
+        "name": "rash",
         "type": "bool"
       },
       {
-        "name": "dizziness",
+        "name": "focal_weakness",
         "type": "bool"
       },
       {
@@ -27,7 +27,11 @@
         "type": "bool"
       },
       {
-        "name": "rash",
+        "name": "hemoptysis",
+        "type": "bool"
+      },
+      {
+        "name": "chest_pain",
         "type": "bool"
       }
     ],
@@ -45,19 +49,32 @@
     ],
     "rules": [
       {
+        "id": "raise_severe_headache",
+        "priority": 2,
+        "when": {
+          "var": "severe_headache"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
         "id": "interaction_drop",
         "priority": 100,
         "when": {
           "op": "and",
           "args": [
             {
-              "var": "fever"
+              "var": "sweating"
             },
             {
-              "var": "syncope"
+              "var": "rash"
             },
             {
-              "var": "dizziness"
+              "var": "focal_weakness"
             }
           ]
         },
@@ -69,10 +86,10 @@
         ]
       },
       {
-        "id": "raise_fever",
+        "id": "raise_sweating",
         "priority": 2,
         "when": {
-          "var": "fever"
+          "var": "sweating"
         },
         "then": [
           {
@@ -82,10 +99,10 @@
         ]
       },
       {
-        "id": "raise_severe_headache",
+        "id": "raise_hemoptysis",
         "priority": 3,
         "when": {
-          "var": "severe_headache"
+          "var": "hemoptysis"
         },
         "then": [
           {
@@ -95,28 +112,28 @@
         ]
       },
       {
-        "id": "raise_syncope",
-        "priority": 3,
+        "id": "raise_chest_pain",
+        "priority": 2,
         "when": {
-          "var": "syncope"
+          "var": "chest_pain"
         },
         "then": [
           {
             "var": "acuity",
-            "value": "emergent"
+            "value": "urgent"
           }
         ]
       },
       {
         "id": "raise_rash",
-        "priority": 2,
+        "priority": 3,
         "when": {
           "var": "rash"
         },
         "then": [
           {
             "var": "acuity",
-            "value": "urgent"
+            "value": "emergent"
           }
         ]
       }
@@ -134,12 +151,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "dizziness",
+        "var": "focal_weakness",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting dizziness true never lowers acuity"
+    "intent": "setting focal_weakness true never lowers acuity"
   }
 }

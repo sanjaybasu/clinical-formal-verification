@@ -3,59 +3,59 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "focal_weakness",
+      "var": "palpitations",
       "value": true
-    },
-    {
-      "var": "chest_pain",
-      "value": true
-    },
-    {
-      "var": "dizziness",
-      "value": true
-    },
-    {
-      "var": "vision_loss",
-      "value": true
-    },
-    {
-      "var": "fever",
-      "value": false
-    },
-    {
-      "var": "abdominal_pain",
-      "value": false
     },
     {
       "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "stiff_neck",
+      "value": true
+    },
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": false
+    },
+    {
+      "var": "focal_weakness",
+      "value": false
+    },
+    {
+      "var": "pallor",
+      "value": false
+    },
+    {
+      "var": "palpitations__base",
+      "value": true
+    },
+    {
+      "var": "syncope__base",
+      "value": true
+    },
+    {
+      "var": "stiff_neck__base",
+      "value": true
+    },
+    {
+      "var": "severe_headache__base",
+      "value": false
+    },
+    {
+      "var": "dyspnea__base",
       "value": false
     },
     {
       "var": "focal_weakness__base",
-      "value": true
-    },
-    {
-      "var": "chest_pain__base",
-      "value": true
-    },
-    {
-      "var": "dizziness__base",
-      "value": true
-    },
-    {
-      "var": "vision_loss__base",
       "value": false
     },
     {
-      "var": "fever__base",
-      "value": false
-    },
-    {
-      "var": "abdominal_pain__base",
-      "value": false
-    },
-    {
-      "var": "syncope__base",
+      "var": "pallor__base",
       "value": false
     }
   ],

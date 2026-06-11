@@ -1,0 +1,121 @@
+{
+  "id": "triage-d4-hold-112",
+  "domain": "triage",
+  "metadata": {
+    "description": "symptom-to-acuity rules; adding a red flag must not lower acuity",
+    "source": "synthetic",
+    "clinical_intent": "no red-flag symptom, once present, may lower the assigned acuity"
+  },
+  "ruleset": {
+    "id": "triage-4-112",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "palpitations",
+        "type": "bool"
+      },
+      {
+        "name": "confusion",
+        "type": "bool"
+      },
+      {
+        "name": "dizziness",
+        "type": "bool"
+      },
+      {
+        "name": "severe_headache",
+        "type": "bool"
+      },
+      {
+        "name": "syncope",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "acuity",
+        "type": "enum",
+        "domain": [
+          "self_care",
+          "routine",
+          "urgent",
+          "emergent"
+        ]
+      }
+    ],
+    "rules": [
+      {
+        "id": "raise_palpitations",
+        "priority": 2,
+        "when": {
+          "var": "palpitations"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_dizziness",
+        "priority": 2,
+        "when": {
+          "var": "dizziness"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_syncope",
+        "priority": 3,
+        "when": {
+          "var": "syncope"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_confusion",
+        "priority": 3,
+        "when": {
+          "var": "confusion"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "acuity",
+        "value": "routine"
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "redflag-never-lowers-acuity",
+    "kind": "monotonicity",
+    "monotonicity": {
+      "perturbation": {
+        "var": "severe_headache",
+        "change": "set_true"
+      },
+      "monotone_var": "acuity",
+      "direction": "nondecreasing"
+    },
+    "intent": "setting severe_headache true never lowers acuity"
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "item": "triage-d10-viol-01",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "dizziness",
+      "value": true
+    },
+    {
+      "var": "confusion",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": true
+    },
+    {
+      "var": "hemoptysis",
+      "value": true
+    },
+    {
+      "var": "chest_pain",
+      "value": true
+    },
+    {
+      "var": "vomiting",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": true
+    },
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "sweating",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "slurred_speech",
+      "value": false
+    },
+    {
+      "var": "dizziness__base",
+      "value": true
+    },
+    {
+      "var": "confusion__base",
+      "value": true
+    },
+    {
+      "var": "back_pain__base",
+      "value": true
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": true
+    },
+    {
+      "var": "chest_pain__base",
+      "value": true
+    },
+    {
+      "var": "vomiting__base",
+      "value": true
+    },
+    {
+      "var": "dyspnea__base",
+      "value": true
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": true
+    },
+    {
+      "var": "sweating__base",
+      "value": true
+    },
+    {
+      "var": "rash__base",
+      "value": false
+    },
+    {
+      "var": "slurred_speech__base",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 10,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 10 produces the violation; see generate.py for the construction"
+}

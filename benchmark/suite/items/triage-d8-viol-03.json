@@ -1,0 +1,228 @@
+{
+  "id": "triage-d8-viol-03",
+  "domain": "triage",
+  "metadata": {
+    "description": "symptom-to-acuity rules; adding a red flag must not lower acuity",
+    "source": "synthetic",
+    "clinical_intent": "no red-flag symptom, once present, may lower the assigned acuity"
+  },
+  "ruleset": {
+    "id": "triage-8-3",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "fever",
+        "type": "bool"
+      },
+      {
+        "name": "slurred_speech",
+        "type": "bool"
+      },
+      {
+        "name": "confusion",
+        "type": "bool"
+      },
+      {
+        "name": "dyspnea",
+        "type": "bool"
+      },
+      {
+        "name": "vision_loss",
+        "type": "bool"
+      },
+      {
+        "name": "leg_swelling",
+        "type": "bool"
+      },
+      {
+        "name": "sweating",
+        "type": "bool"
+      },
+      {
+        "name": "back_pain",
+        "type": "bool"
+      },
+      {
+        "name": "focal_weakness",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "acuity",
+        "type": "enum",
+        "domain": [
+          "self_care",
+          "routine",
+          "urgent",
+          "emergent"
+        ]
+      }
+    ],
+    "rules": [
+      {
+        "id": "interaction_drop",
+        "priority": 100,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "fever"
+            },
+            {
+              "var": "slurred_speech"
+            },
+            {
+              "var": "confusion"
+            },
+            {
+              "var": "dyspnea"
+            },
+            {
+              "var": "vision_loss"
+            },
+            {
+              "var": "leg_swelling"
+            },
+            {
+              "var": "sweating"
+            },
+            {
+              "var": "back_pain"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "self_care"
+          }
+        ]
+      },
+      {
+        "id": "raise_sweating",
+        "priority": 2,
+        "when": {
+          "var": "sweating"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_fever",
+        "priority": 2,
+        "when": {
+          "var": "fever"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_dyspnea",
+        "priority": 3,
+        "when": {
+          "var": "dyspnea"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_slurred_speech",
+        "priority": 3,
+        "when": {
+          "var": "slurred_speech"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_leg_swelling",
+        "priority": 3,
+        "when": {
+          "var": "leg_swelling"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_focal_weakness",
+        "priority": 3,
+        "when": {
+          "var": "focal_weakness"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_vision_loss",
+        "priority": 2,
+        "when": {
+          "var": "vision_loss"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_confusion",
+        "priority": 2,
+        "when": {
+          "var": "confusion"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "acuity",
+        "value": "routine"
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "redflag-never-lowers-acuity",
+    "kind": "monotonicity",
+    "monotonicity": {
+      "perturbation": {
+        "var": "back_pain",
+        "change": "set_true"
+      },
+      "monotone_var": "acuity",
+      "direction": "nondecreasing"
+    },
+    "intent": "setting back_pain true never lowers acuity"
+  }
+}

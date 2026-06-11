@@ -5,7 +5,7 @@
   "witness": null,
   "seconds": null,
   "extra": {
-    "reasoning": "The input variable `syncope` does not appear in the condition of any of the four rules (raise_vision_loss depends on vision_loss, raise_vomiting on vomiting, raise_hemoptysis on hemoptysis, raise_abdominal_pain on abdominal_pain). Because syncope is referenced by no rule and by no default condition, toggling syncope from false to true while holding the other four inputs fixed leaves the set of matching rules, their priorities, the tie-breaking order, and the default fallback completely unchanged. Hence acuity(syncope=true) equals acuity(syncope=false) for every assignment of the other inputs. The monotonicity property requires acuity(syncope=true) >= acuity(syncope=false); equality satisfies \"no lower than before.\" Therefore the property holds across the entire input space, with no violating input.",
+    "reasoning": "The monotonicity property concerns flipping `syncope` from false to true while holding the other four inputs fixed, and requires acuity to be no lower afterward. Crucially, `syncope` does not appear in any rule (r1 reads vision_loss, r2 vomiting, r3 hemoptysis, r4 abdominal_pain) and is not used in the default. Therefore acuity is fully determined by the other four inputs, independent of syncope. For every one of the 16 combinations of the other inputs, acuity(syncope=false) equals acuity(syncope=true). Equality satisfies \"no lower than before\" (the property requires non-decrease, not strict increase). Since flipping syncope never changes the output at all, it can never lower acuity. No counterexample exists; the property holds for the entire input space.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

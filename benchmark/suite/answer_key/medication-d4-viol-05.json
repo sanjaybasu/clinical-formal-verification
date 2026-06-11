@@ -3,27 +3,27 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "renal_impairment",
+      "var": "qt_prolongation",
       "value": true
     },
     {
-      "var": "polypharmacy",
+      "var": "g6pd_deficiency",
       "value": true
     },
     {
-      "var": "hypertension",
+      "var": "hyperkalemia",
       "value": true
-    },
-    {
-      "var": "peptic_ulcer",
-      "value": true
-    },
-    {
-      "var": "anticoagulated",
-      "value": false
     },
     {
       "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": false
+    },
+    {
+      "var": "heart_failure",
       "value": false
     }
   ],

@@ -3,47 +3,31 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "vomiting",
+      "var": "confusion",
       "value": true
     },
     {
-      "var": "dizziness",
+      "var": "vision_loss",
       "value": true
     },
     {
-      "var": "severe_headache",
+      "var": "back_pain",
       "value": true
-    },
-    {
-      "var": "palpitations",
-      "value": false
-    },
-    {
-      "var": "dyspnea",
-      "value": false
     },
     {
       "var": "chest_pain",
       "value": false
     },
     {
-      "var": "vomiting__base",
+      "var": "confusion__base",
       "value": true
     },
     {
-      "var": "dizziness__base",
+      "var": "vision_loss__base",
       "value": true
     },
     {
-      "var": "severe_headache__base",
-      "value": false
-    },
-    {
-      "var": "palpitations__base",
-      "value": false
-    },
-    {
-      "var": "dyspnea__base",
+      "var": "back_pain__base",
       "value": false
     },
     {

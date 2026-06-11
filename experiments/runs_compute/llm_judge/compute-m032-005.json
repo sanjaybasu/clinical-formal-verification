@@ -4,9 +4,6 @@
   "verdict": "violated",
   "witness": [
     {
-      "event": "optout"
-    },
-    {
       "event": "step_1"
     },
     {
@@ -16,12 +13,15 @@
       "event": "step_0"
     },
     {
+      "event": "optout"
+    },
+    {
       "event": "send_attempt"
     }
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "Each step event applies acc := (3*acc + c) mod 32 (the triple-nested conditional subtraction of 32 is exact modular reduction; max value 3*31+25=118 needs three subtractions, which the three nested conditionals provide). Constants: step_0 -> +25, step_1 -> +12, step_2 -> +19. The faulty t_resume_glitch transition fires send_attempt with sent:=true exactly when opted_out is true AND acc==9. The safety property G(opted_out -> not sent) is therefore violated iff acc can reach 9 after opt-out. BFS over the recurrence from acc=0 finds the path step_1, step_1, step_0 giving acc 0 -> 12 -> 16 -> 9. Since step events do not modify opted_out, performing optout first (opted_out=true, sent=false), then the three steps (opted_out stays true, acc reaches 9), then send_attempt triggers t_resume_glitch and sets sent=true while opted_out is true. Full simulation confirms the final reachable state has opted_out=true and sent=true (5 events, within the 34-event bound), falsifying the invariant.",
+    "reasoning": "The property G(opted_out implies not sent) requires that no reachable state has opted_out=true and sent=true. The only transition that sets sent:=true while opted_out is true is t4: on send_attempt if (opted_out and acc == 9). So the property is violated iff acc can reach 9 while opted_out becomes true and then a send_attempt fires.\n\nThe step events update acc as modular affine maps over [0,31]: step_0 = (3*acc+25) mod 32, step_1 = (3*acc+12) mod 32, step_2 = (3*acc+19) mod 32 (the nested if-then-else subtracts 32 up to three times, equivalent to mod 32 given acc in [0,31]). Starting from acc=0, BFS over acc values shows acc=9 is reachable via step_1, step_1, step_0: 0 -> 12 -> 16 -> 9.\n\nTrace: init (opted_out=F, sent=F, acc=0); step_1 -> acc=12; step_1 -> acc=16; step_0 -> acc=9; optout (t1) -> opted_out=T, sent=F, acc=9; send_attempt now matches t4 (opted_out and acc==9) -> sent:=true. Final state opted_out=true, sent=true violates the invariant. This is 5 events, within the 34-event bound. Note t3 (opted_out and acc!=9 -> sent:=false) does NOT cover acc==9, leaving the t4 hole. Hence the property is VIOLATED.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

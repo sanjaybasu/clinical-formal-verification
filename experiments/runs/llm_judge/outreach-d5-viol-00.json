@@ -4,22 +4,22 @@
   "verdict": "violated",
   "witness": [
     {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
       "event": "optout"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
     },
     {
       "event": "send_attempt"
@@ -27,7 +27,7 @@
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "This is a state machine. The property G(opted_out implies not sent) is violated by the t_resume_glitch transition (line 14): on send_attempt, if (opted_out and ticks >= 5), it sets sent := true while opted_out remains true.\n\nTrace from initial state (opted_out=false, sent=false, ticks=0):\n1. optout -> t_optout fires: opted_out=true, sent=false, ticks=0\n2. tick -> ticks=1, sent=false\n3. tick -> ticks=2\n4. tick -> ticks=3\n5. tick -> ticks=4\n6. tick -> ticks=5 (ticks capped at 5)\n7. send_attempt -> guard (opted_out and ticks>=5) holds, t_resume_glitch fires: sent:=true\n\nResulting state: opted_out=true, sent=true, which falsifies (opted_out implies not sent). This occurs in 7 events, within the 9-event bound. When the send_attempt fires at ticks=5 with opted_out true, both t_send_blocked (guard opted_out) and t_resume_glitch (guard opted_out and ticks>=5) are enabled; t_resume_glitch is the more specific, deliberately-injected transition and is reachable, producing sent=true under opted_out. The property does not hold.",
+    "reasoning": "The property requires that in every reachable state, opted_out=true implies sent=false. The danger is transition t5: on send_attempt, if (opted_out and ticks >= 5), it sets sent := true \u2014 directly producing a state where opted_out=true and sent=true.\n\nTo enable t5 we need opted_out=true and ticks>=5. Trace from the initial state (opted_out=false, sent=false, ticks=0):\n1. tick  -> ticks=1, sent=false\n2. tick  -> ticks=2\n3. tick  -> ticks=3\n4. tick  -> ticks=4\n5. tick  -> ticks=5\n6. optout (t1) -> opted_out=true, sent=false, ticks=5\n7. send_attempt: guards of t3 (opted_out) and t5 (opted_out and ticks>=5) are both enabled. t5 fires -> sent := true.\n\nResulting state: opted_out=true, sent=true, ticks=5, which violates globally(opted_out implies not sent). This is 7 events, within the 9-event bound. Even under any priority interpretation, t5 is listed as an enabled transition for this event, so the system permits reaching the unsafe state. The property is violated.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

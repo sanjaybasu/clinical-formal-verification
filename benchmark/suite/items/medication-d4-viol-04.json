@@ -11,15 +11,11 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "polypharmacy",
+        "name": "heart_failure",
         "type": "bool"
       },
       {
-        "name": "peptic_ulcer",
-        "type": "bool"
-      },
-      {
-        "name": "pregnancy",
+        "name": "hepatic_impairment",
         "type": "bool"
       },
       {
@@ -27,11 +23,15 @@
         "type": "bool"
       },
       {
+        "name": "qt_prolongation",
+        "type": "bool"
+      },
+      {
         "name": "asthma",
         "type": "bool"
       },
       {
-        "name": "diabetes",
+        "name": "immunosuppressed",
         "type": "bool"
       }
     ],
@@ -51,14 +51,28 @@
     ],
     "rules": [
       {
-        "id": "rec_c_from_diabetes",
-        "priority": 40,
+        "id": "rec_a_from_conjunction",
+        "priority": 50,
         "when": {
-          "var": "diabetes"
+          "op": "and",
+          "args": [
+            {
+              "var": "heart_failure"
+            },
+            {
+              "var": "hepatic_impairment"
+            },
+            {
+              "var": "renal_impairment"
+            },
+            {
+              "var": "qt_prolongation"
+            }
+          ]
         },
         "then": [
           {
-            "var": "rec_drug_c",
+            "var": "rec_drug_a",
             "value": true
           }
         ]
@@ -80,7 +94,7 @@
         "id": "rec_b_from_trigger",
         "priority": 50,
         "when": {
-          "var": "polypharmacy"
+          "var": "heart_failure"
         },
         "then": [
           {
@@ -90,28 +104,14 @@
         ]
       },
       {
-        "id": "rec_a_from_conjunction",
-        "priority": 50,
+        "id": "rec_c_from_immunosuppressed",
+        "priority": 40,
         "when": {
-          "op": "and",
-          "args": [
-            {
-              "var": "polypharmacy"
-            },
-            {
-              "var": "peptic_ulcer"
-            },
-            {
-              "var": "pregnancy"
-            },
-            {
-              "var": "renal_impairment"
-            }
-          ]
+          "var": "immunosuppressed"
         },
         "then": [
           {
-            "var": "rec_drug_a",
+            "var": "rec_drug_c",
             "value": true
           }
         ]

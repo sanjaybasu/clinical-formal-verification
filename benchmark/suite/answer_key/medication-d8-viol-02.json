@@ -1,0 +1,50 @@
+{
+  "item": "medication-d8-viol-02",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "diabetes",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "renal_impairment",
+      "value": false
+    },
+    {
+      "var": "prior_gi_bleed",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 8,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 8 produces the violation; see generate.py for the construction"
+}

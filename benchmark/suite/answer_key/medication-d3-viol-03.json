@@ -3,27 +3,27 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "polypharmacy",
+      "var": "hyperkalemia",
       "value": true
     },
     {
-      "var": "heart_failure",
+      "var": "bradycardia",
       "value": true
     },
     {
-      "var": "elderly",
+      "var": "low_ejection_fraction",
       "value": true
     },
     {
-      "var": "renal_impairment",
+      "var": "pregnancy",
       "value": false
     },
     {
-      "var": "anticoagulated",
+      "var": "seizure_history",
       "value": false
     },
     {
-      "var": "qt_prolongation",
+      "var": "ckd_dialysis",
       "value": false
     }
   ],

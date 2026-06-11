@@ -11,11 +11,15 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "fever",
+        "name": "severe_headache",
         "type": "bool"
       },
       {
-        "name": "vomiting",
+        "name": "abdominal_pain",
+        "type": "bool"
+      },
+      {
+        "name": "stiff_neck",
         "type": "bool"
       }
     ],
@@ -33,10 +37,23 @@
     ],
     "rules": [
       {
+        "id": "raise_stiff_neck",
+        "priority": 3,
+        "when": {
+          "var": "stiff_neck"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
         "id": "interaction_drop",
         "priority": 100,
         "when": {
-          "var": "fever"
+          "var": "severe_headache"
         },
         "then": [
           {
@@ -46,15 +63,15 @@
         ]
       },
       {
-        "id": "raise_vomiting",
-        "priority": 3,
+        "id": "raise_abdominal_pain",
+        "priority": 2,
         "when": {
-          "var": "vomiting"
+          "var": "abdominal_pain"
         },
         "then": [
           {
             "var": "acuity",
-            "value": "emergent"
+            "value": "urgent"
           }
         ]
       }
@@ -72,12 +89,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "fever",
+        "var": "severe_headache",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting fever true never lowers acuity"
+    "intent": "setting severe_headache true never lowers acuity"
   }
 }

@@ -1,0 +1,50 @@
+{
+  "item": "medication-d8-viol-04",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "hypertension",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "renal_impairment",
+      "value": true
+    },
+    {
+      "var": "hyperkalemia",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": false
+    },
+    {
+      "var": "elderly",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 8,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 8 produces the violation; see generate.py for the construction"
+}

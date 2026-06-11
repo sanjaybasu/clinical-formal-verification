@@ -1,0 +1,268 @@
+{
+  "id": "triage-d10-viol-05",
+  "domain": "triage",
+  "metadata": {
+    "description": "symptom-to-acuity rules; adding a red flag must not lower acuity",
+    "source": "synthetic",
+    "clinical_intent": "no red-flag symptom, once present, may lower the assigned acuity"
+  },
+  "ruleset": {
+    "id": "triage-10-5",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "syncope",
+        "type": "bool"
+      },
+      {
+        "name": "abdominal_pain",
+        "type": "bool"
+      },
+      {
+        "name": "focal_weakness",
+        "type": "bool"
+      },
+      {
+        "name": "stiff_neck",
+        "type": "bool"
+      },
+      {
+        "name": "dizziness",
+        "type": "bool"
+      },
+      {
+        "name": "palpitations",
+        "type": "bool"
+      },
+      {
+        "name": "dyspnea",
+        "type": "bool"
+      },
+      {
+        "name": "pallor",
+        "type": "bool"
+      },
+      {
+        "name": "rash",
+        "type": "bool"
+      },
+      {
+        "name": "sweating",
+        "type": "bool"
+      },
+      {
+        "name": "vomiting",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "acuity",
+        "type": "enum",
+        "domain": [
+          "self_care",
+          "routine",
+          "urgent",
+          "emergent"
+        ]
+      }
+    ],
+    "rules": [
+      {
+        "id": "raise_dyspnea",
+        "priority": 2,
+        "when": {
+          "var": "dyspnea"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_focal_weakness",
+        "priority": 2,
+        "when": {
+          "var": "focal_weakness"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_pallor",
+        "priority": 3,
+        "when": {
+          "var": "pallor"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "interaction_drop",
+        "priority": 100,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "syncope"
+            },
+            {
+              "var": "abdominal_pain"
+            },
+            {
+              "var": "focal_weakness"
+            },
+            {
+              "var": "stiff_neck"
+            },
+            {
+              "var": "dizziness"
+            },
+            {
+              "var": "palpitations"
+            },
+            {
+              "var": "dyspnea"
+            },
+            {
+              "var": "pallor"
+            },
+            {
+              "var": "rash"
+            },
+            {
+              "var": "sweating"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "self_care"
+          }
+        ]
+      },
+      {
+        "id": "raise_abdominal_pain",
+        "priority": 3,
+        "when": {
+          "var": "abdominal_pain"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_stiff_neck",
+        "priority": 3,
+        "when": {
+          "var": "stiff_neck"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_dizziness",
+        "priority": 2,
+        "when": {
+          "var": "dizziness"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_syncope",
+        "priority": 2,
+        "when": {
+          "var": "syncope"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_rash",
+        "priority": 2,
+        "when": {
+          "var": "rash"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_vomiting",
+        "priority": 3,
+        "when": {
+          "var": "vomiting"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_palpitations",
+        "priority": 3,
+        "when": {
+          "var": "palpitations"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "acuity",
+        "value": "routine"
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "redflag-never-lowers-acuity",
+    "kind": "monotonicity",
+    "monotonicity": {
+      "perturbation": {
+        "var": "sweating",
+        "change": "set_true"
+      },
+      "monotone_var": "acuity",
+      "direction": "nondecreasing"
+    },
+    "intent": "setting sweating true never lowers acuity"
+  }
+}

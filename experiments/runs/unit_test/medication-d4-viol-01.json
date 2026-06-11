@@ -21,18 +21,18 @@
     },
     {
       "var": "seizure_history",
-      "value": true
+      "value": false
     },
     {
       "var": "polypharmacy",
-      "value": false
+      "value": true
     },
     {
       "var": "renal_impairment",
       "value": true
     }
   ],
-  "seconds": 0.0002,
+  "seconds": 0.0,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

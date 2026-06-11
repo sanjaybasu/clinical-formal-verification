@@ -29,7 +29,7 @@
     },
     {
       "var": "abdominal_pain",
-      "value": false
+      "value": true
     },
     {
       "var": "chest_pain__base",
@@ -57,7 +57,7 @@
     },
     {
       "var": "abdominal_pain__base",
-      "value": false
+      "value": true
     }
   ],
   "seconds": 0.0001,

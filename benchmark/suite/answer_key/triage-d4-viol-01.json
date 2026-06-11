@@ -3,43 +3,43 @@
   "ground_truth": "violated",
   "witness": [
     {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "leg_swelling",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": true
+    },
+    {
       "var": "vision_loss",
       "value": true
     },
     {
-      "var": "abdominal_pain",
-      "value": true
-    },
-    {
-      "var": "chest_pain",
-      "value": true
-    },
-    {
-      "var": "syncope",
-      "value": true
-    },
-    {
-      "var": "vomiting",
+      "var": "dyspnea",
       "value": false
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": true
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": true
+    },
+    {
+      "var": "back_pain__base",
+      "value": true
     },
     {
       "var": "vision_loss__base",
-      "value": true
-    },
-    {
-      "var": "abdominal_pain__base",
-      "value": true
-    },
-    {
-      "var": "chest_pain__base",
-      "value": true
-    },
-    {
-      "var": "syncope__base",
       "value": false
     },
     {
-      "var": "vomiting__base",
+      "var": "dyspnea__base",
       "value": false
     }
   ],

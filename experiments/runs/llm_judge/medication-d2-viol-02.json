@@ -26,7 +26,7 @@
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "The property requires NOT(rec_drug_a AND rec_drug_b) for all inputs. rec_drug_a is set true only by rec_a_from_conjunction (priority 50): IF (elderly AND pregnancy). rec_drug_b is set true only by rec_b_from_trigger (priority 50): IF elderly. With elderly=true and pregnancy=true, both antecedents are satisfied: rec_a_from_conjunction fires making rec_drug_a=true (it is the sole rule for output a, so it wins and is not overridden by the default), and rec_b_from_trigger fires making rec_drug_b=true (sole rule for output b). Priorities and tie-breaking are irrelevant here since each output has exactly one matching rule. The remaining inputs (qt_prolongation, bradycardia, polypharmacy) only affect rec_drug_c, so they are set false for a minimal witness; rec_drug_c stays false via default. Thus rec_drug_a=true and rec_drug_b=true simultaneously, jointly true, violating mutual exclusion.",
+    "reasoning": "The property requires NOT(rec_drug_a AND rec_drug_b). Only r4 (IF elderly AND pregnancy, priority 50) sets rec_drug_a := true, and only r1 (IF elderly, priority 50) sets rec_drug_b := true. No rule ever sets either output to false, so the defaults (false) apply only when a rule does not fire. With elderly=true and pregnancy=true: r1 fires making rec_drug_b=true, and r4 fires making rec_drug_a=true. Both are true simultaneously, with no competing or higher-priority rule to override them. The remaining inputs only affect rec_drug_c (via r2/r3/r5) and are irrelevant; setting them false suffices. Therefore the mutual exclusion property is violated.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

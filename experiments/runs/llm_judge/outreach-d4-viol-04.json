@@ -4,19 +4,19 @@
   "verdict": "violated",
   "witness": [
     {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
       "event": "optout"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
     },
     {
       "event": "send_attempt"
@@ -24,7 +24,7 @@
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "This is a state machine. The safety property requires globally that opted_out implies not sent (never reach opted_out=true AND sent=true).\n\nThe transition [t_resume_glitch] on send_attempt if (opted_out and ticks >= 4) sets sent := true. This is the bug: it can set sent=true precisely while opted_out is true, directly contradicting the intent.\n\nWitness execution (starting opted_out=false, sent=false, ticks=0):\n1. optout -> [t_optout] fires (guard true): opted_out=true, sent=false, ticks=0.\n2. tick -> [t_tick]: ticks=1, sent=false (opted_out still true).\n3. tick -> ticks=2.\n4. tick -> ticks=3.\n5. tick -> ticks=4.\n6. send_attempt -> with opted_out=true and ticks=4, [t_resume_glitch] is enabled (opted_out and ticks>=4) and sets sent:=true.\n\nResulting state: opted_out=true, sent=true, ticks=4. This violates opted_out implies not sent.\n\nOn the send_attempt at step 6 both [t_send_blocked] (sets sent=false) and [t_resume_glitch] (sets sent=true) are enabled; for a safety/reachability check, the nondeterministic choice of the enabled t_resume_glitch reaches the bad state, so the property does not hold. The execution is 6 events, within the 8-event bound.",
+    "reasoning": "The property G(opted_out implies not sent) is violated. opted_out can only become true via t1 (optout), which also sets sent:=false, and once true it never reverts. The only transition that sets sent:=true while opted_out is true is t5 (send_attempt, guard opted_out and ticks>=4). By advancing ticks to 4 with four tick events, then opting out, then issuing a send_attempt, t5's guard (opted_out and ticks>=4) holds and sets sent:=true while opted_out remains true. Trace: (0)opted_out=F,sent=F,ticks=0; tick->ticks=1; tick->ticks=2; tick->ticks=3; tick->ticks=4; optout->opted_out=T,sent=F,ticks=4; send_attempt-> t5 enabled -> sent=T, opted_out=T. State opted_out=T AND sent=T violates the property. This occurs in 6 events, within the 8-event bound. Note t3 (also enabled here, sets sent:=false) does not save the property: no priority is specified, so t5 is a reachable choice; and since t5 is listed last, any last-listed/highest-index tie-break makes the violation deterministic.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

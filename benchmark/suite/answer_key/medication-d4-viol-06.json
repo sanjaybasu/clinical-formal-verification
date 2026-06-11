@@ -3,23 +3,31 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "renal_impairment",
-      "value": true
-    },
-    {
-      "var": "polypharmacy",
-      "value": true
-    },
-    {
-      "var": "elderly",
-      "value": true
-    },
-    {
       "var": "qt_prolongation",
       "value": true
     },
     {
-      "var": "diabetes",
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": false
+    },
+    {
+      "var": "hypertension",
+      "value": false
+    },
+    {
+      "var": "peptic_ulcer",
       "value": false
     }
   ],

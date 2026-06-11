@@ -1,0 +1,46 @@
+{
+  "item": "medication-d8-viol-00",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "hyperkalemia",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "polypharmacy",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "prior_gi_bleed",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 8,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 8 produces the violation; see generate.py for the construction"
+}

@@ -62,7 +62,7 @@
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "The property requires NOT(rec_drug_a AND rec_drug_b). rec_drug_a is set true only by rule rec_a_from_conjunction (priority 50), whose antecedent is a 12-way conjunction that INCLUDES pregnancy as a conjunct. rec_drug_b is set true only by rule rec_b_from_trigger (priority 50), whose antecedent is simply pregnancy. Because the conjunction for rec_drug_a entails pregnancy, any input that fires the rec_drug_a rule necessarily also satisfies the rec_drug_b trigger. The two rules target different outputs, so priority/tie-breaking (which only applies per-output) does not suppress either. Setting all 12 conjuncts (pregnancy, g6pd_deficiency, polypharmacy, immunosuppressed, prior_gi_bleed, qt_prolongation, peptic_ulcer, ckd_dialysis, renal_impairment, elderly, asthma, anticoagulated) to true makes rec_drug_a := true and, via pregnancy=true, rec_drug_b := true simultaneously. seizure_history and hypertension only affect rec_drug_c and are irrelevant; set false. Thus rec_drug_a and rec_drug_b are jointly true, violating the mutual-exclusion property.",
+    "reasoning": "rec_drug_a is set true only by r1; rec_drug_b only by r4. r1's 12-conjunct guard includes pregnancy=true, and r4's guard is exactly pregnancy=true. Hence any input satisfying r1 necessarily satisfies r4, so both rec_drug_a and rec_drug_b become true. No other rule or default can suppress a rule-set true output (defaults only apply to outputs left unset). Setting all 12 of r1's conjuncts true (seizure_history/hypertension irrelevant) makes r1 fire (rec_drug_a=true) and r4 fire (rec_drug_b=true), violating the mutual-exclusion property (rec_drug_a and rec_drug_b not jointly true).",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

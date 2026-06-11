@@ -11,15 +11,7 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "hypertension",
-        "type": "bool"
-      },
-      {
-        "name": "hepatic_impairment",
-        "type": "bool"
-      },
-      {
-        "name": "qt_prolongation",
+        "name": "diabetes",
         "type": "bool"
       },
       {
@@ -27,11 +19,15 @@
         "type": "bool"
       },
       {
-        "name": "asthma",
+        "name": "elderly",
         "type": "bool"
       },
       {
-        "name": "anticoagulated",
+        "name": "seizure_history",
+        "type": "bool"
+      },
+      {
+        "name": "low_ejection_fraction",
         "type": "bool"
       }
     ],
@@ -51,14 +47,40 @@
     ],
     "rules": [
       {
+        "id": "rec_c_from_seizure_history",
+        "priority": 40,
+        "when": {
+          "var": "seizure_history"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
         "id": "rec_b_from_trigger",
         "priority": 50,
         "when": {
-          "var": "hypertension"
+          "var": "diabetes"
         },
         "then": [
           {
             "var": "rec_drug_b",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_low_ejection_fraction",
+        "priority": 40,
+        "when": {
+          "var": "low_ejection_fraction"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
             "value": true
           }
         ]
@@ -70,58 +92,19 @@
           "op": "and",
           "args": [
             {
-              "var": "hypertension"
+              "var": "diabetes"
             },
             {
-              "var": "hepatic_impairment"
+              "var": "renal_impairment"
             },
             {
-              "var": "qt_prolongation"
+              "var": "elderly"
             }
           ]
         },
         "then": [
           {
             "var": "rec_drug_a",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_c_from_renal_impairment",
-        "priority": 40,
-        "when": {
-          "var": "renal_impairment"
-        },
-        "then": [
-          {
-            "var": "rec_drug_c",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_c_from_anticoagulated",
-        "priority": 40,
-        "when": {
-          "var": "anticoagulated"
-        },
-        "then": [
-          {
-            "var": "rec_drug_c",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_c_from_asthma",
-        "priority": 40,
-        "when": {
-          "var": "asthma"
-        },
-        "then": [
-          {
-            "var": "rec_drug_c",
             "value": true
           }
         ]

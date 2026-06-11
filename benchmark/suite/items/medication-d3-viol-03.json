@@ -11,27 +11,27 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "polypharmacy",
+        "name": "hyperkalemia",
         "type": "bool"
       },
       {
-        "name": "heart_failure",
+        "name": "bradycardia",
         "type": "bool"
       },
       {
-        "name": "elderly",
+        "name": "low_ejection_fraction",
         "type": "bool"
       },
       {
-        "name": "renal_impairment",
+        "name": "pregnancy",
         "type": "bool"
       },
       {
-        "name": "anticoagulated",
+        "name": "seizure_history",
         "type": "bool"
       },
       {
-        "name": "qt_prolongation",
+        "name": "ckd_dialysis",
         "type": "bool"
       }
     ],
@@ -51,10 +51,10 @@
     ],
     "rules": [
       {
-        "id": "rec_c_from_renal_impairment",
+        "id": "rec_c_from_ckd_dialysis",
         "priority": 40,
         "when": {
-          "var": "renal_impairment"
+          "var": "ckd_dialysis"
         },
         "then": [
           {
@@ -64,10 +64,23 @@
         ]
       },
       {
-        "id": "rec_c_from_anticoagulated",
+        "id": "rec_c_from_pregnancy",
         "priority": 40,
         "when": {
-          "var": "anticoagulated"
+          "var": "pregnancy"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_seizure_history",
+        "priority": 40,
+        "when": {
+          "var": "seizure_history"
         },
         "then": [
           {
@@ -83,13 +96,13 @@
           "op": "and",
           "args": [
             {
-              "var": "polypharmacy"
+              "var": "hyperkalemia"
             },
             {
-              "var": "heart_failure"
+              "var": "bradycardia"
             },
             {
-              "var": "elderly"
+              "var": "low_ejection_fraction"
             }
           ]
         },
@@ -101,23 +114,10 @@
         ]
       },
       {
-        "id": "rec_c_from_qt_prolongation",
-        "priority": 40,
-        "when": {
-          "var": "qt_prolongation"
-        },
-        "then": [
-          {
-            "var": "rec_drug_c",
-            "value": true
-          }
-        ]
-      },
-      {
         "id": "rec_b_from_trigger",
         "priority": 50,
         "when": {
-          "var": "polypharmacy"
+          "var": "hyperkalemia"
         },
         "then": [
           {

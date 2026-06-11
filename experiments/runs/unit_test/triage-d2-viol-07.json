@@ -13,7 +13,7 @@
     },
     {
       "var": "pallor",
-      "value": false
+      "value": true
     },
     {
       "var": "leg_swelling",
@@ -33,7 +33,7 @@
     },
     {
       "var": "pallor__base",
-      "value": false
+      "value": true
     },
     {
       "var": "leg_swelling__base",

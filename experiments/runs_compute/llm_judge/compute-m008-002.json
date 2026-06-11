@@ -4,10 +4,10 @@
   "verdict": "violated",
   "witness": [
     {
-      "event": "step_0"
+      "event": "optout"
     },
     {
-      "event": "optout"
+      "event": "step_0"
     },
     {
       "event": "send_attempt"
@@ -15,7 +15,7 @@
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "The property G(opted_out => not sent) is VIOLATED. The faulty resume path t_resume_glitch fires send_attempt with sent:=true when (opted_out and acc==1). Each step event updates acc by acc:=(3*acc+c) mod 8, where the triple-nested if-then-else is exactly modular reduction (verified: 3 conditional subtractions of 8 cover the max value 3*7+7=28). step_0 uses c=1; step_1 and step_2 use c=7. From the initial state (opted_out=false, sent=false, acc=0), a single step_0 gives acc=(3*0+1) mod 8 = 1, the exact target. Simulating the full sequence: (1) step_0 -> opted_out=false, sent=false, acc=1; (2) optout -> opted_out=true, sent=false (acc unchanged=1); (3) send_attempt -> with opted_out=true and acc==1, t_send_blocked's guard (acc!=1) is false, so t_resume_glitch fires, setting sent=true. Final state opted_out=true AND sent=true violates the invariant. The witness uses 3 events, well within the 10-event bound. No step occurs between optout and send_attempt, so acc stays at 1 and the glitch guard holds.",
+    "reasoning": "This is a state machine. The safety property requires that globally, in every reachable state, opted_out implies not sent. The bug lives in transition t4: on send_attempt if (opted_out and acc == 1): sent := true. This re-enables sending after opt-out whenever acc happens to equal 1.\n\nThe step transitions compute acc as a modular update. Decoding t5 (step_0): the triple-nested conditional is just (3*acc + 1) mod 8 (subtract 8 up to three times, sufficient since max is 3*7+1=22). Similarly step_1 and step_2 compute (3*acc + 7) mod 8.\n\nCounterexample trace from the initial state (opted_out=false, sent=false, acc=0):\n1. optout (t1, guard true): opted_out:=true, sent:=false. State: opted_out=true, sent=false, acc=0.\n2. step_0 (t5): acc := (3*0 + 1) mod 8 = 1. State: opted_out=true, sent=false, acc=1.\n3. send_attempt: t2 guard (not opted_out) is false; t3 guard (opted_out and acc!=1) is false because acc==1; t4 guard (opted_out and acc==1) is true, so sent:=true. State: opted_out=true, sent=true, acc=1.\n\nAfter event 3, opted_out=true and sent=true simultaneously, which violates (opted_out implies not sent). The execution is 3 events long, well within the 10-event bound. I verified the arithmetic and transition selection programmatically. Hence the property is violated.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

@@ -7,23 +7,19 @@
       "value": true
     },
     {
-      "var": "rash",
+      "var": "leg_swelling",
       "value": true
     },
     {
-      "var": "palpitations",
+      "var": "pallor",
       "value": true
     },
     {
-      "var": "abdominal_pain",
+      "var": "confusion",
       "value": false
     },
     {
-      "var": "severe_headache",
-      "value": false
-    },
-    {
-      "var": "fever",
+      "var": "vomiting",
       "value": false
     },
     {
@@ -31,23 +27,19 @@
       "value": true
     },
     {
-      "var": "rash__base",
+      "var": "leg_swelling__base",
       "value": true
     },
     {
-      "var": "palpitations__base",
+      "var": "pallor__base",
       "value": false
     },
     {
-      "var": "abdominal_pain__base",
+      "var": "confusion__base",
       "value": false
     },
     {
-      "var": "severe_headache__base",
-      "value": false
-    },
-    {
-      "var": "fever__base",
+      "var": "vomiting__base",
       "value": false
     }
   ],

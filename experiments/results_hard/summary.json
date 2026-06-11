@@ -12,7 +12,7 @@
   ],
   "methods": {
     "verification": {
-      "label": "complete verification",
+      "label": "SMT verification",
       "n_covered_violated": 48,
       "detection": {
         "x": 48,
@@ -102,12 +102,12 @@
       "label": "unit-test suite",
       "n_covered_violated": 48,
       "detection": {
-        "x": 14,
+        "x": 12,
         "n": 48,
-        "rate": 0.2916666666666667,
+        "rate": 0.25,
         "ci": [
-          0.18241578926516536,
-          0.431792598095717
+          0.1492063367379791,
+          0.3878437280950796
         ]
       },
       "false_alarm": {
@@ -120,10 +120,10 @@
         ]
       },
       "abstentions": 0,
-      "unsound_errors": 34,
+      "unsound_errors": 36,
       "witness_validity": {
-        "valid": 14,
-        "claims": 14,
+        "valid": 12,
+        "claims": 12,
         "rate": 1.0
       },
       "by_depth": {
@@ -137,12 +137,12 @@
           ]
         },
         "4": {
-          "detected": 6,
+          "detected": 4,
           "n": 8,
-          "rate": 0.75,
+          "rate": 0.5,
           "ci": [
-            0.40927543031016883,
-            0.9285207872478909
+            0.21521606221387757,
+            0.7847839377861224
           ]
         },
         "6": {
@@ -183,13 +183,13 @@
         }
       },
       "depth_logistic_slope": {
-        "slope": -10.956420957731227,
+        "slope": -10.707745819225357,
         "ci": [
-          -1978.8076135424046,
-          1956.894771626942
+          -1978.5589125932859,
+          1957.143420954835
         ]
       },
-      "mean_seconds": 0.06779583333333333
+      "mean_seconds": 0.05908333333333333
     },
     "llm_judge": {
       "label": "language-model judge",
@@ -278,5 +278,10 @@
       "depth_logistic_slope": null,
       "mean_seconds": NaN
     }
+  },
+  "mcnemar_verif_vs_unittest": {
+    "b": 36,
+    "c": 0,
+    "p_value": 2.9103830456733704e-11
   }
 }

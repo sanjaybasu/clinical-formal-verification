@@ -3,7 +3,7 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "palpitations",
+      "var": "rash",
       "value": true
     },
     {
@@ -23,11 +23,7 @@
       "value": false
     },
     {
-      "var": "vomiting",
-      "value": false
-    },
-    {
-      "var": "palpitations__base",
+      "var": "rash__base",
       "value": true
     },
     {
@@ -44,10 +40,6 @@
     },
     {
       "var": "vision_loss__base",
-      "value": false
-    },
-    {
-      "var": "vomiting__base",
       "value": false
     }
   ],

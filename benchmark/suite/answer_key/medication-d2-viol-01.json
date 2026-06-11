@@ -3,23 +3,15 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "heart_failure",
+      "var": "bradycardia",
       "value": true
     },
     {
-      "var": "hepatic_impairment",
+      "var": "immunosuppressed",
       "value": true
     },
     {
       "var": "diabetes",
-      "value": false
-    },
-    {
-      "var": "pregnancy",
-      "value": false
-    },
-    {
-      "var": "anticoagulated",
       "value": false
     }
   ],

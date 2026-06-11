@@ -3,19 +3,23 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "fever",
+      "var": "leg_swelling",
       "value": true
+    },
+    {
+      "var": "fever",
+      "value": false
+    },
+    {
+      "var": "confusion",
+      "value": false
     },
     {
       "var": "vision_loss",
       "value": false
     },
     {
-      "var": "dizziness",
-      "value": false
-    },
-    {
-      "var": "palpitations",
+      "var": "leg_swelling__base",
       "value": false
     },
     {
@@ -23,15 +27,11 @@
       "value": false
     },
     {
+      "var": "confusion__base",
+      "value": false
+    },
+    {
       "var": "vision_loss__base",
-      "value": false
-    },
-    {
-      "var": "dizziness__base",
-      "value": false
-    },
-    {
-      "var": "palpitations__base",
       "value": false
     }
   ],

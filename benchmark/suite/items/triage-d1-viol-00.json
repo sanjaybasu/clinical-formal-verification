@@ -11,15 +11,15 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "palpitations",
+        "name": "vision_loss",
         "type": "bool"
       },
       {
-        "name": "fever",
+        "name": "rash",
         "type": "bool"
       },
       {
-        "name": "syncope",
+        "name": "stiff_neck",
         "type": "bool"
       }
     ],
@@ -37,15 +37,28 @@
     ],
     "rules": [
       {
-        "id": "raise_fever",
+        "id": "raise_rash",
         "priority": 2,
         "when": {
-          "var": "fever"
+          "var": "rash"
         },
         "then": [
           {
             "var": "acuity",
             "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_stiff_neck",
+        "priority": 3,
+        "when": {
+          "var": "stiff_neck"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
           }
         ]
       },
@@ -53,25 +66,12 @@
         "id": "interaction_drop",
         "priority": 100,
         "when": {
-          "var": "palpitations"
+          "var": "vision_loss"
         },
         "then": [
           {
             "var": "acuity",
             "value": "self_care"
-          }
-        ]
-      },
-      {
-        "id": "raise_syncope",
-        "priority": 2,
-        "when": {
-          "var": "syncope"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "urgent"
           }
         ]
       }
@@ -89,12 +89,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "palpitations",
+        "var": "vision_loss",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting palpitations true never lowers acuity"
+    "intent": "setting vision_loss true never lowers acuity"
   }
 }

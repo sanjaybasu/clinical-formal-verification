@@ -8,6 +8,10 @@
       "transition": "rst_0_2"
     },
     {
+      "event": "optout",
+      "transition": "t_optout"
+    },
+    {
       "event": "key_0",
       "transition": "adv_0"
     },
@@ -16,15 +20,11 @@
       "transition": "adv_1"
     },
     {
-      "event": "optout",
-      "transition": "t_optout"
-    },
-    {
       "event": "send_attempt",
       "transition": "t_resume_glitch"
     }
   ],
-  "seconds": 0.0024,
+  "seconds": 0.0012,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

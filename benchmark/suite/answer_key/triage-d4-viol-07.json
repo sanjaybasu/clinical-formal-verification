@@ -3,15 +3,15 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "dyspnea",
+      "var": "chest_pain",
       "value": true
     },
     {
-      "var": "vomiting",
+      "var": "palpitations",
       "value": true
     },
     {
-      "var": "rash",
+      "var": "slurred_speech",
       "value": true
     },
     {
@@ -19,27 +19,27 @@
       "value": true
     },
     {
-      "var": "palpitations",
+      "var": "pallor",
       "value": false
     },
     {
-      "var": "chest_pain",
+      "var": "rash",
       "value": false
     },
     {
-      "var": "dizziness",
+      "var": "abdominal_pain",
       "value": false
     },
     {
-      "var": "dyspnea__base",
+      "var": "chest_pain__base",
       "value": true
     },
     {
-      "var": "vomiting__base",
+      "var": "palpitations__base",
       "value": true
     },
     {
-      "var": "rash__base",
+      "var": "slurred_speech__base",
       "value": true
     },
     {
@@ -47,15 +47,15 @@
       "value": false
     },
     {
-      "var": "palpitations__base",
+      "var": "pallor__base",
       "value": false
     },
     {
-      "var": "chest_pain__base",
+      "var": "rash__base",
       "value": false
     },
     {
-      "var": "dizziness__base",
+      "var": "abdominal_pain__base",
       "value": false
     }
   ],

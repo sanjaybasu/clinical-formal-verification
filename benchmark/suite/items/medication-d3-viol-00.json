@@ -11,7 +11,7 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "qt_prolongation",
+        "name": "renal_impairment",
         "type": "bool"
       },
       {
@@ -19,19 +19,19 @@
         "type": "bool"
       },
       {
-        "name": "hepatic_impairment",
+        "name": "immunosuppressed",
         "type": "bool"
       },
       {
-        "name": "diabetes",
+        "name": "heart_failure",
         "type": "bool"
       },
       {
-        "name": "hypertension",
+        "name": "elderly",
         "type": "bool"
       },
       {
-        "name": "polypharmacy",
+        "name": "prior_gi_bleed",
         "type": "bool"
       }
     ],
@@ -51,40 +51,40 @@
     ],
     "rules": [
       {
+        "id": "rec_c_from_prior_gi_bleed",
+        "priority": 40,
+        "when": {
+          "var": "prior_gi_bleed"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_heart_failure",
+        "priority": 40,
+        "when": {
+          "var": "heart_failure"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
         "id": "rec_b_from_trigger",
         "priority": 50,
         "when": {
-          "var": "qt_prolongation"
+          "var": "renal_impairment"
         },
         "then": [
           {
             "var": "rec_drug_b",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_c_from_hypertension",
-        "priority": 40,
-        "when": {
-          "var": "hypertension"
-        },
-        "then": [
-          {
-            "var": "rec_drug_c",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_c_from_polypharmacy",
-        "priority": 40,
-        "when": {
-          "var": "polypharmacy"
-        },
-        "then": [
-          {
-            "var": "rec_drug_c",
             "value": true
           }
         ]
@@ -96,13 +96,13 @@
           "op": "and",
           "args": [
             {
-              "var": "qt_prolongation"
+              "var": "renal_impairment"
             },
             {
               "var": "asthma"
             },
             {
-              "var": "hepatic_impairment"
+              "var": "immunosuppressed"
             }
           ]
         },
@@ -114,10 +114,10 @@
         ]
       },
       {
-        "id": "rec_c_from_diabetes",
+        "id": "rec_c_from_elderly",
         "priority": 40,
         "when": {
-          "var": "diabetes"
+          "var": "elderly"
         },
         "then": [
           {

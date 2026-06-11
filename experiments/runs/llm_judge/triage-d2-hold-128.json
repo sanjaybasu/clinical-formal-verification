@@ -5,7 +5,7 @@
   "witness": null,
   "seconds": null,
   "extra": {
-    "reasoning": "The monotonicity property requires that setting confusion=true (all else unchanged) never lowers acuity. The variable `confusion` does not appear in the condition of any rule (raise_syncope, raise_dizziness, raise_slurred_speech) nor in the default. The acuity output is therefore a function solely of dizziness, syncope, and slurred_speech. For any fixed assignment of those three variables, the matched rules, priority resolution, tie-breaking, and default are identical whether confusion is false or true, so acuity is exactly equal in both cases. Equal acuity is trivially \"no lower than before.\" Since this holds for every point in the input space, the property holds with no counterexample.",
+    "reasoning": "The input variable `confusion` does not appear in any rule (r1 reads syncope, r2 reads dizziness, r3 reads slurred_speech; the default ignores all inputs). Therefore the output `acuity` is a function only of {dizziness, syncope, slurred_speech} and is completely independent of `confusion`. For any fixed assignment of the other three inputs, acuity(confusion=false) equals acuity(confusion=true). The monotonicity property requires that flipping confusion to true never lowers acuity; since the value is always exactly equal (not lower), the property holds trivially across the entire input space. Concretely, the computed acuity is: emergent if slurred_speech (r3, priority 3 dominates), else urgent if syncope or dizziness (priority 2), else routine (default) \u2014 and none of these branches depend on confusion. No counterexample exists.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

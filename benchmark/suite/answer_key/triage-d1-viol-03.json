@@ -3,35 +3,27 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "palpitations",
+      "var": "severe_headache",
       "value": true
     },
     {
-      "var": "fever",
+      "var": "focal_weakness",
       "value": false
     },
     {
-      "var": "vision_loss",
-      "value": false
-    },
-    {
-      "var": "severe_headache",
-      "value": false
-    },
-    {
-      "var": "palpitations__base",
-      "value": false
-    },
-    {
-      "var": "fever__base",
-      "value": false
-    },
-    {
-      "var": "vision_loss__base",
+      "var": "leg_swelling",
       "value": false
     },
     {
       "var": "severe_headache__base",
+      "value": false
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": false
+    },
+    {
+      "var": "leg_swelling__base",
       "value": false
     }
   ],

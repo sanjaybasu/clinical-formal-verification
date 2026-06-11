@@ -3,43 +3,35 @@
   "ground_truth": "violated",
   "witness": [
     {
+      "var": "dizziness",
+      "value": true
+    },
+    {
       "var": "syncope",
       "value": true
     },
     {
-      "var": "fever",
+      "var": "slurred_speech",
       "value": true
     },
     {
-      "var": "vomiting",
+      "var": "hemoptysis",
+      "value": false
+    },
+    {
+      "var": "dizziness__base",
       "value": true
-    },
-    {
-      "var": "dizziness",
-      "value": false
-    },
-    {
-      "var": "abdominal_pain",
-      "value": false
     },
     {
       "var": "syncope__base",
       "value": true
     },
     {
-      "var": "fever__base",
-      "value": true
-    },
-    {
-      "var": "vomiting__base",
+      "var": "slurred_speech__base",
       "value": false
     },
     {
-      "var": "dizziness__base",
-      "value": false
-    },
-    {
-      "var": "abdominal_pain__base",
+      "var": "hemoptysis__base",
       "value": false
     }
   ],

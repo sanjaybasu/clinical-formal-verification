@@ -11,19 +11,11 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "pregnancy",
+        "name": "hyperkalemia",
         "type": "bool"
       },
       {
-        "name": "hepatic_impairment",
-        "type": "bool"
-      },
-      {
-        "name": "diabetes",
-        "type": "bool"
-      },
-      {
-        "name": "anticoagulated",
+        "name": "elderly",
         "type": "bool"
       }
     ],
@@ -43,36 +35,10 @@
     ],
     "rules": [
       {
-        "id": "rec_c_from_diabetes",
-        "priority": 40,
-        "when": {
-          "var": "diabetes"
-        },
-        "then": [
-          {
-            "var": "rec_drug_c",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_c_from_hepatic_impairment",
-        "priority": 40,
-        "when": {
-          "var": "hepatic_impairment"
-        },
-        "then": [
-          {
-            "var": "rec_drug_c",
-            "value": true
-          }
-        ]
-      },
-      {
         "id": "rec_b_from_trigger",
         "priority": 50,
         "when": {
-          "var": "pregnancy"
+          "var": "hyperkalemia"
         },
         "then": [
           {
@@ -85,7 +51,7 @@
         "id": "rec_a_from_conjunction",
         "priority": 50,
         "when": {
-          "var": "pregnancy"
+          "var": "hyperkalemia"
         },
         "then": [
           {
@@ -95,10 +61,10 @@
         ]
       },
       {
-        "id": "rec_c_from_anticoagulated",
+        "id": "rec_c_from_elderly",
         "priority": 40,
         "when": {
-          "var": "anticoagulated"
+          "var": "elderly"
         },
         "then": [
           {

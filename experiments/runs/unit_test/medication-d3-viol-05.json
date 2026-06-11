@@ -17,7 +17,7 @@
     },
     {
       "var": "renal_impairment",
-      "value": true
+      "value": false
     },
     {
       "var": "bradycardia",

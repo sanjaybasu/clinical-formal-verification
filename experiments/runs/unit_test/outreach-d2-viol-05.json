@@ -16,19 +16,19 @@
       "transition": "t_tick"
     },
     {
-      "event": "optout",
-      "transition": "t_optout"
+      "event": "send_attempt",
+      "transition": "t_send_allowed"
     },
     {
-      "event": "tick",
-      "transition": "t_tick"
+      "event": "optout",
+      "transition": "t_optout"
     },
     {
       "event": "send_attempt",
       "transition": "t_resume_glitch"
     }
   ],
-  "seconds": 0.0001,
+  "seconds": 0.0003,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

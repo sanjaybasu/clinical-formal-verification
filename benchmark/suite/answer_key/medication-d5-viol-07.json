@@ -1,0 +1,38 @@
+{
+  "item": "medication-d5-viol-07",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "renal_impairment",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": false
+    },
+    {
+      "var": "seizure_history",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 5,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 5 produces the violation; see generate.py for the construction"
+}

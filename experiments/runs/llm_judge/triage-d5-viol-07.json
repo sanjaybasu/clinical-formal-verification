@@ -25,7 +25,7 @@
     },
     {
       "var": "focal_weakness",
-      "value": true
+      "value": false
     },
     {
       "var": "pallor__base",
@@ -49,12 +49,12 @@
     },
     {
       "var": "focal_weakness__base",
-      "value": true
+      "value": false
     }
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "The monotonicity property (setting palpitations=true never lowers acuity) is VIOLATED.\n\npalpitations appears in exactly one rule: interaction_drop (priority 100), which sets acuity := self_care (the lowest enum value) and requires pallor \u2227 vision_loss \u2227 fever \u2227 sweating \u2227 palpitations. Because it has the highest priority by far (100 vs. the priority-3 emergent rules), whenever it fires it dominates all other rules.\n\nCounterexample pair (all other inputs held at: pallor=T, vision_loss=T, fever=T, sweating=T, focal_weakness=T):\n- palpitations=FALSE: interaction_drop does not fire (palpitations missing). The active rules include raise_sweating, raise_focal_weakness, and raise_vision_loss (each priority 3 \u2192 emergent), plus raise_fever/raise_pallor (priority 2 \u2192 urgent). Highest priority among firing rules is 3, all agreeing on emergent. Result: acuity = emergent.\n- palpitations=TRUE: now interaction_drop fires (all five of pallor, vision_loss, fever, sweating, palpitations are true). With priority 100 it beats every priority-3 emergent rule. Result: acuity = self_care.\n\nToggling palpitations from false to true lowered acuity from emergent (highest) to self_care (lowest), directly violating the property. The witness_assignment gives the palpitations=true endpoint that produces the lowered acuity; the baseline is the identical assignment with palpitations=false.",
+    "reasoning": "The single output acuity is ordered self_care < routine < urgent < emergent. Conflict resolution picks the highest-priority matching rule. palpitations appears only in r3 (priority 100, the dominating priority), which forces acuity := self_care (the lowest level). Setting palpitations true can therefore ENABLE r3 and drag acuity down.\\n\\nCounterexample (witness is the palpitations=true state):\\nBase input: pallor=T, vision_loss=T, fever=T, sweating=T, palpitations=FALSE, focal_weakness=F.\\n  Firing rules: r1 (sweating, p3 -> emergent), r6 (vision_loss, p3 -> emergent), r4 (fever, p2 -> urgent), r5 (pallor, p2 -> urgent). r3 does NOT fire (palpitations false). Highest priority is 3 -> emergent. Result = emergent.\\n\\nFlip only palpitations to TRUE: pallor=T, vision_loss=T, fever=T, sweating=T, palpitations=TRUE, focal_weakness=F.\\n  Now r3 fires (all five conjuncts true) at priority 100, which dominates every other rule. Result = self_care.\\n\\nThus setting palpitations true lowers acuity from emergent to self_care, violating the monotonicity property (palpitations true must never lower acuity).",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

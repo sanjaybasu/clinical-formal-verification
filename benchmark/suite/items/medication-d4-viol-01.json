@@ -11,7 +11,7 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "diabetes",
+        "name": "bradycardia",
         "type": "bool"
       },
       {
@@ -19,11 +19,7 @@
         "type": "bool"
       },
       {
-        "name": "hepatic_impairment",
-        "type": "bool"
-      },
-      {
-        "name": "pregnancy",
+        "name": "low_ejection_fraction",
         "type": "bool"
       },
       {
@@ -31,7 +27,15 @@
         "type": "bool"
       },
       {
-        "name": "elderly",
+        "name": "seizure_history",
+        "type": "bool"
+      },
+      {
+        "name": "polypharmacy",
+        "type": "bool"
+      },
+      {
+        "name": "renal_impairment",
         "type": "bool"
       }
     ],
@@ -51,36 +55,10 @@
     ],
     "rules": [
       {
-        "id": "rec_c_from_elderly",
+        "id": "rec_c_from_polypharmacy",
         "priority": 40,
         "when": {
-          "var": "elderly"
-        },
-        "then": [
-          {
-            "var": "rec_drug_c",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_b_from_trigger",
-        "priority": 50,
-        "when": {
-          "var": "diabetes"
-        },
-        "then": [
-          {
-            "var": "rec_drug_b",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_c_from_asthma",
-        "priority": 40,
-        "when": {
-          "var": "asthma"
+          "var": "polypharmacy"
         },
         "then": [
           {
@@ -96,22 +74,61 @@
           "op": "and",
           "args": [
             {
-              "var": "diabetes"
+              "var": "bradycardia"
             },
             {
               "var": "anticoagulated"
             },
             {
-              "var": "hepatic_impairment"
+              "var": "low_ejection_fraction"
             },
             {
-              "var": "pregnancy"
+              "var": "asthma"
             }
           ]
         },
         "then": [
           {
             "var": "rec_drug_a",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_seizure_history",
+        "priority": 40,
+        "when": {
+          "var": "seizure_history"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_renal_impairment",
+        "priority": 40,
+        "when": {
+          "var": "renal_impairment"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_b_from_trigger",
+        "priority": 50,
+        "when": {
+          "var": "bradycardia"
+        },
+        "then": [
+          {
+            "var": "rec_drug_b",
             "value": true
           }
         ]

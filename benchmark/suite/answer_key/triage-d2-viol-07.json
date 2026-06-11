@@ -3,27 +3,43 @@
   "ground_truth": "violated",
   "witness": [
     {
+      "var": "abdominal_pain",
+      "value": true
+    },
+    {
       "var": "vomiting",
       "value": true
     },
     {
-      "var": "dizziness",
-      "value": true
-    },
-    {
-      "var": "abdominal_pain",
+      "var": "pallor",
       "value": false
     },
     {
-      "var": "vomiting__base",
-      "value": true
+      "var": "leg_swelling",
+      "value": false
     },
     {
-      "var": "dizziness__base",
+      "var": "confusion",
       "value": false
     },
     {
       "var": "abdominal_pain__base",
+      "value": true
+    },
+    {
+      "var": "vomiting__base",
+      "value": false
+    },
+    {
+      "var": "pallor__base",
+      "value": false
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": false
+    },
+    {
+      "var": "confusion__base",
       "value": false
     }
   ],

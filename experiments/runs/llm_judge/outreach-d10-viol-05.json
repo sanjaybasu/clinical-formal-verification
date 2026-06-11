@@ -4,37 +4,37 @@
   "verdict": "violated",
   "witness": [
     {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
       "event": "optout"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
     },
     {
       "event": "send_attempt"
@@ -42,7 +42,7 @@
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "The property requires globally (opted_out implies not sent), i.e., no reachable state has opted_out=true and sent=true. The transition [t_resume_glitch] on send_attempt if (opted_out and ticks >= 10): sent := true directly sets sent=true while opted_out is true, which violates the property whenever its guard is satisfiable.\n\nThe guard requires opted_out=true and ticks>=10, both reachable. Note that when opted_out=true and ticks>=10, both [t_send_blocked] (guard opted_out) and [t_resume_glitch] (guard opted_out and ticks>=10) are enabled on send_attempt; the spec gives no priority ordering, so an execution may legitimately take t_resume_glitch. Since the property must hold on every reachable execution, this branch witnesses a violation.\n\nTrace from initial state (opted_out=false, sent=false, ticks=0):\n- tick x10: t_tick increments ticks (capped at 10) and sets sent=false each time. Result: opted_out=false, sent=false, ticks=10.\n- optout: t_optout sets opted_out=true, sent=false. State: opted_out=true, sent=false, ticks=10.\n- send_attempt: guard of t_resume_glitch = (opted_out and ticks>=10) = (true and 10>=10) = true, so sent:=true. State: opted_out=true, sent=true, ticks=10.\n\nThis reachable state has opted_out=true and sent=true, violating globally(opted_out implies not sent). The execution is 12 events, within the 14-event bound. Hence the property is violated.",
+    "reasoning": "The property requires that in every reachable state, opted_out=true implies sent=false. Transition [t5] breaks this: it is guarded on (opted_out and ticks>=10) and sets sent:=true, directly contradicting the intent.\n\nReachability of the violating state:\n1. Event 'optout' fires [t1]: opted_out=true, sent=false, ticks=0.\n2. Ten 'tick' events fire [t4] each time, incrementing ticks 0->10 (capped at 10) and keeping sent=false, opted_out=true. After the 11th event, state is opted_out=true, sent=false, ticks=10.\n3. Now both [t3] (send_attempt if opted_out) and [t5] (send_attempt if opted_out and ticks>=10) are enabled. [t5] exists specifically for this case and sets sent:=true. After the 12th event, state is opted_out=true, sent=true.\n\nThis reachable state has opted_out=true AND sent=true, violating globally(opted_out implies not sent). The trace uses 12 events, within the 14-event bound. (Even under any priority interpretation, [t5] is a listed enabled transition that can fire, so the system is unsafe.)",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

@@ -11,7 +11,15 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "heart_failure",
+        "name": "polypharmacy",
+        "type": "bool"
+      },
+      {
+        "name": "low_ejection_fraction",
+        "type": "bool"
+      },
+      {
+        "name": "ckd_dialysis",
         "type": "bool"
       },
       {
@@ -19,15 +27,15 @@
         "type": "bool"
       },
       {
-        "name": "anticoagulated",
+        "name": "g6pd_deficiency",
         "type": "bool"
       },
       {
-        "name": "elderly",
+        "name": "peptic_ulcer",
         "type": "bool"
       },
       {
-        "name": "renal_impairment",
+        "name": "heart_failure",
         "type": "bool"
       }
     ],
@@ -47,10 +55,23 @@
     ],
     "rules": [
       {
-        "id": "rec_c_from_renal_impairment",
+        "id": "rec_c_from_peptic_ulcer",
         "priority": 40,
         "when": {
-          "var": "renal_impairment"
+          "var": "peptic_ulcer"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_heart_failure",
+        "priority": 40,
+        "when": {
+          "var": "heart_failure"
         },
         "then": [
           {
@@ -66,16 +87,16 @@
           "op": "and",
           "args": [
             {
-              "var": "heart_failure"
+              "var": "polypharmacy"
+            },
+            {
+              "var": "low_ejection_fraction"
+            },
+            {
+              "var": "ckd_dialysis"
             },
             {
               "var": "hypertension"
-            },
-            {
-              "var": "anticoagulated"
-            },
-            {
-              "var": "elderly"
             }
           ]
         },
@@ -90,11 +111,24 @@
         "id": "rec_b_from_trigger",
         "priority": 50,
         "when": {
-          "var": "heart_failure"
+          "var": "polypharmacy"
         },
         "then": [
           {
             "var": "rec_drug_b",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_g6pd_deficiency",
+        "priority": 40,
+        "when": {
+          "var": "g6pd_deficiency"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
             "value": true
           }
         ]

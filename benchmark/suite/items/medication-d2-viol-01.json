@@ -11,23 +11,15 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "heart_failure",
+        "name": "bradycardia",
         "type": "bool"
       },
       {
-        "name": "hepatic_impairment",
+        "name": "immunosuppressed",
         "type": "bool"
       },
       {
         "name": "diabetes",
-        "type": "bool"
-      },
-      {
-        "name": "pregnancy",
-        "type": "bool"
-      },
-      {
-        "name": "anticoagulated",
         "type": "bool"
       }
     ],
@@ -47,32 +39,6 @@
     ],
     "rules": [
       {
-        "id": "rec_c_from_anticoagulated",
-        "priority": 40,
-        "when": {
-          "var": "anticoagulated"
-        },
-        "then": [
-          {
-            "var": "rec_drug_c",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_b_from_trigger",
-        "priority": 50,
-        "when": {
-          "var": "heart_failure"
-        },
-        "then": [
-          {
-            "var": "rec_drug_b",
-            "value": true
-          }
-        ]
-      },
-      {
         "id": "rec_c_from_diabetes",
         "priority": 40,
         "when": {
@@ -86,35 +52,35 @@
         ]
       },
       {
+        "id": "rec_b_from_trigger",
+        "priority": 50,
+        "when": {
+          "var": "bradycardia"
+        },
+        "then": [
+          {
+            "var": "rec_drug_b",
+            "value": true
+          }
+        ]
+      },
+      {
         "id": "rec_a_from_conjunction",
         "priority": 50,
         "when": {
           "op": "and",
           "args": [
             {
-              "var": "heart_failure"
+              "var": "bradycardia"
             },
             {
-              "var": "hepatic_impairment"
+              "var": "immunosuppressed"
             }
           ]
         },
         "then": [
           {
             "var": "rec_drug_a",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_c_from_pregnancy",
-        "priority": 40,
-        "when": {
-          "var": "pregnancy"
-        },
-        "then": [
-          {
-            "var": "rec_drug_c",
             "value": true
           }
         ]

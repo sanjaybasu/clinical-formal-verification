@@ -9,7 +9,7 @@
     },
     {
       "var": "rash",
-      "value": false
+      "value": true
     },
     {
       "var": "stiff_neck",
@@ -21,7 +21,7 @@
     },
     {
       "var": "rash__base",
-      "value": false
+      "value": true
     },
     {
       "var": "stiff_neck__base",

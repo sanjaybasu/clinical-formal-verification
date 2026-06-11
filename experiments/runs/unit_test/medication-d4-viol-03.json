@@ -25,14 +25,14 @@
     },
     {
       "var": "peptic_ulcer",
-      "value": false
+      "value": true
     },
     {
       "var": "heart_failure",
       "value": true
     }
   ],
-  "seconds": 0.0,
+  "seconds": 0.0002,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

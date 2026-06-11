@@ -4,13 +4,13 @@
   "verdict": "violated",
   "witness": [
     {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
       "event": "optout"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
     },
     {
       "event": "send_attempt"
@@ -18,7 +18,7 @@
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "This is a state machine over (opted_out, sent, ticks), initial (false, false, 0). The property is globally(opted_out implies not sent): in every reachable state, opted_out=true must imply sent=false.\n\nThe vulnerable transition is t_resume_glitch: on send_attempt if (opted_out and ticks >= 2): sent := true. This directly sets sent=true while opted_out is still true, which is exactly the configuration the property forbids. The only requirement to fire it is opted_out=true and ticks at its max value (2), both reachable.\n\nCounterexample execution (4 events, within the 6-event bound):\n1. optout: t_optout fires (guard true) -> opted_out=true, sent=false. State (true, false, 0).\n2. tick: t_tick fires -> ticks=1, sent=false. State (true, false, 1).\n3. tick: t_tick fires -> ticks=2, sent=false. State (true, false, 2).\n4. send_attempt: t_resume_glitch is enabled (opted_out=true and ticks>=2) and sets sent:=true. State (true, true, 2).\n\nIn the resulting state opted_out=true and sent=true, so (opted_out implies not sent) is false, violating the global property. t_send_blocked (sent:=false) is also enabled on this send_attempt, but since the property must hold on every reachable execution, the execution that takes the t_resume_glitch branch is itself a reachable counterexample; nothing in the spec gives t_send_blocked overriding priority that would suppress t_resume_glitch. The t_resume_glitch rule is the intended defect: it re-enables outreach after opt-out once the tick counter saturates. Property is violated.",
+    "reasoning": "This is a state machine. The property requires globally(opted_out implies not sent): no reachable state may have opted_out=true and sent=true. Transition t5 (on send_attempt if opted_out and ticks>=2: sent:=true) directly contradicts this, because its guard requires opted_out=true yet its effect sets sent:=true. So any execution that fires t5 reaches a violating state.\n\nTo enable t5 we need opted_out=true and ticks>=2. Concrete reachable execution from the initial state (opted_out=false, sent=false, ticks=0):\n1. tick (t4): ticks=1, sent=false. State: opted_out=false, sent=false, ticks=1.\n2. tick (t4): ticks=2 (capped), sent=false. State: opted_out=false, sent=false, ticks=2.\n3. optout (t1): opted_out=true, sent=false. State: opted_out=true, sent=false, ticks=2.\n4. send_attempt: guard of t5 (opted_out and ticks>=2) holds, applying sent:=true. State: opted_out=true, sent=true, ticks=2.\n\nAfter event 4 the state has opted_out=true AND sent=true, violating opted_out implies not sent. The execution is 4 events, within the 6-event bound. (Note t3 also matches send_attempt under opted_out and would set sent:=false, but t5 is a distinct enabled transition that explicitly sets sent:=true under opted_out; the system as specified permits this reachable violating state. t5 is the design defect \u2014 it re-enables sending to an opted-out subject once the tick counter saturates.)",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

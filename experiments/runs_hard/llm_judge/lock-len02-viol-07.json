@@ -4,13 +4,13 @@
   "verdict": "violated",
   "witness": [
     {
-      "event": "key_0"
-    },
-    {
-      "event": "key_0"
-    },
-    {
       "event": "optout"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_0"
     },
     {
       "event": "send_attempt"
@@ -18,7 +18,7 @@
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "The property G(opted_out -> not sent) is violated within the 5-event bound via the t_resume_glitch transition.\n\nThe only transition that can set sent:=true while opted_out is true is [t_resume_glitch]: on send_attempt if (opted_out and stage >= 2). (t_send_allowed requires not opted_out, and t_optout itself sets sent:=false, so neither can produce the bad state directly.)\n\nTo enable t_resume_glitch we must reach stage==2 with opted_out==true. Stage is advanced only by key_0: adv_0 takes stage 0->1, adv_1 takes stage 1->2. Crucially, t_optout sets only opted_out:=true and sent:=false and does NOT reset stage, so stage persists through opt-out.\n\nTrace from initial state (opted_out=false, sent=false, stage=0):\n1. key_0: stage 0 -> 1 (adv_0). State: opted_out=false, sent=false, stage=1.\n2. key_0: stage 1 -> 2 (adv_1). State: opted_out=false, sent=false, stage=2.\n3. optout: opted_out:=true, sent:=false (t_optout); stage unchanged. State: opted_out=true, sent=false, stage=2.\n4. send_attempt: t_send_allowed guard (not opted_out)=false; t_send_blocked guard (opted_out and stage<2)=(true and false)=false; t_resume_glitch guard (opted_out and stage>=2)=(true and true)=true -> sent:=true. State: opted_out=true, sent=true, stage=2.\n\nThe final state has opted_out=true and sent=true, violating opted_out -> not sent. This is 4 events, within the 5-event bound. The vulnerability is that opt-out resets sent but not stage, and the t_resume_glitch rule re-enables sending once the lock has been advanced to stage 2, allowing a message to be sent after opt-out.",
+    "reasoning": "The property \"globally(opted_out implies not sent)\" requires that no reachable state has opted_out=true AND sent=true. Transition [t10] (on send_attempt if opted_out and stage>=2: sent:=true) directly sets sent=true while opted_out is true, so it is the candidate violation. I just need to reach stage>=2 with opted_out=true and then fire send_attempt.\n\nTrace from initial state (opted_out=false, sent=false, stage=0):\n1. optout -> [t1] (guard true): opted_out=true, sent=false, stage=0.\n2. key_0 -> [t3] (stage==0): stage=1, sent=false; opted_out stays true.\n3. key_0 -> [t6] (stage==1): stage=2, sent=false; opted_out stays true.\n4. send_attempt -> [t9] guard is (opted_out and stage<2) = false; [t10] guard is (opted_out and stage>=2) = true, so [t10] fires: sent:=true.\n\nResulting state: opted_out=true, sent=true, stage=2 \u2014 opted_out is true but sent is true, violating the property. This occurs at 4 events, within the 5-event bound. Note that opting out (t1) and the key transitions all reset sent to false, and t2 only sets sent when not opted_out; but t10 re-enables sending once stage advances to 2 even though the user opted out, which is the flaw.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

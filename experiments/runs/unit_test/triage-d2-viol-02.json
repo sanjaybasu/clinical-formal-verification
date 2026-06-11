@@ -13,7 +13,7 @@
     },
     {
       "var": "severe_headache",
-      "value": true
+      "value": false
     },
     {
       "var": "stiff_neck",
@@ -21,7 +21,7 @@
     },
     {
       "var": "chest_pain",
-      "value": true
+      "value": false
     },
     {
       "var": "fever__base",
@@ -33,7 +33,7 @@
     },
     {
       "var": "severe_headache__base",
-      "value": true
+      "value": false
     },
     {
       "var": "stiff_neck__base",
@@ -41,7 +41,7 @@
     },
     {
       "var": "chest_pain__base",
-      "value": true
+      "value": false
     }
   ],
   "seconds": 0.0,

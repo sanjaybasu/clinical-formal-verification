@@ -11,23 +11,23 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "severe_headache",
-        "type": "bool"
-      },
-      {
         "name": "syncope",
         "type": "bool"
       },
       {
-        "name": "vision_loss",
+        "name": "stiff_neck",
         "type": "bool"
       },
       {
-        "name": "fever",
+        "name": "focal_weakness",
         "type": "bool"
       },
       {
-        "name": "chest_pain",
+        "name": "rash",
+        "type": "bool"
+      },
+      {
+        "name": "dyspnea",
         "type": "bool"
       }
     ],
@@ -45,54 +45,15 @@
     ],
     "rules": [
       {
-        "id": "raise_vision_loss",
-        "priority": 2,
-        "when": {
-          "var": "vision_loss"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "urgent"
-          }
-        ]
-      },
-      {
-        "id": "raise_chest_pain",
+        "id": "raise_dyspnea",
         "priority": 3,
         "when": {
-          "var": "chest_pain"
+          "var": "dyspnea"
         },
         "then": [
           {
             "var": "acuity",
             "value": "emergent"
-          }
-        ]
-      },
-      {
-        "id": "raise_fever",
-        "priority": 2,
-        "when": {
-          "var": "fever"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "urgent"
-          }
-        ]
-      },
-      {
-        "id": "raise_severe_headache",
-        "priority": 2,
-        "when": {
-          "var": "severe_headache"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "urgent"
           }
         ]
       },
@@ -103,10 +64,10 @@
           "op": "and",
           "args": [
             {
-              "var": "severe_headache"
+              "var": "syncope"
             },
             {
-              "var": "syncope"
+              "var": "stiff_neck"
             }
           ]
         },
@@ -114,6 +75,45 @@
           {
             "var": "acuity",
             "value": "self_care"
+          }
+        ]
+      },
+      {
+        "id": "raise_syncope",
+        "priority": 2,
+        "when": {
+          "var": "syncope"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_focal_weakness",
+        "priority": 3,
+        "when": {
+          "var": "focal_weakness"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_rash",
+        "priority": 3,
+        "when": {
+          "var": "rash"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
           }
         ]
       }
@@ -131,12 +131,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "syncope",
+        "var": "stiff_neck",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting syncope true never lowers acuity"
+    "intent": "setting stiff_neck true never lowers acuity"
   }
 }

@@ -11,27 +11,23 @@
     "kind": "decision",
     "inputs": [
       {
+        "name": "confusion",
+        "type": "bool"
+      },
+      {
+        "name": "rash",
+        "type": "bool"
+      },
+      {
+        "name": "dizziness",
+        "type": "bool"
+      },
+      {
+        "name": "pallor",
+        "type": "bool"
+      },
+      {
         "name": "syncope",
-        "type": "bool"
-      },
-      {
-        "name": "dyspnea",
-        "type": "bool"
-      },
-      {
-        "name": "severe_headache",
-        "type": "bool"
-      },
-      {
-        "name": "vomiting",
-        "type": "bool"
-      },
-      {
-        "name": "abdominal_pain",
-        "type": "bool"
-      },
-      {
-        "name": "focal_weakness",
         "type": "bool"
       }
     ],
@@ -49,36 +45,23 @@
     ],
     "rules": [
       {
-        "id": "raise_syncope",
-        "priority": 2,
+        "id": "raise_rash",
+        "priority": 3,
         "when": {
-          "var": "syncope"
+          "var": "rash"
         },
         "then": [
           {
             "var": "acuity",
-            "value": "urgent"
+            "value": "emergent"
           }
         ]
       },
       {
-        "id": "raise_severe_headache",
+        "id": "raise_dizziness",
         "priority": 2,
         "when": {
-          "var": "severe_headache"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "urgent"
-          }
-        ]
-      },
-      {
-        "id": "raise_focal_weakness",
-        "priority": 2,
-        "when": {
-          "var": "focal_weakness"
+          "var": "dizziness"
         },
         "then": [
           {
@@ -94,16 +77,16 @@
           "op": "and",
           "args": [
             {
-              "var": "syncope"
+              "var": "confusion"
             },
             {
-              "var": "dyspnea"
+              "var": "rash"
             },
             {
-              "var": "severe_headache"
+              "var": "dizziness"
             },
             {
-              "var": "vomiting"
+              "var": "pallor"
             }
           ]
         },
@@ -115,10 +98,10 @@
         ]
       },
       {
-        "id": "raise_dyspnea",
+        "id": "raise_syncope",
         "priority": 3,
         "when": {
-          "var": "dyspnea"
+          "var": "syncope"
         },
         "then": [
           {
@@ -128,10 +111,10 @@
         ]
       },
       {
-        "id": "raise_abdominal_pain",
+        "id": "raise_confusion",
         "priority": 2,
         "when": {
-          "var": "abdominal_pain"
+          "var": "confusion"
         },
         "then": [
           {
@@ -154,12 +137,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "vomiting",
+        "var": "pallor",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting vomiting true never lowers acuity"
+    "intent": "setting pallor true never lowers acuity"
   }
 }

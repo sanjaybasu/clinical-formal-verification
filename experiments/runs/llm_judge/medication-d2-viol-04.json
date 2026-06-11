@@ -18,7 +18,7 @@
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "The property requires NOT(rec_drug_a AND rec_drug_b). rec_drug_a is set true by rec_a_from_conjunction IF (elderly AND g6pd_deficiency). rec_drug_b is set true by rec_b_from_trigger IF elderly. These two rules write to different outputs, so priority/tie-breaking never causes one to suppress the other; each output is computed independently. With elderly=true and g6pd_deficiency=true, both antecedents are satisfied: rec_a_from_conjunction sets rec_drug_a:=true and rec_b_from_trigger sets rec_drug_b:=true. Hence rec_drug_a AND rec_drug_b are jointly true, violating mutual exclusion. qt_prolongation is set false (irrelevant to a and b; it only governs rec_drug_c, which stays false by default). Counterexample: elderly=true, g6pd_deficiency=true, qt_prolongation=false yields rec_drug_a=true, rec_drug_b=true.",
+    "reasoning": "The property requires NOT(rec_drug_a AND rec_drug_b). rec_drug_a is set true by r1 when (elderly AND g6pd_deficiency); rec_drug_b is set true by r3 when elderly. These two rules write to DIFFERENT outputs, so the per-output priority/tie-breaking conflict resolution never pits them against each other \u2014 each wins on its own output independently. With elderly=true and g6pd_deficiency=true, r1 fires (rec_drug_a:=true) and r3 fires (rec_drug_b:=true) simultaneously, so rec_drug_a AND rec_drug_b is true. qt_prolongation is irrelevant (set false here; r2 only affects rec_drug_c). This input is reachable and makes both drug a and drug b jointly recommended, violating mutual exclusion.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

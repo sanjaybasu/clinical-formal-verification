@@ -3,7 +3,7 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "polypharmacy",
+      "var": "elderly",
       "value": true
     },
     {
@@ -11,15 +11,15 @@
       "value": true
     },
     {
-      "var": "hepatic_impairment",
+      "var": "qt_prolongation",
       "value": false
     },
     {
-      "var": "anticoagulated",
+      "var": "bradycardia",
       "value": false
     },
     {
-      "var": "heart_failure",
+      "var": "polypharmacy",
       "value": false
     }
   ],

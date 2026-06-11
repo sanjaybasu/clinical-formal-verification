@@ -5,7 +5,7 @@
   "witness": null,
   "seconds": null,
   "extra": {
-    "reasoning": "The variable stiff_neck does not appear in the condition of any rule. The only rules are raise_back_pain (IF back_pain THEN urgent) and raise_dizziness (IF dizziness THEN urgent), both priority 2, with a default of routine for any unset output. Acuity is therefore a function solely of back_pain and dizziness: urgent if either is true, routine otherwise. Because stiff_neck is never read, toggling it from false to true (with all other inputs fixed) leaves acuity completely unchanged. The monotonicity property requires that setting stiff_neck true yields acuity no lower than before; since acuity is identical (equal), \"no lower\" is trivially satisfied for every one of the input assignments. No input or execution can lower acuity by setting stiff_neck true, so the property holds over the entire input space.",
+    "reasoning": "The input stiff_neck appears in no rule. The output acuity is determined solely by back_pain and dizziness: r1 (priority 2) and r2 (priority 2) each set acuity := urgent when their condition holds, and the default sets acuity := routine otherwise. Therefore the only reachable acuity values are urgent (if back_pain or dizziness) and routine (neither). Flipping stiff_neck from false to true, with back_pain and dizziness unchanged, leaves the computed acuity exactly equal in every case, since stiff_neck never participates in any rule condition or in priority/tie-break resolution. 'No lower than before' allows equality, so monotonicity is satisfied for all 2^3 = 8 input combinations. The property holds.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

@@ -3,15 +3,15 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "peptic_ulcer",
+      "var": "anticoagulated",
       "value": true
     },
     {
-      "var": "hepatic_impairment",
+      "var": "peptic_ulcer",
       "value": false
     },
     {
-      "var": "renal_impairment",
+      "var": "ckd_dialysis",
       "value": false
     }
   ],

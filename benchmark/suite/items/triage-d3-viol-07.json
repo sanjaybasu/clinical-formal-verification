@@ -15,23 +15,19 @@
         "type": "bool"
       },
       {
-        "name": "rash",
+        "name": "leg_swelling",
         "type": "bool"
       },
       {
-        "name": "palpitations",
+        "name": "pallor",
         "type": "bool"
       },
       {
-        "name": "abdominal_pain",
+        "name": "confusion",
         "type": "bool"
       },
       {
-        "name": "severe_headache",
-        "type": "bool"
-      },
-      {
-        "name": "fever",
+        "name": "vomiting",
         "type": "bool"
       }
     ],
@@ -49,10 +45,36 @@
     ],
     "rules": [
       {
-        "id": "raise_rash",
+        "id": "raise_vomiting",
         "priority": 3,
         "when": {
-          "var": "rash"
+          "var": "vomiting"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_confusion",
+        "priority": 2,
+        "when": {
+          "var": "confusion"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_leg_swelling",
+        "priority": 3,
+        "when": {
+          "var": "leg_swelling"
         },
         "then": [
           {
@@ -75,19 +97,6 @@
         ]
       },
       {
-        "id": "raise_abdominal_pain",
-        "priority": 2,
-        "when": {
-          "var": "abdominal_pain"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "urgent"
-          }
-        ]
-      },
-      {
         "id": "interaction_drop",
         "priority": 100,
         "when": {
@@ -97,10 +106,10 @@
               "var": "dyspnea"
             },
             {
-              "var": "rash"
+              "var": "leg_swelling"
             },
             {
-              "var": "palpitations"
+              "var": "pallor"
             }
           ]
         },
@@ -108,32 +117,6 @@
           {
             "var": "acuity",
             "value": "self_care"
-          }
-        ]
-      },
-      {
-        "id": "raise_severe_headache",
-        "priority": 3,
-        "when": {
-          "var": "severe_headache"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "emergent"
-          }
-        ]
-      },
-      {
-        "id": "raise_fever",
-        "priority": 2,
-        "when": {
-          "var": "fever"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "urgent"
           }
         ]
       }
@@ -151,12 +134,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "palpitations",
+        "var": "pallor",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting palpitations true never lowers acuity"
+    "intent": "setting pallor true never lowers acuity"
   }
 }

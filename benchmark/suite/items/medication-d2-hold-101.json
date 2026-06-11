@@ -11,19 +11,19 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "elderly",
+        "name": "prior_gi_bleed",
         "type": "bool"
       },
       {
-        "name": "hypertension",
+        "name": "qt_prolongation",
         "type": "bool"
       },
       {
-        "name": "asthma",
+        "name": "peptic_ulcer",
         "type": "bool"
       },
       {
-        "name": "pregnancy",
+        "name": "hyperkalemia",
         "type": "bool"
       }
     ],
@@ -43,10 +43,57 @@
     ],
     "rules": [
       {
-        "id": "rec_c_from_pregnancy",
+        "id": "rec_b_from_trigger",
+        "priority": 50,
+        "when": {
+          "var": "prior_gi_bleed"
+        },
+        "then": [
+          {
+            "var": "rec_drug_b",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_a_from_conjunction",
+        "priority": 50,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "prior_gi_bleed"
+            },
+            {
+              "var": "qt_prolongation"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "rec_drug_a",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_hyperkalemia",
         "priority": 40,
         "when": {
-          "var": "pregnancy"
+          "var": "hyperkalemia"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_peptic_ulcer",
+        "priority": 40,
+        "when": {
+          "var": "peptic_ulcer"
         },
         "then": [
           {
@@ -62,10 +109,10 @@
           "op": "and",
           "args": [
             {
-              "var": "elderly"
+              "var": "prior_gi_bleed"
             },
             {
-              "var": "hypertension"
+              "var": "qt_prolongation"
             }
           ]
         },
@@ -73,53 +120,6 @@
           {
             "var": "rec_drug_b",
             "value": false
-          }
-        ]
-      },
-      {
-        "id": "rec_c_from_asthma",
-        "priority": 40,
-        "when": {
-          "var": "asthma"
-        },
-        "then": [
-          {
-            "var": "rec_drug_c",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_a_from_conjunction",
-        "priority": 50,
-        "when": {
-          "op": "and",
-          "args": [
-            {
-              "var": "elderly"
-            },
-            {
-              "var": "hypertension"
-            }
-          ]
-        },
-        "then": [
-          {
-            "var": "rec_drug_a",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_b_from_trigger",
-        "priority": 50,
-        "when": {
-          "var": "elderly"
-        },
-        "then": [
-          {
-            "var": "rec_drug_b",
-            "value": true
           }
         ]
       }

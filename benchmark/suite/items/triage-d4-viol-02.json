@@ -11,7 +11,19 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "dyspnea",
+        "name": "rash",
+        "type": "bool"
+      },
+      {
+        "name": "leg_swelling",
+        "type": "bool"
+      },
+      {
+        "name": "slurred_speech",
+        "type": "bool"
+      },
+      {
+        "name": "palpitations",
         "type": "bool"
       },
       {
@@ -19,15 +31,7 @@
         "type": "bool"
       },
       {
-        "name": "abdominal_pain",
-        "type": "bool"
-      },
-      {
-        "name": "severe_headache",
-        "type": "bool"
-      },
-      {
-        "name": "palpitations",
+        "name": "syncope",
         "type": "bool"
       }
     ],
@@ -45,23 +49,10 @@
     ],
     "rules": [
       {
-        "id": "raise_dyspnea",
+        "id": "raise_syncope",
         "priority": 2,
         "when": {
-          "var": "dyspnea"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "urgent"
-          }
-        ]
-      },
-      {
-        "id": "raise_abdominal_pain",
-        "priority": 2,
-        "when": {
-          "var": "abdominal_pain"
+          "var": "syncope"
         },
         "then": [
           {
@@ -77,16 +68,16 @@
           "op": "and",
           "args": [
             {
-              "var": "dyspnea"
+              "var": "rash"
             },
             {
-              "var": "chest_pain"
+              "var": "leg_swelling"
             },
             {
-              "var": "abdominal_pain"
+              "var": "slurred_speech"
             },
             {
-              "var": "severe_headache"
+              "var": "palpitations"
             }
           ]
         },
@@ -98,10 +89,23 @@
         ]
       },
       {
-        "id": "raise_palpitations",
+        "id": "raise_leg_swelling",
+        "priority": 3,
+        "when": {
+          "var": "leg_swelling"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_rash",
         "priority": 2,
         "when": {
-          "var": "palpitations"
+          "var": "rash"
         },
         "then": [
           {
@@ -112,14 +116,27 @@
       },
       {
         "id": "raise_chest_pain",
-        "priority": 3,
+        "priority": 2,
         "when": {
           "var": "chest_pain"
         },
         "then": [
           {
             "var": "acuity",
-            "value": "emergent"
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_slurred_speech",
+        "priority": 2,
+        "when": {
+          "var": "slurred_speech"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
           }
         ]
       }
@@ -137,12 +154,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "severe_headache",
+        "var": "palpitations",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting severe_headache true never lowers acuity"
+    "intent": "setting palpitations true never lowers acuity"
   }
 }

@@ -11,27 +11,31 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "hypertension",
+        "name": "g6pd_deficiency",
         "type": "bool"
       },
       {
-        "name": "asthma",
-        "type": "bool"
-      },
-      {
-        "name": "elderly",
-        "type": "bool"
-      },
-      {
-        "name": "polypharmacy",
-        "type": "bool"
-      },
-      {
-        "name": "diabetes",
+        "name": "seizure_history",
         "type": "bool"
       },
       {
         "name": "heart_failure",
+        "type": "bool"
+      },
+      {
+        "name": "hepatic_impairment",
+        "type": "bool"
+      },
+      {
+        "name": "bradycardia",
+        "type": "bool"
+      },
+      {
+        "name": "immunosuppressed",
+        "type": "bool"
+      },
+      {
+        "name": "anticoagulated",
         "type": "bool"
       }
     ],
@@ -51,10 +55,10 @@
     ],
     "rules": [
       {
-        "id": "rec_c_from_heart_failure",
+        "id": "rec_c_from_immunosuppressed",
         "priority": 40,
         "when": {
-          "var": "heart_failure"
+          "var": "immunosuppressed"
         },
         "then": [
           {
@@ -64,10 +68,10 @@
         ]
       },
       {
-        "id": "rec_c_from_diabetes",
+        "id": "rec_c_from_bradycardia",
         "priority": 40,
         "when": {
-          "var": "diabetes"
+          "var": "bradycardia"
         },
         "then": [
           {
@@ -80,11 +84,24 @@
         "id": "rec_b_from_trigger",
         "priority": 50,
         "when": {
-          "var": "hypertension"
+          "var": "g6pd_deficiency"
         },
         "then": [
           {
             "var": "rec_drug_b",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_anticoagulated",
+        "priority": 40,
+        "when": {
+          "var": "anticoagulated"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
             "value": true
           }
         ]
@@ -96,16 +113,16 @@
           "op": "and",
           "args": [
             {
-              "var": "hypertension"
+              "var": "g6pd_deficiency"
             },
             {
-              "var": "asthma"
+              "var": "seizure_history"
             },
             {
-              "var": "elderly"
+              "var": "heart_failure"
             },
             {
-              "var": "polypharmacy"
+              "var": "hepatic_impairment"
             }
           ]
         },

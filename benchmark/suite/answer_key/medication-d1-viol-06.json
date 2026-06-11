@@ -3,11 +3,19 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "qt_prolongation",
+      "var": "elderly",
       "value": true
     },
     {
+      "var": "seizure_history",
+      "value": false
+    },
+    {
       "var": "diabetes",
+      "value": false
+    },
+    {
+      "var": "peptic_ulcer",
       "value": false
     }
   ],

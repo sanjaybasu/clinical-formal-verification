@@ -3,19 +3,27 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "fever",
+      "var": "severe_headache",
       "value": true
     },
     {
-      "var": "vomiting",
+      "var": "abdominal_pain",
       "value": false
     },
     {
-      "var": "fever__base",
+      "var": "stiff_neck",
       "value": false
     },
     {
-      "var": "vomiting__base",
+      "var": "severe_headache__base",
+      "value": false
+    },
+    {
+      "var": "abdominal_pain__base",
+      "value": false
+    },
+    {
+      "var": "stiff_neck__base",
       "value": false
     }
   ],

@@ -11,11 +11,19 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "focal_weakness",
+        "name": "severe_headache",
         "type": "bool"
       },
       {
-        "name": "vomiting",
+        "name": "fever",
+        "type": "bool"
+      },
+      {
+        "name": "palpitations",
+        "type": "bool"
+      },
+      {
+        "name": "slurred_speech",
         "type": "bool"
       }
     ],
@@ -33,15 +41,15 @@
     ],
     "rules": [
       {
-        "id": "raise_vomiting",
-        "priority": 2,
+        "id": "raise_fever",
+        "priority": 3,
         "when": {
-          "var": "vomiting"
+          "var": "fever"
         },
         "then": [
           {
             "var": "acuity",
-            "value": "urgent"
+            "value": "emergent"
           }
         ]
       },
@@ -49,12 +57,38 @@
         "id": "interaction_drop",
         "priority": 100,
         "when": {
-          "var": "focal_weakness"
+          "var": "severe_headache"
         },
         "then": [
           {
             "var": "acuity",
             "value": "self_care"
+          }
+        ]
+      },
+      {
+        "id": "raise_slurred_speech",
+        "priority": 3,
+        "when": {
+          "var": "slurred_speech"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_palpitations",
+        "priority": 3,
+        "when": {
+          "var": "palpitations"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
           }
         ]
       }
@@ -72,12 +106,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "focal_weakness",
+        "var": "severe_headache",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting focal_weakness true never lowers acuity"
+    "intent": "setting severe_headache true never lowers acuity"
   }
 }

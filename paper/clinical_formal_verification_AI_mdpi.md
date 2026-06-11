@@ -23,8 +23,8 @@ quality-assurance practices: a unit-test suite, a frontier language-model judge 
 content-safety guardrails. Results: SMT verification returned no verdict that contradicted ground
 truth on any of the 440 items, proving a property over the full input space, exhibiting a replayable
 counterexample, or abstaining; it never reported false safety. The unit-test suite returned a false
-statement of safety on 63 violated items, with detection falling as interaction depth rose (86.6% to
-33% across depth on one suite; to zero on another). The blinded language-model judge detected every
+statement of safety on 68 violated items, with detection falling as interaction depth rose (85.2% to
+21% across depth on one suite; to zero on another). The blinded language-model judge detected every
 violation but supplies no proof and no coverage guarantee, and on the most stateful suite both
 probabilistic methods exceeded SMT verification on detection because the verifier abstained when the
 state space exceeded its solver budget. No method detected every violation across all regimes, and
@@ -207,12 +207,12 @@ code and outputs.
 
 On CIV-Bench v0, SMT verification detected 216 of 216 violations (100%, 95% CI 98.3 to 100.0)
 and the language-model judge detected 216 of 216 (100%, 95% CI 98.3 to 100.0), while the unit-test
-suite detected 187 of 216 (86.6%, 95% CI 81.4 to 90.5). Unit-test detection fell with interaction
-depth, from 100% through depth six to 33.3% (95% CI 18.0 to 53.3) at depth twelve, with a logistic
-slope on depth of -0.81 (95% CI -1.09 to -0.52); verification and the judge did not vary with
+suite detected 184 of 216 (85.2%, 95% CI 79.8 to 89.3). Unit-test detection fell with interaction
+depth, from 100% through depth six to 20.8% (95% CI 9.2 to 40.5) at depth twelve, with a logistic
+slope on depth of -0.94 (95% CI -1.27 to -0.62); verification and the judge did not vary with
 depth (Figure 1, left). On CIV-Bench-Hard, SMT verification and the language-model judge each
-detected 48 of 48 (100%, 95% CI 92.6 to 100.0), while the unit-test suite detected 14 of 48
-(29.2%, 95% CI 18.2 to 43.2) and reached zero from lock length six (Figure 1, centre). On
+detected 48 of 48 (100%, 95% CI 92.6 to 100.0), while the unit-test suite detected 12 of 48
+(25.0%, 95% CI 14.9 to 38.8) and reached zero from lock length six (Figure 1, centre). On
 CIV-Bench-Compute the pattern inverted: the unit-test suite and the language-model judge each
 detected 40 of 40 (100%, 95% CI 91.2 to 100.0), while SMT verification detected 29 of 40
 (72.5%, 95% CI 57.2 to 83.9), with detection falling as the modulus rose because the bounded
@@ -224,13 +224,19 @@ model-checking query exceeded its fifteen-second resource bound and the verifier
 The distinguishing axis is soundness (Figure 2). Across all 440 items SMT verification
 returned no verdict that contradicted ground truth: it proved the property, exhibited a replayable
 counterexample, or abstained, with 25 abstentions, all on CIV-Bench-Compute at large modulus. The
-unit-test suite returned a false statement of safety on 63 violated items (29 on v0, 34 on Hard):
+unit-test suite returned a false statement of safety on 68 violated items (29 on v0, 34 on Hard):
 having sampled no witness, it reported holds. The language-model judge made no error observed on
 this benchmark, but its soundness is observed rather than guaranteed and it returns no proof and no
 coverage statement. Witness validity was 100% for every method on every suite: every counterexample
 a method returned replayed to a concrete violation. No method raised a false alarm on an item that
 holds. Verification time was 6 milliseconds per item on v0, 67 milliseconds on Hard, and 6.2
-seconds on CIV-Bench-Compute, where the symbolic state space is largest.
+seconds on CIV-Bench-Compute, where the symbolic state space is largest. The one pre-specified
+inferential test, a paired McNemar comparison of SMT verification against the unit-test suite on
+per-item detection of violations, is significant on every suite: on v0 the verifier detected 32
+violations the unit-test suite missed and the reverse never occurred (exact P = 4.7 x 10^-10); on
+Hard, 36 and zero (P = 2.9 x 10^-11); and on CIV-Bench-Compute the unit-test suite detected 11 that
+the verifier did not, all of them items on which the verifier abstained rather than erred
+(P = 9.8 x 10^-4).
 
 ### 3.3. Counterexample case studies
 
@@ -259,8 +265,8 @@ boundary of the method, on a deliberately adversarial state machine rather than 
 We set out to measure where SMT verification and the probabilistic assurance methods used in
 practice each fail, on clinical rule sets with known safety properties. No method detected every
 violation across all three regimes. The unit-test suite, the dominant quality-assurance practice,
-failed when a violation's witness was rare, and reported a false statement of safety on 63 of 304
-violated items. Complete verification failed only by abstaining when the symbolic state space
+failed when a violation's witness was rare, and reported a false statement of safety on 68 of 304
+violated items. SMT verification failed only by abstaining when the symbolic state space
 exceeded its solver budget, and returned no verdict that contradicted ground truth on any item. A
 frontier language-model judge detected every violation, including on the computation-heavy suite,
 which is consistent with the architectural-limits results rather than contrary to them: those
@@ -280,7 +286,7 @@ rather than label leakage. The property that distinguishes SMT verification is t
 higher detection rate but the class of evidence it returns: a proof over the entire input space, a
 replayable counterexample, or an explicit abstention, with zero unsound verdicts. A pass rate over a
 sample, however high, is a statement about the inputs that were drawn, not the inputs that were not;
-the unit-test suite's 63 false statements of safety are that distinction made concrete, and the
+the unit-test suite's 68 false statements of safety are that distinction made concrete, and the
 language-model judge's score, however high, is a sample statistic with no coverage or soundness
 guarantee. During the evaluation we found and fixed an unsoundness in our own verifier, a solver
 timeout briefly reported as holds; that this could occur, and was caught by the soundness metric, is

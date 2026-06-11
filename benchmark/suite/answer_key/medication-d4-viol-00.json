@@ -3,27 +3,31 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "hypertension",
+      "var": "g6pd_deficiency",
       "value": true
     },
     {
-      "var": "asthma",
+      "var": "seizure_history",
       "value": true
-    },
-    {
-      "var": "elderly",
-      "value": true
-    },
-    {
-      "var": "polypharmacy",
-      "value": true
-    },
-    {
-      "var": "diabetes",
-      "value": false
     },
     {
       "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": false
+    },
+    {
+      "var": "immunosuppressed",
+      "value": false
+    },
+    {
+      "var": "anticoagulated",
       "value": false
     }
   ],

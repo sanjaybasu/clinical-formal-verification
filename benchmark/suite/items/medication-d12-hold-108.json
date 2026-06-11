@@ -1,0 +1,260 @@
+{
+  "id": "medication-d12-hold-108",
+  "domain": "medication",
+  "metadata": {
+    "description": "condition-to-recommendation rules; a contraindicated pair must not co-occur",
+    "source": "synthetic",
+    "clinical_intent": "drugs a and b form a contraindicated pair and must never be jointly recommended"
+  },
+  "ruleset": {
+    "id": "medication-12-108",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "prior_gi_bleed",
+        "type": "bool"
+      },
+      {
+        "name": "pregnancy",
+        "type": "bool"
+      },
+      {
+        "name": "renal_impairment",
+        "type": "bool"
+      },
+      {
+        "name": "polypharmacy",
+        "type": "bool"
+      },
+      {
+        "name": "elderly",
+        "type": "bool"
+      },
+      {
+        "name": "qt_prolongation",
+        "type": "bool"
+      },
+      {
+        "name": "hepatic_impairment",
+        "type": "bool"
+      },
+      {
+        "name": "asthma",
+        "type": "bool"
+      },
+      {
+        "name": "bradycardia",
+        "type": "bool"
+      },
+      {
+        "name": "diabetes",
+        "type": "bool"
+      },
+      {
+        "name": "immunosuppressed",
+        "type": "bool"
+      },
+      {
+        "name": "g6pd_deficiency",
+        "type": "bool"
+      },
+      {
+        "name": "hyperkalemia",
+        "type": "bool"
+      },
+      {
+        "name": "low_ejection_fraction",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "rec_drug_a",
+        "type": "bool"
+      },
+      {
+        "name": "rec_drug_b",
+        "type": "bool"
+      },
+      {
+        "name": "rec_drug_c",
+        "type": "bool"
+      }
+    ],
+    "rules": [
+      {
+        "id": "rec_b_from_trigger",
+        "priority": 50,
+        "when": {
+          "var": "prior_gi_bleed"
+        },
+        "then": [
+          {
+            "var": "rec_drug_b",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "guard_suppress_b",
+        "priority": 90,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "prior_gi_bleed"
+            },
+            {
+              "var": "pregnancy"
+            },
+            {
+              "var": "renal_impairment"
+            },
+            {
+              "var": "polypharmacy"
+            },
+            {
+              "var": "elderly"
+            },
+            {
+              "var": "qt_prolongation"
+            },
+            {
+              "var": "hepatic_impairment"
+            },
+            {
+              "var": "asthma"
+            },
+            {
+              "var": "bradycardia"
+            },
+            {
+              "var": "diabetes"
+            },
+            {
+              "var": "immunosuppressed"
+            },
+            {
+              "var": "g6pd_deficiency"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "rec_drug_b",
+            "value": false
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_low_ejection_fraction",
+        "priority": 40,
+        "when": {
+          "var": "low_ejection_fraction"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_a_from_conjunction",
+        "priority": 50,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "prior_gi_bleed"
+            },
+            {
+              "var": "pregnancy"
+            },
+            {
+              "var": "renal_impairment"
+            },
+            {
+              "var": "polypharmacy"
+            },
+            {
+              "var": "elderly"
+            },
+            {
+              "var": "qt_prolongation"
+            },
+            {
+              "var": "hepatic_impairment"
+            },
+            {
+              "var": "asthma"
+            },
+            {
+              "var": "bradycardia"
+            },
+            {
+              "var": "diabetes"
+            },
+            {
+              "var": "immunosuppressed"
+            },
+            {
+              "var": "g6pd_deficiency"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "rec_drug_a",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_hyperkalemia",
+        "priority": 40,
+        "when": {
+          "var": "hyperkalemia"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "rec_drug_a",
+        "value": false
+      },
+      {
+        "var": "rec_drug_b",
+        "value": false
+      },
+      {
+        "var": "rec_drug_c",
+        "value": false
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "no-contraindicated-pair",
+    "kind": "mutual_exclusion",
+    "mutual_exclusion": {
+      "pairs": [
+        [
+          {
+            "var": "rec_drug_a"
+          },
+          {
+            "var": "rec_drug_b"
+          }
+        ]
+      ]
+    },
+    "intent": "no input recommends both drug a and drug b"
+  }
+}

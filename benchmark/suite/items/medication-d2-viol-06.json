@@ -11,7 +11,11 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "elderly",
+        "name": "immunosuppressed",
+        "type": "bool"
+      },
+      {
+        "name": "asthma",
         "type": "bool"
       },
       {
@@ -19,7 +23,11 @@
         "type": "bool"
       },
       {
-        "name": "hepatic_impairment",
+        "name": "ckd_dialysis",
+        "type": "bool"
+      },
+      {
+        "name": "prior_gi_bleed",
         "type": "bool"
       }
     ],
@@ -39,10 +47,49 @@
     ],
     "rules": [
       {
-        "id": "rec_c_from_hepatic_impairment",
+        "id": "rec_c_from_diabetes",
         "priority": 40,
         "when": {
-          "var": "hepatic_impairment"
+          "var": "diabetes"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_b_from_trigger",
+        "priority": 50,
+        "when": {
+          "var": "immunosuppressed"
+        },
+        "then": [
+          {
+            "var": "rec_drug_b",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_prior_gi_bleed",
+        "priority": 40,
+        "when": {
+          "var": "prior_gi_bleed"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_ckd_dialysis",
+        "priority": 40,
+        "when": {
+          "var": "ckd_dialysis"
         },
         "then": [
           {
@@ -58,29 +105,16 @@
           "op": "and",
           "args": [
             {
-              "var": "elderly"
+              "var": "immunosuppressed"
             },
             {
-              "var": "diabetes"
+              "var": "asthma"
             }
           ]
         },
         "then": [
           {
             "var": "rec_drug_a",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_b_from_trigger",
-        "priority": 50,
-        "when": {
-          "var": "elderly"
-        },
-        "then": [
-          {
-            "var": "rec_drug_b",
             "value": true
           }
         ]

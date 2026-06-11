@@ -3,15 +3,11 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "anticoagulated",
+      "var": "pregnancy",
       "value": true
     },
     {
-      "var": "pregnancy",
-      "value": false
-    },
-    {
-      "var": "peptic_ulcer",
+      "var": "low_ejection_fraction",
       "value": false
     }
   ],

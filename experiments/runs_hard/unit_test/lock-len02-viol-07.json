@@ -8,22 +8,22 @@
       "transition": "adv_0"
     },
     {
-      "event": "optout",
-      "transition": "t_optout"
-    },
-    {
       "event": "key_0",
       "transition": "adv_1"
     },
     {
-      "event": "key_2"
+      "event": "optout",
+      "transition": "t_optout"
+    },
+    {
+      "event": "key_1"
     },
     {
       "event": "send_attempt",
       "transition": "t_resume_glitch"
     }
   ],
-  "seconds": 0.0006,
+  "seconds": 0.002,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

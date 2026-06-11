@@ -1,0 +1,217 @@
+{
+  "id": "medication-d6-hold-105",
+  "domain": "medication",
+  "metadata": {
+    "description": "condition-to-recommendation rules; a contraindicated pair must not co-occur",
+    "source": "synthetic",
+    "clinical_intent": "drugs a and b form a contraindicated pair and must never be jointly recommended"
+  },
+  "ruleset": {
+    "id": "medication-6-105",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "g6pd_deficiency",
+        "type": "bool"
+      },
+      {
+        "name": "qt_prolongation",
+        "type": "bool"
+      },
+      {
+        "name": "anticoagulated",
+        "type": "bool"
+      },
+      {
+        "name": "hypertension",
+        "type": "bool"
+      },
+      {
+        "name": "hyperkalemia",
+        "type": "bool"
+      },
+      {
+        "name": "renal_impairment",
+        "type": "bool"
+      },
+      {
+        "name": "low_ejection_fraction",
+        "type": "bool"
+      },
+      {
+        "name": "asthma",
+        "type": "bool"
+      },
+      {
+        "name": "diabetes",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "rec_drug_a",
+        "type": "bool"
+      },
+      {
+        "name": "rec_drug_b",
+        "type": "bool"
+      },
+      {
+        "name": "rec_drug_c",
+        "type": "bool"
+      }
+    ],
+    "rules": [
+      {
+        "id": "guard_suppress_b",
+        "priority": 90,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "g6pd_deficiency"
+            },
+            {
+              "var": "qt_prolongation"
+            },
+            {
+              "var": "anticoagulated"
+            },
+            {
+              "var": "hypertension"
+            },
+            {
+              "var": "hyperkalemia"
+            },
+            {
+              "var": "renal_impairment"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "rec_drug_b",
+            "value": false
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_low_ejection_fraction",
+        "priority": 40,
+        "when": {
+          "var": "low_ejection_fraction"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_b_from_trigger",
+        "priority": 50,
+        "when": {
+          "var": "g6pd_deficiency"
+        },
+        "then": [
+          {
+            "var": "rec_drug_b",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_diabetes",
+        "priority": 40,
+        "when": {
+          "var": "diabetes"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_a_from_conjunction",
+        "priority": 50,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "g6pd_deficiency"
+            },
+            {
+              "var": "qt_prolongation"
+            },
+            {
+              "var": "anticoagulated"
+            },
+            {
+              "var": "hypertension"
+            },
+            {
+              "var": "hyperkalemia"
+            },
+            {
+              "var": "renal_impairment"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "rec_drug_a",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_asthma",
+        "priority": 40,
+        "when": {
+          "var": "asthma"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "rec_drug_a",
+        "value": false
+      },
+      {
+        "var": "rec_drug_b",
+        "value": false
+      },
+      {
+        "var": "rec_drug_c",
+        "value": false
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "no-contraindicated-pair",
+    "kind": "mutual_exclusion",
+    "mutual_exclusion": {
+      "pairs": [
+        [
+          {
+            "var": "rec_drug_a"
+          },
+          {
+            "var": "rec_drug_b"
+          }
+        ]
+      ]
+    },
+    "intent": "no input recommends both drug a and drug b"
+  }
+}

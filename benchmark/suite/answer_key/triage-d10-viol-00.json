@@ -1,0 +1,98 @@
+{
+  "item": "triage-d10-viol-00",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "hemoptysis",
+      "value": true
+    },
+    {
+      "var": "stiff_neck",
+      "value": true
+    },
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "pallor",
+      "value": true
+    },
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain",
+      "value": true
+    },
+    {
+      "var": "vomiting",
+      "value": true
+    },
+    {
+      "var": "chest_pain",
+      "value": true
+    },
+    {
+      "var": "leg_swelling",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": false
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": true
+    },
+    {
+      "var": "stiff_neck__base",
+      "value": true
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": true
+    },
+    {
+      "var": "pallor__base",
+      "value": true
+    },
+    {
+      "var": "severe_headache__base",
+      "value": true
+    },
+    {
+      "var": "rash__base",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain__base",
+      "value": true
+    },
+    {
+      "var": "vomiting__base",
+      "value": true
+    },
+    {
+      "var": "chest_pain__base",
+      "value": true
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": false
+    },
+    {
+      "var": "back_pain__base",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 10,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 10 produces the violation; see generate.py for the construction"
+}

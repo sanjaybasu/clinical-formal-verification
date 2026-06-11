@@ -11,27 +11,23 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "heart_failure",
+        "name": "g6pd_deficiency",
         "type": "bool"
       },
       {
-        "name": "asthma",
+        "name": "immunosuppressed",
         "type": "bool"
       },
       {
-        "name": "elderly",
+        "name": "qt_prolongation",
         "type": "bool"
       },
       {
-        "name": "hepatic_impairment",
+        "name": "diabetes",
         "type": "bool"
       },
       {
-        "name": "renal_impairment",
-        "type": "bool"
-      },
-      {
-        "name": "peptic_ulcer",
+        "name": "ckd_dialysis",
         "type": "bool"
       }
     ],
@@ -54,24 +50,11 @@
         "id": "rec_b_from_trigger",
         "priority": 50,
         "when": {
-          "var": "heart_failure"
+          "var": "g6pd_deficiency"
         },
         "then": [
           {
             "var": "rec_drug_b",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_c_from_peptic_ulcer",
-        "priority": 40,
-        "when": {
-          "var": "peptic_ulcer"
-        },
-        "then": [
-          {
-            "var": "rec_drug_c",
             "value": true
           }
         ]
@@ -83,13 +66,13 @@
           "op": "and",
           "args": [
             {
-              "var": "heart_failure"
+              "var": "g6pd_deficiency"
             },
             {
-              "var": "asthma"
+              "var": "immunosuppressed"
             },
             {
-              "var": "elderly"
+              "var": "qt_prolongation"
             }
           ]
         },
@@ -101,10 +84,23 @@
         ]
       },
       {
-        "id": "rec_c_from_renal_impairment",
+        "id": "rec_c_from_diabetes",
         "priority": 40,
         "when": {
-          "var": "renal_impairment"
+          "var": "diabetes"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_ckd_dialysis",
+        "priority": 40,
+        "when": {
+          "var": "ckd_dialysis"
         },
         "then": [
           {
@@ -120,32 +116,19 @@
           "op": "and",
           "args": [
             {
-              "var": "heart_failure"
+              "var": "g6pd_deficiency"
             },
             {
-              "var": "asthma"
+              "var": "immunosuppressed"
             },
             {
-              "var": "elderly"
+              "var": "qt_prolongation"
             }
           ]
         },
         "then": [
           {
             "var": "rec_drug_a",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_c_from_hepatic_impairment",
-        "priority": 40,
-        "when": {
-          "var": "hepatic_impairment"
-        },
-        "then": [
-          {
-            "var": "rec_drug_c",
             "value": true
           }
         ]

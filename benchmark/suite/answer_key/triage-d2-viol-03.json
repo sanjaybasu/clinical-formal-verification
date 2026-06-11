@@ -3,11 +3,11 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "abdominal_pain",
+      "var": "focal_weakness",
       "value": true
     },
     {
-      "var": "vision_loss",
+      "var": "dizziness",
       "value": true
     },
     {
@@ -15,15 +15,15 @@
       "value": false
     },
     {
-      "var": "dyspnea",
+      "var": "pallor",
       "value": false
     },
     {
-      "var": "abdominal_pain__base",
+      "var": "focal_weakness__base",
       "value": true
     },
     {
-      "var": "vision_loss__base",
+      "var": "dizziness__base",
       "value": false
     },
     {
@@ -31,7 +31,7 @@
       "value": false
     },
     {
-      "var": "dyspnea__base",
+      "var": "pallor__base",
       "value": false
     }
   ],

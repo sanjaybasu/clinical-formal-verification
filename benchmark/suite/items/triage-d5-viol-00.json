@@ -1,0 +1,202 @@
+{
+  "id": "triage-d5-viol-00",
+  "domain": "triage",
+  "metadata": {
+    "description": "symptom-to-acuity rules; adding a red flag must not lower acuity",
+    "source": "synthetic",
+    "clinical_intent": "no red-flag symptom, once present, may lower the assigned acuity"
+  },
+  "ruleset": {
+    "id": "triage-5-0",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "severe_headache",
+        "type": "bool"
+      },
+      {
+        "name": "palpitations",
+        "type": "bool"
+      },
+      {
+        "name": "focal_weakness",
+        "type": "bool"
+      },
+      {
+        "name": "fever",
+        "type": "bool"
+      },
+      {
+        "name": "pallor",
+        "type": "bool"
+      },
+      {
+        "name": "back_pain",
+        "type": "bool"
+      },
+      {
+        "name": "rash",
+        "type": "bool"
+      },
+      {
+        "name": "dizziness",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "acuity",
+        "type": "enum",
+        "domain": [
+          "self_care",
+          "routine",
+          "urgent",
+          "emergent"
+        ]
+      }
+    ],
+    "rules": [
+      {
+        "id": "raise_dizziness",
+        "priority": 3,
+        "when": {
+          "var": "dizziness"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_palpitations",
+        "priority": 3,
+        "when": {
+          "var": "palpitations"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_rash",
+        "priority": 3,
+        "when": {
+          "var": "rash"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_fever",
+        "priority": 3,
+        "when": {
+          "var": "fever"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "interaction_drop",
+        "priority": 100,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "severe_headache"
+            },
+            {
+              "var": "palpitations"
+            },
+            {
+              "var": "focal_weakness"
+            },
+            {
+              "var": "fever"
+            },
+            {
+              "var": "pallor"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "self_care"
+          }
+        ]
+      },
+      {
+        "id": "raise_severe_headache",
+        "priority": 2,
+        "when": {
+          "var": "severe_headache"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_focal_weakness",
+        "priority": 2,
+        "when": {
+          "var": "focal_weakness"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_back_pain",
+        "priority": 2,
+        "when": {
+          "var": "back_pain"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "acuity",
+        "value": "routine"
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "redflag-never-lowers-acuity",
+    "kind": "monotonicity",
+    "monotonicity": {
+      "perturbation": {
+        "var": "pallor",
+        "change": "set_true"
+      },
+      "monotone_var": "acuity",
+      "direction": "nondecreasing"
+    },
+    "intent": "setting pallor true never lowers acuity"
+  }
+}

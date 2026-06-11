@@ -4,25 +4,25 @@
   "verdict": "violated",
   "witness": [
     {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
       "event": "optout"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
     },
     {
       "event": "send_attempt"
@@ -30,7 +30,7 @@
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "This is a state machine. State vars: opted_out (bool), sent (bool), ticks (int[0,6]); initial opted_out=false, sent=false, ticks=0. Property G(opted_out implies not sent): in every reachable state where opted_out is true, sent must be false.\n\nScanning transitions for any that set sent:=true while opted_out is true: t_send_allowed sets sent:=true only when not opted_out (safe); t_send_blocked sets sent:=false when opted_out (safe); t_tick sets sent:=false (safe); t_optout sets opted_out:=true with sent:=false (safe). The outlier is t_resume_glitch (on send_attempt if opted_out and ticks>=6: sent:=true) \u2014 it sets sent:=true precisely while opted_out is true, directly contradicting the property.\n\nReachability: ticks increments only via tick (capped at 6), so six tick events reach ticks=6. optout sets opted_out:=true (and sent:=false) while leaving ticks unchanged. With opted_out=true and ticks=6, a send_attempt enables t_resume_glitch (guard opted_out and ticks>=6 holds), setting sent:=true.\n\nCounterexample (8 events, within the 10-event bound): tick x6 drives ticks 0->6; optout sets opted_out=true, sent=false, ticks=6; send_attempt fires t_resume_glitch -> sent=true. Resulting reachable state opted_out=true AND sent=true violates G(opted_out implies not sent). Even though t_send_blocked also matches on that send_attempt, t_resume_glitch is an enabled, more-specific transition whose firing produces the violating state, which suffices to demonstrate that some execution violates the property. The rule is named resume_glitch \u2014 a deliberately injected defect. Verdict: violated.",
+    "reasoning": "The property requires globally(opted_out implies not sent). Transition t5 (on send_attempt if opted_out and ticks>=6: sent := true) sets sent=true while opted_out is true, directly enabling a violation. Counterexample execution: Start (opted_out=false, sent=false, ticks=0). 'optout' fires t1 -> opted_out=true, sent=false, ticks=0. Six 'tick' events each fire t4, incrementing ticks (capped at 6) and setting sent=false, reaching ticks=6 while opted_out remains true. Then 'send_attempt' satisfies t5's guard (opted_out and ticks>=6), so sent := true. Final state: opted_out=true, sent=true, which violates (opted_out implies not sent). This is 8 events, within the 10-event bound. While t3 (send_attempt if opted_out: sent:=false) is also enabled, no priority ordering is specified, and t5 is a distinct enabled transition whose firing reaches the violating state; thus a violating reachable execution exists.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

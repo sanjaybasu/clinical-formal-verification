@@ -9,11 +9,11 @@
     },
     {
       "var": "rash",
-      "value": true
+      "value": false
     },
     {
       "var": "stiff_neck",
-      "value": false
+      "value": true
     },
     {
       "var": "vision_loss__base",
@@ -21,16 +21,16 @@
     },
     {
       "var": "rash__base",
-      "value": true
+      "value": false
     },
     {
       "var": "stiff_neck__base",
-      "value": false
+      "value": true
     }
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "The monotonicity property is violated. The rule interaction_drop has priority 100, far above raise_rash (2) and raise_stiff_neck (3), so whenever vision_loss is true it overrides the other matching rules and sets acuity := self_care, the lowest acuity. Take rash=true, stiff_neck=false. With vision_loss=false, only raise_rash matches, so acuity = urgent. With vision_loss=true (other inputs unchanged), both raise_rash (p2) and interaction_drop (p100) match; the highest-priority rule wins, so acuity = self_care. Setting vision_loss to true lowers acuity from urgent to self_care, which is strictly lower in the listed order self_care < routine < urgent < emergent. The witness gives the post-toggle assignment (vision_loss=true, rash=true, stiff_neck=false) yielding self_care versus urgent when vision_loss is false. (An even more dramatic case is stiff_neck=true: emergent drops to self_care.)",
+    "reasoning": "The property is violated. r3 (IF vision_loss THEN acuity := self_care) carries priority 100, dominating r2 (IF stiff_neck THEN emergent, priority 3) and r1 (IF rash THEN urgent, priority 2). Enum order low->high is self_care < routine < urgent < emergent.\n\nConsider the input pair differing only in vision_loss, with rash=false, stiff_neck=true:\n- BEFORE (vision_loss=false, stiff_neck=true, rash=false): only r2 matches -> acuity = emergent.\n- AFTER (vision_loss=true, stiff_neck=true, rash=false): r2 matches (emergent, prio 3) and r3 matches (self_care, prio 100); highest priority wins -> r3 -> acuity = self_care.\n\nSetting vision_loss true lowered acuity from emergent to self_care, the maximal possible drop, violating monotonicity. The witness_assignment gives the AFTER input (every input variable) demonstrating the lowered output relative to the same input with vision_loss=false.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

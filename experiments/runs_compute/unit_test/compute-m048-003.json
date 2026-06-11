@@ -4,36 +4,40 @@
   "verdict": "violated",
   "witness": [
     {
-      "event": "step_0",
-      "transition": "step_0"
-    },
-    {
-      "event": "send_attempt",
-      "transition": "t_send_allowed"
-    },
-    {
-      "event": "send_attempt",
-      "transition": "t_send_allowed"
-    },
-    {
-      "event": "step_0",
-      "transition": "step_0"
-    },
-    {
-      "event": "step_0",
-      "transition": "step_0"
-    },
-    {
-      "event": "optout",
-      "transition": "t_optout"
-    },
-    {
       "event": "step_2",
       "transition": "step_2"
     },
     {
       "event": "step_1",
       "transition": "step_1"
+    },
+    {
+      "event": "step_2",
+      "transition": "step_2"
+    },
+    {
+      "event": "optout",
+      "transition": "t_optout"
+    },
+    {
+      "event": "send_attempt",
+      "transition": "t_send_blocked"
+    },
+    {
+      "event": "step_0",
+      "transition": "step_0"
+    },
+    {
+      "event": "step_1",
+      "transition": "step_1"
+    },
+    {
+      "event": "step_1",
+      "transition": "step_1"
+    },
+    {
+      "event": "optout",
+      "transition": "t_optout"
     },
     {
       "event": "send_attempt",
@@ -44,12 +48,8 @@
       "transition": "t_optout"
     },
     {
-      "event": "step_0",
-      "transition": "step_0"
-    },
-    {
-      "event": "step_2",
-      "transition": "step_2"
+      "event": "step_1",
+      "transition": "step_1"
     },
     {
       "event": "step_2",
@@ -58,18 +58,6 @@
     {
       "event": "optout",
       "transition": "t_optout"
-    },
-    {
-      "event": "step_0",
-      "transition": "step_0"
-    },
-    {
-      "event": "step_2",
-      "transition": "step_2"
-    },
-    {
-      "event": "step_0",
-      "transition": "step_0"
     },
     {
       "event": "step_2",
@@ -92,104 +80,8 @@
       "transition": "t_optout"
     },
     {
-      "event": "step_0",
-      "transition": "step_0"
-    },
-    {
-      "event": "send_attempt",
-      "transition": "t_send_blocked"
-    },
-    {
-      "event": "step_0",
-      "transition": "step_0"
-    },
-    {
-      "event": "send_attempt",
-      "transition": "t_send_blocked"
-    },
-    {
-      "event": "step_0",
-      "transition": "step_0"
-    },
-    {
       "event": "optout",
       "transition": "t_optout"
-    },
-    {
-      "event": "step_0",
-      "transition": "step_0"
-    },
-    {
-      "event": "optout",
-      "transition": "t_optout"
-    },
-    {
-      "event": "step_2",
-      "transition": "step_2"
-    },
-    {
-      "event": "optout",
-      "transition": "t_optout"
-    },
-    {
-      "event": "send_attempt",
-      "transition": "t_send_blocked"
-    },
-    {
-      "event": "send_attempt",
-      "transition": "t_send_blocked"
-    },
-    {
-      "event": "step_1",
-      "transition": "step_1"
-    },
-    {
-      "event": "send_attempt",
-      "transition": "t_send_blocked"
-    },
-    {
-      "event": "step_1",
-      "transition": "step_1"
-    },
-    {
-      "event": "step_1",
-      "transition": "step_1"
-    },
-    {
-      "event": "send_attempt",
-      "transition": "t_send_blocked"
-    },
-    {
-      "event": "step_1",
-      "transition": "step_1"
-    },
-    {
-      "event": "optout",
-      "transition": "t_optout"
-    },
-    {
-      "event": "step_1",
-      "transition": "step_1"
-    },
-    {
-      "event": "step_1",
-      "transition": "step_1"
-    },
-    {
-      "event": "send_attempt",
-      "transition": "t_send_blocked"
-    },
-    {
-      "event": "step_0",
-      "transition": "step_0"
-    },
-    {
-      "event": "optout",
-      "transition": "t_optout"
-    },
-    {
-      "event": "step_0",
-      "transition": "step_0"
     },
     {
       "event": "step_2",
@@ -200,7 +92,7 @@
       "transition": "t_resume_glitch"
     }
   ],
-  "seconds": 0.0006,
+  "seconds": 0.0058,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

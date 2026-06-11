@@ -11,15 +11,15 @@
     "kind": "decision",
     "inputs": [
       {
+        "name": "anticoagulated",
+        "type": "bool"
+      },
+      {
         "name": "peptic_ulcer",
         "type": "bool"
       },
       {
-        "name": "hepatic_impairment",
-        "type": "bool"
-      },
-      {
-        "name": "renal_impairment",
+        "name": "ckd_dialysis",
         "type": "bool"
       }
     ],
@@ -39,10 +39,23 @@
     ],
     "rules": [
       {
-        "id": "rec_c_from_renal_impairment",
+        "id": "rec_a_from_conjunction",
+        "priority": 50,
+        "when": {
+          "var": "anticoagulated"
+        },
+        "then": [
+          {
+            "var": "rec_drug_a",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_ckd_dialysis",
         "priority": 40,
         "when": {
-          "var": "renal_impairment"
+          "var": "ckd_dialysis"
         },
         "then": [
           {
@@ -52,10 +65,10 @@
         ]
       },
       {
-        "id": "rec_c_from_hepatic_impairment",
+        "id": "rec_c_from_peptic_ulcer",
         "priority": 40,
         "when": {
-          "var": "hepatic_impairment"
+          "var": "peptic_ulcer"
         },
         "then": [
           {
@@ -68,24 +81,11 @@
         "id": "rec_b_from_trigger",
         "priority": 50,
         "when": {
-          "var": "peptic_ulcer"
+          "var": "anticoagulated"
         },
         "then": [
           {
             "var": "rec_drug_b",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_a_from_conjunction",
-        "priority": 50,
-        "when": {
-          "var": "peptic_ulcer"
-        },
-        "then": [
-          {
-            "var": "rec_drug_a",
             "value": true
           }
         ]

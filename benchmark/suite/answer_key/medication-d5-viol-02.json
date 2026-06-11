@@ -1,0 +1,38 @@
+{
+  "item": "medication-d5-viol-02",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "hyperkalemia",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": false
+    },
+    {
+      "var": "heart_failure",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 5,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 5 produces the violation; see generate.py for the construction"
+}

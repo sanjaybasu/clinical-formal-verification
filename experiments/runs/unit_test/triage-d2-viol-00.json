@@ -13,11 +13,11 @@
     },
     {
       "var": "pallor",
-      "value": true
+      "value": false
     },
     {
       "var": "abdominal_pain",
-      "value": false
+      "value": true
     },
     {
       "var": "back_pain__base",
@@ -29,11 +29,11 @@
     },
     {
       "var": "pallor__base",
-      "value": true
+      "value": false
     },
     {
       "var": "abdominal_pain__base",
-      "value": false
+      "value": true
     }
   ],
   "seconds": 0.0,

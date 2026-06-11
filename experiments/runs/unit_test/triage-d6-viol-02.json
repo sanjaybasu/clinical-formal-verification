@@ -37,7 +37,7 @@
     },
     {
       "var": "slurred_speech",
-      "value": true
+      "value": false
     },
     {
       "var": "palpitations__base",
@@ -73,7 +73,7 @@
     },
     {
       "var": "slurred_speech__base",
-      "value": true
+      "value": false
     }
   ],
   "seconds": 0.0002,

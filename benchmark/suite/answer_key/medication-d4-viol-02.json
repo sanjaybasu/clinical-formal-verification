@@ -3,23 +3,27 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "hypertension",
+      "var": "polypharmacy",
       "value": true
     },
     {
-      "var": "asthma",
+      "var": "ckd_dialysis",
       "value": true
     },
     {
-      "var": "pregnancy",
+      "var": "seizure_history",
       "value": true
     },
     {
-      "var": "heart_failure",
+      "var": "low_ejection_fraction",
       "value": true
     },
     {
-      "var": "peptic_ulcer",
+      "var": "prior_gi_bleed",
+      "value": false
+    },
+    {
+      "var": "qt_prolongation",
       "value": false
     }
   ],

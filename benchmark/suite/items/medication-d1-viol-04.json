@@ -11,11 +11,19 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "qt_prolongation",
+        "name": "prior_gi_bleed",
         "type": "bool"
       },
       {
-        "name": "elderly",
+        "name": "peptic_ulcer",
+        "type": "bool"
+      },
+      {
+        "name": "g6pd_deficiency",
+        "type": "bool"
+      },
+      {
+        "name": "polypharmacy",
         "type": "bool"
       }
     ],
@@ -35,10 +43,23 @@
     ],
     "rules": [
       {
+        "id": "rec_c_from_peptic_ulcer",
+        "priority": 40,
+        "when": {
+          "var": "peptic_ulcer"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
         "id": "rec_a_from_conjunction",
         "priority": 50,
         "when": {
-          "var": "qt_prolongation"
+          "var": "prior_gi_bleed"
         },
         "then": [
           {
@@ -48,10 +69,23 @@
         ]
       },
       {
+        "id": "rec_c_from_polypharmacy",
+        "priority": 40,
+        "when": {
+          "var": "polypharmacy"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
         "id": "rec_b_from_trigger",
         "priority": 50,
         "when": {
-          "var": "qt_prolongation"
+          "var": "prior_gi_bleed"
         },
         "then": [
           {
@@ -61,10 +95,10 @@
         ]
       },
       {
-        "id": "rec_c_from_elderly",
+        "id": "rec_c_from_g6pd_deficiency",
         "priority": 40,
         "when": {
-          "var": "elderly"
+          "var": "g6pd_deficiency"
         },
         "then": [
           {

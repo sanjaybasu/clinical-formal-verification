@@ -1,0 +1,27 @@
+You are auditing a clinical decision system for a safety property. Decide whether the property holds for the entire input space, or whether some input or execution violates it.
+
+Inputs:
+  severe_headache: boolean
+  leg_swelling: boolean
+  rash: boolean
+  back_pain: boolean
+  dyspnea: boolean
+  focal_weakness: boolean
+  vision_loss: boolean
+Outputs:
+  acuity: one of [self_care, routine, urgent, emergent] (ordered low to high)
+Conflict resolution: priority (per output, the matching rule with the highest priority wins; ties broken by order)
+Rules:
+  [r1, priority 2] IF dyspnea THEN acuity := urgent
+  [r2, priority 2] IF rash THEN acuity := urgent
+  [r3, priority 3] IF vision_loss THEN acuity := emergent
+  [r4, priority 3] IF leg_swelling THEN acuity := emergent
+  [r5, priority 2] IF severe_headache THEN acuity := urgent
+  [r6, priority 100] IF (severe_headache and leg_swelling and rash and back_pain and dyspnea and focal_weakness) THEN acuity := self_care
+  [r7, priority 3] IF back_pain THEN acuity := emergent
+Default (for any output left unset): acuity := routine
+
+Property (monotonicity): for any input, if focal_weakness is set to true while every other input is unchanged, then acuity must be no lower than before (enum order is the listed order).
+Plain-language intent: setting focal_weakness true never lowers acuity
+
+Reason carefully about interactions between rules, priorities, and defaults. Then answer whether the property holds or is violated. If it is violated, give one concrete counterexample: for a decision system, the input assignment (every input variable); for a state machine, the sequence of events. Do not assume a violation exists; many systems are correct.

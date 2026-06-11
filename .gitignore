@@ -22,10 +22,14 @@ env/
 .env
 *.local
 
-# experiment scratch that is regenerated from code (rendered prompts, workflow scripts, pilot ids)
-experiments/runs*/_*
+# experiment scratch from the initial (leaked) judge run, regenerated from code
+experiments/runs*/_judge_prompts/
+experiments/runs*/_pilot_ids.json
+experiments/runs*/_judge_full_workflow.js
 experiments/runs/*/raw/
 *.log
+# the blinded judge artifacts ARE committed for reproducibility:
+#   _judge_prompts_blind/, _blind_map.json, _judge_blind_workflow.js
 
 # never commit proprietary or PHI-derived splits
 benchmark/private/

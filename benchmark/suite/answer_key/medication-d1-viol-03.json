@@ -3,19 +3,11 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "pregnancy",
+      "var": "hyperkalemia",
       "value": true
     },
     {
-      "var": "hepatic_impairment",
-      "value": false
-    },
-    {
-      "var": "diabetes",
-      "value": false
-    },
-    {
-      "var": "anticoagulated",
+      "var": "elderly",
       "value": false
     }
   ],

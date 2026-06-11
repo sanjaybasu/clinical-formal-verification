@@ -21,15 +21,15 @@
     },
     {
       "var": "severe_headache",
-      "value": true
+      "value": false
     },
     {
       "var": "back_pain",
-      "value": true
+      "value": false
     },
     {
       "var": "fever",
-      "value": true
+      "value": false
     },
     {
       "var": "leg_swelling__base",
@@ -49,18 +49,18 @@
     },
     {
       "var": "severe_headache__base",
-      "value": true
+      "value": false
     },
     {
       "var": "back_pain__base",
-      "value": true
+      "value": false
     },
     {
       "var": "fever__base",
-      "value": true
+      "value": false
     }
   ],
-  "seconds": 0.0002,
+  "seconds": 0.0003,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

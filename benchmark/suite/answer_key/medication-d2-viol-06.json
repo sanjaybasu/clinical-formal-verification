@@ -3,15 +3,23 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "elderly",
+      "var": "immunosuppressed",
+      "value": true
+    },
+    {
+      "var": "asthma",
       "value": true
     },
     {
       "var": "diabetes",
-      "value": true
+      "value": false
     },
     {
-      "var": "hepatic_impairment",
+      "var": "ckd_dialysis",
+      "value": false
+    },
+    {
+      "var": "prior_gi_bleed",
       "value": false
     }
   ],

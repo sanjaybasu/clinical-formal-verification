@@ -1,0 +1,42 @@
+{
+  "item": "medication-d5-viol-04",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "polypharmacy",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "immunosuppressed",
+      "value": false
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": false
+    },
+    {
+      "var": "prior_gi_bleed",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 5,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 5 produces the violation; see generate.py for the construction"
+}

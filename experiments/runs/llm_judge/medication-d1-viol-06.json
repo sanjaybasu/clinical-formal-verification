@@ -22,7 +22,7 @@
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "The property requires NOT(rec_drug_a AND rec_drug_b). Both of these outputs are driven exclusively by the `elderly` input: rule rec_a_from_conjunction (priority 50) sets rec_drug_a := true when elderly, and rule rec_b_from_trigger (priority 50) sets rec_drug_b := true when elderly. No other rules touch rec_drug_a or rec_drug_b, and none set them false; the remaining three rules only affect rec_drug_c. Therefore any input with elderly=true fires both rules, making rec_drug_a=true and rec_drug_b=true simultaneously, violating mutual exclusion. With elderly=true and seizure_history=diabetes=peptic_ulcer=false: rec_drug_a=true, rec_drug_b=true, rec_drug_c=false (no matching rule, default). The conjunction (rec_drug_a and rec_drug_b) holds, so the property is violated. The other three inputs are irrelevant to this conflict (set to false here).",
+    "reasoning": "The property requires that rec_drug_a and rec_drug_b are never jointly true. rec_drug_a is set true only by r2 (IF elderly, priority 50), and rec_drug_b is set true only by r4 (IF elderly, priority 50). Both rules trigger on the identical condition elderly=true, and no other rule competes for or resets either output (r1, r3, r5 only affect rec_drug_c). Therefore any input with elderly=true makes both r2 and r4 fire, setting rec_drug_a=true and rec_drug_b=true simultaneously. Priorities and defaults do not prevent this since the two outputs are independent and each is uniquely driven by elderly. Counterexample: elderly=true (others false) yields rec_drug_a=true and rec_drug_b=true, violating mutual exclusion.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

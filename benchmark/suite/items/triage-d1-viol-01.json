@@ -11,11 +11,15 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "syncope",
+        "name": "fever",
         "type": "bool"
       },
       {
-        "name": "focal_weakness",
+        "name": "leg_swelling",
+        "type": "bool"
+      },
+      {
+        "name": "abdominal_pain",
         "type": "bool"
       }
     ],
@@ -33,10 +37,23 @@
     ],
     "rules": [
       {
-        "id": "raise_focal_weakness",
+        "id": "interaction_drop",
+        "priority": 100,
+        "when": {
+          "var": "fever"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "self_care"
+          }
+        ]
+      },
+      {
+        "id": "raise_abdominal_pain",
         "priority": 2,
         "when": {
-          "var": "focal_weakness"
+          "var": "abdominal_pain"
         },
         "then": [
           {
@@ -46,15 +63,15 @@
         ]
       },
       {
-        "id": "interaction_drop",
-        "priority": 100,
+        "id": "raise_leg_swelling",
+        "priority": 3,
         "when": {
-          "var": "syncope"
+          "var": "leg_swelling"
         },
         "then": [
           {
             "var": "acuity",
-            "value": "self_care"
+            "value": "emergent"
           }
         ]
       }
@@ -72,12 +89,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "syncope",
+        "var": "fever",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting syncope true never lowers acuity"
+    "intent": "setting fever true never lowers acuity"
   }
 }

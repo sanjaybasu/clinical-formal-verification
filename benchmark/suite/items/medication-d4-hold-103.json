@@ -11,19 +11,27 @@
     "kind": "decision",
     "inputs": [
       {
+        "name": "asthma",
+        "type": "bool"
+      },
+      {
         "name": "qt_prolongation",
         "type": "bool"
       },
       {
-        "name": "diabetes",
-        "type": "bool"
-      },
-      {
-        "name": "hypertension",
+        "name": "g6pd_deficiency",
         "type": "bool"
       },
       {
         "name": "pregnancy",
+        "type": "bool"
+      },
+      {
+        "name": "seizure_history",
+        "type": "bool"
+      },
+      {
+        "name": "hepatic_impairment",
         "type": "bool"
       },
       {
@@ -47,6 +55,32 @@
     ],
     "rules": [
       {
+        "id": "rec_b_from_trigger",
+        "priority": 50,
+        "when": {
+          "var": "asthma"
+        },
+        "then": [
+          {
+            "var": "rec_drug_b",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_seizure_history",
+        "priority": 40,
+        "when": {
+          "var": "seizure_history"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
         "id": "rec_c_from_peptic_ulcer",
         "priority": 40,
         "when": {
@@ -60,32 +94,19 @@
         ]
       },
       {
-        "id": "rec_b_from_trigger",
-        "priority": 50,
-        "when": {
-          "var": "qt_prolongation"
-        },
-        "then": [
-          {
-            "var": "rec_drug_b",
-            "value": true
-          }
-        ]
-      },
-      {
         "id": "guard_suppress_b",
         "priority": 90,
         "when": {
           "op": "and",
           "args": [
             {
+              "var": "asthma"
+            },
+            {
               "var": "qt_prolongation"
             },
             {
-              "var": "diabetes"
-            },
-            {
-              "var": "hypertension"
+              "var": "g6pd_deficiency"
             },
             {
               "var": "pregnancy"
@@ -106,13 +127,13 @@
           "op": "and",
           "args": [
             {
+              "var": "asthma"
+            },
+            {
               "var": "qt_prolongation"
             },
             {
-              "var": "diabetes"
-            },
-            {
-              "var": "hypertension"
+              "var": "g6pd_deficiency"
             },
             {
               "var": "pregnancy"
@@ -122,6 +143,19 @@
         "then": [
           {
             "var": "rec_drug_a",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_hepatic_impairment",
+        "priority": 40,
+        "when": {
+          "var": "hepatic_impairment"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
             "value": true
           }
         ]

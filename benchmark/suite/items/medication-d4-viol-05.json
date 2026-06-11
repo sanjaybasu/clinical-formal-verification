@@ -11,27 +11,27 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "renal_impairment",
+        "name": "qt_prolongation",
         "type": "bool"
       },
       {
-        "name": "polypharmacy",
+        "name": "g6pd_deficiency",
         "type": "bool"
       },
       {
-        "name": "hypertension",
-        "type": "bool"
-      },
-      {
-        "name": "peptic_ulcer",
-        "type": "bool"
-      },
-      {
-        "name": "anticoagulated",
+        "name": "hyperkalemia",
         "type": "bool"
       },
       {
         "name": "pregnancy",
+        "type": "bool"
+      },
+      {
+        "name": "asthma",
+        "type": "bool"
+      },
+      {
+        "name": "heart_failure",
         "type": "bool"
       }
     ],
@@ -51,22 +51,35 @@
     ],
     "rules": [
       {
+        "id": "rec_b_from_trigger",
+        "priority": 50,
+        "when": {
+          "var": "qt_prolongation"
+        },
+        "then": [
+          {
+            "var": "rec_drug_b",
+            "value": true
+          }
+        ]
+      },
+      {
         "id": "rec_a_from_conjunction",
         "priority": 50,
         "when": {
           "op": "and",
           "args": [
             {
-              "var": "renal_impairment"
+              "var": "qt_prolongation"
             },
             {
-              "var": "polypharmacy"
+              "var": "g6pd_deficiency"
             },
             {
-              "var": "hypertension"
+              "var": "hyperkalemia"
             },
             {
-              "var": "peptic_ulcer"
+              "var": "pregnancy"
             }
           ]
         },
@@ -78,10 +91,10 @@
         ]
       },
       {
-        "id": "rec_c_from_pregnancy",
+        "id": "rec_c_from_asthma",
         "priority": 40,
         "when": {
-          "var": "pregnancy"
+          "var": "asthma"
         },
         "then": [
           {
@@ -91,27 +104,14 @@
         ]
       },
       {
-        "id": "rec_c_from_anticoagulated",
+        "id": "rec_c_from_heart_failure",
         "priority": 40,
         "when": {
-          "var": "anticoagulated"
+          "var": "heart_failure"
         },
         "then": [
           {
             "var": "rec_drug_c",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_b_from_trigger",
-        "priority": 50,
-        "when": {
-          "var": "renal_impairment"
-        },
-        "then": [
-          {
-            "var": "rec_drug_b",
             "value": true
           }
         ]

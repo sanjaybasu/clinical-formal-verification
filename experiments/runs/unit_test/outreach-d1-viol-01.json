@@ -8,14 +8,6 @@
       "transition": "t_optout"
     },
     {
-      "event": "optout",
-      "transition": "t_optout"
-    },
-    {
-      "event": "optout",
-      "transition": "t_optout"
-    },
-    {
       "event": "tick",
       "transition": "t_tick"
     },
@@ -24,7 +16,7 @@
       "transition": "t_resume_glitch"
     }
   ],
-  "seconds": 0.0001,
+  "seconds": 0.0004,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

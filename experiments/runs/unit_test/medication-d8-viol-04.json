@@ -37,14 +37,14 @@
     },
     {
       "var": "qt_prolongation",
-      "value": true
+      "value": false
     },
     {
       "var": "elderly",
       "value": false
     }
   ],
-  "seconds": 0.0002,
+  "seconds": 0.0018,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

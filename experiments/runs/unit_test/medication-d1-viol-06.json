@@ -9,15 +9,15 @@
     },
     {
       "var": "seizure_history",
-      "value": true
+      "value": false
     },
     {
       "var": "diabetes",
-      "value": false
+      "value": true
     },
     {
       "var": "peptic_ulcer",
-      "value": false
+      "value": true
     }
   ],
   "seconds": 0.0,

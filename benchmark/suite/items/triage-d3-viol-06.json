@@ -11,15 +11,7 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "dizziness",
-        "type": "bool"
-      },
-      {
-        "name": "syncope",
-        "type": "bool"
-      },
-      {
-        "name": "rash",
+        "name": "chest_pain",
         "type": "bool"
       },
       {
@@ -27,11 +19,11 @@
         "type": "bool"
       },
       {
-        "name": "fever",
+        "name": "palpitations",
         "type": "bool"
       },
       {
-        "name": "palpitations",
+        "name": "sweating",
         "type": "bool"
       }
     ],
@@ -49,10 +41,10 @@
     ],
     "rules": [
       {
-        "id": "raise_dyspnea",
+        "id": "raise_chest_pain",
         "priority": 2,
         "when": {
-          "var": "dyspnea"
+          "var": "chest_pain"
         },
         "then": [
           {
@@ -62,28 +54,15 @@
         ]
       },
       {
-        "id": "raise_syncope",
+        "id": "raise_sweating",
         "priority": 3,
         "when": {
-          "var": "syncope"
+          "var": "sweating"
         },
         "then": [
           {
             "var": "acuity",
             "value": "emergent"
-          }
-        ]
-      },
-      {
-        "id": "raise_dizziness",
-        "priority": 2,
-        "when": {
-          "var": "dizziness"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "urgent"
           }
         ]
       },
@@ -94,13 +73,13 @@
           "op": "and",
           "args": [
             {
-              "var": "dizziness"
+              "var": "chest_pain"
             },
             {
-              "var": "syncope"
+              "var": "dyspnea"
             },
             {
-              "var": "rash"
+              "var": "palpitations"
             }
           ]
         },
@@ -112,23 +91,10 @@
         ]
       },
       {
-        "id": "raise_fever",
-        "priority": 2,
-        "when": {
-          "var": "fever"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "urgent"
-          }
-        ]
-      },
-      {
-        "id": "raise_palpitations",
+        "id": "raise_dyspnea",
         "priority": 3,
         "when": {
-          "var": "palpitations"
+          "var": "dyspnea"
         },
         "then": [
           {
@@ -151,12 +117,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "rash",
+        "var": "palpitations",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting rash true never lowers acuity"
+    "intent": "setting palpitations true never lowers acuity"
   }
 }

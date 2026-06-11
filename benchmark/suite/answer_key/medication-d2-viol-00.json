@@ -7,15 +7,15 @@
       "value": true
     },
     {
-      "var": "pregnancy",
+      "var": "diabetes",
       "value": true
     },
     {
-      "var": "polypharmacy",
+      "var": "bradycardia",
       "value": false
     },
     {
-      "var": "diabetes",
+      "var": "seizure_history",
       "value": false
     }
   ],

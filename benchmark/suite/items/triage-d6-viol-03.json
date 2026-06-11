@@ -1,0 +1,222 @@
+{
+  "id": "triage-d6-viol-03",
+  "domain": "triage",
+  "metadata": {
+    "description": "symptom-to-acuity rules; adding a red flag must not lower acuity",
+    "source": "synthetic",
+    "clinical_intent": "no red-flag symptom, once present, may lower the assigned acuity"
+  },
+  "ruleset": {
+    "id": "triage-6-3",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "hemoptysis",
+        "type": "bool"
+      },
+      {
+        "name": "abdominal_pain",
+        "type": "bool"
+      },
+      {
+        "name": "sweating",
+        "type": "bool"
+      },
+      {
+        "name": "chest_pain",
+        "type": "bool"
+      },
+      {
+        "name": "vomiting",
+        "type": "bool"
+      },
+      {
+        "name": "vision_loss",
+        "type": "bool"
+      },
+      {
+        "name": "slurred_speech",
+        "type": "bool"
+      },
+      {
+        "name": "palpitations",
+        "type": "bool"
+      },
+      {
+        "name": "rash",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "acuity",
+        "type": "enum",
+        "domain": [
+          "self_care",
+          "routine",
+          "urgent",
+          "emergent"
+        ]
+      }
+    ],
+    "rules": [
+      {
+        "id": "raise_vomiting",
+        "priority": 2,
+        "when": {
+          "var": "vomiting"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_chest_pain",
+        "priority": 3,
+        "when": {
+          "var": "chest_pain"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_rash",
+        "priority": 2,
+        "when": {
+          "var": "rash"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_slurred_speech",
+        "priority": 3,
+        "when": {
+          "var": "slurred_speech"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_palpitations",
+        "priority": 3,
+        "when": {
+          "var": "palpitations"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_abdominal_pain",
+        "priority": 3,
+        "when": {
+          "var": "abdominal_pain"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_sweating",
+        "priority": 2,
+        "when": {
+          "var": "sweating"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "interaction_drop",
+        "priority": 100,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "hemoptysis"
+            },
+            {
+              "var": "abdominal_pain"
+            },
+            {
+              "var": "sweating"
+            },
+            {
+              "var": "chest_pain"
+            },
+            {
+              "var": "vomiting"
+            },
+            {
+              "var": "vision_loss"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "self_care"
+          }
+        ]
+      },
+      {
+        "id": "raise_hemoptysis",
+        "priority": 2,
+        "when": {
+          "var": "hemoptysis"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "acuity",
+        "value": "routine"
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "redflag-never-lowers-acuity",
+    "kind": "monotonicity",
+    "monotonicity": {
+      "perturbation": {
+        "var": "vision_loss",
+        "change": "set_true"
+      },
+      "monotone_var": "acuity",
+      "direction": "nondecreasing"
+    },
+    "intent": "setting vision_loss true never lowers acuity"
+  }
+}

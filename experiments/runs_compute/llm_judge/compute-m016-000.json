@@ -4,9 +4,6 @@
   "verdict": "violated",
   "witness": [
     {
-      "event": "optout"
-    },
-    {
       "event": "step_0"
     },
     {
@@ -19,12 +16,15 @@
       "event": "step_0"
     },
     {
+      "event": "optout"
+    },
+    {
       "event": "send_attempt"
     }
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "The step recurrences decode to: step_0 sets acc := (3*acc + 15) mod 16, and step_1 = step_2 set acc := (3*acc + 5) mod 16. The triple-nested if-then-else expressions faithfully implement mod 16 because acc is in [0,15], so the largest intermediate (step_0: 3*15+15 = 60) needs at most three subtractions of 16 (60 -> 12). Verified numerically that the nested expression equals (x mod 16) for every acc in [0,15] for both step forms.\n\nThe faulty t_resume_glitch transition fires on send_attempt when (opted_out and acc == 10), setting sent := true. Step events update acc but never clear opted_out, so an attacker can opt out first and then drive acc to the target 10 while opted_out stays true.\n\nacc = 10 is reachable from acc = 0: BFS over {step_0, step_1, step_2} shows all values 0..15 are reachable. A concrete path: 0 --step_0--> 15 --step_0--> 12 --step_1--> 9 --step_0--> 10.\n\nFull execution (6 events, within the 18-event bound), simulating the exact transition semantics:\ninit: opted_out=F, sent=F, acc=0\noptout      -> opted_out=T, sent=F, acc=0\nstep_0      -> opted_out=T, sent=F, acc=15\nstep_0      -> opted_out=T, sent=F, acc=12\nstep_1      -> opted_out=T, sent=F, acc=9\nstep_0      -> opted_out=T, sent=F, acc=10\nsend_attempt-> opted_out=T, sent=T, acc=10   <-- t_resume_glitch fires\n\nFinal state has opted_out=true AND sent=true, violating globally(opted_out implies not sent). The property is VIOLATED.",
+    "reasoning": "The property G(opted_out implies not sent) is VIOLATED. Transition [t4] sets sent:=true on send_attempt when (opted_out and acc==10), which can hold while opted_out is true. To exploit it, acc must reach 10. The step functions are step_0: acc:=(3*acc+15) mod 16, step_1 and step_2: acc:=(3*acc+5) mod 16 (the triple nested if-then-else implements mod-16 reduction; max input 3*15+15=60 needs at most 3 subtractions of 16, which the expression provides). Starting acc=0: step_0 -> 15, step_0 -> 12, step_1 -> 9, step_0 -> 10. Now acc=10. Then optout fires [t1]: opted_out:=true, sent:=false. Then send_attempt: since opted_out and acc==10, [t4] fires setting sent:=true while opted_out=true. State (opted_out=true, sent=true) violates opted_out implies not sent. The execution is 6 events (<=18). Simulated under the full transition semantics including default unchanged behavior; confirmed reachable.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

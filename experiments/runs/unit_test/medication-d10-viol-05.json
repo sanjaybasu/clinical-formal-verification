@@ -45,10 +45,10 @@
     },
     {
       "var": "asthma",
-      "value": true
+      "value": false
     }
   ],
-  "seconds": 0.0019,
+  "seconds": 0.0005,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

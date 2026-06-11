@@ -11,11 +11,11 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "abdominal_pain",
+        "name": "focal_weakness",
         "type": "bool"
       },
       {
-        "name": "vision_loss",
+        "name": "dizziness",
         "type": "bool"
       },
       {
@@ -23,7 +23,7 @@
         "type": "bool"
       },
       {
-        "name": "dyspnea",
+        "name": "pallor",
         "type": "bool"
       }
     ],
@@ -41,42 +41,16 @@
     ],
     "rules": [
       {
-        "id": "raise_dyspnea",
-        "priority": 2,
-        "when": {
-          "var": "dyspnea"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "urgent"
-          }
-        ]
-      },
-      {
-        "id": "raise_abdominal_pain",
-        "priority": 2,
-        "when": {
-          "var": "abdominal_pain"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "urgent"
-          }
-        ]
-      },
-      {
         "id": "interaction_drop",
         "priority": 100,
         "when": {
           "op": "and",
           "args": [
             {
-              "var": "abdominal_pain"
+              "var": "focal_weakness"
             },
             {
-              "var": "vision_loss"
+              "var": "dizziness"
             }
           ]
         },
@@ -84,6 +58,32 @@
           {
             "var": "acuity",
             "value": "self_care"
+          }
+        ]
+      },
+      {
+        "id": "raise_focal_weakness",
+        "priority": 2,
+        "when": {
+          "var": "focal_weakness"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_pallor",
+        "priority": 2,
+        "when": {
+          "var": "pallor"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
           }
         ]
       },
@@ -114,12 +114,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "vision_loss",
+        "var": "dizziness",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting vision_loss true never lowers acuity"
+    "intent": "setting dizziness true never lowers acuity"
   }
 }

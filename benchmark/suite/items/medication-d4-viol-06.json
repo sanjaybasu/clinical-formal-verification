@@ -11,23 +11,31 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "renal_impairment",
-        "type": "bool"
-      },
-      {
-        "name": "polypharmacy",
-        "type": "bool"
-      },
-      {
-        "name": "elderly",
-        "type": "bool"
-      },
-      {
         "name": "qt_prolongation",
         "type": "bool"
       },
       {
-        "name": "diabetes",
+        "name": "heart_failure",
+        "type": "bool"
+      },
+      {
+        "name": "anticoagulated",
+        "type": "bool"
+      },
+      {
+        "name": "low_ejection_fraction",
+        "type": "bool"
+      },
+      {
+        "name": "g6pd_deficiency",
+        "type": "bool"
+      },
+      {
+        "name": "hypertension",
+        "type": "bool"
+      },
+      {
+        "name": "peptic_ulcer",
         "type": "bool"
       }
     ],
@@ -47,27 +55,27 @@
     ],
     "rules": [
       {
-        "id": "rec_b_from_trigger",
-        "priority": 50,
+        "id": "rec_c_from_hypertension",
+        "priority": 40,
         "when": {
-          "var": "renal_impairment"
+          "var": "hypertension"
         },
         "then": [
           {
-            "var": "rec_drug_b",
+            "var": "rec_drug_c",
             "value": true
           }
         ]
       },
       {
-        "id": "rec_c_from_diabetes",
-        "priority": 40,
+        "id": "rec_b_from_trigger",
+        "priority": 50,
         "when": {
-          "var": "diabetes"
+          "var": "qt_prolongation"
         },
         "then": [
           {
-            "var": "rec_drug_c",
+            "var": "rec_drug_b",
             "value": true
           }
         ]
@@ -79,22 +87,48 @@
           "op": "and",
           "args": [
             {
-              "var": "renal_impairment"
-            },
-            {
-              "var": "polypharmacy"
-            },
-            {
-              "var": "elderly"
-            },
-            {
               "var": "qt_prolongation"
+            },
+            {
+              "var": "heart_failure"
+            },
+            {
+              "var": "anticoagulated"
+            },
+            {
+              "var": "low_ejection_fraction"
             }
           ]
         },
         "then": [
           {
             "var": "rec_drug_a",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_g6pd_deficiency",
+        "priority": 40,
+        "when": {
+          "var": "g6pd_deficiency"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_peptic_ulcer",
+        "priority": 40,
+        "when": {
+          "var": "peptic_ulcer"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
             "value": true
           }
         ]

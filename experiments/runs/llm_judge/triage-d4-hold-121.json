@@ -5,7 +5,7 @@
   "witness": null,
   "seconds": null,
   "extra": {
-    "reasoning": "The input `rash` does not appear in the condition of any rule. All five rules trigger on fever, dizziness, syncope, dyspnea, or chest_pain respectively; none reference rash. The single output `acuity` is determined by the highest-priority matching rule among those five conditions (ties broken by listed order), with default routine if none match. Since flipping rash from false to true leaves every other input unchanged, the set of matching rules is identical in both cases, so the conflict-resolution result is identical: acuity(rash=true) = acuity(rash=false) for every otherwise-identical input. Equality satisfies the monotonicity requirement that acuity be \"no lower than before.\" Because rash is wholly irrelevant to the output, there is no input where setting rash true lowers acuity. The property holds for the entire input space.",
+    "reasoning": "The monotonicity property is: setting rash=true (all other inputs fixed) must never lower acuity. The input variable `rash` does not appear in any rule (r1 fever->urgent, r2 dizziness->emergent, r3 syncope->urgent, r4 dyspnea->urgent, r5 chest_pain->emergent) nor in the default. Since rash influences neither rule firing, priority resolution, nor the default, the computed acuity is exactly identical whether rash is false or true, for every assignment of the other five inputs. Equal acuity trivially satisfies \"no lower than before.\" Therefore no input can violate the property, and it holds across the entire input space. Both witness arrays are left empty.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

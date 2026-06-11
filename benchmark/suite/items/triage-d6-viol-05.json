@@ -1,0 +1,205 @@
+{
+  "id": "triage-d6-viol-05",
+  "domain": "triage",
+  "metadata": {
+    "description": "symptom-to-acuity rules; adding a red flag must not lower acuity",
+    "source": "synthetic",
+    "clinical_intent": "no red-flag symptom, once present, may lower the assigned acuity"
+  },
+  "ruleset": {
+    "id": "triage-6-5",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "back_pain",
+        "type": "bool"
+      },
+      {
+        "name": "pallor",
+        "type": "bool"
+      },
+      {
+        "name": "chest_pain",
+        "type": "bool"
+      },
+      {
+        "name": "vision_loss",
+        "type": "bool"
+      },
+      {
+        "name": "severe_headache",
+        "type": "bool"
+      },
+      {
+        "name": "vomiting",
+        "type": "bool"
+      },
+      {
+        "name": "abdominal_pain",
+        "type": "bool"
+      },
+      {
+        "name": "rash",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "acuity",
+        "type": "enum",
+        "domain": [
+          "self_care",
+          "routine",
+          "urgent",
+          "emergent"
+        ]
+      }
+    ],
+    "rules": [
+      {
+        "id": "raise_pallor",
+        "priority": 3,
+        "when": {
+          "var": "pallor"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_rash",
+        "priority": 2,
+        "when": {
+          "var": "rash"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_severe_headache",
+        "priority": 2,
+        "when": {
+          "var": "severe_headache"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_back_pain",
+        "priority": 2,
+        "when": {
+          "var": "back_pain"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_vision_loss",
+        "priority": 3,
+        "when": {
+          "var": "vision_loss"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_abdominal_pain",
+        "priority": 2,
+        "when": {
+          "var": "abdominal_pain"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_chest_pain",
+        "priority": 2,
+        "when": {
+          "var": "chest_pain"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "interaction_drop",
+        "priority": 100,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "back_pain"
+            },
+            {
+              "var": "pallor"
+            },
+            {
+              "var": "chest_pain"
+            },
+            {
+              "var": "vision_loss"
+            },
+            {
+              "var": "severe_headache"
+            },
+            {
+              "var": "vomiting"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "self_care"
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "acuity",
+        "value": "routine"
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "redflag-never-lowers-acuity",
+    "kind": "monotonicity",
+    "monotonicity": {
+      "perturbation": {
+        "var": "vomiting",
+        "change": "set_true"
+      },
+      "monotone_var": "acuity",
+      "direction": "nondecreasing"
+    },
+    "intent": "setting vomiting true never lowers acuity"
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "id": "triage-d2-hold-110",
+  "domain": "triage",
+  "metadata": {
+    "description": "symptom-to-acuity rules; adding a red flag must not lower acuity",
+    "source": "synthetic",
+    "clinical_intent": "no red-flag symptom, once present, may lower the assigned acuity"
+  },
+  "ruleset": {
+    "id": "triage-2-110",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "leg_swelling",
+        "type": "bool"
+      },
+      {
+        "name": "dyspnea",
+        "type": "bool"
+      },
+      {
+        "name": "abdominal_pain",
+        "type": "bool"
+      },
+      {
+        "name": "rash",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "acuity",
+        "type": "enum",
+        "domain": [
+          "self_care",
+          "routine",
+          "urgent",
+          "emergent"
+        ]
+      }
+    ],
+    "rules": [
+      {
+        "id": "raise_abdominal_pain",
+        "priority": 3,
+        "when": {
+          "var": "abdominal_pain"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_leg_swelling",
+        "priority": 2,
+        "when": {
+          "var": "leg_swelling"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_rash",
+        "priority": 2,
+        "when": {
+          "var": "rash"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "acuity",
+        "value": "routine"
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "redflag-never-lowers-acuity",
+    "kind": "monotonicity",
+    "monotonicity": {
+      "perturbation": {
+        "var": "dyspnea",
+        "change": "set_true"
+      },
+      "monotone_var": "acuity",
+      "direction": "nondecreasing"
+    },
+    "intent": "setting dyspnea true never lowers acuity"
+  }
+}

@@ -3,7 +3,7 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "qt_prolongation",
+      "var": "renal_impairment",
       "value": true
     },
     {
@@ -11,19 +11,19 @@
       "value": true
     },
     {
-      "var": "hepatic_impairment",
+      "var": "immunosuppressed",
       "value": true
     },
     {
-      "var": "diabetes",
+      "var": "heart_failure",
       "value": false
     },
     {
-      "var": "hypertension",
+      "var": "elderly",
       "value": false
     },
     {
-      "var": "polypharmacy",
+      "var": "prior_gi_bleed",
       "value": false
     }
   ],

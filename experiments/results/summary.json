@@ -15,7 +15,7 @@
   ],
   "methods": {
     "verification": {
-      "label": "complete verification",
+      "label": "SMT verification",
       "n_covered_violated": 216,
       "detection": {
         "x": 216,
@@ -132,12 +132,12 @@
       "label": "unit-test suite",
       "n_covered_violated": 216,
       "detection": {
-        "x": 187,
+        "x": 184,
         "n": 216,
-        "rate": 0.8657407407407407,
+        "rate": 0.8518518518518519,
         "ci": [
-          0.8138319169940197,
-          0.9048678262098638
+          0.798343411002721,
+          0.8930639368896227
         ]
       },
       "false_alarm": {
@@ -150,10 +150,10 @@
         ]
       },
       "abstentions": 0,
-      "unsound_errors": 29,
+      "unsound_errors": 32,
       "witness_validity": {
-        "valid": 187,
-        "claims": 187,
+        "valid": 184,
+        "claims": 184,
         "rate": 1.0
       },
       "by_depth": {
@@ -230,23 +230,23 @@
           ]
         },
         "12": {
-          "detected": 8,
+          "detected": 5,
           "n": 24,
-          "rate": 0.3333333333333333,
+          "rate": 0.20833333333333334,
           "ci": [
-            0.17972190327297752,
-            0.5329368316186824
+            0.09244825352851857,
+            0.40470453253188665
           ]
         }
       },
       "depth_logistic_slope": {
-        "slope": -0.8054645245597697,
+        "slope": -0.9443726330734986,
         "ci": [
-          -1.0866639380160215,
-          -0.524265111103518
+          -1.2732431499223702,
+          -0.615502116224627
         ]
       },
-      "mean_seconds": 0.005814351851851851
+      "mean_seconds": 0.005744907407407407
     },
     "llm_judge": {
       "label": "language-model judge",
@@ -374,5 +374,10 @@
       "reason": "RuntimeError: no Hugging Face token in HF_TOKEN/HUGGINGFACE_TOKEN",
       "command": "HF_TOKEN=... python baselines/run_llama_guard.py --model meta-llama/Llama-Guard-4-12B"
     }
+  },
+  "mcnemar_verif_vs_unittest": {
+    "b": 32,
+    "c": 0,
+    "p_value": 4.656612873077393e-10
   }
 }

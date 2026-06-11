@@ -37,10 +37,10 @@
     },
     {
       "var": "ckd_dialysis",
-      "value": true
+      "value": false
     }
   ],
-  "seconds": 0.0005,
+  "seconds": 0.002,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

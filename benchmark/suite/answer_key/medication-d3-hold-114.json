@@ -1,9 +1,0 @@
-{
-  "item": "medication-d3-hold-114",
-  "ground_truth": "holds",
-  "witness": null,
-  "seeded": false,
-  "interaction_depth": 0,
-  "basis": "manual_proof",
-  "notes": "no fault seeded; the oracle finds no violation over the finite space"
-}

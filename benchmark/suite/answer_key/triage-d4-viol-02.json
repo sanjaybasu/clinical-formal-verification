@@ -3,43 +3,51 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "dyspnea",
+      "var": "rash",
       "value": true
     },
     {
-      "var": "chest_pain",
+      "var": "leg_swelling",
       "value": true
     },
     {
-      "var": "abdominal_pain",
-      "value": true
-    },
-    {
-      "var": "severe_headache",
+      "var": "slurred_speech",
       "value": true
     },
     {
       "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "chest_pain",
       "value": false
     },
     {
-      "var": "dyspnea__base",
-      "value": true
-    },
-    {
-      "var": "chest_pain__base",
-      "value": true
-    },
-    {
-      "var": "abdominal_pain__base",
-      "value": true
-    },
-    {
-      "var": "severe_headache__base",
+      "var": "syncope",
       "value": false
+    },
+    {
+      "var": "rash__base",
+      "value": true
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": true
+    },
+    {
+      "var": "slurred_speech__base",
+      "value": true
     },
     {
       "var": "palpitations__base",
+      "value": false
+    },
+    {
+      "var": "chest_pain__base",
+      "value": false
+    },
+    {
+      "var": "syncope__base",
       "value": false
     }
   ],

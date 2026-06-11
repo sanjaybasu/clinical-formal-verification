@@ -13,7 +13,7 @@
     },
     {
       "var": "focal_weakness",
-      "value": false
+      "value": true
     },
     {
       "var": "rash",
@@ -33,7 +33,7 @@
     },
     {
       "var": "focal_weakness__base",
-      "value": false
+      "value": true
     },
     {
       "var": "rash__base",

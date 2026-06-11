@@ -11,23 +11,27 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "hypertension",
+        "name": "polypharmacy",
         "type": "bool"
       },
       {
-        "name": "asthma",
+        "name": "ckd_dialysis",
         "type": "bool"
       },
       {
-        "name": "pregnancy",
+        "name": "seizure_history",
         "type": "bool"
       },
       {
-        "name": "heart_failure",
+        "name": "low_ejection_fraction",
         "type": "bool"
       },
       {
-        "name": "peptic_ulcer",
+        "name": "prior_gi_bleed",
+        "type": "bool"
+      },
+      {
+        "name": "qt_prolongation",
         "type": "bool"
       }
     ],
@@ -47,10 +51,23 @@
     ],
     "rules": [
       {
+        "id": "rec_c_from_prior_gi_bleed",
+        "priority": 40,
+        "when": {
+          "var": "prior_gi_bleed"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
         "id": "rec_b_from_trigger",
         "priority": 50,
         "when": {
-          "var": "hypertension"
+          "var": "polypharmacy"
         },
         "then": [
           {
@@ -60,10 +77,10 @@
         ]
       },
       {
-        "id": "rec_c_from_peptic_ulcer",
+        "id": "rec_c_from_qt_prolongation",
         "priority": 40,
         "when": {
-          "var": "peptic_ulcer"
+          "var": "qt_prolongation"
         },
         "then": [
           {
@@ -79,16 +96,16 @@
           "op": "and",
           "args": [
             {
-              "var": "hypertension"
+              "var": "polypharmacy"
             },
             {
-              "var": "asthma"
+              "var": "ckd_dialysis"
             },
             {
-              "var": "pregnancy"
+              "var": "seizure_history"
             },
             {
-              "var": "heart_failure"
+              "var": "low_ejection_fraction"
             }
           ]
         },

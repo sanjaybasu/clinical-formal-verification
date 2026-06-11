@@ -1,0 +1,35 @@
+You are auditing a clinical decision system for a safety property. Decide whether the property holds for the entire input space, or whether some input or execution violates it.
+
+Inputs:
+  chest_pain: boolean
+  abdominal_pain: boolean
+  dyspnea: boolean
+  severe_headache: boolean
+  vomiting: boolean
+  syncope: boolean
+  rash: boolean
+  focal_weakness: boolean
+  leg_swelling: boolean
+  dizziness: boolean
+  vision_loss: boolean
+Outputs:
+  acuity: one of [self_care, routine, urgent, emergent] (ordered low to high)
+Conflict resolution: priority (per output, the matching rule with the highest priority wins; ties broken by order)
+Rules:
+  [r1, priority 3] IF severe_headache THEN acuity := emergent
+  [r2, priority 2] IF vomiting THEN acuity := urgent
+  [r3, priority 100] IF (chest_pain and abdominal_pain and dyspnea and severe_headache and vomiting and syncope and rash and focal_weakness and leg_swelling and dizziness) THEN acuity := self_care
+  [r4, priority 2] IF dyspnea THEN acuity := urgent
+  [r5, priority 2] IF chest_pain THEN acuity := urgent
+  [r6, priority 3] IF abdominal_pain THEN acuity := emergent
+  [r7, priority 2] IF rash THEN acuity := urgent
+  [r8, priority 3] IF syncope THEN acuity := emergent
+  [r9, priority 3] IF focal_weakness THEN acuity := emergent
+  [r10, priority 3] IF vision_loss THEN acuity := emergent
+  [r11, priority 2] IF leg_swelling THEN acuity := urgent
+Default (for any output left unset): acuity := routine
+
+Property (monotonicity): for any input, if dizziness is set to true while every other input is unchanged, then acuity must be no lower than before (enum order is the listed order).
+Plain-language intent: setting dizziness true never lowers acuity
+
+Reason carefully about interactions between rules, priorities, and defaults. Then answer whether the property holds or is violated. If it is violated, give one concrete counterexample: for a decision system, the input assignment (every input variable); for a state machine, the sequence of events. Do not assume a violation exists; many systems are correct.

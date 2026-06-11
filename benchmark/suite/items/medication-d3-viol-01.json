@@ -11,7 +11,11 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "asthma",
+        "name": "diabetes",
+        "type": "bool"
+      },
+      {
+        "name": "peptic_ulcer",
         "type": "bool"
       },
       {
@@ -19,11 +23,7 @@
         "type": "bool"
       },
       {
-        "name": "heart_failure",
-        "type": "bool"
-      },
-      {
-        "name": "elderly",
+        "name": "hyperkalemia",
         "type": "bool"
       }
     ],
@@ -49,13 +49,13 @@
           "op": "and",
           "args": [
             {
-              "var": "asthma"
+              "var": "diabetes"
+            },
+            {
+              "var": "peptic_ulcer"
             },
             {
               "var": "renal_impairment"
-            },
-            {
-              "var": "heart_failure"
             }
           ]
         },
@@ -70,7 +70,7 @@
         "id": "rec_b_from_trigger",
         "priority": 50,
         "when": {
-          "var": "asthma"
+          "var": "diabetes"
         },
         "then": [
           {
@@ -80,10 +80,10 @@
         ]
       },
       {
-        "id": "rec_c_from_elderly",
+        "id": "rec_c_from_hyperkalemia",
         "priority": 40,
         "when": {
-          "var": "elderly"
+          "var": "hyperkalemia"
         },
         "then": [
           {

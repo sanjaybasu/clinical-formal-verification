@@ -11,19 +11,19 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "anticoagulated",
+        "name": "elderly",
         "type": "bool"
       },
       {
-        "name": "polypharmacy",
+        "name": "g6pd_deficiency",
         "type": "bool"
       },
       {
-        "name": "asthma",
+        "name": "heart_failure",
         "type": "bool"
       },
       {
-        "name": "renal_impairment",
+        "name": "immunosuppressed",
         "type": "bool"
       }
     ],
@@ -43,27 +43,14 @@
     ],
     "rules": [
       {
-        "id": "rec_c_from_renal_impairment",
+        "id": "rec_c_from_immunosuppressed",
         "priority": 40,
         "when": {
-          "var": "renal_impairment"
+          "var": "immunosuppressed"
         },
         "then": [
           {
             "var": "rec_drug_c",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_b_from_trigger",
-        "priority": 50,
-        "when": {
-          "var": "anticoagulated"
-        },
-        "then": [
-          {
-            "var": "rec_drug_b",
             "value": true
           }
         ]
@@ -75,19 +62,32 @@
           "op": "and",
           "args": [
             {
-              "var": "anticoagulated"
+              "var": "elderly"
             },
             {
-              "var": "polypharmacy"
+              "var": "g6pd_deficiency"
             },
             {
-              "var": "asthma"
+              "var": "heart_failure"
             }
           ]
         },
         "then": [
           {
             "var": "rec_drug_a",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_b_from_trigger",
+        "priority": 50,
+        "when": {
+          "var": "elderly"
+        },
+        "then": [
+          {
+            "var": "rec_drug_b",
             "value": true
           }
         ]

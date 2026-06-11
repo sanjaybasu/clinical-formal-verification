@@ -1,0 +1,42 @@
+{
+  "item": "medication-d5-viol-03",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "immunosuppressed",
+      "value": true
+    },
+    {
+      "var": "pregnancy",
+      "value": true
+    },
+    {
+      "var": "hypertension",
+      "value": false
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": false
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 5,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 5 produces the violation; see generate.py for the construction"
+}

@@ -1,0 +1,42 @@
+{
+  "item": "medication-d5-viol-05",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "prior_gi_bleed",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": false
+    },
+    {
+      "var": "anticoagulated",
+      "value": false
+    },
+    {
+      "var": "immunosuppressed",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 5,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 5 produces the violation; see generate.py for the construction"
+}

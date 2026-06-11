@@ -53,7 +53,7 @@
     },
     {
       "var": "palpitations",
-      "value": false
+      "value": true
     },
     {
       "var": "leg_swelling__base",
@@ -105,12 +105,12 @@
     },
     {
       "var": "palpitations__base",
-      "value": false
+      "value": true
     }
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "The monotonicity property requires that flipping confusion from false to true never lowers acuity. It is violated.\n\nconfusion appears in only one rule: [interaction_drop, priority 100] IF (leg_swelling AND dyspnea AND severe_headache AND chest_pain AND sweating AND vision_loss AND stiff_neck AND syncope AND fever AND pallor AND dizziness AND confusion) THEN acuity := self_care. No rule raises acuity based on confusion; the only confusion-dependent rule lowers it, and it has the dominating priority (100, far above the priority-3 emergent rules).\n\nCounterexample (the witness, with confusion=true): all of leg_swelling, dyspnea, severe_headache, chest_pain, sweating, vision_loss, stiff_neck, syncope, fever, pallor, dizziness = true; palpitations = false; confusion = true.\n\nCompare the two inputs differing only in confusion:\n- confusion=false: interaction_drop does not fire (its conjunction is false). The highest-priority firing rules are the priority-3 emergent rules (pallor, dyspnea, vision_loss, chest_pain, syncope), so acuity = emergent.\n- confusion=true (witness): now all 12 conjuncts of interaction_drop hold, so it fires with priority 100, which beats every priority-3 rule. acuity = self_care.\n\nEnum order self_care(0) < routine(1) < urgent(2) < emergent(3): acuity drops from emergent to self_care when confusion is set true. This lowers acuity, violating monotonicity. The reported witness_assignment is the violating (confusion=true) input.",
+    "reasoning": "The property requires that flipping confusion from false to true (all other inputs unchanged) never lowers acuity. Consider the baseline where every input is true EXCEPT confusion=false. In that baseline, r6 (priority 100) does not fire because it requires confusion=true; instead the priority-3 emergent rules fire (r1 pallor, r5 dyspnea, r9 vision_loss, r11 chest_pain, r13 syncope), so acuity = emergent (the highest level). Now set confusion=true with everything else unchanged (the witness_assignment: all 13 inputs true). Now r6's full conjunction is satisfied, and with priority 100 it dominates every priority-3 rule, setting acuity := self_care (the lowest level in the order [self_care, routine, urgent, emergent]). Thus flipping confusion true drops acuity from emergent to self_care \u2014 a strict decrease. confusion appears in no other rule and only ever appears in r6, which outputs the lowest acuity at the highest priority, so it can only lower (never raise) acuity. The monotonicity property is violated. The witness_assignment is the post-flip input (confusion=true, all others true); the comparison baseline is the identical input with confusion=false, which yields emergent.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

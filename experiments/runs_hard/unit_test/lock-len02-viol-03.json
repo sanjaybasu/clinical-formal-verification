@@ -4,12 +4,16 @@
   "verdict": "violated",
   "witness": [
     {
+      "event": "key_0",
+      "transition": "adv_0"
+    },
+    {
       "event": "optout",
       "transition": "t_optout"
     },
     {
-      "event": "key_0",
-      "transition": "adv_0"
+      "event": "optout",
+      "transition": "t_optout"
     },
     {
       "event": "key_0",
@@ -20,7 +24,7 @@
       "transition": "t_resume_glitch"
     }
   ],
-  "seconds": 0.0001,
+  "seconds": 0.0,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

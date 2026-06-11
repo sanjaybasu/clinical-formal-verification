@@ -15,15 +15,15 @@
         "type": "bool"
       },
       {
-        "name": "pregnancy",
-        "type": "bool"
-      },
-      {
-        "name": "polypharmacy",
-        "type": "bool"
-      },
-      {
         "name": "diabetes",
+        "type": "bool"
+      },
+      {
+        "name": "bradycardia",
+        "type": "bool"
+      },
+      {
+        "name": "seizure_history",
         "type": "bool"
       }
     ],
@@ -43,6 +43,19 @@
     ],
     "rules": [
       {
+        "id": "rec_c_from_bradycardia",
+        "priority": 40,
+        "when": {
+          "var": "bradycardia"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
         "id": "rec_a_from_conjunction",
         "priority": 50,
         "when": {
@@ -52,39 +65,13 @@
               "var": "asthma"
             },
             {
-              "var": "pregnancy"
+              "var": "diabetes"
             }
           ]
         },
         "then": [
           {
             "var": "rec_drug_a",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_c_from_diabetes",
-        "priority": 40,
-        "when": {
-          "var": "diabetes"
-        },
-        "then": [
-          {
-            "var": "rec_drug_c",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_c_from_polypharmacy",
-        "priority": 40,
-        "when": {
-          "var": "polypharmacy"
-        },
-        "then": [
-          {
-            "var": "rec_drug_c",
             "value": true
           }
         ]
@@ -98,6 +85,19 @@
         "then": [
           {
             "var": "rec_drug_b",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_seizure_history",
+        "priority": 40,
+        "when": {
+          "var": "seizure_history"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
             "value": true
           }
         ]

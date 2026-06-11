@@ -13,11 +13,11 @@
     },
     {
       "var": "confusion",
-      "value": true
+      "value": false
     },
     {
       "var": "vision_loss",
-      "value": true
+      "value": false
     },
     {
       "var": "leg_swelling__base",
@@ -29,11 +29,11 @@
     },
     {
       "var": "confusion__base",
-      "value": true
+      "value": false
     },
     {
       "var": "vision_loss__base",
-      "value": true
+      "value": false
     }
   ],
   "seconds": 0.0,

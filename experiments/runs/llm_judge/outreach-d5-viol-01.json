@@ -4,22 +4,22 @@
   "verdict": "violated",
   "witness": [
     {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
       "event": "optout"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
     },
     {
       "event": "send_attempt"
@@ -27,7 +27,7 @@
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "This is a state machine. The property requires globally(opted_out implies not sent) \u2014 no reachable state may have opted_out=true and sent=true simultaneously. The transition [t_resume_glitch] on send_attempt with guard (opted_out and ticks>=5) sets sent:=true, directly creating an opted_out-and-sent state. Its guard is satisfiable, so a violating execution exists within the 9-event bound.\n\nTrace from initial state (opted_out=F, sent=F, ticks=0):\n1. tick -> ticks=1, sent=F\n2. tick -> ticks=2\n3. tick -> ticks=3\n4. tick -> ticks=4\n5. tick -> ticks=5 (ticks saturates at 5)\n6. optout -> opted_out=T, sent=F\n7. send_attempt -> both t_send_blocked (guard opted_out) and t_resume_glitch (guard opted_out and ticks>=5) are enabled; firing t_resume_glitch sets sent:=true.\n\nResulting state: opted_out=T, sent=T, ticks=5, which violates (opted_out implies not sent). Seven events, within the 9-event bound. The glitch transition models a resume bug that allows a send after opt-out once the tick counter saturates, so the safety property does not hold.",
+    "reasoning": "The property requires globally(opted_out implies not sent). Transition [t5] on send_attempt with guard (opted_out and ticks >= 5) sets sent := true while opted_out is true, directly enabling a violating state. This state is reachable within the 9-event bound: optout sets opted_out=true (t1, ticks=0, sent=false); five tick events drive ticks 0->1->2->3->4->5 (t4, each also clears sent=false); then send_attempt with opted_out=true and ticks=5>=5 enables t5, setting sent:=true. Resulting state is opted_out=true, sent=true, ticks=5, where opted_out is true but sent is true \u2014 falsifying (opted_out implies not sent). Although t3 (send_attempt if opted_out: sent:=false) also matches the final send_attempt, t5 is a genuinely enabled transition whose firing yields a concrete violating execution, which suffices to refute the global safety property. Sequence length is 7, within the 9-event bound.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

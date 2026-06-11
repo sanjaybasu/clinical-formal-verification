@@ -3,27 +3,35 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "fever",
-      "value": true
-    },
-    {
-      "var": "abdominal_pain",
+      "var": "back_pain",
       "value": true
     },
     {
       "var": "dizziness",
-      "value": false
-    },
-    {
-      "var": "fever__base",
       "value": true
     },
     {
-      "var": "abdominal_pain__base",
+      "var": "pallor",
       "value": false
     },
     {
+      "var": "abdominal_pain",
+      "value": false
+    },
+    {
+      "var": "back_pain__base",
+      "value": true
+    },
+    {
       "var": "dizziness__base",
+      "value": false
+    },
+    {
+      "var": "pallor__base",
+      "value": false
+    },
+    {
+      "var": "abdominal_pain__base",
       "value": false
     }
   ],

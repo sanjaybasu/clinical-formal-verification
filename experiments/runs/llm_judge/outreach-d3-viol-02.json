@@ -4,16 +4,16 @@
   "verdict": "violated",
   "witness": [
     {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
       "event": "optout"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
     },
     {
       "event": "send_attempt"
@@ -21,7 +21,7 @@
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "This is a state machine. The property G(opted_out implies not sent) is violated by transition [t_resume_glitch], which on a send_attempt with guard (opted_out and ticks >= 3) sets sent := true while opted_out is true.\n\nReachability of the violating state within the 7-event bound:\n- ticks only increases via the tick event (capped at 3). Three ticks reach ticks=3 (each tick also sets sent:=false, harmless here). opted_out remains false.\n- The optout event sets opted_out:=true, sent:=false, and leaves ticks unchanged at 3.\n- A subsequent send_attempt has guards: t_send_allowed (not opted_out)=false; t_send_blocked (opted_out)=true; t_resume_glitch (opted_out and ticks>=3)=true. Both t_send_blocked and t_resume_glitch are enabled. Under the spec's enumeration of enabled transitions, an execution exists in which t_resume_glitch fires, setting sent:=true.\n\nResulting state: opted_out=true, ticks=3, sent=true. Evaluating opted_out implies not sent = (true implies not true) = false, so the globally invariant fails.\n\nWitness execution (5 events, within the 7-event bound): tick, tick, tick, optout, send_attempt. The t_resume_glitch transition is the intended-bug: it re-enables sending after a tick-based timeout window even though the member has opted out, defeating the opt-out guarantee. Property is violated.",
+    "reasoning": "This is a state machine. The safety property requires globally(opted_out implies not sent): in every reachable state with opted_out=true, sent must be false.\n\nTransition t5 is the defect: `on send_attempt if (opted_out and ticks >= 3): sent := true`. It explicitly sets sent=true while opted_out is true, directly contradicting the property. (Transition t3, `on send_attempt if opted_out: sent := false`, correctly enforces the property for the opted-out case, but t5 overrides it once ticks reaches 3.)\n\nTo enable t5 I need opted_out=true and ticks>=3, then a send_attempt.\n\nCounterexample execution (5 events, within the 7-event bound):\n1. Initial: opted_out=false, sent=false, ticks=0\n2. optout (t1): opted_out=true, sent=false, ticks=0\n3. tick (t4): opted_out=true, sent=false, ticks=1\n4. tick (t4): opted_out=true, sent=false, ticks=2\n5. tick (t4): opted_out=true, sent=false, ticks=3\n6. send_attempt: guard of t5 (opted_out and ticks>=3) holds, so t5 fires: sent:=true. Resulting state: opted_out=true, sent=true, ticks=3.\n\nIn the final state opted_out=true AND sent=true, so opted_out implies not sent is false. The property is violated. (Even under nondeterministic resolution between t3 and t5 at the final send_attempt, t5 is enabled and a violating execution exists.) Plain-language: a member who opted out can still receive a message once enough ticks have elapsed, defeating the opt-out safety guarantee.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

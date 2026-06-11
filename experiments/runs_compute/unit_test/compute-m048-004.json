@@ -8,32 +8,8 @@
       "transition": "step_0"
     },
     {
-      "event": "send_attempt",
-      "transition": "t_send_allowed"
-    },
-    {
-      "event": "step_1",
-      "transition": "step_1"
-    },
-    {
-      "event": "step_0",
-      "transition": "step_0"
-    },
-    {
-      "event": "step_1",
-      "transition": "step_1"
-    },
-    {
-      "event": "step_0",
-      "transition": "step_0"
-    },
-    {
-      "event": "step_0",
-      "transition": "step_0"
-    },
-    {
-      "event": "step_0",
-      "transition": "step_0"
+      "event": "step_2",
+      "transition": "step_2"
     },
     {
       "event": "step_0",
@@ -44,40 +20,8 @@
       "transition": "t_send_allowed"
     },
     {
-      "event": "step_0",
-      "transition": "step_0"
-    },
-    {
-      "event": "optout",
-      "transition": "t_optout"
-    },
-    {
-      "event": "step_1",
-      "transition": "step_1"
-    },
-    {
-      "event": "step_0",
-      "transition": "step_0"
-    },
-    {
-      "event": "step_1",
-      "transition": "step_1"
-    },
-    {
-      "event": "optout",
-      "transition": "t_optout"
-    },
-    {
       "event": "step_2",
       "transition": "step_2"
-    },
-    {
-      "event": "step_2",
-      "transition": "step_2"
-    },
-    {
-      "event": "step_0",
-      "transition": "step_0"
     },
     {
       "event": "step_1",
@@ -85,23 +29,11 @@
     },
     {
       "event": "send_attempt",
-      "transition": "t_send_blocked"
-    },
-    {
-      "event": "step_2",
-      "transition": "step_2"
+      "transition": "t_send_allowed"
     },
     {
       "event": "step_0",
       "transition": "step_0"
-    },
-    {
-      "event": "step_0",
-      "transition": "step_0"
-    },
-    {
-      "event": "optout",
-      "transition": "t_optout"
     },
     {
       "event": "step_1",
@@ -113,11 +45,27 @@
     },
     {
       "event": "send_attempt",
-      "transition": "t_send_blocked"
+      "transition": "t_send_allowed"
+    },
+    {
+      "event": "send_attempt",
+      "transition": "t_send_allowed"
+    },
+    {
+      "event": "step_1",
+      "transition": "step_1"
     },
     {
       "event": "optout",
       "transition": "t_optout"
+    },
+    {
+      "event": "step_2",
+      "transition": "step_2"
+    },
+    {
+      "event": "step_2",
+      "transition": "step_2"
     },
     {
       "event": "step_2",
@@ -128,60 +76,32 @@
       "transition": "t_send_blocked"
     },
     {
-      "event": "optout",
-      "transition": "t_optout"
-    },
-    {
-      "event": "step_1",
-      "transition": "step_1"
-    },
-    {
-      "event": "step_1",
-      "transition": "step_1"
-    },
-    {
-      "event": "optout",
-      "transition": "t_optout"
-    },
-    {
-      "event": "step_1",
-      "transition": "step_1"
-    },
-    {
-      "event": "step_0",
-      "transition": "step_0"
-    },
-    {
-      "event": "step_1",
-      "transition": "step_1"
-    },
-    {
-      "event": "optout",
-      "transition": "t_optout"
-    },
-    {
-      "event": "step_1",
-      "transition": "step_1"
-    },
-    {
-      "event": "step_2",
-      "transition": "step_2"
-    },
-    {
-      "event": "step_0",
-      "transition": "step_0"
-    },
-    {
-      "event": "optout",
-      "transition": "t_optout"
-    },
-    {
       "event": "step_2",
       "transition": "step_2"
     },
     {
       "event": "step_1",
       "transition": "step_1"
+    },
+    {
+      "event": "send_attempt",
+      "transition": "t_send_blocked"
+    },
+    {
+      "event": "optout",
+      "transition": "t_optout"
+    },
+    {
+      "event": "optout",
+      "transition": "t_optout"
+    },
+    {
+      "event": "send_attempt",
+      "transition": "t_send_blocked"
+    },
+    {
+      "event": "optout",
+      "transition": "t_optout"
     },
     {
       "event": "step_2",
@@ -192,7 +112,7 @@
       "transition": "t_resume_glitch"
     }
   ],
-  "seconds": 0.0062,
+  "seconds": 0.0003,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

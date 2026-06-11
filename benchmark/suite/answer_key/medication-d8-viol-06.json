@@ -1,0 +1,46 @@
+{
+  "item": "medication-d8-viol-06",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "polypharmacy",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "renal_impairment",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "immunosuppressed",
+      "value": true
+    },
+    {
+      "var": "hyperkalemia",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 8,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 8 produces the violation; see generate.py for the construction"
+}

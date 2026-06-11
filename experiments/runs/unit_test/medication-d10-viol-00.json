@@ -49,14 +49,14 @@
     },
     {
       "var": "elderly",
-      "value": true
+      "value": false
     },
     {
       "var": "bradycardia",
       "value": true
     }
   ],
-  "seconds": 0.0062,
+  "seconds": 0.0048,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

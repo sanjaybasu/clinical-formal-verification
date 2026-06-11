@@ -1,0 +1,62 @@
+{
+  "item": "medication-d10-viol-06",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "renal_impairment",
+      "value": true
+    },
+    {
+      "var": "hyperkalemia",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "immunosuppressed",
+      "value": true
+    },
+    {
+      "var": "hypertension",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": false
+    },
+    {
+      "var": "anticoagulated",
+      "value": false
+    },
+    {
+      "var": "polypharmacy",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 10,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 10 produces the violation; see generate.py for the construction"
+}

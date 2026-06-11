@@ -45,18 +45,18 @@
     },
     {
       "var": "asthma",
-      "value": true
+      "value": false
     },
     {
       "var": "anticoagulated",
-      "value": true
+      "value": false
     },
     {
       "var": "polypharmacy",
-      "value": true
+      "value": false
     }
   ],
-  "seconds": 0.0045,
+  "seconds": 0.0069,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

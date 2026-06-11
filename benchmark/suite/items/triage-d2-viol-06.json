@@ -11,19 +11,23 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "vision_loss",
-        "type": "bool"
-      },
-      {
-        "name": "chest_pain",
-        "type": "bool"
-      },
-      {
         "name": "severe_headache",
         "type": "bool"
       },
       {
-        "name": "palpitations",
+        "name": "hemoptysis",
+        "type": "bool"
+      },
+      {
+        "name": "rash",
+        "type": "bool"
+      },
+      {
+        "name": "confusion",
+        "type": "bool"
+      },
+      {
+        "name": "abdominal_pain",
         "type": "bool"
       }
     ],
@@ -41,23 +45,41 @@
     ],
     "rules": [
       {
-        "id": "interaction_drop",
-        "priority": 100,
+        "id": "raise_confusion",
+        "priority": 2,
         "when": {
-          "op": "and",
-          "args": [
-            {
-              "var": "vision_loss"
-            },
-            {
-              "var": "chest_pain"
-            }
-          ]
+          "var": "confusion"
         },
         "then": [
           {
             "var": "acuity",
-            "value": "self_care"
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_rash",
+        "priority": 2,
+        "when": {
+          "var": "rash"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_abdominal_pain",
+        "priority": 3,
+        "when": {
+          "var": "abdominal_pain"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
           }
         ]
       },
@@ -75,28 +97,23 @@
         ]
       },
       {
-        "id": "raise_palpitations",
-        "priority": 3,
+        "id": "interaction_drop",
+        "priority": 100,
         "when": {
-          "var": "palpitations"
+          "op": "and",
+          "args": [
+            {
+              "var": "severe_headache"
+            },
+            {
+              "var": "hemoptysis"
+            }
+          ]
         },
         "then": [
           {
             "var": "acuity",
-            "value": "emergent"
-          }
-        ]
-      },
-      {
-        "id": "raise_vision_loss",
-        "priority": 2,
-        "when": {
-          "var": "vision_loss"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "urgent"
+            "value": "self_care"
           }
         ]
       }
@@ -114,12 +131,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "chest_pain",
+        "var": "hemoptysis",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting chest_pain true never lowers acuity"
+    "intent": "setting hemoptysis true never lowers acuity"
   }
 }

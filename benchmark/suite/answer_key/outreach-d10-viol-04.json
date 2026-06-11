@@ -1,0 +1,58 @@
+{
+  "item": "outreach-d10-viol-04",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "event": "optout",
+      "transition": "t_optout"
+    },
+    {
+      "event": "tick",
+      "transition": "t_tick"
+    },
+    {
+      "event": "tick",
+      "transition": "t_tick"
+    },
+    {
+      "event": "tick",
+      "transition": "t_tick"
+    },
+    {
+      "event": "tick",
+      "transition": "t_tick"
+    },
+    {
+      "event": "tick",
+      "transition": "t_tick"
+    },
+    {
+      "event": "tick",
+      "transition": "t_tick"
+    },
+    {
+      "event": "tick",
+      "transition": "t_tick"
+    },
+    {
+      "event": "tick",
+      "transition": "t_tick"
+    },
+    {
+      "event": "tick",
+      "transition": "t_tick"
+    },
+    {
+      "event": "tick",
+      "transition": "t_tick"
+    },
+    {
+      "event": "send_attempt",
+      "transition": "t_resume_glitch"
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 10,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 10 produces the violation; see generate.py for the construction"
+}

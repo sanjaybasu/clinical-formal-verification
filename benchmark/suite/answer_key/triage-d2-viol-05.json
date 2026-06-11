@@ -7,19 +7,11 @@
       "value": true
     },
     {
-      "var": "vision_loss",
+      "var": "back_pain",
       "value": true
     },
     {
-      "var": "severe_headache",
-      "value": false
-    },
-    {
-      "var": "dizziness",
-      "value": false
-    },
-    {
-      "var": "vomiting",
+      "var": "abdominal_pain",
       "value": false
     },
     {
@@ -27,19 +19,11 @@
       "value": true
     },
     {
-      "var": "vision_loss__base",
+      "var": "back_pain__base",
       "value": false
     },
     {
-      "var": "severe_headache__base",
-      "value": false
-    },
-    {
-      "var": "dizziness__base",
-      "value": false
-    },
-    {
-      "var": "vomiting__base",
+      "var": "abdominal_pain__base",
       "value": false
     }
   ],

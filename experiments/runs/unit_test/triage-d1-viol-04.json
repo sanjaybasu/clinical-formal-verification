@@ -9,7 +9,7 @@
     },
     {
       "var": "fever",
-      "value": false
+      "value": true
     },
     {
       "var": "dizziness",
@@ -21,7 +21,7 @@
     },
     {
       "var": "fever__base",
-      "value": false
+      "value": true
     },
     {
       "var": "dizziness__base",

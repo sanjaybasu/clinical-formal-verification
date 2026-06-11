@@ -11,23 +11,19 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "syncope",
-        "type": "bool"
-      },
-      {
-        "name": "fever",
-        "type": "bool"
-      },
-      {
-        "name": "vomiting",
-        "type": "bool"
-      },
-      {
         "name": "dizziness",
         "type": "bool"
       },
       {
-        "name": "abdominal_pain",
+        "name": "syncope",
+        "type": "bool"
+      },
+      {
+        "name": "slurred_speech",
+        "type": "bool"
+      },
+      {
+        "name": "hemoptysis",
         "type": "bool"
       }
     ],
@@ -45,15 +41,15 @@
     ],
     "rules": [
       {
-        "id": "raise_abdominal_pain",
-        "priority": 3,
+        "id": "raise_dizziness",
+        "priority": 2,
         "when": {
-          "var": "abdominal_pain"
+          "var": "dizziness"
         },
         "then": [
           {
             "var": "acuity",
-            "value": "emergent"
+            "value": "urgent"
           }
         ]
       },
@@ -64,13 +60,13 @@
           "op": "and",
           "args": [
             {
+              "var": "dizziness"
+            },
+            {
               "var": "syncope"
             },
             {
-              "var": "fever"
-            },
-            {
-              "var": "vomiting"
+              "var": "slurred_speech"
             }
           ]
         },
@@ -82,23 +78,10 @@
         ]
       },
       {
-        "id": "raise_dizziness",
-        "priority": 3,
-        "when": {
-          "var": "dizziness"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "emergent"
-          }
-        ]
-      },
-      {
-        "id": "raise_syncope",
+        "id": "raise_hemoptysis",
         "priority": 2,
         "when": {
-          "var": "syncope"
+          "var": "hemoptysis"
         },
         "then": [
           {
@@ -108,10 +91,10 @@
         ]
       },
       {
-        "id": "raise_fever",
+        "id": "raise_syncope",
         "priority": 3,
         "when": {
-          "var": "fever"
+          "var": "syncope"
         },
         "then": [
           {
@@ -134,12 +117,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "vomiting",
+        "var": "slurred_speech",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting vomiting true never lowers acuity"
+    "intent": "setting slurred_speech true never lowers acuity"
   }
 }

@@ -11,19 +11,15 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "palpitations",
-        "type": "bool"
-      },
-      {
-        "name": "fever",
-        "type": "bool"
-      },
-      {
-        "name": "vision_loss",
-        "type": "bool"
-      },
-      {
         "name": "severe_headache",
+        "type": "bool"
+      },
+      {
+        "name": "focal_weakness",
+        "type": "bool"
+      },
+      {
+        "name": "leg_swelling",
         "type": "bool"
       }
     ],
@@ -41,15 +37,28 @@
     ],
     "rules": [
       {
-        "id": "raise_fever",
-        "priority": 2,
+        "id": "raise_focal_weakness",
+        "priority": 3,
         "when": {
-          "var": "fever"
+          "var": "focal_weakness"
         },
         "then": [
           {
             "var": "acuity",
-            "value": "urgent"
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_leg_swelling",
+        "priority": 3,
+        "when": {
+          "var": "leg_swelling"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
           }
         ]
       },
@@ -57,38 +66,12 @@
         "id": "interaction_drop",
         "priority": 100,
         "when": {
-          "var": "palpitations"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "self_care"
-          }
-        ]
-      },
-      {
-        "id": "raise_severe_headache",
-        "priority": 3,
-        "when": {
           "var": "severe_headache"
         },
         "then": [
           {
             "var": "acuity",
-            "value": "emergent"
-          }
-        ]
-      },
-      {
-        "id": "raise_vision_loss",
-        "priority": 3,
-        "when": {
-          "var": "vision_loss"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "emergent"
+            "value": "self_care"
           }
         ]
       }
@@ -106,12 +89,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "palpitations",
+        "var": "severe_headache",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting palpitations true never lowers acuity"
+    "intent": "setting severe_headache true never lowers acuity"
   }
 }

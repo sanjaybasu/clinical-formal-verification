@@ -11,7 +11,7 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "peptic_ulcer",
+        "name": "bradycardia",
         "type": "bool"
       },
       {
@@ -19,19 +19,15 @@
         "type": "bool"
       },
       {
-        "name": "pregnancy",
-        "type": "bool"
-      },
-      {
-        "name": "qt_prolongation",
-        "type": "bool"
-      },
-      {
         "name": "hypertension",
         "type": "bool"
       },
       {
-        "name": "elderly",
+        "name": "low_ejection_fraction",
+        "type": "bool"
+      },
+      {
+        "name": "immunosuppressed",
         "type": "bool"
       }
     ],
@@ -51,34 +47,10 @@
     ],
     "rules": [
       {
-        "id": "rec_a_from_conjunction",
-        "priority": 50,
-        "when": {
-          "op": "and",
-          "args": [
-            {
-              "var": "peptic_ulcer"
-            },
-            {
-              "var": "heart_failure"
-            },
-            {
-              "var": "pregnancy"
-            }
-          ]
-        },
-        "then": [
-          {
-            "var": "rec_drug_a",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_c_from_hypertension",
+        "id": "rec_c_from_low_ejection_fraction",
         "priority": 40,
         "when": {
-          "var": "hypertension"
+          "var": "low_ejection_fraction"
         },
         "then": [
           {
@@ -88,10 +60,10 @@
         ]
       },
       {
-        "id": "rec_c_from_qt_prolongation",
+        "id": "rec_c_from_immunosuppressed",
         "priority": 40,
         "when": {
-          "var": "qt_prolongation"
+          "var": "immunosuppressed"
         },
         "then": [
           {
@@ -104,7 +76,7 @@
         "id": "rec_b_from_trigger",
         "priority": 50,
         "when": {
-          "var": "peptic_ulcer"
+          "var": "bradycardia"
         },
         "then": [
           {
@@ -114,14 +86,25 @@
         ]
       },
       {
-        "id": "rec_c_from_elderly",
-        "priority": 40,
+        "id": "rec_a_from_conjunction",
+        "priority": 50,
         "when": {
-          "var": "elderly"
+          "op": "and",
+          "args": [
+            {
+              "var": "bradycardia"
+            },
+            {
+              "var": "heart_failure"
+            },
+            {
+              "var": "hypertension"
+            }
+          ]
         },
         "then": [
           {
-            "var": "rec_drug_c",
+            "var": "rec_drug_a",
             "value": true
           }
         ]

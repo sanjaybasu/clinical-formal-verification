@@ -1,0 +1,82 @@
+{
+  "item": "triage-d8-viol-04",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "vomiting",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": true
+    },
+    {
+      "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "hemoptysis",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "dizziness",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "slurred_speech",
+      "value": false
+    },
+    {
+      "var": "rash__base",
+      "value": true
+    },
+    {
+      "var": "vomiting__base",
+      "value": true
+    },
+    {
+      "var": "dyspnea__base",
+      "value": true
+    },
+    {
+      "var": "syncope__base",
+      "value": true
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": true
+    },
+    {
+      "var": "palpitations__base",
+      "value": true
+    },
+    {
+      "var": "dizziness__base",
+      "value": true
+    },
+    {
+      "var": "fever__base",
+      "value": false
+    },
+    {
+      "var": "slurred_speech__base",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 8,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 8 produces the violation; see generate.py for the construction"
+}

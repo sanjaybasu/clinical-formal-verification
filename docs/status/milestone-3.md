@@ -26,13 +26,13 @@ Figures by `experiments/figures_all.py`. Case studies in `casestudies/case_studi
 ## Numbers
 
 Detection by suite (violated items): complete verification 100% (v0), 100% (hard), 72.5%
-(compute, the rest abstentions); unit-test suite 86.6% (v0, falling to 33% at depth 12; slope
--0.81 [-1.09, -0.52]), 29.2% (hard, zero from lock length 6), 100% (compute); language-model
+(compute, the rest abstentions); unit-test suite 85.2% (v0, falling to 20.8% at depth 12; slope
+-0.94 [-1.27, -0.62]), 25.0% (hard, zero from lock length 6), 100% (compute); language-model
 judge 100% on all three. Detail in `experiments/results_combined.md`.
 
 Soundness. Across all 440 items complete verification returned zero verdicts contradicting ground
 truth; where it could not decide within budget it abstained (25 abstentions, all on
-CIV-Bench-Compute at large modulus). The unit-test suite returned 63 false statements of safety
+CIV-Bench-Compute at large modulus). The unit-test suite returned 68 false statements of safety
 (29 on v0, 34 on hard). The language-model judge made no error observed, with no proof or coverage
 guarantee. Witness validity was 100% for every method on every suite.
 

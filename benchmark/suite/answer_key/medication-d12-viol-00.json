@@ -1,0 +1,66 @@
+{
+  "item": "medication-d12-viol-00",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "prior_gi_bleed",
+      "value": true
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "hyperkalemia",
+      "value": true
+    },
+    {
+      "var": "low_ejection_fraction",
+      "value": true
+    },
+    {
+      "var": "ckd_dialysis",
+      "value": true
+    },
+    {
+      "var": "diabetes",
+      "value": true
+    },
+    {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
+      "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": false
+    },
+    {
+      "var": "elderly",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 12,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 12 produces the violation; see generate.py for the construction"
+}

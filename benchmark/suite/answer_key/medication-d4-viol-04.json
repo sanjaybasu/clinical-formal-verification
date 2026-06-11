@@ -3,15 +3,11 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "polypharmacy",
+      "var": "heart_failure",
       "value": true
     },
     {
-      "var": "peptic_ulcer",
-      "value": true
-    },
-    {
-      "var": "pregnancy",
+      "var": "hepatic_impairment",
       "value": true
     },
     {
@@ -19,11 +15,15 @@
       "value": true
     },
     {
+      "var": "qt_prolongation",
+      "value": true
+    },
+    {
       "var": "asthma",
       "value": false
     },
     {
-      "var": "diabetes",
+      "var": "immunosuppressed",
       "value": false
     }
   ],

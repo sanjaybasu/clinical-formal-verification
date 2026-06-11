@@ -3,11 +3,7 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "dyspnea",
-      "value": true
-    },
-    {
-      "var": "rash",
+      "var": "leg_swelling",
       "value": true
     },
     {
@@ -15,7 +11,11 @@
       "value": true
     },
     {
-      "var": "focal_weakness",
+      "var": "pallor",
+      "value": true
+    },
+    {
+      "var": "hemoptysis",
       "value": true
     },
     {
@@ -23,15 +23,15 @@
       "value": false
     },
     {
-      "var": "syncope",
+      "var": "back_pain",
       "value": false
     },
     {
-      "var": "dyspnea__base",
-      "value": true
+      "var": "fever",
+      "value": false
     },
     {
-      "var": "rash__base",
+      "var": "leg_swelling__base",
       "value": true
     },
     {
@@ -39,7 +39,11 @@
       "value": true
     },
     {
-      "var": "focal_weakness__base",
+      "var": "pallor__base",
+      "value": true
+    },
+    {
+      "var": "hemoptysis__base",
       "value": false
     },
     {
@@ -47,7 +51,11 @@
       "value": false
     },
     {
-      "var": "syncope__base",
+      "var": "back_pain__base",
+      "value": false
+    },
+    {
+      "var": "fever__base",
       "value": false
     }
   ],

@@ -5,7 +5,7 @@
   "witness": null,
   "seconds": null,
   "extra": {
-    "reasoning": "The property is monotonicity in back_pain: setting back_pain=true (all else fixed) must never lower acuity. Crucially, back_pain appears in NONE of the four rules (raise_leg_swelling, raise_focal_weakness, raise_pallor, raise_vision_loss) and does not affect the default (routine). The output acuity is a pure function of {vision_loss, focal_weakness, pallor, leg_swelling} only. Therefore, for any of the 32 input assignments, toggling back_pain from false to true changes no rule's firing condition, so the resolved acuity (highest-priority matching rule per output, ties by listed order, else default routine) is exactly equal before and after. Equality satisfies the requirement \"no lower than before\" (>=) for every input. No priority conflict, tie-break, or default path depends on back_pain, so no counterexample can exist. The property holds.",
+    "reasoning": "The input back_pain does not appear in any rule (r1: leg_swelling, r2: focal_weakness, r3: pallor, r4: vision_loss) nor in the default assignment. Therefore back_pain has no effect on the computed acuity. For any fixed assignment of the other four inputs, the set of matching rules and the priority/order conflict resolution are identical regardless of back_pain's value, so acuity is unchanged when back_pain is toggled true. Since acuity stays equal, it is necessarily no lower than before, satisfying the monotonicity property across the entire input space. Property holds.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

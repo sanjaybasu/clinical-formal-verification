@@ -1,0 +1,42 @@
+{
+  "item": "medication-d5-viol-00",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "g6pd_deficiency",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "diabetes",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": false
+    },
+    {
+      "var": "polypharmacy",
+      "value": false
+    },
+    {
+      "var": "hypertension",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 5,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 5 produces the violation; see generate.py for the construction"
+}

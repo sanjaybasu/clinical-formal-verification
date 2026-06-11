@@ -7,11 +7,11 @@
       "value": true
     },
     {
-      "var": "heart_failure",
+      "var": "prior_gi_bleed",
       "value": false
     },
     {
-      "var": "peptic_ulcer",
+      "var": "pregnancy",
       "value": false
     }
   ],

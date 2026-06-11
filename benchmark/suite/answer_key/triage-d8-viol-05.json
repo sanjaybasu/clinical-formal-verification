@@ -1,0 +1,82 @@
+{
+  "item": "triage-d8-viol-05",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "hemoptysis",
+      "value": true
+    },
+    {
+      "var": "confusion",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": true
+    },
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "stiff_neck",
+      "value": true
+    },
+    {
+      "var": "chest_pain",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain",
+      "value": true
+    },
+    {
+      "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "vision_loss",
+      "value": false
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": true
+    },
+    {
+      "var": "confusion__base",
+      "value": true
+    },
+    {
+      "var": "dyspnea__base",
+      "value": true
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": true
+    },
+    {
+      "var": "stiff_neck__base",
+      "value": true
+    },
+    {
+      "var": "chest_pain__base",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain__base",
+      "value": true
+    },
+    {
+      "var": "syncope__base",
+      "value": false
+    },
+    {
+      "var": "vision_loss__base",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 8,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 8 produces the violation; see generate.py for the construction"
+}

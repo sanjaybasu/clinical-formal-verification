@@ -1,0 +1,82 @@
+{
+  "item": "triage-d8-viol-06",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "stiff_neck",
+      "value": true
+    },
+    {
+      "var": "vision_loss",
+      "value": true
+    },
+    {
+      "var": "dizziness",
+      "value": true
+    },
+    {
+      "var": "confusion",
+      "value": true
+    },
+    {
+      "var": "hemoptysis",
+      "value": true
+    },
+    {
+      "var": "leg_swelling",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "chest_pain",
+      "value": false
+    },
+    {
+      "var": "severe_headache__base",
+      "value": true
+    },
+    {
+      "var": "stiff_neck__base",
+      "value": true
+    },
+    {
+      "var": "vision_loss__base",
+      "value": true
+    },
+    {
+      "var": "dizziness__base",
+      "value": true
+    },
+    {
+      "var": "confusion__base",
+      "value": true
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": true
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": true
+    },
+    {
+      "var": "rash__base",
+      "value": false
+    },
+    {
+      "var": "chest_pain__base",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 8,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 8 produces the violation; see generate.py for the construction"
+}

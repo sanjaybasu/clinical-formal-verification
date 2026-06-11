@@ -3,7 +3,7 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "peptic_ulcer",
+      "var": "bradycardia",
       "value": true
     },
     {
@@ -11,19 +11,15 @@
       "value": true
     },
     {
-      "var": "pregnancy",
+      "var": "hypertension",
       "value": true
     },
     {
-      "var": "qt_prolongation",
+      "var": "low_ejection_fraction",
       "value": false
     },
     {
-      "var": "hypertension",
-      "value": false
-    },
-    {
-      "var": "elderly",
+      "var": "immunosuppressed",
       "value": false
     }
   ],

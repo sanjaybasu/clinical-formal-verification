@@ -11,19 +11,19 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "palpitations",
+        "name": "fever",
         "type": "bool"
       },
       {
-        "name": "abdominal_pain",
+        "name": "hemoptysis",
         "type": "bool"
       },
       {
-        "name": "rash",
+        "name": "severe_headache",
         "type": "bool"
       },
       {
-        "name": "focal_weakness",
+        "name": "stiff_neck",
         "type": "bool"
       },
       {
@@ -45,16 +45,29 @@
     ],
     "rules": [
       {
+        "id": "raise_chest_pain",
+        "priority": 3,
+        "when": {
+          "var": "chest_pain"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
         "id": "interaction_drop",
         "priority": 100,
         "when": {
           "op": "and",
           "args": [
             {
-              "var": "palpitations"
+              "var": "fever"
             },
             {
-              "var": "abdominal_pain"
+              "var": "hemoptysis"
             }
           ]
         },
@@ -66,10 +79,10 @@
         ]
       },
       {
-        "id": "raise_chest_pain",
+        "id": "raise_severe_headache",
         "priority": 2,
         "when": {
-          "var": "chest_pain"
+          "var": "severe_headache"
         },
         "then": [
           {
@@ -79,10 +92,10 @@
         ]
       },
       {
-        "id": "raise_palpitations",
+        "id": "raise_fever",
         "priority": 2,
         "when": {
-          "var": "palpitations"
+          "var": "fever"
         },
         "then": [
           {
@@ -92,28 +105,15 @@
         ]
       },
       {
-        "id": "raise_rash",
-        "priority": 2,
+        "id": "raise_stiff_neck",
+        "priority": 3,
         "when": {
-          "var": "rash"
+          "var": "stiff_neck"
         },
         "then": [
           {
             "var": "acuity",
-            "value": "urgent"
-          }
-        ]
-      },
-      {
-        "id": "raise_focal_weakness",
-        "priority": 2,
-        "when": {
-          "var": "focal_weakness"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "urgent"
+            "value": "emergent"
           }
         ]
       }
@@ -131,12 +131,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "abdominal_pain",
+        "var": "hemoptysis",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting abdominal_pain true never lowers acuity"
+    "intent": "setting hemoptysis true never lowers acuity"
   }
 }

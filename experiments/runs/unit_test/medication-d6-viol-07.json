@@ -29,7 +29,7 @@
     },
     {
       "var": "qt_prolongation",
-      "value": true
+      "value": false
     },
     {
       "var": "heart_failure",
@@ -37,10 +37,10 @@
     },
     {
       "var": "hepatic_impairment",
-      "value": true
+      "value": false
     }
   ],
-  "seconds": 0.0014,
+  "seconds": 0.0005,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

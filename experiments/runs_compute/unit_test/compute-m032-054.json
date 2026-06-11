@@ -3,7 +3,7 @@
   "method": "unit_test",
   "verdict": "holds",
   "witness": null,
-  "seconds": 0.4251,
+  "seconds": 0.4283,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

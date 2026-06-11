@@ -26,7 +26,7 @@
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "rec_drug_a is set true only by rec_a_from_conjunction (priority 50), which requires immunosuppressed AND asthma. rec_drug_b is set true only by rec_b_from_trigger (priority 50), which requires immunosuppressed. The remaining three rules set only rec_drug_c and are irrelevant. When immunosuppressed=true and asthma=true, both governing rules fire on their respective (distinct) outputs with no competing higher-priority rule to suppress either, so rec_drug_a=true and rec_drug_b=true simultaneously. This makes (rec_drug_a and rec_drug_b) jointly true, violating the mutual-exclusion property. Witness: immunosuppressed=true, asthma=true, others false (their values do not matter; they only affect rec_drug_c). Verification of witness: rec_a_from_conjunction yields rec_drug_a=true; rec_b_from_trigger yields rec_drug_b=true; defaults do not apply since both outputs are set; property violated.",
+    "reasoning": "The mutual-exclusion property requires that no input makes both rec_drug_a and rec_drug_b true. rec_drug_a is set true only by r5 (priority 50): IF (immunosuppressed AND asthma). rec_drug_b is set true only by r2 (priority 50): IF immunosuppressed. No rule ever sets rec_drug_a or rec_drug_b to false, and defaults only apply to outputs left unset. With immunosuppressed=true and asthma=true, both r5 and r2 fire, producing rec_drug_a=true and rec_drug_b=true simultaneously. No higher-priority or competing rule overrides either. Thus the property is violated. (rec_drug_c stays false here since diabetes/prior_gi_bleed/ckd_dialysis are all false, but that is irrelevant to the a-vs-b conflict.)",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

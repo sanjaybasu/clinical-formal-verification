@@ -3,27 +3,23 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "hypertension",
-      "value": true
-    },
-    {
-      "var": "hepatic_impairment",
-      "value": true
-    },
-    {
-      "var": "qt_prolongation",
+      "var": "diabetes",
       "value": true
     },
     {
       "var": "renal_impairment",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
       "value": false
     },
     {
-      "var": "asthma",
-      "value": false
-    },
-    {
-      "var": "anticoagulated",
+      "var": "low_ejection_fraction",
       "value": false
     }
   ],

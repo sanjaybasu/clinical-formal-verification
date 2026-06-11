@@ -1,70 +1,9 @@
 {
   "item_id": "medication-d12-viol-04",
   "method": "unit_test",
-  "verdict": "violated",
-  "witness": [
-    {
-      "var": "asthma",
-      "value": true
-    },
-    {
-      "var": "hypertension",
-      "value": true
-    },
-    {
-      "var": "low_ejection_fraction",
-      "value": true
-    },
-    {
-      "var": "qt_prolongation",
-      "value": true
-    },
-    {
-      "var": "diabetes",
-      "value": true
-    },
-    {
-      "var": "pregnancy",
-      "value": true
-    },
-    {
-      "var": "peptic_ulcer",
-      "value": true
-    },
-    {
-      "var": "hepatic_impairment",
-      "value": true
-    },
-    {
-      "var": "bradycardia",
-      "value": true
-    },
-    {
-      "var": "renal_impairment",
-      "value": true
-    },
-    {
-      "var": "elderly",
-      "value": true
-    },
-    {
-      "var": "prior_gi_bleed",
-      "value": true
-    },
-    {
-      "var": "polypharmacy",
-      "value": false
-    },
-    {
-      "var": "seizure_history",
-      "value": false
-    },
-    {
-      "var": "heart_failure",
-      "value": true
-    }
-  ],
-  "seconds": 0.0056,
+  "verdict": "holds",
+  "witness": null,
+  "seconds": 0.0088,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

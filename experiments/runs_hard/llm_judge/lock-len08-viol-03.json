@@ -4,31 +4,31 @@
   "verdict": "violated",
   "witness": [
     {
-      "event": "key_1"
-    },
-    {
-      "event": "key_2"
-    },
-    {
-      "event": "key_0"
-    },
-    {
-      "event": "key_2"
-    },
-    {
-      "event": "key_0"
-    },
-    {
-      "event": "key_1"
-    },
-    {
-      "event": "key_0"
-    },
-    {
-      "event": "key_0"
-    },
-    {
       "event": "optout"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_0"
     },
     {
       "event": "send_attempt"
@@ -36,7 +36,7 @@
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "The property is VIOLATED. The bug is transition [t_resume_glitch] (line 37): on send_attempt, if (opted_out and stage >= 8), it sets sent := true. This directly contradicts the safety property \"opted_out implies not sent\" whenever the lock is fully advanced to stage 8.\n\nTo exploit it I must drive the lock to stage 8, then opt out, then attempt a send. The advancing keys form the combination: stage0->1 key_1 (adv_0), 1->2 key_2 (adv_1), 2->3 key_0 (adv_2), 3->4 key_2 (adv_3), 4->5 key_0 (adv_4), 5->6 key_1 (adv_5), 6->7 key_0 (adv_6), 7->8 key_0 (adv_7). So the 8-key combination is key_1, key_2, key_0, key_2, key_0, key_1, key_0, key_0.\n\nCritically, [t_optout] (line 10) sets opted_out:=true and sent:=false but does NOT modify stage, so stage=8 persists across the opt-out. Trace (opted_out, sent, stage):\n- init: (F,F,0)\n- key_1 -> adv_0: (F,F,1)\n- key_2 -> adv_1: (F,F,2)\n- key_0 -> adv_2: (F,F,3)\n- key_2 -> adv_3: (F,F,4)\n- key_0 -> adv_4: (F,F,5)\n- key_1 -> adv_5: (F,F,6)\n- key_0 -> adv_6: (F,F,7)\n- key_0 -> adv_7: (F,F,8)\n- optout -> t_optout: (T,F,8)\n- send_attempt: t_send_allowed disabled (opted_out true); t_send_blocked guard (opted_out and stage<8) is false since stage==8; t_resume_glitch guard (opted_out and stage>=8) holds -> sent:=true. Final state (T,T,8).\n\nNow opted_out=true and sent=true, violating globally(opted_out implies not sent). The sequence is 10 events, within the 11-event bound. This is the canonical \"resume glitch\" defect: once the full combination is entered, an opted-out send goes through.",
+    "reasoning": "The property G(opted_out -> not sent) is VIOLATED within 10 events (bound is 11).\n\nTwo transitions set sent:=true: t2 (send_attempt when NOT opted_out, safe) and t28 (send_attempt when opted_out AND stage>=8, the hazard). The property is violated if stage can reach 8 while opted_out is true.\n\nCritical interaction flaws: (1) opted_out is set true by t1 and is NEVER reset to false by any transition, so it latches. (2) The stage-advancing transitions t3-t26 do NOT guard on opted_out, so the stage can still be navigated to 8 after opting out. (3) t28 then re-enables sending at stage>=8 even though opted_out is true.\n\nThe stage-advance combination to reach stage 8 from 0 is: key_1 (t3: 0->1), key_2 (t6: 1->2), key_0 (t9: 2->3), key_2 (t12: 3->4), key_0 (t15: 4->5), key_1 (t18: 5->6), key_0 (t21: 6->7), key_0 (t24: 7->8).\n\nTrace of the witness:\n1. optout (t1): opted_out=true, sent=false, stage=0\n2. key_1 (t3): stage=1\n3. key_2 (t6): stage=2\n4. key_0 (t9): stage=3\n5. key_2 (t12): stage=4\n6. key_0 (t15): stage=5\n7. key_1 (t18): stage=6\n8. key_0 (t21): stage=7\n9. key_0 (t24): stage=8\n10. send_attempt: opted_out=true, so t2 disabled; t27 (stage<8) disabled; t28 (opted_out and stage>=8) FIRES -> sent=true.\n\nFinal state: opted_out=true AND sent=true, directly contradicting opted_out -> not sent. Hence the property is violated.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

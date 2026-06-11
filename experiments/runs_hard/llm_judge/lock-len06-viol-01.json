@@ -4,6 +4,9 @@
   "verdict": "violated",
   "witness": [
     {
+      "event": "optout"
+    },
+    {
       "event": "key_2"
     },
     {
@@ -22,15 +25,12 @@
       "event": "key_0"
     },
     {
-      "event": "optout"
-    },
-    {
       "event": "send_attempt"
     }
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "The lock advances stage 0->1 on key_2, 1->2 on key_1, 2->3 on key_1, 3->4 on key_2, 4->5 on key_1, 5->6 on key_0, so the unlock combination is key_2,key_1,key_1,key_2,key_1,key_0. The advance transitions (adv_*) have no opted_out guard, and t_optout sets opted_out:=true and sent:=false but does NOT reset stage. The vulnerability is t_resume_glitch: on send_attempt if (opted_out and stage>=6) it sets sent:=true. The protective t_send_blocked only covers stage<6. Trace from initial (opted_out=F, sent=F, stage=0): key_2->stage1; key_1->stage2; key_1->stage3; key_2->stage4; key_1->stage5; key_0->stage6 (each adv sets sent=F); optout->opted_out=T, sent=F, stage stays 6; send_attempt->matches t_resume_glitch (opted_out and stage>=6) so sent:=true. Final state opted_out=T and sent=T violates globally(opted_out implies not sent). The sequence is 8 events, within the 9-event bound. Property is VIOLATED.",
+    "reasoning": "The property requires that in every reachable state, opted_out=true implies sent=false. Transition t22 (on send_attempt if opted_out and stage>=6: sent:=true) sets sent true while opted_out is true, so the property is violated iff a state with opted_out=true and stage>=6 is reachable and then send_attempt fires.\n\nKey observation: t1 (optout) sets opted_out:=true, sent:=false but does NOT reset stage. The stage-advancing transitions t3,t6,t9,t12,t15,t18 have no guard on opted_out, so the unlock walk works regardless of opted_out. The unlock sequence to drive stage 0->1->2->3->4->5->6 is key_2 (t3), key_1 (t6), key_1 (t9), key_2 (t12), key_1 (t15), key_0 (t18).\n\nConcrete 8-event execution (within the 9-event bound):\n- start: opted_out=false, sent=false, stage=0\n- optout (t1): opted_out=true, sent=false, stage=0\n- key_2 (t3, stage==0): stage=1\n- key_1 (t6, stage==1): stage=2\n- key_1 (t9, stage==2): stage=3\n- key_2 (t12, stage==3): stage=4\n- key_1 (t15, stage==4): stage=5\n- key_0 (t18, stage==5): stage=6\n- send_attempt: t21 guard (opted_out and stage<6) is false since stage=6; t22 guard (opted_out and stage>=6) is true, so sent:=true.\n\nFinal state: opted_out=true AND sent=true, which violates opted_out implies not sent. At each key step exactly one transition is enabled (transitions are disjoint per stage/key), so the trace is deterministic. Property is VIOLATED.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

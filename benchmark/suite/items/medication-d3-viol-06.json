@@ -11,19 +11,23 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "polypharmacy",
+        "name": "bradycardia",
         "type": "bool"
       },
       {
-        "name": "renal_impairment",
+        "name": "low_ejection_fraction",
         "type": "bool"
       },
       {
-        "name": "anticoagulated",
+        "name": "hyperkalemia",
         "type": "bool"
       },
       {
         "name": "heart_failure",
+        "type": "bool"
+      },
+      {
+        "name": "prior_gi_bleed",
         "type": "bool"
       }
     ],
@@ -46,35 +50,11 @@
         "id": "rec_b_from_trigger",
         "priority": 50,
         "when": {
-          "var": "polypharmacy"
+          "var": "bradycardia"
         },
         "then": [
           {
             "var": "rec_drug_b",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_a_from_conjunction",
-        "priority": 50,
-        "when": {
-          "op": "and",
-          "args": [
-            {
-              "var": "polypharmacy"
-            },
-            {
-              "var": "renal_impairment"
-            },
-            {
-              "var": "anticoagulated"
-            }
-          ]
-        },
-        "then": [
-          {
-            "var": "rec_drug_a",
             "value": true
           }
         ]
@@ -88,6 +68,43 @@
         "then": [
           {
             "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_prior_gi_bleed",
+        "priority": 40,
+        "when": {
+          "var": "prior_gi_bleed"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_a_from_conjunction",
+        "priority": 50,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "bradycardia"
+            },
+            {
+              "var": "low_ejection_fraction"
+            },
+            {
+              "var": "hyperkalemia"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "rec_drug_a",
             "value": true
           }
         ]

@@ -3,51 +3,59 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "dyspnea",
+      "var": "stiff_neck",
       "value": true
     },
     {
-      "var": "abdominal_pain",
-      "value": true
-    },
-    {
-      "var": "syncope",
-      "value": true
-    },
-    {
-      "var": "vomiting",
+      "var": "rash",
       "value": true
     },
     {
       "var": "focal_weakness",
-      "value": false
-    },
-    {
-      "var": "dizziness",
-      "value": false
-    },
-    {
-      "var": "dyspnea__base",
       "value": true
     },
     {
-      "var": "abdominal_pain__base",
+      "var": "dyspnea",
       "value": true
     },
     {
-      "var": "syncope__base",
-      "value": true
-    },
-    {
-      "var": "vomiting__base",
+      "var": "hemoptysis",
       "value": false
+    },
+    {
+      "var": "fever",
+      "value": false
+    },
+    {
+      "var": "back_pain",
+      "value": false
+    },
+    {
+      "var": "stiff_neck__base",
+      "value": true
+    },
+    {
+      "var": "rash__base",
+      "value": true
     },
     {
       "var": "focal_weakness__base",
+      "value": true
+    },
+    {
+      "var": "dyspnea__base",
       "value": false
     },
     {
-      "var": "dizziness__base",
+      "var": "hemoptysis__base",
+      "value": false
+    },
+    {
+      "var": "fever__base",
+      "value": false
+    },
+    {
+      "var": "back_pain__base",
       "value": false
     }
   ],

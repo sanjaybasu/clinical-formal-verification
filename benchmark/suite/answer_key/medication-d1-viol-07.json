@@ -3,15 +3,19 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "qt_prolongation",
+      "var": "prior_gi_bleed",
       "value": true
     },
     {
-      "var": "polypharmacy",
+      "var": "peptic_ulcer",
       "value": false
     },
     {
-      "var": "elderly",
+      "var": "asthma",
+      "value": false
+    },
+    {
+      "var": "diabetes",
       "value": false
     }
   ],

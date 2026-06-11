@@ -17,11 +17,11 @@
     },
     {
       "var": "heart_failure",
-      "value": false
+      "value": true
     },
     {
       "var": "elderly",
-      "value": false
+      "value": true
     },
     {
       "var": "prior_gi_bleed",

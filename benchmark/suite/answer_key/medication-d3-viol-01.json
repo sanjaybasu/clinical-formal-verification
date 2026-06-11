@@ -3,7 +3,11 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "asthma",
+      "var": "diabetes",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
       "value": true
     },
     {
@@ -11,11 +15,7 @@
       "value": true
     },
     {
-      "var": "heart_failure",
-      "value": true
-    },
-    {
-      "var": "elderly",
+      "var": "hyperkalemia",
       "value": false
     }
   ],

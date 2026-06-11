@@ -11,19 +11,15 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "heart_failure",
+        "name": "bradycardia",
         "type": "bool"
       },
       {
-        "name": "peptic_ulcer",
+        "name": "pregnancy",
         "type": "bool"
       },
       {
-        "name": "diabetes",
-        "type": "bool"
-      },
-      {
-        "name": "asthma",
+        "name": "seizure_history",
         "type": "bool"
       }
     ],
@@ -43,27 +39,14 @@
     ],
     "rules": [
       {
-        "id": "rec_c_from_diabetes",
+        "id": "rec_c_from_seizure_history",
         "priority": 40,
         "when": {
-          "var": "diabetes"
+          "var": "seizure_history"
         },
         "then": [
           {
             "var": "rec_drug_c",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_b_from_trigger",
-        "priority": 50,
-        "when": {
-          "var": "heart_failure"
-        },
-        "then": [
-          {
-            "var": "rec_drug_b",
             "value": true
           }
         ]
@@ -75,10 +58,10 @@
           "op": "and",
           "args": [
             {
-              "var": "heart_failure"
+              "var": "bradycardia"
             },
             {
-              "var": "peptic_ulcer"
+              "var": "pregnancy"
             }
           ]
         },
@@ -90,14 +73,14 @@
         ]
       },
       {
-        "id": "rec_c_from_asthma",
-        "priority": 40,
+        "id": "rec_b_from_trigger",
+        "priority": 50,
         "when": {
-          "var": "asthma"
+          "var": "bradycardia"
         },
         "then": [
           {
-            "var": "rec_drug_c",
+            "var": "rec_drug_b",
             "value": true
           }
         ]

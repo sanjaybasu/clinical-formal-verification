@@ -4,31 +4,31 @@
   "verdict": "violated",
   "witness": [
     {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
       "event": "optout"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
     },
     {
       "event": "send_attempt"
@@ -36,7 +36,7 @@
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "The property G(opted_out implies not sent) is VIOLATED via the t_resume_glitch transition.\n\nWitness execution (10 events, within the 12-event bound):\n- Start: opted_out=false, sent=false, ticks=0.\n- 8x tick: t_tick fires each time (guard true). ticks increments 0->1->...->8 (capped at 8 by the if), sent stays false. State: opted_out=false, sent=false, ticks=8.\n- optout: t_optout fires (guard true) -> opted_out:=true, sent:=false. State: opted_out=true, sent=false, ticks=8.\n- send_attempt: at this state both t_send_blocked (guard opted_out=true) and t_resume_glitch (guard opted_out=true AND ticks>=8, i.e. 8>=8 true) are enabled. No priority is declared among enabled transitions, so selection is nondeterministic and t_resume_glitch is a legal choice. It applies sent:=true. Resulting state: opted_out=true, sent=true, ticks=8.\n\nIn that final reachable state opted_out is true while sent is true, so \"opted_out implies not sent\" is false, violating the global property. The t_resume_glitch rule is the bug: it sets sent:=true under opted_out once ticks saturates at 8, overriding the opt-out suppression intended by t_send_blocked.",
+    "reasoning": "The property requires globally (opted_out implies not sent). Transition t5 directly violates this: \"on send_attempt if (opted_out and ticks >= 8): sent := true\". This sets sent=true while opted_out remains true.\n\nReachability of t5's guard: Start at (opted_out=false, sent=false, ticks=0). Fire 'optout' (t1) -> opted_out=true, sent=false, ticks=0. Fire 'tick' (t4) eight times -> ticks increments 0->1->...->8 (capped at 8), each setting sent=false; result (opted_out=true, sent=false, ticks=8). Now fire 'send_attempt': t2's guard (not opted_out) is false; t3's guard (opted_out) is true and t5's guard (opted_out and ticks>=8) is also true, so both t3 and t5 are enabled simultaneously (nondeterministic conflict). Taking t5 yields (opted_out=true, sent=true, ticks=8), which violates opted_out implies not sent.\n\nEvent count = 1 (optout) + 8 (tick) + 1 (send_attempt) = 10, within the 12-event bound. Therefore the property is violated.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

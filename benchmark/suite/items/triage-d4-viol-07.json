@@ -11,19 +11,7 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "dyspnea",
-        "type": "bool"
-      },
-      {
-        "name": "vomiting",
-        "type": "bool"
-      },
-      {
-        "name": "rash",
-        "type": "bool"
-      },
-      {
-        "name": "severe_headache",
+        "name": "chest_pain",
         "type": "bool"
       },
       {
@@ -31,11 +19,23 @@
         "type": "bool"
       },
       {
-        "name": "chest_pain",
+        "name": "slurred_speech",
         "type": "bool"
       },
       {
-        "name": "dizziness",
+        "name": "severe_headache",
+        "type": "bool"
+      },
+      {
+        "name": "pallor",
+        "type": "bool"
+      },
+      {
+        "name": "rash",
+        "type": "bool"
+      },
+      {
+        "name": "abdominal_pain",
         "type": "bool"
       }
     ],
@@ -53,6 +53,19 @@
     ],
     "rules": [
       {
+        "id": "raise_rash",
+        "priority": 2,
+        "when": {
+          "var": "rash"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
         "id": "raise_chest_pain",
         "priority": 2,
         "when": {
@@ -66,15 +79,55 @@
         ]
       },
       {
-        "id": "raise_vomiting",
+        "id": "raise_abdominal_pain",
+        "priority": 2,
+        "when": {
+          "var": "abdominal_pain"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_pallor",
         "priority": 3,
         "when": {
-          "var": "vomiting"
+          "var": "pallor"
         },
         "then": [
           {
             "var": "acuity",
             "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "interaction_drop",
+        "priority": 100,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "chest_pain"
+            },
+            {
+              "var": "palpitations"
+            },
+            {
+              "var": "slurred_speech"
+            },
+            {
+              "var": "severe_headache"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "self_care"
           }
         ]
       },
@@ -92,68 +145,15 @@
         ]
       },
       {
-        "id": "raise_rash",
+        "id": "raise_slurred_speech",
         "priority": 2,
         "when": {
-          "var": "rash"
+          "var": "slurred_speech"
         },
         "then": [
           {
             "var": "acuity",
             "value": "urgent"
-          }
-        ]
-      },
-      {
-        "id": "raise_dyspnea",
-        "priority": 2,
-        "when": {
-          "var": "dyspnea"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "urgent"
-          }
-        ]
-      },
-      {
-        "id": "raise_dizziness",
-        "priority": 2,
-        "when": {
-          "var": "dizziness"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "urgent"
-          }
-        ]
-      },
-      {
-        "id": "interaction_drop",
-        "priority": 100,
-        "when": {
-          "op": "and",
-          "args": [
-            {
-              "var": "dyspnea"
-            },
-            {
-              "var": "vomiting"
-            },
-            {
-              "var": "rash"
-            },
-            {
-              "var": "severe_headache"
-            }
-          ]
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "self_care"
           }
         ]
       }

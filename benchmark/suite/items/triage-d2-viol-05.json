@@ -15,19 +15,11 @@
         "type": "bool"
       },
       {
-        "name": "vision_loss",
+        "name": "back_pain",
         "type": "bool"
       },
       {
-        "name": "severe_headache",
-        "type": "bool"
-      },
-      {
-        "name": "dizziness",
-        "type": "bool"
-      },
-      {
-        "name": "vomiting",
+        "name": "abdominal_pain",
         "type": "bool"
       }
     ],
@@ -45,23 +37,10 @@
     ],
     "rules": [
       {
-        "id": "raise_vomiting",
+        "id": "raise_abdominal_pain",
         "priority": 3,
         "when": {
-          "var": "vomiting"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "emergent"
-          }
-        ]
-      },
-      {
-        "id": "raise_severe_headache",
-        "priority": 3,
-        "when": {
-          "var": "severe_headache"
+          "var": "abdominal_pain"
         },
         "then": [
           {
@@ -93,7 +72,7 @@
               "var": "focal_weakness"
             },
             {
-              "var": "vision_loss"
+              "var": "back_pain"
             }
           ]
         },
@@ -101,19 +80,6 @@
           {
             "var": "acuity",
             "value": "self_care"
-          }
-        ]
-      },
-      {
-        "id": "raise_dizziness",
-        "priority": 3,
-        "when": {
-          "var": "dizziness"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "emergent"
           }
         ]
       }
@@ -131,12 +97,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "vision_loss",
+        "var": "back_pain",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting vision_loss true never lowers acuity"
+    "intent": "setting back_pain true never lowers acuity"
   }
 }

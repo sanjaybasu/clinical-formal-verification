@@ -13,11 +13,11 @@
     },
     {
       "var": "vomiting",
-      "value": true
+      "value": false
     },
     {
       "var": "pallor",
-      "value": false
+      "value": true
     },
     {
       "var": "focal_weakness__base",
@@ -29,11 +29,11 @@
     },
     {
       "var": "vomiting__base",
-      "value": true
+      "value": false
     },
     {
       "var": "pallor__base",
-      "value": false
+      "value": true
     }
   ],
   "seconds": 0.0,

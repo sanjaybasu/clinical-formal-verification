@@ -1,0 +1,58 @@
+{
+  "item": "triage-d5-viol-06",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "chest_pain",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "hemoptysis",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "slurred_speech",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": false
+    },
+    {
+      "var": "chest_pain__base",
+      "value": true
+    },
+    {
+      "var": "palpitations__base",
+      "value": true
+    },
+    {
+      "var": "hemoptysis__base",
+      "value": true
+    },
+    {
+      "var": "rash__base",
+      "value": true
+    },
+    {
+      "var": "slurred_speech__base",
+      "value": false
+    },
+    {
+      "var": "dyspnea__base",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 5,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 5 produces the violation; see generate.py for the construction"
+}

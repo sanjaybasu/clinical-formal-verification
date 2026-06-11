@@ -3,19 +3,19 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "palpitations",
+      "var": "fever",
       "value": true
     },
     {
-      "var": "abdominal_pain",
+      "var": "hemoptysis",
       "value": true
     },
     {
-      "var": "rash",
+      "var": "severe_headache",
       "value": false
     },
     {
-      "var": "focal_weakness",
+      "var": "stiff_neck",
       "value": false
     },
     {
@@ -23,19 +23,19 @@
       "value": false
     },
     {
-      "var": "palpitations__base",
+      "var": "fever__base",
       "value": true
     },
     {
-      "var": "abdominal_pain__base",
+      "var": "hemoptysis__base",
       "value": false
     },
     {
-      "var": "rash__base",
+      "var": "severe_headache__base",
       "value": false
     },
     {
-      "var": "focal_weakness__base",
+      "var": "stiff_neck__base",
       "value": false
     },
     {

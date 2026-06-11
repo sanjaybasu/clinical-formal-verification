@@ -1,0 +1,202 @@
+{
+  "id": "triage-d5-viol-02",
+  "domain": "triage",
+  "metadata": {
+    "description": "symptom-to-acuity rules; adding a red flag must not lower acuity",
+    "source": "synthetic",
+    "clinical_intent": "no red-flag symptom, once present, may lower the assigned acuity"
+  },
+  "ruleset": {
+    "id": "triage-5-2",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "rash",
+        "type": "bool"
+      },
+      {
+        "name": "fever",
+        "type": "bool"
+      },
+      {
+        "name": "slurred_speech",
+        "type": "bool"
+      },
+      {
+        "name": "syncope",
+        "type": "bool"
+      },
+      {
+        "name": "severe_headache",
+        "type": "bool"
+      },
+      {
+        "name": "back_pain",
+        "type": "bool"
+      },
+      {
+        "name": "vision_loss",
+        "type": "bool"
+      },
+      {
+        "name": "confusion",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "acuity",
+        "type": "enum",
+        "domain": [
+          "self_care",
+          "routine",
+          "urgent",
+          "emergent"
+        ]
+      }
+    ],
+    "rules": [
+      {
+        "id": "raise_fever",
+        "priority": 3,
+        "when": {
+          "var": "fever"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_rash",
+        "priority": 2,
+        "when": {
+          "var": "rash"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_vision_loss",
+        "priority": 2,
+        "when": {
+          "var": "vision_loss"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_slurred_speech",
+        "priority": 2,
+        "when": {
+          "var": "slurred_speech"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_syncope",
+        "priority": 3,
+        "when": {
+          "var": "syncope"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "interaction_drop",
+        "priority": 100,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "rash"
+            },
+            {
+              "var": "fever"
+            },
+            {
+              "var": "slurred_speech"
+            },
+            {
+              "var": "syncope"
+            },
+            {
+              "var": "severe_headache"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "self_care"
+          }
+        ]
+      },
+      {
+        "id": "raise_confusion",
+        "priority": 2,
+        "when": {
+          "var": "confusion"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_back_pain",
+        "priority": 2,
+        "when": {
+          "var": "back_pain"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "acuity",
+        "value": "routine"
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "redflag-never-lowers-acuity",
+    "kind": "monotonicity",
+    "monotonicity": {
+      "perturbation": {
+        "var": "severe_headache",
+        "change": "set_true"
+      },
+      "monotone_var": "acuity",
+      "direction": "nondecreasing"
+    },
+    "intent": "setting severe_headache true never lowers acuity"
+  }
+}

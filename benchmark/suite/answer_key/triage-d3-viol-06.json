@@ -3,51 +3,35 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "dizziness",
-      "value": true
-    },
-    {
-      "var": "syncope",
-      "value": true
-    },
-    {
-      "var": "rash",
+      "var": "chest_pain",
       "value": true
     },
     {
       "var": "dyspnea",
-      "value": false
-    },
-    {
-      "var": "fever",
-      "value": false
+      "value": true
     },
     {
       "var": "palpitations",
-      "value": false
-    },
-    {
-      "var": "dizziness__base",
       "value": true
     },
     {
-      "var": "syncope__base",
-      "value": true
+      "var": "sweating",
+      "value": false
     },
     {
-      "var": "rash__base",
-      "value": false
+      "var": "chest_pain__base",
+      "value": true
     },
     {
       "var": "dyspnea__base",
-      "value": false
-    },
-    {
-      "var": "fever__base",
-      "value": false
+      "value": true
     },
     {
       "var": "palpitations__base",
+      "value": false
+    },
+    {
+      "var": "sweating__base",
       "value": false
     }
   ],

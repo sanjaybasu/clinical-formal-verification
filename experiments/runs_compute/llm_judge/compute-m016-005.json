@@ -4,6 +4,9 @@
   "verdict": "violated",
   "witness": [
     {
+      "event": "optout"
+    },
+    {
       "event": "step_0"
     },
     {
@@ -16,15 +19,12 @@
       "event": "step_1"
     },
     {
-      "event": "optout"
-    },
-    {
       "event": "send_attempt"
     }
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "The safety property G(opted_out -> not sent) is VIOLATED. The faulty t_resume_glitch transition fires send (sent:=true) on send_attempt when opted_out is true AND acc==2, so the question reduces to whether acc==2 is reachable from acc=0. The three step events implement modular recurrences over acc in [0,15]: step_0 maps acc -> (3*acc+7) mod 16, while step_1 and step_2 both map acc -> (3*acc+1) mod 16 (the nested if-chains just compute mod-16 via up-to-three subtractions of 16, which fully covers the range since max 3*15+7=52 < 16*4). BFS over the reachable acc values shows all of [0..15] are reachable, including the target 2. A concrete minimal path: acc 0 ->(step_0) 7 ->(step_0) 12 ->(step_0) 11 ->(step_1) 2. acc=11 gives 3*11+1=34, 34-16=18, 18-16=2. Then optout sets opted_out=true (acc unchanged at 2, sent reset to false), and send_attempt now matches t_resume_glitch (opted_out and acc==2) and sets sent:=true. Full simulation through the state machine confirms the final state has opted_out=true and sent=true, violating the invariant in 6 events (well within the 18-event bound). Note: the step events set sent:=false but do not change opted_out, and optout does not change acc, so doing all four steps first then optout then send_attempt cleanly preserves acc=2 at the send_attempt. Verdict: violated.",
+    "reasoning": "The property G(opted_out implies not sent) is VIOLATED.\n\nTransition t4 is the culprit: `on send_attempt if (opted_out and acc == 2): sent := true`. This sets sent=true while opted_out is true, directly contradicting the property \u2014 but only when acc equals exactly 2. The question is whether acc==2 is reachable while opted_out is true.\n\nThe acc update functions in t5/t6/t7 each compute (3*acc + c) mod 16 (the nested if-then-else subtracts 16 up to 3 times, which equals modulo-16 reduction for the operand ranges involved: max 3*15+7=52, requiring at most 3 subtractions). step_0 uses c=7; step_1 and step_2 use c=1. I verified reduce3(x)==x%16 for all relevant inputs.\n\nA 6-event witness reaches the violating state (BFS confirms; well within the 18-event bound):\n1. optout        -> opted_out=true, sent=false, acc=0   (t1)\n2. step_0        -> acc=(3*0+7)%16=7\n3. step_0        -> acc=(3*7+7)%16=28%16=12\n4. step_0        -> acc=(3*12+7)%16=43%16=11\n5. step_1        -> acc=(3*11+1)%16=34%16=2\n6. send_attempt  -> opted_out=true AND acc==2, so t4 fires -> sent=true\n\nFinal state: opted_out=true, sent=true, acc=2. This is a reachable state where opted_out is true yet sent is true, violating the safety property. The opt-out exception for acc==2 (t4) is unsafe because acc=2 is reachable post-opt-out via the modular accumulator dynamics.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

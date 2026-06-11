@@ -4,9 +4,6 @@
   "verdict": "violated",
   "witness": [
     {
-      "event": "optout"
-    },
-    {
       "event": "key_2"
     },
     {
@@ -25,12 +22,15 @@
       "event": "key_2"
     },
     {
+      "event": "optout"
+    },
+    {
       "event": "send_attempt"
     }
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "The property G(opted_out implies not sent) is VIOLATED. The escape hatch is t_resume_glitch [line 31]: on send_attempt, if (opted_out and stage >= 6), it sets sent := true. So if the lock reaches stage 6 while opted_out is true, a send goes through despite the opt-out.\n\nAdvancement chain (which key advances each stage): stage0->1 key_2 (adv_0), 1->2 key_2 (adv_1), 2->3 key_0 (adv_2), 3->4 key_2 (adv_3), 4->5 key_2 (adv_4), 5->6 key_2 (adv_5). The combination is therefore key_2,key_2,key_0,key_2,key_2,key_2. The wrong key (key_0 or key_1) at most stages, and key_1/key_2 at stage 2, reset stage to 0. Crucially, none of the adv/rst transitions read or modify opted_out, and t_optout preserves stage. So opting out first does NOT block stage progression and does NOT reset the lock.\n\nTrace of optout, key_2, key_2, key_0, key_2, key_2, key_2, send_attempt:\ninit: opted_out=F, sent=F, stage=0\noptout -> t_optout: opted_out=T, sent=F, stage=0\nkey_2 (stage0) -> adv_0: stage=1 (opted_out=T)\nkey_2 (stage1) -> adv_1: stage=2\nkey_0 (stage2) -> adv_2: stage=3\nkey_2 (stage3) -> adv_3: stage=4\nkey_2 (stage4) -> adv_4: stage=5\nkey_2 (stage5) -> adv_5: stage=6\nsend_attempt: opted_out=T, not-opted-out guard fails so t_send_allowed off; t_send_blocked needs stage<6 (false); t_resume_glitch fires (opted_out and stage>=6) -> sent=T.\n\nFinal state: opted_out=T AND sent=T, which violates (opted_out implies not sent). Length is 8 events, within the 9-event bound. Note send_attempt could equivalently be placed at any point after stage reaches 6.",
+    "reasoning": "The property globally(opted_out implies not sent) is VIOLATED.\n\nThe danger transition is t22: on send_attempt if (opted_out and stage >= 6): sent := true. This sets sent=true while opted_out is true. The property holds only if no reachable state can have both opted_out=true and stage>=6 followed by a send_attempt. But it can.\n\nKey observations: (1) optout (t1) sets opted_out=true but does NOT reset stage. (2) The key_* transitions are guarded only on stage and are independent of opted_out, so the stage counter can be advanced to 6 and then optout fired without resetting stage.\n\nTo reach stage 6, follow the advancement chain: 0->1 (key_2/t3), 1->2 (key_2/t6), 2->3 (key_0/t9, note this stage uses key_0 not key_2), 3->4 (key_2/t12), 4->5 (key_2/t15), 5->6 (key_2/t18). That is 6 events: key_2, key_2, key_0, key_2, key_2, key_2.\n\nCounterexample trace (8 events, within the 9-event bound):\n1. key_2: stage 0->1, state (opted_out=F, sent=F, stage=1)\n2. key_2: stage 1->2, (F, F, 2)\n3. key_0: stage 2->3, (F, F, 3)\n4. key_2: stage 3->4, (F, F, 4)\n5. key_2: stage 4->5, (F, F, 5)\n6. key_2: stage 5->6, (F, F, 6)\n7. optout: t1, (opted_out=T, sent=F, stage=6)\n8. send_attempt: opted_out=T and stage>=6, so t22 fires, sent:=T, giving (opted_out=T, sent=T, stage=6).\n\nThe final state has opted_out=true and sent=true, directly violating opted_out implies not sent.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

@@ -11,23 +11,27 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "dyspnea",
-        "type": "bool"
-      },
-      {
         "name": "palpitations",
         "type": "bool"
       },
       {
-        "name": "fever",
+        "name": "rash",
         "type": "bool"
       },
       {
-        "name": "vision_loss",
+        "name": "chest_pain",
         "type": "bool"
       },
       {
-        "name": "abdominal_pain",
+        "name": "dizziness",
+        "type": "bool"
+      },
+      {
+        "name": "focal_weakness",
+        "type": "bool"
+      },
+      {
+        "name": "hemoptysis",
         "type": "bool"
       }
     ],
@@ -45,23 +49,10 @@
     ],
     "rules": [
       {
-        "id": "raise_dyspnea",
-        "priority": 2,
-        "when": {
-          "var": "dyspnea"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "urgent"
-          }
-        ]
-      },
-      {
-        "id": "raise_abdominal_pain",
+        "id": "raise_rash",
         "priority": 3,
         "when": {
-          "var": "abdominal_pain"
+          "var": "rash"
         },
         "then": [
           {
@@ -71,10 +62,23 @@
         ]
       },
       {
-        "id": "raise_vision_loss",
+        "id": "raise_hemoptysis",
         "priority": 2,
         "when": {
-          "var": "vision_loss"
+          "var": "hemoptysis"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_palpitations",
+        "priority": 2,
+        "when": {
+          "var": "palpitations"
         },
         "then": [
           {
@@ -90,13 +94,13 @@
           "op": "and",
           "args": [
             {
-              "var": "dyspnea"
-            },
-            {
               "var": "palpitations"
             },
             {
-              "var": "fever"
+              "var": "rash"
+            },
+            {
+              "var": "chest_pain"
             }
           ]
         },
@@ -108,15 +112,28 @@
         ]
       },
       {
-        "id": "raise_palpitations",
+        "id": "raise_dizziness",
         "priority": 3,
         "when": {
-          "var": "palpitations"
+          "var": "dizziness"
         },
         "then": [
           {
             "var": "acuity",
             "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_focal_weakness",
+        "priority": 2,
+        "when": {
+          "var": "focal_weakness"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
           }
         ]
       }
@@ -134,12 +151,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "fever",
+        "var": "chest_pain",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting fever true never lowers acuity"
+    "intent": "setting chest_pain true never lowers acuity"
   }
 }

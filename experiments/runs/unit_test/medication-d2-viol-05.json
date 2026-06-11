@@ -13,7 +13,7 @@
     },
     {
       "var": "asthma",
-      "value": false
+      "value": true
     }
   ],
   "seconds": 0.0,

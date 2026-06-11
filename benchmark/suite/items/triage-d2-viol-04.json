@@ -15,15 +15,15 @@
         "type": "bool"
       },
       {
-        "name": "vomiting",
+        "name": "hemoptysis",
         "type": "bool"
       },
       {
-        "name": "dyspnea",
+        "name": "palpitations",
         "type": "bool"
       },
       {
-        "name": "fever",
+        "name": "vision_loss",
         "type": "bool"
       }
     ],
@@ -41,23 +41,10 @@
     ],
     "rules": [
       {
-        "id": "raise_fever",
-        "priority": 3,
-        "when": {
-          "var": "fever"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "emergent"
-          }
-        ]
-      },
-      {
-        "id": "raise_dyspnea",
+        "id": "raise_rash",
         "priority": 2,
         "when": {
-          "var": "dyspnea"
+          "var": "rash"
         },
         "then": [
           {
@@ -67,10 +54,10 @@
         ]
       },
       {
-        "id": "raise_rash",
+        "id": "raise_vision_loss",
         "priority": 2,
         "when": {
-          "var": "rash"
+          "var": "vision_loss"
         },
         "then": [
           {
@@ -89,7 +76,7 @@
               "var": "rash"
             },
             {
-              "var": "vomiting"
+              "var": "hemoptysis"
             }
           ]
         },
@@ -97,6 +84,19 @@
           {
             "var": "acuity",
             "value": "self_care"
+          }
+        ]
+      },
+      {
+        "id": "raise_palpitations",
+        "priority": 2,
+        "when": {
+          "var": "palpitations"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
           }
         ]
       }
@@ -114,12 +114,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "vomiting",
+        "var": "hemoptysis",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting vomiting true never lowers acuity"
+    "intent": "setting hemoptysis true never lowers acuity"
   }
 }

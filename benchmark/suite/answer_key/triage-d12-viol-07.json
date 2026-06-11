@@ -1,0 +1,114 @@
+{
+  "item": "triage-d12-viol-07",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "sweating",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": true
+    },
+    {
+      "var": "slurred_speech",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": true
+    },
+    {
+      "var": "chest_pain",
+      "value": true
+    },
+    {
+      "var": "dizziness",
+      "value": true
+    },
+    {
+      "var": "vision_loss",
+      "value": true
+    },
+    {
+      "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "leg_swelling",
+      "value": true
+    },
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "vomiting",
+      "value": false
+    },
+    {
+      "var": "fever__base",
+      "value": true
+    },
+    {
+      "var": "sweating__base",
+      "value": true
+    },
+    {
+      "var": "back_pain__base",
+      "value": true
+    },
+    {
+      "var": "slurred_speech__base",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain__base",
+      "value": true
+    },
+    {
+      "var": "dyspnea__base",
+      "value": true
+    },
+    {
+      "var": "chest_pain__base",
+      "value": true
+    },
+    {
+      "var": "dizziness__base",
+      "value": true
+    },
+    {
+      "var": "vision_loss__base",
+      "value": true
+    },
+    {
+      "var": "syncope__base",
+      "value": true
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": true
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": false
+    },
+    {
+      "var": "vomiting__base",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 12,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 12 produces the violation; see generate.py for the construction"
+}

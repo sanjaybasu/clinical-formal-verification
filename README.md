@@ -74,7 +74,7 @@ oracle, every counterexample replay-confirmed) is in `experiments/results_combin
 from the raw per-item outputs by `experiments/analyze.py` with no hand-entered numbers. In short:
 across all 440 items complete verification returned no verdict that contradicted ground truth (it
 proves, refutes with a replayable counterexample, or abstains); the unit-test suite returned a
-false statement of safety on 63 violated items, with detection falling as interaction depth rose;
+false statement of safety on 68 violated items, with detection falling as interaction depth rose;
 and a frontier language-model judge detected every violation but supplies no proof or coverage
 guarantee. No method detected every violation across all regimes. The distinguishing property of
 complete verification is the class of evidence it returns, not a higher detection rate.

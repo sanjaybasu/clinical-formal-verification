@@ -1,0 +1,39 @@
+You are auditing a clinical decision system for a safety property. Decide whether the property holds for the entire input space, or whether some input or execution violates it.
+
+Inputs:
+  sweating: boolean
+  palpitations: boolean
+  vision_loss: boolean
+  rash: boolean
+  chest_pain: boolean
+  fever: boolean
+  vomiting: boolean
+  back_pain: boolean
+  confusion: boolean
+  stiff_neck: boolean
+  focal_weakness: boolean
+  severe_headache: boolean
+  dyspnea: boolean
+Outputs:
+  acuity: one of [self_care, routine, urgent, emergent] (ordered low to high)
+Conflict resolution: priority (per output, the matching rule with the highest priority wins; ties broken by order)
+Rules:
+  [r1, priority 3] IF rash THEN acuity := emergent
+  [r2, priority 100] IF (sweating and palpitations and vision_loss and rash and chest_pain and fever and vomiting and back_pain and confusion and stiff_neck and focal_weakness and severe_headache) THEN acuity := self_care
+  [r3, priority 2] IF confusion THEN acuity := urgent
+  [r4, priority 2] IF chest_pain THEN acuity := urgent
+  [r5, priority 3] IF palpitations THEN acuity := emergent
+  [r6, priority 3] IF stiff_neck THEN acuity := emergent
+  [r7, priority 2] IF vision_loss THEN acuity := urgent
+  [r8, priority 3] IF fever THEN acuity := emergent
+  [r9, priority 2] IF sweating THEN acuity := urgent
+  [r10, priority 2] IF focal_weakness THEN acuity := urgent
+  [r11, priority 3] IF back_pain THEN acuity := emergent
+  [r12, priority 2] IF vomiting THEN acuity := urgent
+  [r13, priority 3] IF dyspnea THEN acuity := emergent
+Default (for any output left unset): acuity := routine
+
+Property (monotonicity): for any input, if severe_headache is set to true while every other input is unchanged, then acuity must be no lower than before (enum order is the listed order).
+Plain-language intent: setting severe_headache true never lowers acuity
+
+Reason carefully about interactions between rules, priorities, and defaults. Then answer whether the property holds or is violated. If it is violated, give one concrete counterexample: for a decision system, the input assignment (every input variable); for a state machine, the sequence of events. Do not assume a violation exists; many systems are correct.

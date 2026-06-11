@@ -15,11 +15,11 @@
         "type": "bool"
       },
       {
-        "name": "heart_failure",
+        "name": "prior_gi_bleed",
         "type": "bool"
       },
       {
-        "name": "peptic_ulcer",
+        "name": "pregnancy",
         "type": "bool"
       }
     ],
@@ -39,10 +39,23 @@
     ],
     "rules": [
       {
-        "id": "rec_c_from_heart_failure",
+        "id": "rec_c_from_pregnancy",
         "priority": 40,
         "when": {
-          "var": "heart_failure"
+          "var": "pregnancy"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_prior_gi_bleed",
+        "priority": 40,
+        "when": {
+          "var": "prior_gi_bleed"
         },
         "then": [
           {
@@ -60,19 +73,6 @@
         "then": [
           {
             "var": "rec_drug_a",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_c_from_peptic_ulcer",
-        "priority": 40,
-        "when": {
-          "var": "peptic_ulcer"
-        },
-        "then": [
-          {
-            "var": "rec_drug_c",
             "value": true
           }
         ]

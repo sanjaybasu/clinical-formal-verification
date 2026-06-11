@@ -11,7 +11,7 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "palpitations",
+        "name": "rash",
         "type": "bool"
       },
       {
@@ -29,10 +29,6 @@
       {
         "name": "vision_loss",
         "type": "bool"
-      },
-      {
-        "name": "vomiting",
-        "type": "bool"
       }
     ],
     "outputs": [
@@ -49,15 +45,28 @@
     ],
     "rules": [
       {
-        "id": "raise_severe_headache",
-        "priority": 3,
+        "id": "raise_chest_pain",
+        "priority": 2,
         "when": {
-          "var": "severe_headache"
+          "var": "chest_pain"
         },
         "then": [
           {
             "var": "acuity",
-            "value": "emergent"
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_rash",
+        "priority": 2,
+        "when": {
+          "var": "rash"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
           }
         ]
       },
@@ -68,7 +77,7 @@
           "op": "and",
           "args": [
             {
-              "var": "palpitations"
+              "var": "rash"
             },
             {
               "var": "severe_headache"
@@ -89,54 +98,28 @@
         ]
       },
       {
-        "id": "raise_vomiting",
-        "priority": 2,
-        "when": {
-          "var": "vomiting"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "urgent"
-          }
-        ]
-      },
-      {
-        "id": "raise_chest_pain",
-        "priority": 2,
-        "when": {
-          "var": "chest_pain"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "urgent"
-          }
-        ]
-      },
-      {
         "id": "raise_vision_loss",
-        "priority": 3,
+        "priority": 2,
         "when": {
           "var": "vision_loss"
         },
         "then": [
           {
             "var": "acuity",
-            "value": "emergent"
+            "value": "urgent"
           }
         ]
       },
       {
-        "id": "raise_palpitations",
-        "priority": 2,
+        "id": "raise_severe_headache",
+        "priority": 3,
         "when": {
-          "var": "palpitations"
+          "var": "severe_headache"
         },
         "then": [
           {
             "var": "acuity",
-            "value": "urgent"
+            "value": "emergent"
           }
         ]
       }

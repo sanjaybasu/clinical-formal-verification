@@ -3,19 +3,23 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "polypharmacy",
+      "var": "bradycardia",
       "value": true
     },
     {
-      "var": "renal_impairment",
+      "var": "low_ejection_fraction",
       "value": true
     },
     {
-      "var": "anticoagulated",
+      "var": "hyperkalemia",
       "value": true
     },
     {
       "var": "heart_failure",
+      "value": false
+    },
+    {
+      "var": "prior_gi_bleed",
       "value": false
     }
   ],

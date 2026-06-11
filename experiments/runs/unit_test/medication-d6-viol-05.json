@@ -29,10 +29,10 @@
     },
     {
       "var": "anticoagulated",
-      "value": true
+      "value": false
     }
   ],
-  "seconds": 0.0001,
+  "seconds": 0.0002,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

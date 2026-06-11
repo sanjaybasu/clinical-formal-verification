@@ -8,16 +8,8 @@
       "transition": "t_tick"
     },
     {
-      "event": "tick",
-      "transition": "t_tick"
-    },
-    {
-      "event": "tick",
-      "transition": "t_tick"
-    },
-    {
-      "event": "optout",
-      "transition": "t_optout"
+      "event": "send_attempt",
+      "transition": "t_send_allowed"
     },
     {
       "event": "tick",
@@ -30,14 +22,6 @@
     {
       "event": "optout",
       "transition": "t_optout"
-    },
-    {
-      "event": "tick",
-      "transition": "t_tick"
-    },
-    {
-      "event": "tick",
-      "transition": "t_tick"
     },
     {
       "event": "tick",
@@ -48,11 +32,27 @@
       "transition": "t_send_blocked"
     },
     {
+      "event": "tick",
+      "transition": "t_tick"
+    },
+    {
+      "event": "tick",
+      "transition": "t_tick"
+    },
+    {
+      "event": "tick",
+      "transition": "t_tick"
+    },
+    {
+      "event": "tick",
+      "transition": "t_tick"
+    },
+    {
       "event": "send_attempt",
       "transition": "t_resume_glitch"
     }
   ],
-  "seconds": 0.0214,
+  "seconds": 0.028,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

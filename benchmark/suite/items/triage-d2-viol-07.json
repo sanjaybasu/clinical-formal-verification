@@ -11,15 +11,23 @@
     "kind": "decision",
     "inputs": [
       {
+        "name": "abdominal_pain",
+        "type": "bool"
+      },
+      {
         "name": "vomiting",
         "type": "bool"
       },
       {
-        "name": "dizziness",
+        "name": "pallor",
         "type": "bool"
       },
       {
-        "name": "abdominal_pain",
+        "name": "leg_swelling",
+        "type": "bool"
+      },
+      {
+        "name": "confusion",
         "type": "bool"
       }
     ],
@@ -37,28 +45,28 @@
     ],
     "rules": [
       {
-        "id": "raise_vomiting",
-        "priority": 2,
+        "id": "raise_pallor",
+        "priority": 3,
         "when": {
-          "var": "vomiting"
+          "var": "pallor"
         },
         "then": [
           {
             "var": "acuity",
-            "value": "urgent"
+            "value": "emergent"
           }
         ]
       },
       {
         "id": "raise_abdominal_pain",
-        "priority": 3,
+        "priority": 2,
         "when": {
           "var": "abdominal_pain"
         },
         "then": [
           {
             "var": "acuity",
-            "value": "emergent"
+            "value": "urgent"
           }
         ]
       },
@@ -69,10 +77,10 @@
           "op": "and",
           "args": [
             {
-              "var": "vomiting"
+              "var": "abdominal_pain"
             },
             {
-              "var": "dizziness"
+              "var": "vomiting"
             }
           ]
         },
@@ -80,6 +88,32 @@
           {
             "var": "acuity",
             "value": "self_care"
+          }
+        ]
+      },
+      {
+        "id": "raise_leg_swelling",
+        "priority": 3,
+        "when": {
+          "var": "leg_swelling"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
+        "id": "raise_confusion",
+        "priority": 3,
+        "when": {
+          "var": "confusion"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
           }
         ]
       }
@@ -97,12 +131,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "dizziness",
+        "var": "vomiting",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting dizziness true never lowers acuity"
+    "intent": "setting vomiting true never lowers acuity"
   }
 }

@@ -5,7 +5,7 @@
   "witness": null,
   "seconds": null,
   "extra": {
-    "reasoning": "The output `acuity` is computed by priority-based rule resolution over 8 input conditions: fever, syncope, sweating, vision_loss, leg_swelling, focal_weakness, abdominal_pain, vomiting (rules at lines 17-24), with a default of `routine` when unset. The input `dizziness` does not appear in ANY rule condition \u2014 it is a no-op input. Therefore, flipping `dizziness` from false to true while holding all other inputs fixed cannot change which rules match, and the resulting acuity is identical in both cases. Since acuity stays exactly equal (hence \"no lower than before\"), the monotonicity property \u2014 setting dizziness true never lowers acuity \u2014 holds for the entire input space. No counterexample exists.",
+    "reasoning": "The input variable `dizziness` does not appear in any rule (r1-r8) nor in the default. All eight rules trigger only on the other inputs: fever (r1), syncope (r2), sweating (r3), vision_loss (r4), leg_swelling (r5), focal_weakness (r6), abdominal_pain (r7), vomiting (r8). The default sets acuity := routine when no rule fires. Because the monotonicity property holds the other eight inputs fixed and only toggles dizziness from false to true, the exact same set of rules matches in both cases, and conflict resolution (priority then order) yields an identical winning assignment. Therefore acuity is exactly equal before and after setting dizziness true \u2014 it can never be lowered. The property \"setting dizziness true never lowers acuity\" is satisfied for the entire input space (the stronger fact, equality, holds). No counterexample exists.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

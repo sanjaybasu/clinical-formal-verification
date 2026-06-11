@@ -25,7 +25,7 @@
     },
     {
       "var": "dyspnea",
-      "value": true
+      "value": false
     },
     {
       "var": "chest_pain__base",
@@ -49,10 +49,10 @@
     },
     {
       "var": "dyspnea__base",
-      "value": true
+      "value": false
     }
   ],
-  "seconds": 0.0001,
+  "seconds": 0.0,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

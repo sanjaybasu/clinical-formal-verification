@@ -11,19 +11,7 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "rash",
-        "type": "bool"
-      },
-      {
-        "name": "palpitations",
-        "type": "bool"
-      },
-      {
-        "name": "severe_headache",
-        "type": "bool"
-      },
-      {
-        "name": "syncope",
+        "name": "stiff_neck",
         "type": "bool"
       },
       {
@@ -31,7 +19,19 @@
         "type": "bool"
       },
       {
-        "name": "focal_weakness",
+        "name": "hemoptysis",
+        "type": "bool"
+      },
+      {
+        "name": "back_pain",
+        "type": "bool"
+      },
+      {
+        "name": "dyspnea",
+        "type": "bool"
+      },
+      {
+        "name": "abdominal_pain",
         "type": "bool"
       }
     ],
@@ -49,10 +49,23 @@
     ],
     "rules": [
       {
-        "id": "raise_palpitations",
+        "id": "raise_stiff_neck",
+        "priority": 2,
+        "when": {
+          "var": "stiff_neck"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_dyspnea",
         "priority": 3,
         "when": {
-          "var": "palpitations"
+          "var": "dyspnea"
         },
         "then": [
           {
@@ -62,10 +75,10 @@
         ]
       },
       {
-        "id": "raise_rash",
+        "id": "raise_abdominal_pain",
         "priority": 2,
         "when": {
-          "var": "rash"
+          "var": "abdominal_pain"
         },
         "then": [
           {
@@ -75,23 +88,10 @@
         ]
       },
       {
-        "id": "raise_focal_weakness",
-        "priority": 2,
-        "when": {
-          "var": "focal_weakness"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "urgent"
-          }
-        ]
-      },
-      {
-        "id": "raise_syncope",
+        "id": "raise_back_pain",
         "priority": 3,
         "when": {
-          "var": "syncope"
+          "var": "back_pain"
         },
         "then": [
           {
@@ -102,14 +102,14 @@
       },
       {
         "id": "raise_vision_loss",
-        "priority": 2,
+        "priority": 3,
         "when": {
           "var": "vision_loss"
         },
         "then": [
           {
             "var": "acuity",
-            "value": "urgent"
+            "value": "emergent"
           }
         ]
       }
@@ -127,12 +127,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "severe_headache",
+        "var": "hemoptysis",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting severe_headache true never lowers acuity"
+    "intent": "setting hemoptysis true never lowers acuity"
   }
 }

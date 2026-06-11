@@ -5,7 +5,7 @@
   "witness": null,
   "seconds": null,
   "extra": {
-    "reasoning": "The property holds. The input variable leg_swelling does not appear in the condition of any rule in the rule set. The eight rules trigger only on back_pain, dyspnea, syncope, stiff_neck, vision_loss, abdominal_pain, slurred_speech, and severe_headache. Because leg_swelling is never read, toggling it from false to true while holding every other input fixed leaves the set of matching rules, the priority-based conflict resolution, and the default (routine) application completely unchanged. Therefore acuity is exactly equal before and after the toggle. Equality satisfies the monotonicity requirement that acuity be \"no lower than before,\" so the property holds across the entire input space. No counterexample exists.",
+    "reasoning": "The input variable leg_swelling does not appear in any of the 8 rules (r1-r8) nor in the default assignment. The rules reference only back_pain, dyspnea, syncope, stiff_neck, vision_loss, abdominal_pain, slurred_speech, and severe_headache. The default (acuity := routine) applies only when no rule fires, which also depends solely on those 8 other inputs.\n\nTherefore, holding every other input fixed and flipping leg_swelling from false to true cannot change the set of matching rules, cannot change which rule wins under priority/order conflict resolution, and cannot change whether the default applies. The output acuity is identical before and after. Identical acuity is trivially 'no lower than before,' so the monotonicity property (setting leg_swelling true never lowers acuity) holds for the entire input space. leg_swelling is an inert variable with respect to acuity.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

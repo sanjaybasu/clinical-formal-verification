@@ -4,37 +4,37 @@
   "verdict": "violated",
   "witness": [
     {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
       "event": "optout"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
     },
     {
       "event": "send_attempt"
@@ -42,7 +42,7 @@
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "This is a state machine. The property requires that globally (opted_out implies not sent): whenever opted_out is true, sent must be false.\n\nThe transition t_resume_glitch directly threatens this: [t_resume_glitch] on send_attempt if (opted_out and ticks >= 10): sent := true. This sets sent=true while opted_out is true, which contradicts the property \u2014 provided it is reachable and can fire.\n\nReachability of its guard (opted_out=true AND ticks>=10):\n- ticks reaches 10 via t_tick, which increments ticks while ticks<10 (and resets sent to false). Ten tick events take ticks 0->1->...->10.\n- t_optout fires on optout unconditionally, setting opted_out=true (and sent=false), leaving ticks unchanged.\n\nWitness execution (12 events, within the 14-event bound):\nInitial: opted_out=false, sent=false, ticks=0.\n1-10. tick x10: ticks=10, sent=false, opted_out=false.\n11. optout: opted_out=true, sent=false, ticks=10.\n12. send_attempt: state has opted_out=true and ticks>=10, so t_resume_glitch is enabled and fires, setting sent:=true.\n\nResulting state: opted_out=true AND sent=true, which violates opted_out implies not sent.\n\nNote on transition selection: at the final send_attempt both t_send_blocked (guard opted_out) and t_resume_glitch (guard opted_out and ticks>=10) are enabled. Since the property must hold on EVERY reachable execution, and an execution exists in which the more-specific t_resume_glitch is selected, the property is violated. The glitch transition is precisely the modeled defect (a \"resume after tick cap\" that ignores opt-out).",
+    "reasoning": "The property G(opted_out implies not sent) requires that no reachable state has opted_out=true and sent=true simultaneously. Transition t5 directly defeats this: on send_attempt, when opted_out=true AND ticks>=10, it sets sent:=true. So if t5 is ever enabled and applied, the resulting state has opted_out=true and sent=true, violating the property.\n\nReachability of t5's guard: Start at opted_out=false, sent=false, ticks=0. Fire optout (t1): opted_out=true, sent=false, ticks=0. Fire tick ten times (t4): each tick increments ticks (capped at 10) and sets sent=false; after 10 ticks the state is opted_out=true, sent=false, ticks=10. Now fire send_attempt: the guard of t5 (opted_out and ticks>=10) holds, so t5 applies sent:=true, yielding opted_out=true, sent=true, ticks=10 \u2014 a violating state.\n\nNote that under send_attempt with opted_out=true and ticks>=10 both t3 (sets sent:=false) and t5 (sets sent:=true) are enabled, a genuine conflict. But t5 is an explicitly defined enabled transition, so the system can take it, producing the bad state. There is no stated priority preventing t5, and any interpretation that allows t5 to fire reaches the violation. The witnessing execution is 12 events long, within the 14-event bound. Hence the property is violated.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

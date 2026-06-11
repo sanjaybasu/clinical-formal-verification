@@ -8,16 +8,12 @@
       "transition": "t_send_allowed"
     },
     {
-      "event": "send_attempt",
-      "transition": "t_send_allowed"
+      "event": "tick",
+      "transition": "t_tick"
     },
     {
       "event": "optout",
       "transition": "t_optout"
-    },
-    {
-      "event": "tick",
-      "transition": "t_tick"
     },
     {
       "event": "send_attempt",

@@ -37,18 +37,18 @@
     },
     {
       "var": "hypertension",
-      "value": true
+      "value": false
     },
     {
       "var": "diabetes",
-      "value": true
+      "value": false
     },
     {
       "var": "renal_impairment",
       "value": true
     }
   ],
-  "seconds": 0.0012,
+  "seconds": 0.0002,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

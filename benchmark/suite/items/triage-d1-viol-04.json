@@ -11,11 +11,15 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "palpitations",
+        "name": "dyspnea",
         "type": "bool"
       },
       {
-        "name": "vision_loss",
+        "name": "fever",
+        "type": "bool"
+      },
+      {
+        "name": "dizziness",
         "type": "bool"
       }
     ],
@@ -33,10 +37,10 @@
     ],
     "rules": [
       {
-        "id": "raise_vision_loss",
+        "id": "raise_fever",
         "priority": 3,
         "when": {
-          "var": "vision_loss"
+          "var": "fever"
         },
         "then": [
           {
@@ -49,12 +53,25 @@
         "id": "interaction_drop",
         "priority": 100,
         "when": {
-          "var": "palpitations"
+          "var": "dyspnea"
         },
         "then": [
           {
             "var": "acuity",
             "value": "self_care"
+          }
+        ]
+      },
+      {
+        "id": "raise_dizziness",
+        "priority": 2,
+        "when": {
+          "var": "dizziness"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
           }
         ]
       }
@@ -72,12 +89,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "palpitations",
+        "var": "dyspnea",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting palpitations true never lowers acuity"
+    "intent": "setting dyspnea true never lowers acuity"
   }
 }

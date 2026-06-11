@@ -3,35 +3,43 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "vision_loss",
-      "value": true
-    },
-    {
-      "var": "chest_pain",
-      "value": true
-    },
-    {
       "var": "severe_headache",
-      "value": false
-    },
-    {
-      "var": "palpitations",
-      "value": false
-    },
-    {
-      "var": "vision_loss__base",
       "value": true
     },
     {
-      "var": "chest_pain__base",
+      "var": "hemoptysis",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": false
+    },
+    {
+      "var": "confusion",
+      "value": false
+    },
+    {
+      "var": "abdominal_pain",
       "value": false
     },
     {
       "var": "severe_headache__base",
+      "value": true
+    },
+    {
+      "var": "hemoptysis__base",
       "value": false
     },
     {
-      "var": "palpitations__base",
+      "var": "rash__base",
+      "value": false
+    },
+    {
+      "var": "confusion__base",
+      "value": false
+    },
+    {
+      "var": "abdominal_pain__base",
       "value": false
     }
   ],

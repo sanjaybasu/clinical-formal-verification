@@ -1,0 +1,58 @@
+{
+  "item": "triage-d5-viol-05",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "back_pain",
+      "value": true
+    },
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain",
+      "value": true
+    },
+    {
+      "var": "leg_swelling",
+      "value": true
+    },
+    {
+      "var": "dizziness",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": false
+    },
+    {
+      "var": "back_pain__base",
+      "value": true
+    },
+    {
+      "var": "severe_headache__base",
+      "value": true
+    },
+    {
+      "var": "abdominal_pain__base",
+      "value": true
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": true
+    },
+    {
+      "var": "dizziness__base",
+      "value": false
+    },
+    {
+      "var": "rash__base",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 5,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 5 produces the violation; see generate.py for the construction"
+}

@@ -1,54 +1,9 @@
 {
   "item_id": "medication-d10-viol-03",
   "method": "unit_test",
-  "verdict": "violated",
-  "witness": [
-    {
-      "var": "asthma",
-      "value": true
-    },
-    {
-      "var": "peptic_ulcer",
-      "value": true
-    },
-    {
-      "var": "elderly",
-      "value": true
-    },
-    {
-      "var": "qt_prolongation",
-      "value": true
-    },
-    {
-      "var": "bradycardia",
-      "value": true
-    },
-    {
-      "var": "low_ejection_fraction",
-      "value": true
-    },
-    {
-      "var": "anticoagulated",
-      "value": true
-    },
-    {
-      "var": "renal_impairment",
-      "value": true
-    },
-    {
-      "var": "heart_failure",
-      "value": true
-    },
-    {
-      "var": "immunosuppressed",
-      "value": true
-    },
-    {
-      "var": "ckd_dialysis",
-      "value": true
-    }
-  ],
-  "seconds": 0.0039,
+  "verdict": "holds",
+  "witness": null,
+  "seconds": 0.0066,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

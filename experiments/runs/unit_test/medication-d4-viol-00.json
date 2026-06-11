@@ -25,7 +25,7 @@
     },
     {
       "var": "immunosuppressed",
-      "value": true
+      "value": false
     },
     {
       "var": "anticoagulated",

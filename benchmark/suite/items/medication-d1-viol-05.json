@@ -11,15 +11,15 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "hypertension",
+        "name": "anticoagulated",
         "type": "bool"
       },
       {
-        "name": "heart_failure",
+        "name": "g6pd_deficiency",
         "type": "bool"
       },
       {
-        "name": "diabetes",
+        "name": "immunosuppressed",
         "type": "bool"
       }
     ],
@@ -39,23 +39,10 @@
     ],
     "rules": [
       {
-        "id": "rec_a_from_conjunction",
-        "priority": 50,
-        "when": {
-          "var": "hypertension"
-        },
-        "then": [
-          {
-            "var": "rec_drug_a",
-            "value": true
-          }
-        ]
-      },
-      {
         "id": "rec_b_from_trigger",
         "priority": 50,
         "when": {
-          "var": "hypertension"
+          "var": "anticoagulated"
         },
         "then": [
           {
@@ -65,10 +52,10 @@
         ]
       },
       {
-        "id": "rec_c_from_diabetes",
+        "id": "rec_c_from_immunosuppressed",
         "priority": 40,
         "when": {
-          "var": "diabetes"
+          "var": "immunosuppressed"
         },
         "then": [
           {
@@ -78,10 +65,23 @@
         ]
       },
       {
-        "id": "rec_c_from_heart_failure",
+        "id": "rec_a_from_conjunction",
+        "priority": 50,
+        "when": {
+          "var": "anticoagulated"
+        },
+        "then": [
+          {
+            "var": "rec_drug_a",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_g6pd_deficiency",
         "priority": 40,
         "when": {
-          "var": "heart_failure"
+          "var": "g6pd_deficiency"
         },
         "then": [
           {

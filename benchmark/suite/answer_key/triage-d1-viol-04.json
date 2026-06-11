@@ -3,19 +3,27 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "palpitations",
+      "var": "dyspnea",
       "value": true
     },
     {
-      "var": "vision_loss",
+      "var": "fever",
       "value": false
     },
     {
-      "var": "palpitations__base",
+      "var": "dizziness",
       "value": false
     },
     {
-      "var": "vision_loss__base",
+      "var": "dyspnea__base",
+      "value": false
+    },
+    {
+      "var": "fever__base",
+      "value": false
+    },
+    {
+      "var": "dizziness__base",
       "value": false
     }
   ],

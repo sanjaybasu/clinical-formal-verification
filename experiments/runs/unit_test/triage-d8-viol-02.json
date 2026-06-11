@@ -37,7 +37,7 @@
     },
     {
       "var": "hemoptysis",
-      "value": true
+      "value": false
     },
     {
       "var": "fever__base",
@@ -73,10 +73,10 @@
     },
     {
       "var": "hemoptysis__base",
-      "value": true
+      "value": false
     }
   ],
-  "seconds": 0.0002,
+  "seconds": 0.0031,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

@@ -3,19 +3,23 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "anticoagulated",
+      "var": "prior_gi_bleed",
+      "value": true
+    },
+    {
+      "var": "renal_impairment",
       "value": true
     },
     {
       "var": "qt_prolongation",
-      "value": true
-    },
-    {
-      "var": "peptic_ulcer",
       "value": false
     },
     {
-      "var": "pregnancy",
+      "var": "elderly",
+      "value": false
+    },
+    {
+      "var": "ckd_dialysis",
       "value": false
     }
   ],

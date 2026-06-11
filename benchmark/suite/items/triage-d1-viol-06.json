@@ -11,15 +11,15 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "syncope",
+        "name": "confusion",
         "type": "bool"
       },
       {
-        "name": "fever",
+        "name": "hemoptysis",
         "type": "bool"
       },
       {
-        "name": "vomiting",
+        "name": "slurred_speech",
         "type": "bool"
       }
     ],
@@ -37,10 +37,10 @@
     ],
     "rules": [
       {
-        "id": "raise_vomiting",
+        "id": "raise_hemoptysis",
         "priority": 2,
         "when": {
-          "var": "vomiting"
+          "var": "hemoptysis"
         },
         "then": [
           {
@@ -53,7 +53,7 @@
         "id": "interaction_drop",
         "priority": 100,
         "when": {
-          "var": "syncope"
+          "var": "confusion"
         },
         "then": [
           {
@@ -63,10 +63,10 @@
         ]
       },
       {
-        "id": "raise_fever",
+        "id": "raise_slurred_speech",
         "priority": 2,
         "when": {
-          "var": "fever"
+          "var": "slurred_speech"
         },
         "then": [
           {
@@ -89,12 +89,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "syncope",
+        "var": "confusion",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting syncope true never lowers acuity"
+    "intent": "setting confusion true never lowers acuity"
   }
 }

@@ -29,7 +29,7 @@
     },
     {
       "var": "vision_loss",
-      "value": true
+      "value": false
     },
     {
       "var": "severe_headache__base",
@@ -57,10 +57,10 @@
     },
     {
       "var": "vision_loss__base",
-      "value": true
+      "value": false
     }
   ],
-  "seconds": 0.0001,
+  "seconds": 0.0,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

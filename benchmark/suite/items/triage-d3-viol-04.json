@@ -11,27 +11,27 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "abdominal_pain",
+        "name": "dyspnea",
         "type": "bool"
       },
       {
-        "name": "vision_loss",
+        "name": "fever",
         "type": "bool"
       },
       {
-        "name": "syncope",
+        "name": "dizziness",
         "type": "bool"
       },
       {
-        "name": "chest_pain",
+        "name": "sweating",
         "type": "bool"
       },
       {
-        "name": "focal_weakness",
+        "name": "leg_swelling",
         "type": "bool"
       },
       {
-        "name": "rash",
+        "name": "back_pain",
         "type": "bool"
       }
     ],
@@ -49,19 +49,45 @@
     ],
     "rules": [
       {
+        "id": "raise_back_pain",
+        "priority": 2,
+        "when": {
+          "var": "back_pain"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_leg_swelling",
+        "priority": 3,
+        "when": {
+          "var": "leg_swelling"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      },
+      {
         "id": "interaction_drop",
         "priority": 100,
         "when": {
           "op": "and",
           "args": [
             {
-              "var": "abdominal_pain"
+              "var": "dyspnea"
             },
             {
-              "var": "vision_loss"
+              "var": "fever"
             },
             {
-              "var": "syncope"
+              "var": "dizziness"
             }
           ]
         },
@@ -73,10 +99,10 @@
         ]
       },
       {
-        "id": "raise_chest_pain",
+        "id": "raise_dyspnea",
         "priority": 2,
         "when": {
-          "var": "chest_pain"
+          "var": "dyspnea"
         },
         "then": [
           {
@@ -86,23 +112,10 @@
         ]
       },
       {
-        "id": "raise_rash",
-        "priority": 2,
-        "when": {
-          "var": "rash"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "urgent"
-          }
-        ]
-      },
-      {
-        "id": "raise_focal_weakness",
+        "id": "raise_sweating",
         "priority": 3,
         "when": {
-          "var": "focal_weakness"
+          "var": "sweating"
         },
         "then": [
           {
@@ -112,28 +125,15 @@
         ]
       },
       {
-        "id": "raise_vision_loss",
+        "id": "raise_fever",
         "priority": 3,
         "when": {
-          "var": "vision_loss"
+          "var": "fever"
         },
         "then": [
           {
             "var": "acuity",
             "value": "emergent"
-          }
-        ]
-      },
-      {
-        "id": "raise_abdominal_pain",
-        "priority": 2,
-        "when": {
-          "var": "abdominal_pain"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "urgent"
           }
         ]
       }
@@ -151,12 +151,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "syncope",
+        "var": "dizziness",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting syncope true never lowers acuity"
+    "intent": "setting dizziness true never lowers acuity"
   }
 }

@@ -1,0 +1,188 @@
+{
+  "id": "outreach-d2-hold-128",
+  "domain": "outreach",
+  "metadata": {
+    "description": "messaging state machine; no message after opt-out",
+    "source": "synthetic",
+    "clinical_intent": "once a member opts out, no further message is sent on any event sequence"
+  },
+  "ruleset": {
+    "id": "outreach-2-128",
+    "kind": "transition_system",
+    "state_vars": [
+      {
+        "name": "opted_out",
+        "type": "bool"
+      },
+      {
+        "name": "sent",
+        "type": "bool"
+      },
+      {
+        "name": "ticks",
+        "type": "int",
+        "bounds": [
+          0,
+          2
+        ]
+      }
+    ],
+    "events": [
+      {
+        "name": "optout"
+      },
+      {
+        "name": "send_attempt"
+      },
+      {
+        "name": "tick"
+      }
+    ],
+    "init": [
+      {
+        "var": "opted_out",
+        "value": false
+      },
+      {
+        "var": "sent",
+        "value": false
+      },
+      {
+        "var": "ticks",
+        "value": 0
+      }
+    ],
+    "transitions": [
+      {
+        "id": "t_optout",
+        "event": "optout",
+        "update": [
+          {
+            "var": "opted_out",
+            "expr": {
+              "const": true
+            }
+          },
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "t_send_allowed",
+        "event": "send_attempt",
+        "guard": {
+          "op": "not",
+          "args": [
+            {
+              "var": "opted_out"
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "sent",
+            "expr": {
+              "const": true
+            }
+          }
+        ],
+        "emits": [
+          {
+            "action": "send_message"
+          }
+        ]
+      },
+      {
+        "id": "t_send_blocked",
+        "event": "send_attempt",
+        "guard": {
+          "var": "opted_out"
+        },
+        "update": [
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "t_tick",
+        "event": "tick",
+        "update": [
+          {
+            "var": "ticks",
+            "expr": {
+              "op": "ite",
+              "args": [
+                {
+                  "op": "lt",
+                  "args": [
+                    {
+                      "var": "ticks"
+                    },
+                    {
+                      "const": 2
+                    }
+                  ]
+                },
+                {
+                  "op": "add",
+                  "args": [
+                    {
+                      "var": "ticks"
+                    },
+                    {
+                      "const": 1
+                    }
+                  ]
+                },
+                {
+                  "var": "ticks"
+                }
+              ]
+            }
+          },
+          {
+            "var": "sent",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "property": {
+    "id": "no-send-after-optout",
+    "kind": "temporal",
+    "formula": {
+      "op": "G",
+      "args": [
+        {
+          "op": "implies",
+          "args": [
+            {
+              "var": "opted_out"
+            },
+            {
+              "op": "not",
+              "args": [
+                {
+                  "var": "sent"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "bound": 6,
+    "intent": "in every reachable state with opted_out true, sent is false"
+  }
+}

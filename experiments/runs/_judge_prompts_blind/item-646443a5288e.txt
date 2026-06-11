@@ -1,0 +1,28 @@
+You are auditing a clinical decision system for a safety property. Decide whether the property holds for the entire input space, or whether some input or execution violates it.
+
+Inputs:
+  chest_pain: boolean
+  fever: boolean
+  slurred_speech: boolean
+  rash: boolean
+  palpitations: boolean
+  focal_weakness: boolean
+  back_pain: boolean
+  vomiting: boolean
+Outputs:
+  acuity: one of [self_care, routine, urgent, emergent] (ordered low to high)
+Conflict resolution: priority (per output, the matching rule with the highest priority wins; ties broken by order)
+Rules:
+  [r1, priority 2] IF slurred_speech THEN acuity := urgent
+  [r2, priority 2] IF focal_weakness THEN acuity := urgent
+  [r3, priority 3] IF rash THEN acuity := emergent
+  [r4, priority 3] IF back_pain THEN acuity := emergent
+  [r5, priority 3] IF fever THEN acuity := emergent
+  [r6, priority 2] IF chest_pain THEN acuity := urgent
+  [r7, priority 2] IF vomiting THEN acuity := urgent
+Default (for any output left unset): acuity := routine
+
+Property (monotonicity): for any input, if palpitations is set to true while every other input is unchanged, then acuity must be no lower than before (enum order is the listed order).
+Plain-language intent: setting palpitations true never lowers acuity
+
+Reason carefully about interactions between rules, priorities, and defaults. Then answer whether the property holds or is violated. If it is violated, give one concrete counterexample: for a decision system, the input assignment (every input variable); for a state machine, the sequence of events. Do not assume a violation exists; many systems are correct.

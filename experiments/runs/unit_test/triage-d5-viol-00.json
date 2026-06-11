@@ -25,15 +25,15 @@
     },
     {
       "var": "back_pain",
-      "value": false
-    },
-    {
-      "var": "rash",
       "value": true
     },
     {
-      "var": "dizziness",
+      "var": "rash",
       "value": false
+    },
+    {
+      "var": "dizziness",
+      "value": true
     },
     {
       "var": "severe_headache__base",
@@ -57,18 +57,18 @@
     },
     {
       "var": "back_pain__base",
-      "value": false
-    },
-    {
-      "var": "rash__base",
       "value": true
     },
     {
-      "var": "dizziness__base",
+      "var": "rash__base",
       "value": false
+    },
+    {
+      "var": "dizziness__base",
+      "value": true
     }
   ],
-  "seconds": 0.0004,
+  "seconds": 0.0002,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

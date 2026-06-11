@@ -1,58 +1,9 @@
 {
   "item_id": "medication-d10-viol-02",
   "method": "unit_test",
-  "verdict": "violated",
-  "witness": [
-    {
-      "var": "heart_failure",
-      "value": true
-    },
-    {
-      "var": "ckd_dialysis",
-      "value": true
-    },
-    {
-      "var": "polypharmacy",
-      "value": true
-    },
-    {
-      "var": "hyperkalemia",
-      "value": true
-    },
-    {
-      "var": "renal_impairment",
-      "value": true
-    },
-    {
-      "var": "qt_prolongation",
-      "value": true
-    },
-    {
-      "var": "g6pd_deficiency",
-      "value": true
-    },
-    {
-      "var": "hypertension",
-      "value": true
-    },
-    {
-      "var": "bradycardia",
-      "value": true
-    },
-    {
-      "var": "prior_gi_bleed",
-      "value": true
-    },
-    {
-      "var": "asthma",
-      "value": true
-    },
-    {
-      "var": "seizure_history",
-      "value": false
-    }
-  ],
-  "seconds": 0.0004,
+  "verdict": "holds",
+  "witness": null,
+  "seconds": 0.0076,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

@@ -13,7 +13,7 @@
     },
     {
       "var": "rash",
-      "value": true
+      "value": false
     },
     {
       "var": "confusion",
@@ -33,7 +33,7 @@
     },
     {
       "var": "rash__base",
-      "value": true
+      "value": false
     },
     {
       "var": "confusion__base",

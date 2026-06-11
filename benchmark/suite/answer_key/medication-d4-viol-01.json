@@ -3,7 +3,7 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "diabetes",
+      "var": "bradycardia",
       "value": true
     },
     {
@@ -11,19 +11,23 @@
       "value": true
     },
     {
-      "var": "hepatic_impairment",
-      "value": true
-    },
-    {
-      "var": "pregnancy",
+      "var": "low_ejection_fraction",
       "value": true
     },
     {
       "var": "asthma",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
       "value": false
     },
     {
-      "var": "elderly",
+      "var": "polypharmacy",
+      "value": false
+    },
+    {
+      "var": "renal_impairment",
       "value": false
     }
   ],

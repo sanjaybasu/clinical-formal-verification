@@ -1,0 +1,35 @@
+You are auditing a clinical decision system for a safety property. Decide whether the property holds for the entire input space, or whether some input or execution violates it.
+
+Inputs:
+  asthma: boolean
+  hypertension: boolean
+  low_ejection_fraction: boolean
+  qt_prolongation: boolean
+  diabetes: boolean
+  pregnancy: boolean
+  peptic_ulcer: boolean
+  hepatic_impairment: boolean
+  bradycardia: boolean
+  renal_impairment: boolean
+  elderly: boolean
+  prior_gi_bleed: boolean
+  polypharmacy: boolean
+  seizure_history: boolean
+  heart_failure: boolean
+Outputs:
+  rec_drug_a: boolean
+  rec_drug_b: boolean
+  rec_drug_c: boolean
+Conflict resolution: priority (per output, the matching rule with the highest priority wins; ties broken by order)
+Rules:
+  [r1, priority 40] IF seizure_history THEN rec_drug_c := true
+  [r2, priority 40] IF polypharmacy THEN rec_drug_c := true
+  [r3, priority 50] IF (asthma and hypertension and low_ejection_fraction and qt_prolongation and diabetes and pregnancy and peptic_ulcer and hepatic_impairment and bradycardia and renal_impairment and elderly and prior_gi_bleed) THEN rec_drug_a := true
+  [r4, priority 50] IF asthma THEN rec_drug_b := true
+  [r5, priority 40] IF heart_failure THEN rec_drug_c := true
+Default (for any output left unset): rec_drug_a := false, rec_drug_b := false, rec_drug_c := false
+
+Property (mutual exclusion): no input may make any of these jointly true: (rec_drug_a and rec_drug_b).
+Plain-language intent: no input recommends both drug a and drug b
+
+Reason carefully about interactions between rules, priorities, and defaults. Then answer whether the property holds or is violated. If it is violated, give one concrete counterexample: for a decision system, the input assignment (every input variable); for a state machine, the sequence of events. Do not assume a violation exists; many systems are correct.

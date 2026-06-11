@@ -1,0 +1,114 @@
+{
+  "item": "triage-d12-viol-01",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "sweating",
+      "value": true
+    },
+    {
+      "var": "palpitations",
+      "value": true
+    },
+    {
+      "var": "vision_loss",
+      "value": true
+    },
+    {
+      "var": "rash",
+      "value": true
+    },
+    {
+      "var": "chest_pain",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "vomiting",
+      "value": true
+    },
+    {
+      "var": "back_pain",
+      "value": true
+    },
+    {
+      "var": "confusion",
+      "value": true
+    },
+    {
+      "var": "stiff_neck",
+      "value": true
+    },
+    {
+      "var": "focal_weakness",
+      "value": true
+    },
+    {
+      "var": "severe_headache",
+      "value": true
+    },
+    {
+      "var": "dyspnea",
+      "value": false
+    },
+    {
+      "var": "sweating__base",
+      "value": true
+    },
+    {
+      "var": "palpitations__base",
+      "value": true
+    },
+    {
+      "var": "vision_loss__base",
+      "value": true
+    },
+    {
+      "var": "rash__base",
+      "value": true
+    },
+    {
+      "var": "chest_pain__base",
+      "value": true
+    },
+    {
+      "var": "fever__base",
+      "value": true
+    },
+    {
+      "var": "vomiting__base",
+      "value": true
+    },
+    {
+      "var": "back_pain__base",
+      "value": true
+    },
+    {
+      "var": "confusion__base",
+      "value": true
+    },
+    {
+      "var": "stiff_neck__base",
+      "value": true
+    },
+    {
+      "var": "focal_weakness__base",
+      "value": true
+    },
+    {
+      "var": "severe_headache__base",
+      "value": false
+    },
+    {
+      "var": "dyspnea__base",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 12,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 12 produces the violation; see generate.py for the construction"
+}

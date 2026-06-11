@@ -4,31 +4,31 @@
   "verdict": "violated",
   "witness": [
     {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
-      "event": "tick"
-    },
-    {
       "event": "optout"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
+    },
+    {
+      "event": "tick"
     },
     {
       "event": "send_attempt"
@@ -36,7 +36,7 @@
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "The property globally(opted_out implies not sent) is VIOLATED, reachable within the 12-event bound.\n\nThe only transition that can set sent:=true while opted_out is true is [t_resume_glitch]: on send_attempt if (opted_out and ticks >= 8): sent := true. This directly creates a state with opted_out=true and sent=true, breaking the invariant. The remaining sent-setting rule [t_send_allowed] requires NOT opted_out, and [t_send_blocked] forces sent:=false under opted_out, so they are safe in isolation.\n\nTo enable t_resume_glitch we must reach opted_out=true AND ticks>=8. ticks is raised by the tick event, which increments ticks until it saturates at 8 (and incidentally sets sent:=false). opted_out is set by the optout event.\n\nWitness execution (10 events, within bound):\n1-8. tick x8 -> ticks climbs 1..8 (saturated at 8); sent=false; opted_out=false.\n9. optout -> opted_out=true, sent=false.\n10. send_attempt -> guard (opted_out and ticks>=8) holds, so t_resume_glitch fires, setting sent:=true while opted_out remains true.\n\nResulting state: opted_out=true, sent=true, ticks=8 -> opted_out is true but sent is NOT false, violating the invariant.\n\nNote on rule conflict: on send_attempt with opted_out=true and ticks>=8, both t_send_blocked (guard opted_out) and t_resume_glitch (guard opted_out and ticks>=8) are enabled. The property must hold on EVERY reachable execution, so the nondeterministic choice that selects t_resume_glitch is a valid execution and exhibits the violation; the existence of a safe alternative (t_send_blocked) does not save the property. This is the intended \"resume glitch\" bug.",
+    "reasoning": "opted_out becomes true only via t1 and is never reset, so it stays true forever once set. sent becomes true via t2 (requires not opted_out, so harmless here) or via t5 (on send_attempt if opted_out and ticks>=8, sets sent:=true). t5 is the bug: it re-enables sending after opt-out once ticks reaches 8.\n\nCounterexample execution (10 events, within the 12-event bound):\n1. optout: t1 fires -> opted_out=true, sent=false, ticks=0.\n2-9. tick x8: t4 fires each time, ticks goes 0->1->...->8 (capped at 8), sent stays false, opted_out stays true. After 8 ticks ticks=8.\n10. send_attempt: now opted_out=true and ticks>=8, so t5 is enabled and fires, setting sent:=true while opted_out is true.\n\nResulting reachable state: opted_out=true, ticks=8, sent=true. This directly violates the invariant (opted_out implies not sent), so globally(opted_out implies not sent) fails. On the send_attempt at step 10 both t3 (send_attempt if opted_out) and t5 are enabled; under the standard nondeterministic guarded-command semantics any enabled transition may fire, and t5 firing produces the violating state. The property is violated.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

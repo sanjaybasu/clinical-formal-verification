@@ -11,7 +11,11 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "anticoagulated",
+        "name": "prior_gi_bleed",
+        "type": "bool"
+      },
+      {
+        "name": "renal_impairment",
         "type": "bool"
       },
       {
@@ -19,11 +23,11 @@
         "type": "bool"
       },
       {
-        "name": "peptic_ulcer",
+        "name": "elderly",
         "type": "bool"
       },
       {
-        "name": "pregnancy",
+        "name": "ckd_dialysis",
         "type": "bool"
       }
     ],
@@ -43,42 +47,16 @@
     ],
     "rules": [
       {
-        "id": "rec_c_from_peptic_ulcer",
-        "priority": 40,
-        "when": {
-          "var": "peptic_ulcer"
-        },
-        "then": [
-          {
-            "var": "rec_drug_c",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_c_from_pregnancy",
-        "priority": 40,
-        "when": {
-          "var": "pregnancy"
-        },
-        "then": [
-          {
-            "var": "rec_drug_c",
-            "value": true
-          }
-        ]
-      },
-      {
         "id": "rec_a_from_conjunction",
         "priority": 50,
         "when": {
           "op": "and",
           "args": [
             {
-              "var": "anticoagulated"
+              "var": "prior_gi_bleed"
             },
             {
-              "var": "qt_prolongation"
+              "var": "renal_impairment"
             }
           ]
         },
@@ -90,14 +68,53 @@
         ]
       },
       {
+        "id": "rec_c_from_ckd_dialysis",
+        "priority": 40,
+        "when": {
+          "var": "ckd_dialysis"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_elderly",
+        "priority": 40,
+        "when": {
+          "var": "elderly"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
         "id": "rec_b_from_trigger",
         "priority": 50,
         "when": {
-          "var": "anticoagulated"
+          "var": "prior_gi_bleed"
         },
         "then": [
           {
             "var": "rec_drug_b",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_qt_prolongation",
+        "priority": 40,
+        "when": {
+          "var": "qt_prolongation"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
             "value": true
           }
         ]

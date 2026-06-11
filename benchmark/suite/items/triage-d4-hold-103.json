@@ -11,27 +11,31 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "vomiting",
+        "name": "leg_swelling",
         "type": "bool"
       },
       {
-        "name": "palpitations",
+        "name": "severe_headache",
         "type": "bool"
       },
       {
-        "name": "dizziness",
+        "name": "pallor",
         "type": "bool"
       },
       {
-        "name": "focal_weakness",
+        "name": "back_pain",
         "type": "bool"
       },
       {
-        "name": "abdominal_pain",
+        "name": "dyspnea",
         "type": "bool"
       },
       {
-        "name": "syncope",
+        "name": "confusion",
+        "type": "bool"
+      },
+      {
+        "name": "chest_pain",
         "type": "bool"
       }
     ],
@@ -49,36 +53,10 @@
     ],
     "rules": [
       {
-        "id": "raise_abdominal_pain",
-        "priority": 3,
-        "when": {
-          "var": "abdominal_pain"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "emergent"
-          }
-        ]
-      },
-      {
-        "id": "raise_palpitations",
-        "priority": 3,
-        "when": {
-          "var": "palpitations"
-        },
-        "then": [
-          {
-            "var": "acuity",
-            "value": "emergent"
-          }
-        ]
-      },
-      {
-        "id": "raise_vomiting",
+        "id": "raise_leg_swelling",
         "priority": 2,
         "when": {
-          "var": "vomiting"
+          "var": "leg_swelling"
         },
         "then": [
           {
@@ -88,10 +66,23 @@
         ]
       },
       {
-        "id": "raise_syncope",
+        "id": "raise_chest_pain",
+        "priority": 2,
+        "when": {
+          "var": "chest_pain"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_severe_headache",
         "priority": 3,
         "when": {
-          "var": "syncope"
+          "var": "severe_headache"
         },
         "then": [
           {
@@ -101,15 +92,41 @@
         ]
       },
       {
-        "id": "raise_dizziness",
+        "id": "raise_pallor",
         "priority": 2,
         "when": {
-          "var": "dizziness"
+          "var": "pallor"
         },
         "then": [
           {
             "var": "acuity",
             "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_dyspnea",
+        "priority": 2,
+        "when": {
+          "var": "dyspnea"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "raise_confusion",
+        "priority": 3,
+        "when": {
+          "var": "confusion"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
           }
         ]
       }
@@ -127,12 +144,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "focal_weakness",
+        "var": "back_pain",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting focal_weakness true never lowers acuity"
+    "intent": "setting back_pain true never lowers acuity"
   }
 }

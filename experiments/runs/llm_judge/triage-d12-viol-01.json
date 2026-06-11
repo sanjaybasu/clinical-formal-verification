@@ -53,7 +53,7 @@
     },
     {
       "var": "dyspnea",
-      "value": false
+      "value": true
     },
     {
       "var": "sweating__base",
@@ -105,12 +105,12 @@
     },
     {
       "var": "dyspnea__base",
-      "value": false
+      "value": true
     }
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "The property is VIOLATED. The witness_assignment is the BEFORE state (severe_headache=false); flipping severe_headache to true lowers acuity from emergent to self_care.\n\nsevere_headache appears in exactly one rule: interaction_drop (priority 100), which requires the conjunction of all 12 symptoms (sweating, palpitations, vision_loss, rash, chest_pain, fever, vomiting, back_pain, confusion, stiff_neck, focal_weakness, severe_headache) and sets acuity := self_care (the LOWEST acuity). No rule raises acuity from severe_headache.\n\nBEFORE (severe_headache=false): interaction_drop does not fire because its severe_headache conjunct is false. The firing rules include raise_rash, raise_palpitations, raise_stiff_neck, raise_fever, raise_back_pain \u2014 all priority 3, all setting acuity := emergent. The highest-priority firing rule is priority 3, so acuity = emergent.\n\nAFTER (severe_headache=true, all else unchanged): now all 12 conjuncts are true, so interaction_drop (priority 100) fires and wins over every priority-3 rule, setting acuity := self_care.\n\nTransition emergent (highest) -> self_care (lowest) is a strict decrease, directly violating the monotonicity requirement that setting severe_headache true never lowers acuity. dyspnea is set false to keep the example minimal (its value is irrelevant since dyspnea's emergent rule, even if firing, is still beaten by priority 100). This is a classic priority-inversion / interaction-rule trap: the very-high-priority \"drop\" rule overrides all the protective emergent rules precisely when the extra symptom completes the conjunction.",
+    "reasoning": "The property (monotonicity in severe_headache) is VIOLATED. severe_headache appears in exactly one rule: r2 (priority 100, the highest), a 12-way conjunction that requires severe_headache plus all other symptoms to be true, and it sets acuity := self_care, the LOWEST acuity in the order [self_care, routine, urgent, emergent].\n\nBaseline: all 12 other symptoms true and severe_headache = false. Here r2 does not fire (it needs severe_headache=true). Many priority-3 rules fire (r1 rash, r5 palpitations, r6 stiff_neck, r8 fever, r11 back_pain, r13 dyspnea), each setting acuity := emergent. The highest-priority matching rule among the firing rules is priority 3, so acuity = emergent.\n\nFlip severe_headache to true (witness shown, all 13 inputs true): now the full conjunction of r2 is satisfied, so r2 fires at priority 100 \u2014 higher than every other rule's priority 3 or 2 \u2014 and wins, setting acuity := self_care.\n\nThus setting severe_headache true changes acuity from emergent (highest) to self_care (lowest), a strict decrease, which directly violates the monotonicity property. The witness_assignment is the input (with severe_headache=true) whose acuity (self_care) is lower than its severe_headache=false counterpart's acuity (emergent).",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

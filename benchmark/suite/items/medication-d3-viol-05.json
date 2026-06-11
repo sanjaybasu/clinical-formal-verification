@@ -11,19 +11,27 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "asthma",
+        "name": "elderly",
         "type": "bool"
       },
       {
-        "name": "qt_prolongation",
+        "name": "pregnancy",
         "type": "bool"
       },
       {
-        "name": "hypertension",
+        "name": "low_ejection_fraction",
         "type": "bool"
       },
       {
-        "name": "heart_failure",
+        "name": "renal_impairment",
+        "type": "bool"
+      },
+      {
+        "name": "bradycardia",
+        "type": "bool"
+      },
+      {
+        "name": "diabetes",
         "type": "bool"
       }
     ],
@@ -43,27 +51,14 @@
     ],
     "rules": [
       {
-        "id": "rec_c_from_heart_failure",
+        "id": "rec_c_from_renal_impairment",
         "priority": 40,
         "when": {
-          "var": "heart_failure"
+          "var": "renal_impairment"
         },
         "then": [
           {
             "var": "rec_drug_c",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_b_from_trigger",
-        "priority": 50,
-        "when": {
-          "var": "asthma"
-        },
-        "then": [
-          {
-            "var": "rec_drug_b",
             "value": true
           }
         ]
@@ -75,19 +70,58 @@
           "op": "and",
           "args": [
             {
-              "var": "asthma"
+              "var": "elderly"
             },
             {
-              "var": "qt_prolongation"
+              "var": "pregnancy"
             },
             {
-              "var": "hypertension"
+              "var": "low_ejection_fraction"
             }
           ]
         },
         "then": [
           {
             "var": "rec_drug_a",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_b_from_trigger",
+        "priority": 50,
+        "when": {
+          "var": "elderly"
+        },
+        "then": [
+          {
+            "var": "rec_drug_b",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_bradycardia",
+        "priority": 40,
+        "when": {
+          "var": "bradycardia"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_c_from_diabetes",
+        "priority": 40,
+        "when": {
+          "var": "diabetes"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
             "value": true
           }
         ]

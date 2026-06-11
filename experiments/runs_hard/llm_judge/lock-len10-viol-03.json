@@ -4,37 +4,37 @@
   "verdict": "violated",
   "witness": [
     {
+      "event": "key_0"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_1"
+    },
+    {
+      "event": "key_2"
+    },
+    {
+      "event": "key_0"
+    },
+    {
+      "event": "key_1"
+    },
+    {
       "event": "optout"
-    },
-    {
-      "event": "key_0"
-    },
-    {
-      "event": "key_1"
-    },
-    {
-      "event": "key_2"
-    },
-    {
-      "event": "key_1"
-    },
-    {
-      "event": "key_2"
-    },
-    {
-      "event": "key_1"
-    },
-    {
-      "event": "key_1"
-    },
-    {
-      "event": "key_2"
-    },
-    {
-      "event": "key_0"
-    },
-    {
-      "event": "key_1"
     },
     {
       "event": "send_attempt"
@@ -42,7 +42,7 @@
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "The property \"globally(opted_out implies not sent)\" is VIOLATED. The vulnerability is the [t_resume_glitch] transition (line 43): on send_attempt if (opted_out and stage >= 10): sent := true. This sets sent=true while opted_out is true, directly breaching the invariant. The normal [t_send_allowed] requires not opted_out, and [t_send_blocked] keeps sent=false when opted_out and stage<10, but once stage reaches 10 the glitch lets an opted-out send go through.\n\nAdvancing combination (each adv guard checks only stage, not opted_out, so opting out first does not block advancement): stage 0->1 key_0, 1->2 key_1, 2->3 key_2, 3->4 key_1, 4->5 key_2, 5->6 key_1, 6->7 key_1, 7->8 key_2, 8->9 key_0, 9->10 key_1. The wrong keys at any stage reset to stage 0 (e.g. key_1/key_2 at stage 0), but the witness uses only correct keys.\n\nTrace of witness (12 events, within the 13-event bound):\ninit: opted_out=F, sent=F, stage=0\noptout (t_optout): opted_out=T, sent=F, stage=0\nkey_0 (adv_0): stage=1\nkey_1 (adv_1): stage=2\nkey_2 (adv_2): stage=3\nkey_1 (adv_3): stage=4\nkey_2 (adv_4): stage=5\nkey_1 (adv_5): stage=6\nkey_1 (adv_6): stage=7\nkey_2 (adv_7): stage=8\nkey_0 (adv_8): stage=9\nkey_1 (adv_9): stage=10\nsend_attempt: opted_out=T and stage>=10 -> t_resume_glitch fires -> sent=T\nFinal: opted_out=T AND sent=T => invariant violated.",
+    "reasoning": "The property requires globally(opted_out implies not sent). The only transition that sets sent:=true while opted_out is true is t34 (on send_attempt if opted_out and stage>=10). Since stage max is 10, t34 fires only when stage==10 and opted_out is true. This state is reachable.\n\nStage advances along a key-sequence chain (any wrong key resets to 0): stage 0->1 needs key_0 (t3), 1->2 key_1 (t6), 2->3 key_2 (t9), 3->4 key_1 (t12), 4->5 key_2 (t15), 5->6 key_1 (t18), 6->7 key_1 (t21), 7->8 key_2 (t24), 8->9 key_0 (t27), 9->10 key_1 (t30). Crucially, optout (t1) sets opted_out:=true but does not modify stage, so stage==10 is preserved after opting out.\n\nExecution trace (12 events, within the 13-event bound), state shown as (opted_out, sent, stage):\nInit (F,F,0)\n1 key_0 -> t3 (F,F,1)\n2 key_1 -> t6 (F,F,2)\n3 key_2 -> t9 (F,F,3)\n4 key_1 -> t12 (F,F,4)\n5 key_2 -> t15 (F,F,5)\n6 key_1 -> t18 (F,F,6)\n7 key_1 -> t21 (F,F,7)\n8 key_2 -> t24 (F,F,8)\n9 key_0 -> t27 (F,F,9)\n10 key_1 -> t30 (F,F,10)\n11 optout -> t1 (T,F,10)\n12 send_attempt -> t34 fires (guard opted_out and stage>=10 holds; t2 disabled since opted_out, t33 disabled since stage not <10): (T,T,10)\n\nFinal state has opted_out=true and sent=true, violating opted_out implies not sent. At each event exactly one transition is enabled, so the trace is deterministic. Property is VIOLATED.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

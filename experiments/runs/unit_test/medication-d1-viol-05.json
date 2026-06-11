@@ -9,7 +9,7 @@
     },
     {
       "var": "g6pd_deficiency",
-      "value": true
+      "value": false
     },
     {
       "var": "immunosuppressed",

@@ -3,19 +3,27 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "asthma",
+      "var": "elderly",
       "value": true
     },
     {
-      "var": "qt_prolongation",
+      "var": "pregnancy",
       "value": true
     },
     {
-      "var": "hypertension",
+      "var": "low_ejection_fraction",
       "value": true
     },
     {
-      "var": "heart_failure",
+      "var": "renal_impairment",
+      "value": false
+    },
+    {
+      "var": "bradycardia",
+      "value": false
+    },
+    {
+      "var": "diabetes",
       "value": false
     }
   ],

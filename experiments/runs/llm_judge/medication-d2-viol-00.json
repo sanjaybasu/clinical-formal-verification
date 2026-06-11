@@ -22,7 +22,7 @@
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "The property requires that rec_drug_a and rec_drug_b are never jointly true. rec_drug_a is set true only by rule rec_a_from_conjunction (priority 50): IF (asthma AND diabetes). rec_drug_b is set true only by rule rec_b_from_trigger (priority 50): IF asthma. With asthma=true and diabetes=true, rec_a_from_conjunction fires setting rec_drug_a:=true, and rec_b_from_trigger fires setting rec_drug_b:=true. Each output is driven by exactly one rule, so there are no priority ties or overrides to suppress either, and defaults do not apply since both rules fire. Therefore both rec_drug_a and rec_drug_b are true simultaneously. bradycardia and seizure_history are irrelevant to outputs a and b (they only affect rec_drug_c); setting them false gives the minimal counterexample. The mutual-exclusion property is violated.",
+    "reasoning": "rec_drug_a is set true only by r2 (asthma AND diabetes); rec_drug_b is set true only by r3 (asthma). Both target distinct outputs with no competing rules, so priorities/ties are irrelevant for these two outputs. With asthma=true and diabetes=true: r2 fires setting rec_drug_a:=true, and r3 fires setting rec_drug_b:=true. bradycardia and seizure_history only affect rec_drug_c and are set false. This yields rec_drug_a=true AND rec_drug_b=true, violating the mutual-exclusion property (no input may make rec_drug_a and rec_drug_b jointly true).",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

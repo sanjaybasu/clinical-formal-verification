@@ -1,0 +1,36 @@
+You are auditing a clinical decision system for a safety property. Decide whether the property holds for the entire input space, or whether some input or execution violates it.
+
+State variables:
+  opted_out: boolean
+  sent: boolean
+  stage: integer in [0, 6]
+Initial state: opted_out = false, sent = false, stage = 0
+Events: optout, send_attempt, key_0, key_1, key_2
+Transitions (on the named event, if the guard holds, apply the update; an event with no matching enabled transition leaves the state unchanged):
+  [t1] on optout if true: opted_out := true, sent := false
+  [t2] on send_attempt if not opted_out: sent := true
+  [t3] on key_2 if stage == 0: stage := 1, sent := false
+  [t4] on key_0 if stage == 0: stage := 0, sent := false
+  [t5] on key_1 if stage == 0: stage := 0, sent := false
+  [t6] on key_1 if stage == 1: stage := 2, sent := false
+  [t7] on key_0 if stage == 1: stage := 0, sent := false
+  [t8] on key_2 if stage == 1: stage := 0, sent := false
+  [t9] on key_2 if stage == 2: stage := 3, sent := false
+  [t10] on key_0 if stage == 2: stage := 0, sent := false
+  [t11] on key_1 if stage == 2: stage := 0, sent := false
+  [t12] on key_0 if stage == 3: stage := 4, sent := false
+  [t13] on key_1 if stage == 3: stage := 0, sent := false
+  [t14] on key_2 if stage == 3: stage := 0, sent := false
+  [t15] on key_1 if stage == 4: stage := 5, sent := false
+  [t16] on key_0 if stage == 4: stage := 0, sent := false
+  [t17] on key_2 if stage == 4: stage := 0, sent := false
+  [t18] on key_1 if stage == 5: stage := 6, sent := false
+  [t19] on key_0 if stage == 5: stage := 0, sent := false
+  [t20] on key_2 if stage == 5: stage := 0, sent := false
+  [t21] on send_attempt if (opted_out and stage < 6): sent := false
+  [t22] on send_attempt if (opted_out and stage >= 6): sent := true
+
+Property (temporal): on every reachable execution, globally((opted_out implies not sent)) must hold (check executions up to 9 events).
+Plain-language intent: in every reachable state with opted_out true, sent is false
+
+Reason carefully about interactions between rules, priorities, and defaults. Then answer whether the property holds or is violated. If it is violated, give one concrete counterexample: for a decision system, the input assignment (every input variable); for a state machine, the sequence of events. Do not assume a violation exists; many systems are correct.

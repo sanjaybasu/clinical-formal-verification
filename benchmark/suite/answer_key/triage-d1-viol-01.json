@@ -3,19 +3,27 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "syncope",
+      "var": "fever",
       "value": true
     },
     {
-      "var": "focal_weakness",
+      "var": "leg_swelling",
       "value": false
     },
     {
-      "var": "syncope__base",
+      "var": "abdominal_pain",
       "value": false
     },
     {
-      "var": "focal_weakness__base",
+      "var": "fever__base",
+      "value": false
+    },
+    {
+      "var": "leg_swelling__base",
+      "value": false
+    },
+    {
+      "var": "abdominal_pain__base",
       "value": false
     }
   ],

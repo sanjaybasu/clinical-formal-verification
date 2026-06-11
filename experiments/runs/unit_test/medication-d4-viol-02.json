@@ -21,14 +21,14 @@
     },
     {
       "var": "prior_gi_bleed",
-      "value": true
+      "value": false
     },
     {
       "var": "qt_prolongation",
       "value": true
     }
   ],
-  "seconds": 0.0,
+  "seconds": 0.0001,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

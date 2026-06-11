@@ -21,7 +21,7 @@
     },
     {
       "var": "prior_gi_bleed",
-      "value": true
+      "value": false
     }
   ],
   "seconds": 0.0,

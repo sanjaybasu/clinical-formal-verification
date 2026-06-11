@@ -11,15 +11,15 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "dyspnea",
-        "type": "bool"
-      },
-      {
-        "name": "focal_weakness",
-        "type": "bool"
-      },
-      {
         "name": "syncope",
+        "type": "bool"
+      },
+      {
+        "name": "sweating",
+        "type": "bool"
+      },
+      {
+        "name": "vomiting",
         "type": "bool"
       }
     ],
@@ -37,28 +37,28 @@
     ],
     "rules": [
       {
-        "id": "raise_syncope",
-        "priority": 3,
+        "id": "raise_vomiting",
+        "priority": 2,
         "when": {
-          "var": "syncope"
+          "var": "vomiting"
         },
         "then": [
           {
             "var": "acuity",
-            "value": "emergent"
+            "value": "urgent"
           }
         ]
       },
       {
-        "id": "raise_focal_weakness",
-        "priority": 3,
+        "id": "raise_sweating",
+        "priority": 2,
         "when": {
-          "var": "focal_weakness"
+          "var": "sweating"
         },
         "then": [
           {
             "var": "acuity",
-            "value": "emergent"
+            "value": "urgent"
           }
         ]
       }
@@ -76,12 +76,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "dyspnea",
+        "var": "syncope",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting dyspnea true never lowers acuity"
+    "intent": "setting syncope true never lowers acuity"
   }
 }

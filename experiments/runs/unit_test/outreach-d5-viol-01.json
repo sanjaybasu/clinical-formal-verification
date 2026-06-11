@@ -4,28 +4,8 @@
   "verdict": "violated",
   "witness": [
     {
-      "event": "tick",
-      "transition": "t_tick"
-    },
-    {
-      "event": "optout",
-      "transition": "t_optout"
-    },
-    {
-      "event": "tick",
-      "transition": "t_tick"
-    },
-    {
-      "event": "tick",
-      "transition": "t_tick"
-    },
-    {
-      "event": "optout",
-      "transition": "t_optout"
-    },
-    {
       "event": "send_attempt",
-      "transition": "t_send_blocked"
+      "transition": "t_send_allowed"
     },
     {
       "event": "tick",
@@ -34,6 +14,26 @@
     {
       "event": "tick",
       "transition": "t_tick"
+    },
+    {
+      "event": "tick",
+      "transition": "t_tick"
+    },
+    {
+      "event": "tick",
+      "transition": "t_tick"
+    },
+    {
+      "event": "tick",
+      "transition": "t_tick"
+    },
+    {
+      "event": "optout",
+      "transition": "t_optout"
+    },
+    {
+      "event": "optout",
+      "transition": "t_optout"
     },
     {
       "event": "send_attempt",

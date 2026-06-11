@@ -4,16 +4,16 @@
   "verdict": "violated",
   "witness": [
     {
+      "event": "optout",
+      "transition": "t_optout"
+    },
+    {
+      "event": "send_attempt",
+      "transition": "t_send_blocked"
+    },
+    {
       "event": "tick",
       "transition": "t_tick"
-    },
-    {
-      "event": "optout",
-      "transition": "t_optout"
-    },
-    {
-      "event": "optout",
-      "transition": "t_optout"
     },
     {
       "event": "tick",
@@ -24,7 +24,7 @@
       "transition": "t_resume_glitch"
     }
   ],
-  "seconds": 0.0003,
+  "seconds": 0.0,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

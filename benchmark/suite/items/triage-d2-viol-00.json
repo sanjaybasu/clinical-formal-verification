@@ -11,15 +11,19 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "fever",
-        "type": "bool"
-      },
-      {
-        "name": "abdominal_pain",
+        "name": "back_pain",
         "type": "bool"
       },
       {
         "name": "dizziness",
+        "type": "bool"
+      },
+      {
+        "name": "pallor",
+        "type": "bool"
+      },
+      {
+        "name": "abdominal_pain",
         "type": "bool"
       }
     ],
@@ -37,16 +41,29 @@
     ],
     "rules": [
       {
+        "id": "raise_pallor",
+        "priority": 2,
+        "when": {
+          "var": "pallor"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
         "id": "interaction_drop",
         "priority": 100,
         "when": {
           "op": "and",
           "args": [
             {
-              "var": "fever"
+              "var": "back_pain"
             },
             {
-              "var": "abdominal_pain"
+              "var": "dizziness"
             }
           ]
         },
@@ -58,10 +75,10 @@
         ]
       },
       {
-        "id": "raise_fever",
+        "id": "raise_abdominal_pain",
         "priority": 2,
         "when": {
-          "var": "fever"
+          "var": "abdominal_pain"
         },
         "then": [
           {
@@ -71,10 +88,10 @@
         ]
       },
       {
-        "id": "raise_dizziness",
+        "id": "raise_back_pain",
         "priority": 2,
         "when": {
-          "var": "dizziness"
+          "var": "back_pain"
         },
         "then": [
           {
@@ -97,12 +114,12 @@
     "kind": "monotonicity",
     "monotonicity": {
       "perturbation": {
-        "var": "abdominal_pain",
+        "var": "dizziness",
         "change": "set_true"
       },
       "monotone_var": "acuity",
       "direction": "nondecreasing"
     },
-    "intent": "setting abdominal_pain true never lowers acuity"
+    "intent": "setting dizziness true never lowers acuity"
   }
 }

@@ -11,15 +11,11 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "anticoagulated",
-        "type": "bool"
-      },
-      {
         "name": "pregnancy",
         "type": "bool"
       },
       {
-        "name": "peptic_ulcer",
+        "name": "low_ejection_fraction",
         "type": "bool"
       }
     ],
@@ -39,27 +35,14 @@
     ],
     "rules": [
       {
-        "id": "rec_c_from_pregnancy",
-        "priority": 40,
+        "id": "rec_a_from_conjunction",
+        "priority": 50,
         "when": {
           "var": "pregnancy"
         },
         "then": [
           {
-            "var": "rec_drug_c",
-            "value": true
-          }
-        ]
-      },
-      {
-        "id": "rec_c_from_peptic_ulcer",
-        "priority": 40,
-        "when": {
-          "var": "peptic_ulcer"
-        },
-        "then": [
-          {
-            "var": "rec_drug_c",
+            "var": "rec_drug_a",
             "value": true
           }
         ]
@@ -68,7 +51,7 @@
         "id": "rec_b_from_trigger",
         "priority": 50,
         "when": {
-          "var": "anticoagulated"
+          "var": "pregnancy"
         },
         "then": [
           {
@@ -78,14 +61,14 @@
         ]
       },
       {
-        "id": "rec_a_from_conjunction",
-        "priority": 50,
+        "id": "rec_c_from_low_ejection_fraction",
+        "priority": 40,
         "when": {
-          "var": "anticoagulated"
+          "var": "low_ejection_fraction"
         },
         "then": [
           {
-            "var": "rec_drug_a",
+            "var": "rec_drug_c",
             "value": true
           }
         ]

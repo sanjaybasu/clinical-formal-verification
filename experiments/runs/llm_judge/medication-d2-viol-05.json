@@ -18,7 +18,7 @@
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "rec_drug_a is set true only by rule rec_a_from_conjunction (condition: seizure_history AND elderly); otherwise it defaults false. rec_drug_b is set true only by rule rec_b_from_trigger (condition: seizure_history); otherwise it defaults false. These two rules target different outputs, so priorities/ties never cause one to suppress the other \u2014 conflict resolution is per-output. The condition for drug a (seizure_history AND elderly) strictly implies the condition for drug b (seizure_history). Therefore any input with seizure_history=true and elderly=true fires both rules: rec_drug_a=true and rec_drug_b=true simultaneously, violating mutual exclusion (rec_drug_a and rec_drug_b). Counterexample: seizure_history=true, elderly=true, asthma=false (asthma only affects rec_drug_c via rec_c_from_asthma and is irrelevant to the property).",
+    "reasoning": "rec_drug_a is written only by r2 (fires on seizure_history AND elderly); rec_drug_b is written only by r3 (fires on seizure_history). These two rules target different outputs, so their equal priority 50 never creates a conflict \u2014 priority/tie-breaking only matters among rules writing the SAME output. With seizure_history=true and elderly=true, r2 fires setting rec_drug_a:=true and r3 fires setting rec_drug_b:=true, so both are true simultaneously. asthma is irrelevant (r1 only affects rec_drug_c); set false. This makes (rec_drug_a AND rec_drug_b)=true, violating the mutual-exclusion property. Trace for seizure_history=true, elderly=true, asthma=false: r1 inactive -> rec_drug_c=false (default); r2 active -> rec_drug_a=true; r3 active -> rec_drug_b=true.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

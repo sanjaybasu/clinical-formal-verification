@@ -5,7 +5,7 @@
   "witness": null,
   "seconds": null,
   "extra": {
-    "reasoning": "The property asserts that setting stiff_neck=true (all other inputs unchanged) never lowers acuity. Examining all five rules (raise_severe_headache, raise_pallor, raise_focal_weakness, raise_sweating, raise_leg_swelling), none reference the stiff_neck input in their conditions or actions. stiff_neck is a declared input that is entirely unused by the rule set. Therefore toggling stiff_neck from false to true cannot change which rules fire, cannot affect priority-based conflict resolution, and cannot affect the default (acuity := routine). The resulting acuity is determined solely by the other five inputs and is identical before and after setting stiff_neck. Since acuity remains exactly equal (which satisfies \"no lower than before\") for every input in the entire space, the monotonicity property holds. File analyzed: /Users/sanjaybasu/clinical-formal-verification/experiments/runs/_judge_prompts/triage-d3-hold-129.txt",
+    "reasoning": "The input stiff_neck does not appear in any rule condition or action. Rules r1-r5 trigger only on severe_headache, pallor, focal_weakness, sweating, and leg_swelling; the default is routine. Since the set of matching rules, their priorities, and the order-based tie-breaking are all independent of stiff_neck, the computed acuity is identical regardless of stiff_neck's value, for every assignment of the other five inputs. Therefore flipping stiff_neck from false to true (all else unchanged) leaves acuity exactly equal, which satisfies \"no lower than before.\" The monotonicity property holds across the entire input space.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

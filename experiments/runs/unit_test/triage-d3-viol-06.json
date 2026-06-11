@@ -17,7 +17,7 @@
     },
     {
       "var": "sweating",
-      "value": true
+      "value": false
     },
     {
       "var": "chest_pain__base",
@@ -33,7 +33,7 @@
     },
     {
       "var": "sweating__base",
-      "value": true
+      "value": false
     }
   ],
   "seconds": 0.0,

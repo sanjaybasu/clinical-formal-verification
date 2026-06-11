@@ -1,0 +1,46 @@
+{
+  "item": "medication-d6-viol-06",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "diabetes",
+      "value": true
+    },
+    {
+      "var": "prior_gi_bleed",
+      "value": true
+    },
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "bradycardia",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "seizure_history",
+      "value": true
+    },
+    {
+      "var": "hepatic_impairment",
+      "value": false
+    },
+    {
+      "var": "pregnancy",
+      "value": false
+    },
+    {
+      "var": "polypharmacy",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 6,
+  "basis": "concrete_replay",
+  "seeded_bug": "a documented rule interaction at depth 6 produces the violation; see generate.py for the construction"
+}

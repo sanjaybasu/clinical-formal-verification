@@ -53,7 +53,7 @@
     },
     {
       "var": "vomiting",
-      "value": false
+      "value": true
     },
     {
       "var": "fever__base",
@@ -105,12 +105,12 @@
     },
     {
       "var": "vomiting__base",
-      "value": false
+      "value": true
     }
   ],
   "seconds": null,
   "extra": {
-    "reasoning": "The property requires that flipping focal_weakness from false to true (all else equal) never lowers acuity. focal_weakness appears in only one rule: interaction_drop (priority 100), whose 12-term conjunction includes focal_weakness and requires all of {fever, sweating, back_pain, slurred_speech, abdominal_pain, dyspnea, chest_pain, dizziness, vision_loss, syncope, leg_swelling, focal_weakness} to be true; it sets acuity := self_care.\n\nConsider the input pair where those other 11 conjunction members are all true and vomiting is anything (here false).\n\nBEFORE (focal_weakness=false): interaction_drop does not fire because focal_weakness is false. Multiple emergent rules fire \u2014 raise_sweating (p3), raise_slurred_speech (p3), raise_dyspnea (p3), raise_dizziness (p3), raise_syncope (p3) \u2014 alongside several priority-2 urgent rules. The highest-priority matching rule is priority 3 \u2192 acuity = emergent.\n\nAFTER (focal_weakness=true): now all 12 conjuncts hold, so interaction_drop fires at priority 100, beating every priority-3 emergent rule \u2192 acuity = self_care.\n\nSetting focal_weakness true changes acuity from emergent to self_care \u2014 a strict decrease in the ordered enum [self_care < routine < urgent < emergent]. This violates monotonicity. The witness is the focal_weakness=true assignment (vomiting=false), which yields self_care, while its focal_weakness=false counterpart yields emergent.",
+    "reasoning": "The monotonicity property requires that flipping focal_weakness from false to true (all else equal) never lowers acuity. focal_weakness appears in no rule condition except as one conjunct of r8. r8 (priority 100, the highest) fires only when ALL 13 inputs are true and sets acuity := self_care (the LOWEST acuity).\n\nCounterexample baseline: all inputs true EXCEPT focal_weakness = false. With focal_weakness=false, r8 does NOT fire (its conjunction is unsatisfied). The matching rules then include several priority-3 rules \u2014 r2 (slurred_speech\u2192emergent), r5 (dyspnea\u2192emergent), r7 (dizziness\u2192emergent), r11 (syncope\u2192emergent), r12 (sweating\u2192emergent). The highest-priority matching rules are priority 3, all assigning emergent, so acuity = emergent.\n\nNow set focal_weakness=true (the witness, all 13 inputs true). r8's full conjunction is now satisfied; with priority 100 it dominates every other rule and assigns acuity := self_care.\n\nThus raising focal_weakness from false to true lowered acuity from emergent to self_care, violating monotonicity. The witness_assignment is the focal_weakness=true input (all inputs true); the comparison point is the same assignment with focal_weakness=false.",
     "judge": "claude-opus-4-8-class-agent"
   }
 }

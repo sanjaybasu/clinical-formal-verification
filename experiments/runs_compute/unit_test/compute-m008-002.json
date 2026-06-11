@@ -4,16 +4,16 @@
   "verdict": "violated",
   "witness": [
     {
-      "event": "step_2",
-      "transition": "step_2"
-    },
-    {
-      "event": "step_1",
-      "transition": "step_1"
+      "event": "send_attempt",
+      "transition": "t_send_allowed"
     },
     {
       "event": "optout",
       "transition": "t_optout"
+    },
+    {
+      "event": "send_attempt",
+      "transition": "t_send_blocked"
     },
     {
       "event": "optout",
@@ -24,23 +24,11 @@
       "transition": "step_0"
     },
     {
-      "event": "step_2",
-      "transition": "step_2"
-    },
-    {
-      "event": "send_attempt",
-      "transition": "t_send_blocked"
-    },
-    {
-      "event": "step_2",
-      "transition": "step_2"
-    },
-    {
       "event": "send_attempt",
       "transition": "t_resume_glitch"
     }
   ],
-  "seconds": 0.0031,
+  "seconds": 0.0013,
   "extra": {
     "n_samples": 1000,
     "seed": 20260610

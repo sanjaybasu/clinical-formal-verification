@@ -11,11 +11,19 @@
     "kind": "decision",
     "inputs": [
       {
-        "name": "qt_prolongation",
+        "name": "elderly",
+        "type": "bool"
+      },
+      {
+        "name": "seizure_history",
         "type": "bool"
       },
       {
         "name": "diabetes",
+        "type": "bool"
+      },
+      {
+        "name": "peptic_ulcer",
         "type": "bool"
       }
     ],
@@ -35,6 +43,32 @@
     ],
     "rules": [
       {
+        "id": "rec_c_from_seizure_history",
+        "priority": 40,
+        "when": {
+          "var": "seizure_history"
+        },
+        "then": [
+          {
+            "var": "rec_drug_c",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_a_from_conjunction",
+        "priority": 50,
+        "when": {
+          "var": "elderly"
+        },
+        "then": [
+          {
+            "var": "rec_drug_a",
+            "value": true
+          }
+        ]
+      },
+      {
         "id": "rec_c_from_diabetes",
         "priority": 40,
         "when": {
@@ -48,27 +82,27 @@
         ]
       },
       {
-        "id": "rec_a_from_conjunction",
+        "id": "rec_b_from_trigger",
         "priority": 50,
         "when": {
-          "var": "qt_prolongation"
+          "var": "elderly"
         },
         "then": [
           {
-            "var": "rec_drug_a",
+            "var": "rec_drug_b",
             "value": true
           }
         ]
       },
       {
-        "id": "rec_b_from_trigger",
-        "priority": 50,
+        "id": "rec_c_from_peptic_ulcer",
+        "priority": 40,
         "when": {
-          "var": "qt_prolongation"
+          "var": "peptic_ulcer"
         },
         "then": [
           {
-            "var": "rec_drug_b",
+            "var": "rec_drug_c",
             "value": true
           }
         ]

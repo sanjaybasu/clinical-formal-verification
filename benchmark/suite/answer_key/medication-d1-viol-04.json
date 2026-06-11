@@ -3,11 +3,19 @@
   "ground_truth": "violated",
   "witness": [
     {
-      "var": "qt_prolongation",
+      "var": "prior_gi_bleed",
       "value": true
     },
     {
-      "var": "elderly",
+      "var": "peptic_ulcer",
+      "value": false
+    },
+    {
+      "var": "g6pd_deficiency",
+      "value": false
+    },
+    {
+      "var": "polypharmacy",
       "value": false
     }
   ],
