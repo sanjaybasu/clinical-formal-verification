@@ -1,0 +1,87 @@
+{
+  "id": "triagepartial-d2-hold-100",
+  "domain": "triage_partial",
+  "metadata": {
+    "description": "partial-context triage; missing critical data must not be reassuring",
+    "source": "synthetic",
+    "clinical_intent": "marking the vitals unknown never lowers the assigned acuity"
+  },
+  "ruleset": {
+    "id": "tmd-2-100",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "vitals_unknown",
+        "type": "bool"
+      },
+      {
+        "name": "concerning_symptom",
+        "type": "bool"
+      },
+      {
+        "name": "fever",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "acuity",
+        "type": "enum",
+        "domain": [
+          "self_care",
+          "routine",
+          "urgent",
+          "emergent"
+        ]
+      }
+    ],
+    "rules": [
+      {
+        "id": "concerning_urgent",
+        "priority": 10,
+        "when": {
+          "var": "concerning_symptom"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "urgent"
+          }
+        ]
+      },
+      {
+        "id": "unknown_worstcase",
+        "priority": 50,
+        "when": {
+          "var": "vitals_unknown"
+        },
+        "then": [
+          {
+            "var": "acuity",
+            "value": "emergent"
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "acuity",
+        "value": "routine"
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "missing-data-not-reassuring",
+    "kind": "monotonicity",
+    "monotonicity": {
+      "perturbation": {
+        "var": "vitals_unknown",
+        "change": "set_true"
+      },
+      "monotone_var": "acuity",
+      "direction": "nondecreasing"
+    },
+    "intent": "setting vitals_unknown true never lowers acuity"
+  }
+}

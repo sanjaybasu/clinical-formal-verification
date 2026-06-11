@@ -14,7 +14,8 @@
     },
     "domain": {
       "type": "string",
-      "enum": ["triage", "medication", "outreach"]
+      "description": "care domain. v0: triage/medication/outreach. v2 whole-person: medical spine (triage_partial, medication, workup_completeness, differential_breadth) and social/behavioral wedge (mental_health, social_needs, trust_preference, substance_use) plus their longitudinal transition-system variants.",
+      "enum": ["triage", "medication", "outreach", "triage_partial", "workup_completeness", "differential_breadth", "mental_health", "mental_health_persist", "social_needs", "trust_preference", "trust_preference_persist", "substance_use", "substance_use_moud"]
     },
     "ruleset": {
       "$ref": "#/$defs/ruleset"

@@ -1,0 +1,25 @@
+{
+  "item": "workup-d4-viol-00",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "petechiae",
+      "value": true
+    },
+    {
+      "var": "poor_feeding",
+      "value": true
+    },
+    {
+      "var": "irritable",
+      "value": true
+    },
+    {
+      "var": "lethargy",
+      "value": true
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 4,
+  "basis": "concrete_replay"
+}

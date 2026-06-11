@@ -1,0 +1,21 @@
+{
+  "item": "trust-d2-viol-00",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "patient_declines_x",
+      "value": true
+    },
+    {
+      "var": "pcp_request",
+      "value": true
+    },
+    {
+      "var": "quality_gap",
+      "value": true
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 2,
+  "basis": "concrete_replay"
+}

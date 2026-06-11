@@ -1,0 +1,17 @@
+{
+  "item": "trust-d1-viol-01",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "patient_declines_x",
+      "value": true
+    },
+    {
+      "var": "overdue",
+      "value": true
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 1,
+  "basis": "concrete_replay"
+}

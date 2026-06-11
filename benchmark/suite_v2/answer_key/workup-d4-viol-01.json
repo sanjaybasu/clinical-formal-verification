@@ -1,0 +1,25 @@
+{
+  "item": "workup-d4-viol-01",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "petechiae",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "irritable",
+      "value": true
+    },
+    {
+      "var": "neonate",
+      "value": true
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 4,
+  "basis": "concrete_replay"
+}

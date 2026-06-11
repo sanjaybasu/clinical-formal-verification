@@ -1,0 +1,41 @@
+{
+  "item": "triagepartial-d3-viol-00",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "vitals_unknown",
+      "value": true
+    },
+    {
+      "var": "concerning_symptom",
+      "value": false
+    },
+    {
+      "var": "headache",
+      "value": true
+    },
+    {
+      "var": "nausea",
+      "value": true
+    },
+    {
+      "var": "vitals_unknown__base",
+      "value": false
+    },
+    {
+      "var": "concerning_symptom__base",
+      "value": false
+    },
+    {
+      "var": "headache__base",
+      "value": true
+    },
+    {
+      "var": "nausea__base",
+      "value": true
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 3,
+  "basis": "concrete_replay"
+}

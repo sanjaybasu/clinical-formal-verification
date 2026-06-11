@@ -1,0 +1,13 @@
+{
+  "item": "ddx-d1-viol-00",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "hypertension",
+      "value": true
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 1,
+  "basis": "concrete_replay"
+}

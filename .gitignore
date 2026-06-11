@@ -34,9 +34,11 @@ docs/status/
 experiments/runs/
 experiments/runs_hard/
 experiments/runs_compute/
+experiments/runs_v2/
 experiments/results/
 experiments/results_hard/
 experiments/results_compute/
+experiments/results_v2/
 experiments/results_combined.md
 
 # never commit proprietary or PHI-derived splits

@@ -24,14 +24,21 @@ ROOT = Path(__file__).resolve().parent.parent
 SUITE = ROOT / os.environ.get("CIVBENCH_SUITE", "benchmark/suite")
 RUNS = ROOT / os.environ.get("CIVBENCH_RUNS", "experiments/runs")
 RESULTS = ROOT / os.environ.get("CIVBENCH_RESULTS", "experiments/results")
-METHOD_ORDER = ["verification", "unit_test", "llm_judge", "nemo_guardrails", "llama_guard"]
 METHOD_LABEL = {
     "verification": "SMT verification",
     "unit_test": "unit-test suite",
     "llm_judge": "language-model judge",
+    "judge_gpt55": "language-model judge (GPT-5.5)",
+    "judge_gemini31propreview": "language-model judge (Gemini 3.1 Pro)",
+    "judge_fable5": "language-model judge (Fable 5)",
     "nemo_guardrails": "NeMo Guardrails",
     "llama_guard": "Llama Guard",
 }
+# Method list and order are configurable so the same analyzer serves each suite; default below.
+_DEFAULT_METHODS = "verification,unit_test,judge_gpt55,judge_gemini31propreview,judge_fable5,llm_judge,nemo_guardrails,llama_guard"
+METHOD_ORDER = [m for m in os.environ.get("CIVBENCH_METHODS", _DEFAULT_METHODS).split(",") if m]
+for _m in METHOD_ORDER:
+    METHOD_LABEL.setdefault(_m, _m)
 Z = 1.959963984540054  # 95%
 
 

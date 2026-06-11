@@ -1,0 +1,17 @@
+{
+  "item": "mentalhealth-d1-viol-01",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "self_harm_flag",
+      "value": true
+    },
+    {
+      "var": "transport_need",
+      "value": true
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 1,
+  "basis": "concrete_replay"
+}

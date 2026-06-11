@@ -1,0 +1,8 @@
+{
+  "item": "mentalhealth-d3-hold-100",
+  "ground_truth": "holds",
+  "witness": null,
+  "seeded": false,
+  "interaction_depth": 0,
+  "basis": "manual_proof"
+}

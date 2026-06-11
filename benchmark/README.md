@@ -28,9 +28,7 @@ and is held in `answer_key/`. A violated item carries a witness that is checkabl
 execution of the rule set, so labeling the benchmark does not depend on the solver under test;
 `interaction_depth` records how many rules must interact to produce a violation.
 
-All released rule sets are synthetic or derived from public sources under a permissive licence.
-A split derived from an operational Medicaid care program is reported in aggregate in the
-manuscript and is not released. The benchmark is licensed CC-BY-4.0 (`LICENSE`).
+All released rule sets are synthetic. The benchmark is licensed CC-BY-4.0 (`LICENSE`).
 
 ## Validate
 
