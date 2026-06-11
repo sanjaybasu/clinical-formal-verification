@@ -35,6 +35,8 @@
           0.03434735974655703
         ]
       },
+      "abstentions": 0,
+      "unsound_errors": 0,
       "witness_validity": {
         "valid": 216,
         "claims": 216,
@@ -147,6 +149,8 @@
           0.03434735974655703
         ]
       },
+      "abstentions": 0,
+      "unsound_errors": 29,
       "witness_validity": {
         "valid": 187,
         "claims": 187,
@@ -265,6 +269,8 @@
           0.03434735974655703
         ]
       },
+      "abstentions": 0,
+      "unsound_errors": 0,
       "witness_validity": {
         "valid": 216,
         "claims": 216,

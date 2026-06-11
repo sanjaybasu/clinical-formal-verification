@@ -2,15 +2,17 @@
 
 Items: 324 (216 violated, 108 holds). Proportions carry 95% Wilson score intervals.
 
-## Detection and false alarm
+## Detection, false alarm, abstention, and soundness
 
-| method | detection rate % [95% CI] | false-alarm rate % [95% CI] | witness validity % | mean s/item |
-| --- | --- | --- | --- | --- |
-| complete verification | 100.0 [98.3, 100.0] (n=216) | 0.0 [0.0, 3.4] (n=108) | 100.0 | 0.0057 |
-| unit-test suite | 86.6 [81.4, 90.5] (n=216) | 0.0 [0.0, 3.4] (n=108) | 100.0 | 0.0058 |
-| language-model judge | 100.0 [98.3, 100.0] (n=216) | 0.0 [0.0, 3.4] (n=108) | 100.0 | nan |
-| NeMo Guardrails | not run in this environment | -- | -- | -- |
-| Llama Guard | not run in this environment | -- | -- | -- |
+Abstentions are unknown verdicts (the verifier declines to answer within its resource bound). Unsound errors are decisive verdicts that contradict ground truth (a safe verdict on a violated item, or a violated verdict on a safe item); a sound method has zero.
+
+| method | detection rate % [95% CI] | false-alarm rate % [95% CI] | witness validity % | abstain | unsound | mean s/item |
+| --- | --- | --- | --- | --- | --- | --- |
+| complete verification | 100.0 [98.3, 100.0] (n=216) | 0.0 [0.0, 3.4] (n=108) | 100.0 | 0 | 0 | 0.0057 |
+| unit-test suite | 86.6 [81.4, 90.5] (n=216) | 0.0 [0.0, 3.4] (n=108) | 100.0 | 0 | 29 | 0.0058 |
+| language-model judge | 100.0 [98.3, 100.0] (n=216) | 0.0 [0.0, 3.4] (n=108) | 100.0 | 0 | 0 | nan |
+| NeMo Guardrails | not run in this environment | -- | -- | -- | -- | -- |
+| Llama Guard | not run in this environment | -- | -- | -- | -- | -- |
 
 ## Detection by interaction depth (rate % [95% CI])
 

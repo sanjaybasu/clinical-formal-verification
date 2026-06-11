@@ -45,7 +45,19 @@ guarantees in the architectural-limits section are existence and worst-case stat
 average-case detection rate by a language model is consistent with them and does not provide the
 guarantee.
 
-## 4. k-induction is time-boxed
+## 5. A verifier unsoundness bug was found and fixed during CIV-Bench-Compute, and metrics added
+
+On CIV-Bench-Compute the transition-system checker initially reported a timeout on the bounded
+reachability query (Z3 returning unknown) as holds, which is unsound: a timeout is not a proof of
+safety. This was corrected so that unknown is reported as an abstention (a distinct verdict),
+never as holds or violated. Two metrics were added to the analysis to make this visible:
+abstentions (unknown verdicts) and unsound errors (decisive verdicts that contradict ground
+truth). After the fix, complete verification has zero unsound errors on every suite: it proves,
+refutes with a replayable counterexample, or abstains. The discovery is reported as part of the
+result, since it is the concrete instance of the paper's own claim that the value of verification
+is soundness rather than a higher detection rate.
+
+## 6. k-induction is time-boxed
 
 For the temporal suites the verifier attempts a k-induction step for an unbounded result after
 bounded model checking. On CIV-Bench-Compute the k-induction satisfiability call on the modular

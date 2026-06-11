@@ -100,6 +100,20 @@ def _confirm_transition(item: Item, witness: list[dict]) -> bool:
     return False
 
 
+def _pick_transition(ts: TransitionSystem, state: dict, typing: dict, step: dict):
+    """Choose the transition named in the trace step, else the first enabled match for the event."""
+    candidates = [t for t in ts.transitions if t.event == step["event"]]
+    named = step.get("transition")
+    if named is not None:
+        for t in candidates:
+            if t.id == named:
+                return t
+    for t in candidates:
+        if t.guard is None or eval_bool(t.guard, state, typing):
+            return t
+    return None
+
+
 def render_decision_scenario(item: Item, witness: list[dict]) -> str:
     """Render a decision counterexample as input, output, and the violated property."""
     rs: DecisionRuleset = item.ruleset

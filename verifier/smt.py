@@ -337,6 +337,11 @@ def _check_transition(item: Item, timeout_ms: int) -> Result:
         secs = time.perf_counter() - t0
         return Result(item.id, "violated", f"traces up to length {bound}", trace,
                       "sat: a reachable trace reaches a state violating the invariant", secs)
+    if res == z3.unknown:
+        # a timeout on the bounded search is not a proof of safety; the verifier abstains
+        secs = time.perf_counter() - t0
+        return Result(item.id, "unknown", f"bounded search to length {bound}", None,
+                      "solver returned unknown (resource bound) on the bounded reachability query", secs)
     s.pop()
 
     # k-induction step for an unbounded result on G(phi); time-boxed so a hard arithmetic

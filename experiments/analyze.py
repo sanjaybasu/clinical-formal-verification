@@ -95,7 +95,7 @@ def main() -> int:
         runs = load_runs(method)
         if not runs:
             continue
-        effective = {i for i, r in runs.items() if r["verdict"] in ("holds", "violated")}
+        effective = {i for i, r in runs.items() if r["verdict"] != "not_run"}
         if not effective:
             marker = next(iter(runs.values()))
             summary["methods"][method] = {
@@ -104,12 +104,17 @@ def main() -> int:
                 "command": marker.get("extra", {}).get("command", ""),
             }
             continue
+        # covered includes any decisive-or-abstaining output; "unknown" is not-detected, not wrong
         covered = [i for i in violated if i in effective]
         det = sum(runs[i]["verdict"] == "violated" for i in covered)
         p, lo, hi = wilson(det, len(covered))
         fa_cov = [i for i in holds if i in effective]
         fa = sum(runs[i]["verdict"] == "violated" for i in fa_cov)
         fp, flo, fhi = wilson(fa, len(fa_cov))
+        # abstentions (unknown) and unsound decisive errors
+        abstain = sum(runs[i]["verdict"] == "unknown" for i in covered + fa_cov)
+        unsound = (sum(runs[i]["verdict"] == "holds" for i in covered)        # said safe, was violated
+                   + sum(runs[i]["verdict"] == "violated" for i in fa_cov))   # said violated, was safe
 
         # witness validity among violated verdicts
         valid = total_claims = 0
@@ -137,6 +142,8 @@ def main() -> int:
             "n_covered_violated": len(covered),
             "detection": {"x": det, "n": len(covered), "rate": p, "ci": [lo, hi]},
             "false_alarm": {"x": fa, "n": len(fa_cov), "rate": fp, "ci": [flo, fhi]},
+            "abstentions": abstain,
+            "unsound_errors": unsound,
             "witness_validity": {"valid": valid, "claims": total_claims, "rate": wval},
             "by_depth": {str(d): {"detected": v["detected"], "n": v["n"],
                                   "rate": v["wilson"][0], "ci": [v["wilson"][1], v["wilson"][2]]}
@@ -164,20 +171,25 @@ def _render_tables(summary: dict) -> str:
          f"Items: {summary['n_items']} ({summary['n_violated']} violated, {summary['n_holds']} holds). "
          "Proportions carry 95% Wilson score intervals.",
          "",
-         "## Detection and false alarm",
+         "## Detection, false alarm, abstention, and soundness",
          "",
-         "| method | detection rate % [95% CI] | false-alarm rate % [95% CI] | witness validity % | mean s/item |",
-         "| --- | --- | --- | --- | --- |"]
+         "Abstentions are unknown verdicts (the verifier declines to answer within its resource "
+         "bound). Unsound errors are decisive verdicts that contradict ground truth (a safe verdict "
+         "on a violated item, or a violated verdict on a safe item); a sound method has zero.",
+         "",
+         "| method | detection rate % [95% CI] | false-alarm rate % [95% CI] | witness validity % | abstain | unsound | mean s/item |",
+         "| --- | --- | --- | --- | --- | --- | --- |"]
     for m in present:
         d = summary["methods"][m]
         if d.get("status") == "not_run":
-            L.append(f"| {d['label']} | not run in this environment | -- | -- | -- |")
+            L.append(f"| {d['label']} | not run in this environment | -- | -- | -- | -- | -- |")
             continue
         det = d["detection"]; fa = d["false_alarm"]; wv = d["witness_validity"]["rate"]
         L.append(
             f"| {d['label']} | {_pct(det['rate'])} [{_pct(det['ci'][0])}, {_pct(det['ci'][1])}] "
             f"(n={det['n']}) | {_pct(fa['rate'])} [{_pct(fa['ci'][0])}, {_pct(fa['ci'][1])}] "
-            f"(n={fa['n']}) | {_pct(wv)} | {d['mean_seconds']:.4f} |")
+            f"(n={fa['n']}) | {_pct(wv)} | {d.get('abstentions', 0)} | {d.get('unsound_errors', 0)} | "
+            f"{d['mean_seconds']:.4f} |")
     L += ["", "## Detection by interaction depth (rate % [95% CI])", "",
           "| method | " + " | ".join(f"depth {d}" for d in summary["depths"]) + " | depth slope (logit) [95% CI] |",
           "| --- | " + " | ".join("---" for _ in summary["depths"]) + " | --- |"]
