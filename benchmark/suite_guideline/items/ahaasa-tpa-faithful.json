@@ -1,0 +1,155 @@
+{
+  "id": "ahaasa-tpa-faithful",
+  "domain": "medication",
+  "metadata": {
+    "description": "AHA/ASA acute ischemic stroke: IV alteplase eligibility (BP and haemorrhage contraindications)",
+    "source": "published_guideline:AHA-ASA-2019-AIS",
+    "clinical_intent": "alteplase requires BP <185/110 and no intracranial haemorrhage"
+  },
+  "ruleset": {
+    "id": "ahaasa-tpa-faithful",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "sbp",
+        "type": "int",
+        "bounds": [
+          80,
+          220
+        ]
+      },
+      {
+        "name": "dbp",
+        "type": "int",
+        "bounds": [
+          40,
+          140
+        ]
+      },
+      {
+        "name": "within_window",
+        "type": "bool"
+      },
+      {
+        "name": "intracranial_hemorrhage",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "tpa_recommended",
+        "type": "bool"
+      }
+    ],
+    "rules": [
+      {
+        "id": "offer_tpa",
+        "priority": 50,
+        "when": {
+          "var": "within_window"
+        },
+        "then": [
+          {
+            "var": "tpa_recommended",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "contraindication_guard",
+        "priority": 90,
+        "when": {
+          "op": "or",
+          "args": [
+            {
+              "op": "ge",
+              "args": [
+                {
+                  "var": "sbp"
+                },
+                {
+                  "const": 185
+                }
+              ]
+            },
+            {
+              "op": "ge",
+              "args": [
+                {
+                  "var": "dbp"
+                },
+                {
+                  "const": 110
+                }
+              ]
+            },
+            {
+              "var": "intracranial_hemorrhage"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "tpa_recommended",
+            "value": false
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "tpa_recommended",
+        "value": false
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "no-tpa-when-contraindicated",
+    "kind": "invariant",
+    "formula": {
+      "op": "not",
+      "args": [
+        {
+          "op": "and",
+          "args": [
+            {
+              "var": "tpa_recommended"
+            },
+            {
+              "op": "or",
+              "args": [
+                {
+                  "op": "ge",
+                  "args": [
+                    {
+                      "var": "sbp"
+                    },
+                    {
+                      "const": 185
+                    }
+                  ]
+                },
+                {
+                  "op": "ge",
+                  "args": [
+                    {
+                      "var": "dbp"
+                    },
+                    {
+                      "const": 110
+                    }
+                  ]
+                },
+                {
+                  "var": "intracranial_hemorrhage"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "intent": "alteplase is never recommended when BP is >=185/110 or an intracranial haemorrhage is present"
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "id": "acog-severe-htn-and-bug",
+  "domain": "triage_partial",
+  "metadata": {
+    "description": "ACOG acute-onset severe hypertension in pregnancy: urgent antihypertensive therapy",
+    "source": "published_guideline:ACOG-CommitteeOpinion-767",
+    "clinical_intent": "sustained severe-range BP (systolic >=160 or diastolic >=110) in pregnancy is treated within 30-60 min"
+  },
+  "ruleset": {
+    "id": "acog-severe-htn-and-bug",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "sbp",
+        "type": "int",
+        "bounds": [
+          80,
+          200
+        ]
+      },
+      {
+        "name": "dbp",
+        "type": "int",
+        "bounds": [
+          40,
+          130
+        ]
+      },
+      {
+        "name": "pregnant_or_postpartum",
+        "type": "bool"
+      },
+      {
+        "name": "sustained_15min",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "treat_urgently",
+        "type": "bool"
+      }
+    ],
+    "rules": [
+      {
+        "id": "urgent_treat",
+        "priority": 50,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "pregnant_or_postpartum"
+            },
+            {
+              "var": "sustained_15min"
+            },
+            {
+              "op": "and",
+              "args": [
+                {
+                  "op": "ge",
+                  "args": [
+                    {
+                      "var": "sbp"
+                    },
+                    {
+                      "const": 160
+                    }
+                  ]
+                },
+                {
+                  "op": "ge",
+                  "args": [
+                    {
+                      "var": "dbp"
+                    },
+                    {
+                      "const": 110
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "treat_urgently",
+            "value": true
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "treat_urgently",
+        "value": false
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "severe-range-bp-treated",
+    "kind": "invariant",
+    "formula": {
+      "op": "not",
+      "args": [
+        {
+          "op": "and",
+          "args": [
+            {
+              "var": "pregnant_or_postpartum"
+            },
+            {
+              "var": "sustained_15min"
+            },
+            {
+              "op": "or",
+              "args": [
+                {
+                  "op": "ge",
+                  "args": [
+                    {
+                      "var": "sbp"
+                    },
+                    {
+                      "const": 160
+                    }
+                  ]
+                },
+                {
+                  "op": "ge",
+                  "args": [
+                    {
+                      "var": "dbp"
+                    },
+                    {
+                      "const": 110
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "op": "not",
+              "args": [
+                {
+                  "var": "treat_urgently"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "intent": "a pregnant/postpartum patient with sustained severe-range blood pressure is always treated urgently"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "item": "ahaasa-tpa-dbp-omitted",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "sbp",
+      "value": 80
+    },
+    {
+      "var": "dbp",
+      "value": 110
+    },
+    {
+      "var": "within_window",
+      "value": true
+    },
+    {
+      "var": "intracranial_hemorrhage",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 1,
+  "tier": "guideline",
+  "basis": "concrete_replay"
+}

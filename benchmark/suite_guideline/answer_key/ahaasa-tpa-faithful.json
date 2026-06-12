@@ -1,0 +1,9 @@
+{
+  "item": "ahaasa-tpa-faithful",
+  "ground_truth": "holds",
+  "witness": null,
+  "seeded": false,
+  "interaction_depth": 1,
+  "tier": "guideline",
+  "basis": "manual_proof"
+}
