@@ -1,0 +1,99 @@
+{
+  "id": "mentalhealth-d3-viol-03",
+  "domain": "mental_health",
+  "metadata": {
+    "description": "mental health; a self-harm flag is never suppressed or out-ranked",
+    "source": "synthetic",
+    "clinical_intent": "a self-harm indicator must always escalate, never deprioritized by a generic task"
+  },
+  "ruleset": {
+    "id": "mh-3-3",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "self_harm_flag",
+        "type": "bool"
+      },
+      {
+        "name": "transport_need",
+        "type": "bool"
+      },
+      {
+        "name": "housing_need",
+        "type": "bool"
+      },
+      {
+        "name": "appt_reminder",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "escalate",
+        "type": "bool"
+      }
+    ],
+    "rules": [
+      {
+        "id": "escalate_self_harm",
+        "priority": 50,
+        "when": {
+          "var": "self_harm_flag"
+        },
+        "then": [
+          {
+            "var": "escalate",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "generic_outranks",
+        "priority": 100,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "transport_need"
+            },
+            {
+              "var": "housing_need"
+            },
+            {
+              "var": "appt_reminder"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "escalate",
+            "value": false
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "escalate",
+        "value": false
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "self-harm-always-escalates",
+    "kind": "invariant",
+    "formula": {
+      "op": "implies",
+      "args": [
+        {
+          "var": "self_harm_flag"
+        },
+        {
+          "var": "escalate"
+        }
+      ]
+    },
+    "intent": "self_harm_flag true implies escalate true for every input"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "item": "triagepartial-d1-viol-11",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "vitals_unknown",
+      "value": true
+    },
+    {
+      "var": "concerning_symptom",
+      "value": false
+    },
+    {
+      "var": "vitals_unknown__base",
+      "value": false
+    },
+    {
+      "var": "concerning_symptom__base",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 1,
+  "tier": "realistic",
+  "basis": "concrete_replay"
+}

@@ -1,0 +1,26 @@
+{
+  "item": "substance-d3-viol-03",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "active_oud",
+      "value": true
+    },
+    {
+      "var": "insomnia",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "post_surgical",
+      "value": true
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 3,
+  "tier": "realistic",
+  "basis": "concrete_replay"
+}

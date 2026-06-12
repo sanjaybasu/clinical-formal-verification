@@ -1,0 +1,14 @@
+{
+  "item": "workup-d1-viol-04",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "irritable",
+      "value": true
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 1,
+  "tier": "realistic",
+  "basis": "concrete_replay"
+}

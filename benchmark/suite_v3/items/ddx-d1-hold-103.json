@@ -1,0 +1,63 @@
+{
+  "id": "ddx-d1-hold-103",
+  "domain": "differential_breadth",
+  "metadata": {
+    "description": "differential breadth; a can't-miss differential is not omitted under red flags",
+    "source": "synthetic",
+    "clinical_intent": "with dissection red flags present, aortic dissection stays in the differential"
+  },
+  "ruleset": {
+    "id": "dx-1-103",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "syncope",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "ddx_aortic_dissection",
+        "type": "bool"
+      }
+    ],
+    "rules": [
+      {
+        "id": "include_dissection",
+        "priority": 50,
+        "when": {
+          "var": "syncope"
+        },
+        "then": [
+          {
+            "var": "ddx_aortic_dissection",
+            "value": true
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "ddx_aortic_dissection",
+        "value": false
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "cant-miss-differential-not-omitted",
+    "kind": "invariant",
+    "formula": {
+      "op": "implies",
+      "args": [
+        {
+          "var": "syncope"
+        },
+        {
+          "var": "ddx_aortic_dissection"
+        }
+      ]
+    },
+    "intent": "when red-flag antecedents hold, the can't-miss differential is present"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "item": "ddx-d4-viol-11",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "pulse_deficit",
+      "value": true
+    },
+    {
+      "var": "tearing_chest_pain",
+      "value": true
+    },
+    {
+      "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "widened_mediastinum",
+      "value": true
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 4,
+  "tier": "realistic",
+  "basis": "concrete_replay"
+}

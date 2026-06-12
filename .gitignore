@@ -41,5 +41,11 @@ experiments/results_compute/
 experiments/results_v2/
 experiments/results_combined.md
 
+# run outputs and results regenerate from the released code; never tracked
+experiments/runs_*/
+experiments/results_*/
+# exploratory adversarial pilots, superseded by the suite_v3 computational stress tier
+benchmark/suite_adv_pilot*/
+
 # never commit proprietary or PHI-derived splits
 benchmark/private/

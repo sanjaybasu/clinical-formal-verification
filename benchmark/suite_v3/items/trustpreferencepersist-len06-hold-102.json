@@ -1,0 +1,182 @@
+{
+  "id": "trustpreferencepersist-len06-hold-102",
+  "domain": "trust_preference_persist",
+  "metadata": {
+    "description": "trust/preference; a stated preference persists across visits until the patient rescinds",
+    "source": "synthetic",
+    "clinical_intent": "a documented patient preference persists across encounters until a patient-originated rescind"
+  },
+  "ruleset": {
+    "id": "trustpreferencepersist-6-102",
+    "kind": "transition_system",
+    "state_vars": [
+      {
+        "name": "documented",
+        "type": "bool"
+      },
+      {
+        "name": "resolved",
+        "type": "bool"
+      },
+      {
+        "name": "open",
+        "type": "bool"
+      },
+      {
+        "name": "ticks",
+        "type": "int",
+        "bounds": [
+          0,
+          6
+        ]
+      }
+    ],
+    "events": [
+      {
+        "name": "open"
+      },
+      {
+        "name": "resolve"
+      },
+      {
+        "name": "encounter"
+      },
+      {
+        "name": "silent_reset"
+      }
+    ],
+    "init": [
+      {
+        "var": "documented",
+        "value": false
+      },
+      {
+        "var": "resolved",
+        "value": false
+      },
+      {
+        "var": "open",
+        "value": false
+      },
+      {
+        "var": "ticks",
+        "value": 0
+      }
+    ],
+    "transitions": [
+      {
+        "id": "t_open",
+        "event": "open",
+        "update": [
+          {
+            "var": "documented",
+            "expr": {
+              "const": true
+            }
+          },
+          {
+            "var": "open",
+            "expr": {
+              "const": true
+            }
+          }
+        ]
+      },
+      {
+        "id": "t_resolve",
+        "event": "resolve",
+        "guard": {
+          "var": "open"
+        },
+        "update": [
+          {
+            "var": "resolved",
+            "expr": {
+              "const": true
+            }
+          },
+          {
+            "var": "open",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "t_touch",
+        "event": "encounter",
+        "update": [
+          {
+            "var": "ticks",
+            "expr": {
+              "op": "ite",
+              "args": [
+                {
+                  "op": "lt",
+                  "args": [
+                    {
+                      "var": "ticks"
+                    },
+                    {
+                      "const": 6
+                    }
+                  ]
+                },
+                {
+                  "op": "add",
+                  "args": [
+                    {
+                      "var": "ticks"
+                    },
+                    {
+                      "const": 1
+                    }
+                  ]
+                },
+                {
+                  "var": "ticks"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "property": {
+    "id": "obligation-not-dropped",
+    "kind": "temporal",
+    "formula": {
+      "op": "G",
+      "args": [
+        {
+          "op": "implies",
+          "args": [
+            {
+              "op": "and",
+              "args": [
+                {
+                  "var": "documented"
+                },
+                {
+                  "op": "not",
+                  "args": [
+                    {
+                      "var": "resolved"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "var": "open"
+            }
+          ]
+        }
+      ]
+    },
+    "bound": 9,
+    "intent": "in every reachable state, a documented unresolved obligation is still open"
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "id": "ddx-d4-viol-10",
+  "domain": "differential_breadth",
+  "metadata": {
+    "description": "differential breadth; a can't-miss differential is not omitted under red flags",
+    "source": "synthetic",
+    "clinical_intent": "with dissection red flags present, aortic dissection stays in the differential"
+  },
+  "ruleset": {
+    "id": "dx-4-10",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "syncope",
+        "type": "bool"
+      },
+      {
+        "name": "hypertension",
+        "type": "bool"
+      },
+      {
+        "name": "pulse_deficit",
+        "type": "bool"
+      },
+      {
+        "name": "tearing_chest_pain",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "ddx_aortic_dissection",
+        "type": "bool"
+      }
+    ],
+    "rules": [
+      {
+        "id": "include_dissection",
+        "priority": 50,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "syncope"
+            },
+            {
+              "var": "hypertension"
+            },
+            {
+              "var": "pulse_deficit"
+            },
+            {
+              "var": "tearing_chest_pain"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "ddx_aortic_dissection",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "narrow_to_acs",
+        "priority": 90,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "syncope"
+            },
+            {
+              "var": "hypertension"
+            },
+            {
+              "var": "pulse_deficit"
+            },
+            {
+              "var": "tearing_chest_pain"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "ddx_aortic_dissection",
+            "value": false
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "ddx_aortic_dissection",
+        "value": false
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "cant-miss-differential-not-omitted",
+    "kind": "invariant",
+    "formula": {
+      "op": "implies",
+      "args": [
+        {
+          "op": "and",
+          "args": [
+            {
+              "var": "syncope"
+            },
+            {
+              "var": "hypertension"
+            },
+            {
+              "var": "pulse_deficit"
+            },
+            {
+              "var": "tearing_chest_pain"
+            }
+          ]
+        },
+        {
+          "var": "ddx_aortic_dissection"
+        }
+      ]
+    },
+    "intent": "when red-flag antecedents hold, the can't-miss differential is present"
+  }
+}

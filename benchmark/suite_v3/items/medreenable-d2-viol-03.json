@@ -1,0 +1,100 @@
+{
+  "id": "medreenable-d2-viol-03",
+  "domain": "medication",
+  "metadata": {
+    "description": "medication safety; no rule re-enables a contraindication a guard disabled",
+    "source": "synthetic",
+    "clinical_intent": "no input recommends an NSAID for an anticoagulated patient"
+  },
+  "ruleset": {
+    "id": "mre-2-3",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "anticoagulated",
+        "type": "bool"
+      },
+      {
+        "name": "elderly",
+        "type": "bool"
+      },
+      {
+        "name": "ckd",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "rec_nsaid",
+        "type": "bool"
+      }
+    ],
+    "rules": [
+      {
+        "id": "guard_suppress_nsaid",
+        "priority": 90,
+        "when": {
+          "var": "anticoagulated"
+        },
+        "then": [
+          {
+            "var": "rec_nsaid",
+            "value": false
+          }
+        ]
+      },
+      {
+        "id": "enable_nsaid",
+        "priority": 100,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "anticoagulated"
+            },
+            {
+              "var": "elderly"
+            },
+            {
+              "var": "ckd"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "rec_nsaid",
+            "value": true
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "rec_nsaid",
+        "value": false
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "no-contraindicated-nsaid",
+    "kind": "invariant",
+    "formula": {
+      "op": "not",
+      "args": [
+        {
+          "op": "and",
+          "args": [
+            {
+              "var": "anticoagulated"
+            },
+            {
+              "var": "rec_nsaid"
+            }
+          ]
+        }
+      ]
+    },
+    "intent": "rec_nsaid is never true for an anticoagulated patient"
+  }
+}

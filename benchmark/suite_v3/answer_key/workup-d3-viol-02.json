@@ -1,0 +1,22 @@
+{
+  "item": "workup-d3-viol-02",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "neonate",
+      "value": true
+    },
+    {
+      "var": "irritable",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": true
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 3,
+  "tier": "realistic",
+  "basis": "concrete_replay"
+}

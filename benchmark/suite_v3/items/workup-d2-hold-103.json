@@ -1,0 +1,83 @@
+{
+  "id": "workup-d2-hold-103",
+  "domain": "workup_completeness",
+  "metadata": {
+    "description": "workup completeness; mandatory workup for a sentinel presentation is not omitted",
+    "source": "synthetic",
+    "clinical_intent": "a neonate-fever sentinel presentation must order the full sepsis workup"
+  },
+  "ruleset": {
+    "id": "wk-2-103",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "fever",
+        "type": "bool"
+      },
+      {
+        "name": "lethargy",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "full_sepsis_workup",
+        "type": "bool"
+      }
+    ],
+    "rules": [
+      {
+        "id": "order_sepsis_workup",
+        "priority": 50,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "fever"
+            },
+            {
+              "var": "lethargy"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "full_sepsis_workup",
+            "value": true
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "full_sepsis_workup",
+        "value": false
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "mandatory-workup-not-omitted",
+    "kind": "invariant",
+    "formula": {
+      "op": "implies",
+      "args": [
+        {
+          "op": "and",
+          "args": [
+            {
+              "var": "fever"
+            },
+            {
+              "var": "lethargy"
+            }
+          ]
+        },
+        {
+          "var": "full_sepsis_workup"
+        }
+      ]
+    },
+    "intent": "when the sentinel antecedents hold, the mandatory workup is ordered"
+  }
+}

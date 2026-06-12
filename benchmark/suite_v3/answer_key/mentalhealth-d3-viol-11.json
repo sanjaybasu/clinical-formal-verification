@@ -1,0 +1,26 @@
+{
+  "item": "mentalhealth-d3-viol-11",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "self_harm_flag",
+      "value": true
+    },
+    {
+      "var": "housing_need",
+      "value": true
+    },
+    {
+      "var": "transport_need",
+      "value": true
+    },
+    {
+      "var": "med_refill",
+      "value": true
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 3,
+  "tier": "realistic",
+  "basis": "concrete_replay"
+}

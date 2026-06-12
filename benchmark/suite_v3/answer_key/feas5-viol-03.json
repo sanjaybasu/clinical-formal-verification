@@ -1,0 +1,30 @@
+{
+  "item": "feas5-viol-03",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "wt",
+      "value": 1
+    },
+    {
+      "var": "renal",
+      "value": 3
+    },
+    {
+      "var": "inr",
+      "value": 5
+    },
+    {
+      "var": "plt",
+      "value": 0
+    },
+    {
+      "var": "na",
+      "value": 0
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 0,
+  "tier": "stress",
+  "basis": "concrete_replay"
+}

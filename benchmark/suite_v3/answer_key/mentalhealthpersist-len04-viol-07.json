@@ -1,0 +1,34 @@
+{
+  "item": "mentalhealthpersist-len04-viol-07",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "event": "open",
+      "transition": "t_open"
+    },
+    {
+      "event": "encounter",
+      "transition": "t_touch"
+    },
+    {
+      "event": "encounter",
+      "transition": "t_touch"
+    },
+    {
+      "event": "encounter",
+      "transition": "t_touch"
+    },
+    {
+      "event": "encounter",
+      "transition": "t_touch"
+    },
+    {
+      "event": "auto_close",
+      "transition": "t_drop"
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 4,
+  "tier": "realistic",
+  "basis": "concrete_replay"
+}

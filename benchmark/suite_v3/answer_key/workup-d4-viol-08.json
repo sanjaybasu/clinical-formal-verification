@@ -1,0 +1,26 @@
+{
+  "item": "workup-d4-viol-08",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "lethargy",
+      "value": true
+    },
+    {
+      "var": "neonate",
+      "value": true
+    },
+    {
+      "var": "fever",
+      "value": true
+    },
+    {
+      "var": "irritable",
+      "value": true
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 4,
+  "tier": "realistic",
+  "basis": "concrete_replay"
+}

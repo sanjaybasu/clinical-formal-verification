@@ -1,0 +1,97 @@
+{
+  "id": "trust-d2-viol-01",
+  "domain": "trust_preference",
+  "metadata": {
+    "description": "trust/preference; a declined treatment is never silently recommended",
+    "source": "synthetic",
+    "clinical_intent": "if the patient declines treatment x, the system does not recommend x"
+  },
+  "ruleset": {
+    "id": "tr-2-1",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "patient_declines_x",
+        "type": "bool"
+      },
+      {
+        "name": "risk_high",
+        "type": "bool"
+      },
+      {
+        "name": "quality_gap",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "recommend_x",
+        "type": "bool"
+      }
+    ],
+    "rules": [
+      {
+        "id": "suppress_on_decline",
+        "priority": 90,
+        "when": {
+          "var": "patient_declines_x"
+        },
+        "then": [
+          {
+            "var": "recommend_x",
+            "value": false
+          }
+        ]
+      },
+      {
+        "id": "guideline_override",
+        "priority": 100,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "risk_high"
+            },
+            {
+              "var": "quality_gap"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "recommend_x",
+            "value": true
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "recommend_x",
+        "value": false
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "declined-not-recommended",
+    "kind": "invariant",
+    "formula": {
+      "op": "not",
+      "args": [
+        {
+          "op": "and",
+          "args": [
+            {
+              "var": "patient_declines_x"
+            },
+            {
+              "var": "recommend_x"
+            }
+          ]
+        }
+      ]
+    },
+    "intent": "recommend_x is never true when the patient declines x"
+  }
+}

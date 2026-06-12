@@ -1,0 +1,111 @@
+{
+  "id": "substance-d3-viol-08",
+  "domain": "substance_use",
+  "metadata": {
+    "description": "substance use; a contraindicated sedative is not co-recommended with MOUD",
+    "source": "synthetic",
+    "clinical_intent": "a patient on MOUD for OUD is never co-recommended a benzodiazepine"
+  },
+  "ruleset": {
+    "id": "su-3-8",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "active_oud",
+        "type": "bool"
+      },
+      {
+        "name": "insomnia",
+        "type": "bool"
+      },
+      {
+        "name": "post_surgical",
+        "type": "bool"
+      },
+      {
+        "name": "elderly",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "rec_moud",
+        "type": "bool"
+      },
+      {
+        "name": "rec_benzo",
+        "type": "bool"
+      }
+    ],
+    "rules": [
+      {
+        "id": "rec_moud",
+        "priority": 50,
+        "when": {
+          "var": "active_oud"
+        },
+        "then": [
+          {
+            "var": "rec_moud",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "rec_benzo",
+        "priority": 50,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "active_oud"
+            },
+            {
+              "var": "insomnia"
+            },
+            {
+              "var": "post_surgical"
+            },
+            {
+              "var": "elderly"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "rec_benzo",
+            "value": true
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "rec_moud",
+        "value": false
+      },
+      {
+        "var": "rec_benzo",
+        "value": false
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "no-benzo-with-moud",
+    "kind": "mutual_exclusion",
+    "mutual_exclusion": {
+      "pairs": [
+        [
+          {
+            "var": "rec_moud"
+          },
+          {
+            "var": "rec_benzo"
+          }
+        ]
+      ]
+    },
+    "intent": "no input recommends both MOUD and a benzodiazepine"
+  }
+}

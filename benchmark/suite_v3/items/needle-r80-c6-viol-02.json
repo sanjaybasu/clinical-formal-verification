@@ -1,0 +1,1719 @@
+{
+  "id": "needle-r80-c6-viol-02",
+  "domain": "medication",
+  "metadata": {
+    "description": "buried contraindication override among 80 rules",
+    "source": "synthetic",
+    "clinical_intent": "no input recommends a contraindicated drug for an anticoagulated patient"
+  },
+  "ruleset": {
+    "id": "n80620",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "anticoagulated",
+        "type": "bool"
+      },
+      {
+        "name": "f0",
+        "type": "bool"
+      },
+      {
+        "name": "f1",
+        "type": "bool"
+      },
+      {
+        "name": "f2",
+        "type": "bool"
+      },
+      {
+        "name": "f3",
+        "type": "bool"
+      },
+      {
+        "name": "f4",
+        "type": "bool"
+      },
+      {
+        "name": "f5",
+        "type": "bool"
+      },
+      {
+        "name": "f6",
+        "type": "bool"
+      },
+      {
+        "name": "f7",
+        "type": "bool"
+      },
+      {
+        "name": "f8",
+        "type": "bool"
+      },
+      {
+        "name": "f9",
+        "type": "bool"
+      },
+      {
+        "name": "f10",
+        "type": "bool"
+      },
+      {
+        "name": "f11",
+        "type": "bool"
+      },
+      {
+        "name": "f12",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "rec_drug",
+        "type": "bool"
+      },
+      {
+        "name": "o0",
+        "type": "bool"
+      },
+      {
+        "name": "o1",
+        "type": "bool"
+      },
+      {
+        "name": "o2",
+        "type": "bool"
+      },
+      {
+        "name": "o3",
+        "type": "bool"
+      },
+      {
+        "name": "o4",
+        "type": "bool"
+      }
+    ],
+    "rules": [
+      {
+        "id": "d32",
+        "priority": 60,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f0"
+            },
+            {
+              "var": "f2"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o4",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d51",
+        "priority": 24,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f3"
+            },
+            {
+              "var": "f6"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o2",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d43",
+        "priority": 22,
+        "when": {
+          "var": "f1"
+        },
+        "then": [
+          {
+            "var": "o0",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d57",
+        "priority": 58,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f7"
+            },
+            {
+              "var": "f2"
+            },
+            {
+              "var": "f0"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o0",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d18",
+        "priority": 20,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f1"
+            },
+            {
+              "var": "f0"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o4",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d71",
+        "priority": 46,
+        "when": {
+          "var": "f1"
+        },
+        "then": [
+          {
+            "var": "o0",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d3",
+        "priority": 42,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f1"
+            },
+            {
+              "var": "f10"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o0",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d47",
+        "priority": 52,
+        "when": {
+          "var": "f6"
+        },
+        "then": [
+          {
+            "var": "o3",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d73",
+        "priority": 39,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f5"
+            },
+            {
+              "var": "f11"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o4",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d7",
+        "priority": 35,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f2"
+            },
+            {
+              "var": "f1"
+            },
+            {
+              "var": "f3"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o0",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d69",
+        "priority": 27,
+        "when": {
+          "var": "f9"
+        },
+        "then": [
+          {
+            "var": "o4",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d60",
+        "priority": 42,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f9"
+            },
+            {
+              "var": "f1"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o1",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d37",
+        "priority": 10,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f7"
+            },
+            {
+              "var": "f10"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o0",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d49",
+        "priority": 25,
+        "when": {
+          "var": "f11"
+        },
+        "then": [
+          {
+            "var": "o4",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d61",
+        "priority": 48,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f3"
+            },
+            {
+              "var": "f5"
+            },
+            {
+              "var": "f7"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o4",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d8",
+        "priority": 25,
+        "when": {
+          "var": "f8"
+        },
+        "then": [
+          {
+            "var": "o2",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d30",
+        "priority": 55,
+        "when": {
+          "var": "f5"
+        },
+        "then": [
+          {
+            "var": "o4",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "guard",
+        "priority": 90,
+        "when": {
+          "var": "anticoagulated"
+        },
+        "then": [
+          {
+            "var": "rec_drug",
+            "value": false
+          }
+        ]
+      },
+      {
+        "id": "d26",
+        "priority": 12,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f5"
+            },
+            {
+              "var": "f6"
+            },
+            {
+              "var": "f9"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o3",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d0",
+        "priority": 27,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f10"
+            },
+            {
+              "var": "f11"
+            },
+            {
+              "var": "f5"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o3",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d17",
+        "priority": 24,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f6"
+            },
+            {
+              "var": "f11"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o3",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d58",
+        "priority": 54,
+        "when": {
+          "var": "f7"
+        },
+        "then": [
+          {
+            "var": "o0",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d28",
+        "priority": 30,
+        "when": {
+          "var": "f1"
+        },
+        "then": [
+          {
+            "var": "o1",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d55",
+        "priority": 16,
+        "when": {
+          "var": "f10"
+        },
+        "then": [
+          {
+            "var": "o1",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d56",
+        "priority": 19,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f2"
+            },
+            {
+              "var": "f7"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o0",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d23",
+        "priority": 44,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f7"
+            },
+            {
+              "var": "f5"
+            },
+            {
+              "var": "f10"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o1",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d76",
+        "priority": 57,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f6"
+            },
+            {
+              "var": "f0"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o4",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d75",
+        "priority": 21,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f3"
+            },
+            {
+              "var": "f8"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o2",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d78",
+        "priority": 28,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f2"
+            },
+            {
+              "var": "f12"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o1",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d65",
+        "priority": 13,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f5"
+            },
+            {
+              "var": "f2"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o0",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d4",
+        "priority": 16,
+        "when": {
+          "var": "f4"
+        },
+        "then": [
+          {
+            "var": "o4",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d22",
+        "priority": 47,
+        "when": {
+          "var": "f7"
+        },
+        "then": [
+          {
+            "var": "o3",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d10",
+        "priority": 44,
+        "when": {
+          "var": "f2"
+        },
+        "then": [
+          {
+            "var": "o4",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d44",
+        "priority": 42,
+        "when": {
+          "var": "f3"
+        },
+        "then": [
+          {
+            "var": "o1",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d16",
+        "priority": 48,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f2"
+            },
+            {
+              "var": "f7"
+            },
+            {
+              "var": "f6"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o1",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d48",
+        "priority": 51,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f4"
+            },
+            {
+              "var": "f12"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o4",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d63",
+        "priority": 55,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f12"
+            },
+            {
+              "var": "f3"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o1",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d50",
+        "priority": 11,
+        "when": {
+          "var": "f3"
+        },
+        "then": [
+          {
+            "var": "o4",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d29",
+        "priority": 10,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f7"
+            },
+            {
+              "var": "f5"
+            },
+            {
+              "var": "f6"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o0",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d39",
+        "priority": 44,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f12"
+            },
+            {
+              "var": "f11"
+            },
+            {
+              "var": "f4"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o0",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d20",
+        "priority": 40,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f12"
+            },
+            {
+              "var": "f11"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o3",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d54",
+        "priority": 41,
+        "when": {
+          "var": "f9"
+        },
+        "then": [
+          {
+            "var": "o3",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d46",
+        "priority": 29,
+        "when": {
+          "var": "f2"
+        },
+        "then": [
+          {
+            "var": "o2",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d19",
+        "priority": 42,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f10"
+            },
+            {
+              "var": "f9"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o3",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d40",
+        "priority": 58,
+        "when": {
+          "var": "f3"
+        },
+        "then": [
+          {
+            "var": "o1",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d33",
+        "priority": 21,
+        "when": {
+          "var": "f6"
+        },
+        "then": [
+          {
+            "var": "o3",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d34",
+        "priority": 48,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f0"
+            },
+            {
+              "var": "f6"
+            },
+            {
+              "var": "f9"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o1",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d74",
+        "priority": 31,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f8"
+            },
+            {
+              "var": "f2"
+            },
+            {
+              "var": "f10"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o0",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d41",
+        "priority": 55,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f0"
+            },
+            {
+              "var": "f3"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o2",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d2",
+        "priority": 42,
+        "when": {
+          "var": "f5"
+        },
+        "then": [
+          {
+            "var": "o1",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d25",
+        "priority": 16,
+        "when": {
+          "var": "f4"
+        },
+        "then": [
+          {
+            "var": "o3",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d66",
+        "priority": 60,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f8"
+            },
+            {
+              "var": "f7"
+            },
+            {
+              "var": "f10"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o4",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d36",
+        "priority": 45,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f11"
+            },
+            {
+              "var": "f5"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o0",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d12",
+        "priority": 34,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f5"
+            },
+            {
+              "var": "f0"
+            },
+            {
+              "var": "f2"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o1",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d15",
+        "priority": 55,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f6"
+            },
+            {
+              "var": "f2"
+            },
+            {
+              "var": "f0"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o1",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d70",
+        "priority": 55,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f6"
+            },
+            {
+              "var": "f11"
+            },
+            {
+              "var": "f7"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o3",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d45",
+        "priority": 36,
+        "when": {
+          "var": "f12"
+        },
+        "then": [
+          {
+            "var": "o2",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d77",
+        "priority": 18,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f9"
+            },
+            {
+              "var": "f3"
+            },
+            {
+              "var": "f10"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o4",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d6",
+        "priority": 47,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f7"
+            },
+            {
+              "var": "f4"
+            },
+            {
+              "var": "f8"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o4",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d35",
+        "priority": 13,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f8"
+            },
+            {
+              "var": "f9"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o1",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d1",
+        "priority": 51,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f7"
+            },
+            {
+              "var": "f9"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o1",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d11",
+        "priority": 44,
+        "when": {
+          "var": "f7"
+        },
+        "then": [
+          {
+            "var": "o1",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d79",
+        "priority": 59,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f0"
+            },
+            {
+              "var": "f12"
+            },
+            {
+              "var": "f7"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o3",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "needle",
+        "priority": 100,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "anticoagulated"
+            },
+            {
+              "var": "f0"
+            },
+            {
+              "var": "f1"
+            },
+            {
+              "var": "f2"
+            },
+            {
+              "var": "f3"
+            },
+            {
+              "var": "f4"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "rec_drug",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d64",
+        "priority": 21,
+        "when": {
+          "var": "f9"
+        },
+        "then": [
+          {
+            "var": "o4",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d31",
+        "priority": 24,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f9"
+            },
+            {
+              "var": "f10"
+            },
+            {
+              "var": "f7"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o0",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d68",
+        "priority": 12,
+        "when": {
+          "var": "f11"
+        },
+        "then": [
+          {
+            "var": "o1",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d52",
+        "priority": 56,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f3"
+            },
+            {
+              "var": "f4"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o3",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d59",
+        "priority": 56,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f9"
+            },
+            {
+              "var": "f6"
+            },
+            {
+              "var": "f7"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o1",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d14",
+        "priority": 38,
+        "when": {
+          "var": "f10"
+        },
+        "then": [
+          {
+            "var": "o4",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d62",
+        "priority": 18,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f3"
+            },
+            {
+              "var": "f1"
+            },
+            {
+              "var": "f6"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o4",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d38",
+        "priority": 35,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f8"
+            },
+            {
+              "var": "f5"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o0",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d72",
+        "priority": 54,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f9"
+            },
+            {
+              "var": "f6"
+            },
+            {
+              "var": "f1"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o0",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d42",
+        "priority": 14,
+        "when": {
+          "var": "f5"
+        },
+        "then": [
+          {
+            "var": "o0",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d27",
+        "priority": 36,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f12"
+            },
+            {
+              "var": "f0"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o4",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d9",
+        "priority": 60,
+        "when": {
+          "var": "f4"
+        },
+        "then": [
+          {
+            "var": "o3",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d5",
+        "priority": 60,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f7"
+            },
+            {
+              "var": "f12"
+            },
+            {
+              "var": "f9"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o1",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d13",
+        "priority": 49,
+        "when": {
+          "var": "f5"
+        },
+        "then": [
+          {
+            "var": "o0",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d24",
+        "priority": 57,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f2"
+            },
+            {
+              "var": "f3"
+            },
+            {
+              "var": "f6"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o1",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d21",
+        "priority": 30,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f11"
+            },
+            {
+              "var": "f7"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o4",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d53",
+        "priority": 47,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f4"
+            },
+            {
+              "var": "f3"
+            },
+            {
+              "var": "f12"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o1",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "d67",
+        "priority": 41,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "f2"
+            },
+            {
+              "var": "f5"
+            },
+            {
+              "var": "f3"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "o4",
+            "value": true
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "rec_drug",
+        "value": false
+      },
+      {
+        "var": "o0",
+        "value": false
+      },
+      {
+        "var": "o1",
+        "value": false
+      },
+      {
+        "var": "o2",
+        "value": false
+      },
+      {
+        "var": "o3",
+        "value": false
+      },
+      {
+        "var": "o4",
+        "value": false
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "no-contraindicated-drug",
+    "kind": "invariant",
+    "formula": {
+      "op": "not",
+      "args": [
+        {
+          "op": "and",
+          "args": [
+            {
+              "var": "anticoagulated"
+            },
+            {
+              "var": "rec_drug"
+            }
+          ]
+        }
+      ]
+    },
+    "intent": "rec_drug is never true when anticoagulated"
+  }
+}

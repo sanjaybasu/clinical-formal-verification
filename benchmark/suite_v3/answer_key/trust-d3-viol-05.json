@@ -1,0 +1,26 @@
+{
+  "item": "trust-d3-viol-05",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "patient_declines_x",
+      "value": true
+    },
+    {
+      "var": "quality_gap",
+      "value": true
+    },
+    {
+      "var": "overdue",
+      "value": true
+    },
+    {
+      "var": "guideline_indicated",
+      "value": true
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 3,
+  "tier": "realistic",
+  "basis": "concrete_replay"
+}

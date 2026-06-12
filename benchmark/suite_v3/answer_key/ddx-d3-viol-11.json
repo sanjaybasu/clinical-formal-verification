@@ -1,0 +1,22 @@
+{
+  "item": "ddx-d3-viol-11",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "hypertension",
+      "value": true
+    },
+    {
+      "var": "pulse_deficit",
+      "value": true
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 3,
+  "tier": "realistic",
+  "basis": "concrete_replay"
+}

@@ -1,0 +1,205 @@
+{
+  "id": "socialneeds-len02-viol-09",
+  "domain": "social_needs",
+  "metadata": {
+    "description": "social needs; a documented unmet need is not dropped before resolution over visits",
+    "source": "synthetic",
+    "clinical_intent": "a documented social need stays an open obligation across encounters until resolved"
+  },
+  "ruleset": {
+    "id": "socialneeds-2-9",
+    "kind": "transition_system",
+    "state_vars": [
+      {
+        "name": "documented",
+        "type": "bool"
+      },
+      {
+        "name": "resolved",
+        "type": "bool"
+      },
+      {
+        "name": "open",
+        "type": "bool"
+      },
+      {
+        "name": "ticks",
+        "type": "int",
+        "bounds": [
+          0,
+          2
+        ]
+      }
+    ],
+    "events": [
+      {
+        "name": "open"
+      },
+      {
+        "name": "resolve"
+      },
+      {
+        "name": "encounter"
+      },
+      {
+        "name": "purge"
+      }
+    ],
+    "init": [
+      {
+        "var": "documented",
+        "value": false
+      },
+      {
+        "var": "resolved",
+        "value": false
+      },
+      {
+        "var": "open",
+        "value": false
+      },
+      {
+        "var": "ticks",
+        "value": 0
+      }
+    ],
+    "transitions": [
+      {
+        "id": "t_open",
+        "event": "open",
+        "update": [
+          {
+            "var": "documented",
+            "expr": {
+              "const": true
+            }
+          },
+          {
+            "var": "open",
+            "expr": {
+              "const": true
+            }
+          }
+        ]
+      },
+      {
+        "id": "t_resolve",
+        "event": "resolve",
+        "guard": {
+          "var": "open"
+        },
+        "update": [
+          {
+            "var": "resolved",
+            "expr": {
+              "const": true
+            }
+          },
+          {
+            "var": "open",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "t_touch",
+        "event": "encounter",
+        "update": [
+          {
+            "var": "ticks",
+            "expr": {
+              "op": "ite",
+              "args": [
+                {
+                  "op": "lt",
+                  "args": [
+                    {
+                      "var": "ticks"
+                    },
+                    {
+                      "const": 2
+                    }
+                  ]
+                },
+                {
+                  "op": "add",
+                  "args": [
+                    {
+                      "var": "ticks"
+                    },
+                    {
+                      "const": 1
+                    }
+                  ]
+                },
+                {
+                  "var": "ticks"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "t_drop",
+        "event": "purge",
+        "guard": {
+          "op": "ge",
+          "args": [
+            {
+              "var": "ticks"
+            },
+            {
+              "const": 2
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "open",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "property": {
+    "id": "obligation-not-dropped",
+    "kind": "temporal",
+    "formula": {
+      "op": "G",
+      "args": [
+        {
+          "op": "implies",
+          "args": [
+            {
+              "op": "and",
+              "args": [
+                {
+                  "var": "documented"
+                },
+                {
+                  "op": "not",
+                  "args": [
+                    {
+                      "var": "resolved"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "var": "open"
+            }
+          ]
+        }
+      ]
+    },
+    "bound": 5,
+    "intent": "in every reachable state, a documented unresolved obligation is still open"
+  }
+}

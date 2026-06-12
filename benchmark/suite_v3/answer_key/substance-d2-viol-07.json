@@ -1,0 +1,22 @@
+{
+  "item": "substance-d2-viol-07",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "active_oud",
+      "value": true
+    },
+    {
+      "var": "chronic_pain",
+      "value": true
+    },
+    {
+      "var": "post_surgical",
+      "value": true
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 2,
+  "tier": "realistic",
+  "basis": "concrete_replay"
+}

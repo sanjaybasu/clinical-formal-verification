@@ -1,0 +1,18 @@
+{
+  "item": "ddx-d2-viol-08",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "hypertension",
+      "value": true
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 2,
+  "tier": "realistic",
+  "basis": "concrete_replay"
+}

@@ -1,0 +1,26 @@
+{
+  "item": "medreenable-d4-viol-06",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "heart_failure",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "ckd",
+      "value": true
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 4,
+  "tier": "realistic",
+  "basis": "concrete_replay"
+}

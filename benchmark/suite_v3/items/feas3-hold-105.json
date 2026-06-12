@@ -1,0 +1,255 @@
+{
+  "id": "feas3-hold-105",
+  "domain": "medication",
+  "metadata": {
+    "description": "reachability of a contraindicated recommendation across 3 physiologic parameters",
+    "source": "synthetic",
+    "clinical_intent": "no in-range parameter combination triggers the high-intensity recommendation"
+  },
+  "ruleset": {
+    "id": "fz31051",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "wt",
+        "type": "int",
+        "bounds": [
+          0,
+          12
+        ]
+      },
+      {
+        "name": "renal",
+        "type": "int",
+        "bounds": [
+          0,
+          12
+        ]
+      },
+      {
+        "name": "inr",
+        "type": "int",
+        "bounds": [
+          0,
+          12
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "rec_high",
+        "type": "bool"
+      }
+    ],
+    "rules": [
+      {
+        "id": "enable_high_intensity",
+        "priority": 50,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "op": "ge",
+              "args": [
+                {
+                  "op": "add",
+                  "args": [
+                    {
+                      "op": "mul",
+                      "args": [
+                        {
+                          "const": 1
+                        },
+                        {
+                          "var": "wt"
+                        }
+                      ]
+                    },
+                    {
+                      "op": "mul",
+                      "args": [
+                        {
+                          "const": 1
+                        },
+                        {
+                          "var": "renal"
+                        }
+                      ]
+                    },
+                    {
+                      "op": "mul",
+                      "args": [
+                        {
+                          "const": -1
+                        },
+                        {
+                          "var": "inr"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "const": 19
+                }
+              ]
+            },
+            {
+              "op": "le",
+              "args": [
+                {
+                  "op": "add",
+                  "args": [
+                    {
+                      "op": "mul",
+                      "args": [
+                        {
+                          "const": -2
+                        },
+                        {
+                          "var": "wt"
+                        }
+                      ]
+                    },
+                    {
+                      "op": "mul",
+                      "args": [
+                        {
+                          "const": -3
+                        },
+                        {
+                          "var": "inr"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "const": 55
+                }
+              ]
+            },
+            {
+              "op": "le",
+              "args": [
+                {
+                  "op": "add",
+                  "args": [
+                    {
+                      "op": "mul",
+                      "args": [
+                        {
+                          "const": 3
+                        },
+                        {
+                          "var": "wt"
+                        }
+                      ]
+                    },
+                    {
+                      "op": "mul",
+                      "args": [
+                        {
+                          "const": 1
+                        },
+                        {
+                          "var": "renal"
+                        }
+                      ]
+                    },
+                    {
+                      "op": "mul",
+                      "args": [
+                        {
+                          "const": 2
+                        },
+                        {
+                          "var": "inr"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "const": 28
+                }
+              ]
+            },
+            {
+              "op": "ge",
+              "args": [
+                {
+                  "op": "add",
+                  "args": [
+                    {
+                      "op": "mul",
+                      "args": [
+                        {
+                          "const": -3
+                        },
+                        {
+                          "var": "wt"
+                        }
+                      ]
+                    },
+                    {
+                      "op": "mul",
+                      "args": [
+                        {
+                          "const": -2
+                        },
+                        {
+                          "var": "renal"
+                        }
+                      ]
+                    },
+                    {
+                      "op": "mul",
+                      "args": [
+                        {
+                          "const": -1
+                        },
+                        {
+                          "var": "inr"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "const": -20
+                }
+              ]
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "rec_high",
+            "value": true
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "rec_high",
+        "value": false
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "unsafe-region-unreachable",
+    "kind": "invariant",
+    "formula": {
+      "op": "not",
+      "args": [
+        {
+          "var": "rec_high"
+        }
+      ]
+    },
+    "intent": "rec_high is never true for any input in range"
+  }
+}

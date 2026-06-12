@@ -1,0 +1,14 @@
+{
+  "item": "ddx-d1-viol-05",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "pulse_deficit",
+      "value": true
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 1,
+  "tier": "realistic",
+  "basis": "concrete_replay"
+}

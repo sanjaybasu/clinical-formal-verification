@@ -1,0 +1,30 @@
+{
+  "item": "trust-d4-viol-02",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "patient_declines_x",
+      "value": true
+    },
+    {
+      "var": "pcp_request",
+      "value": true
+    },
+    {
+      "var": "overdue",
+      "value": true
+    },
+    {
+      "var": "risk_high",
+      "value": true
+    },
+    {
+      "var": "quality_gap",
+      "value": true
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 4,
+  "tier": "realistic",
+  "basis": "concrete_replay"
+}

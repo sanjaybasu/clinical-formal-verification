@@ -1,0 +1,42 @@
+{
+  "item": "socialneeds-len06-viol-02",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "event": "open",
+      "transition": "t_open"
+    },
+    {
+      "event": "encounter",
+      "transition": "t_touch"
+    },
+    {
+      "event": "encounter",
+      "transition": "t_touch"
+    },
+    {
+      "event": "encounter",
+      "transition": "t_touch"
+    },
+    {
+      "event": "encounter",
+      "transition": "t_touch"
+    },
+    {
+      "event": "encounter",
+      "transition": "t_touch"
+    },
+    {
+      "event": "encounter",
+      "transition": "t_touch"
+    },
+    {
+      "event": "purge",
+      "transition": "t_drop"
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 6,
+  "tier": "realistic",
+  "basis": "concrete_replay"
+}

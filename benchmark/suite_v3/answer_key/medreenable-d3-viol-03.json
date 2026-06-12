@@ -1,0 +1,26 @@
+{
+  "item": "medreenable-d3-viol-03",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "ckd",
+      "value": true
+    },
+    {
+      "var": "peptic_ulcer",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 3,
+  "tier": "realistic",
+  "basis": "concrete_replay"
+}

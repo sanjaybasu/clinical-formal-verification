@@ -1,0 +1,9 @@
+{
+  "item": "mentalhealth-d4-hold-102",
+  "ground_truth": "holds",
+  "witness": null,
+  "seeded": false,
+  "interaction_depth": 0,
+  "tier": "realistic",
+  "basis": "manual_proof"
+}

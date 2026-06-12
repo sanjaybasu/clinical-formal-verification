@@ -1,0 +1,34 @@
+{
+  "item": "triagepartial-d2-viol-00",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "vitals_unknown",
+      "value": true
+    },
+    {
+      "var": "concerning_symptom",
+      "value": false
+    },
+    {
+      "var": "cough",
+      "value": true
+    },
+    {
+      "var": "vitals_unknown__base",
+      "value": false
+    },
+    {
+      "var": "concerning_symptom__base",
+      "value": false
+    },
+    {
+      "var": "cough__base",
+      "value": true
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 2,
+  "tier": "realistic",
+  "basis": "concrete_replay"
+}

@@ -1,0 +1,22 @@
+{
+  "item": "medreenable-d2-viol-06",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "elderly",
+      "value": true
+    },
+    {
+      "var": "ckd",
+      "value": true
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 2,
+  "tier": "realistic",
+  "basis": "concrete_replay"
+}

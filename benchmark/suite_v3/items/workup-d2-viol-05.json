@@ -1,0 +1,104 @@
+{
+  "id": "workup-d2-viol-05",
+  "domain": "workup_completeness",
+  "metadata": {
+    "description": "workup completeness; mandatory workup for a sentinel presentation is not omitted",
+    "source": "synthetic",
+    "clinical_intent": "a neonate-fever sentinel presentation must order the full sepsis workup"
+  },
+  "ruleset": {
+    "id": "wk-2-5",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "irritable",
+        "type": "bool"
+      },
+      {
+        "name": "neonate",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "full_sepsis_workup",
+        "type": "bool"
+      }
+    ],
+    "rules": [
+      {
+        "id": "order_sepsis_workup",
+        "priority": 50,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "irritable"
+            },
+            {
+              "var": "neonate"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "full_sepsis_workup",
+            "value": true
+          }
+        ]
+      },
+      {
+        "id": "defer_workup",
+        "priority": 90,
+        "when": {
+          "op": "and",
+          "args": [
+            {
+              "var": "irritable"
+            },
+            {
+              "var": "neonate"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "full_sepsis_workup",
+            "value": false
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "full_sepsis_workup",
+        "value": false
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "mandatory-workup-not-omitted",
+    "kind": "invariant",
+    "formula": {
+      "op": "implies",
+      "args": [
+        {
+          "op": "and",
+          "args": [
+            {
+              "var": "irritable"
+            },
+            {
+              "var": "neonate"
+            }
+          ]
+        },
+        {
+          "var": "full_sepsis_workup"
+        }
+      ]
+    },
+    "intent": "when the sentinel antecedents hold, the mandatory workup is ordered"
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "id": "mentalhealthpersist-len02-viol-08",
+  "domain": "mental_health_persist",
+  "metadata": {
+    "description": "mental health; an open self-harm escalation persists across visits until disposition",
+    "source": "synthetic",
+    "clinical_intent": "a self-harm escalation stays open across encounters until a clinician disposition"
+  },
+  "ruleset": {
+    "id": "mentalhealthpersist-2-8",
+    "kind": "transition_system",
+    "state_vars": [
+      {
+        "name": "documented",
+        "type": "bool"
+      },
+      {
+        "name": "resolved",
+        "type": "bool"
+      },
+      {
+        "name": "open",
+        "type": "bool"
+      },
+      {
+        "name": "ticks",
+        "type": "int",
+        "bounds": [
+          0,
+          2
+        ]
+      }
+    ],
+    "events": [
+      {
+        "name": "open"
+      },
+      {
+        "name": "resolve"
+      },
+      {
+        "name": "encounter"
+      },
+      {
+        "name": "auto_close"
+      }
+    ],
+    "init": [
+      {
+        "var": "documented",
+        "value": false
+      },
+      {
+        "var": "resolved",
+        "value": false
+      },
+      {
+        "var": "open",
+        "value": false
+      },
+      {
+        "var": "ticks",
+        "value": 0
+      }
+    ],
+    "transitions": [
+      {
+        "id": "t_open",
+        "event": "open",
+        "update": [
+          {
+            "var": "documented",
+            "expr": {
+              "const": true
+            }
+          },
+          {
+            "var": "open",
+            "expr": {
+              "const": true
+            }
+          }
+        ]
+      },
+      {
+        "id": "t_resolve",
+        "event": "resolve",
+        "guard": {
+          "var": "open"
+        },
+        "update": [
+          {
+            "var": "resolved",
+            "expr": {
+              "const": true
+            }
+          },
+          {
+            "var": "open",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "t_touch",
+        "event": "encounter",
+        "update": [
+          {
+            "var": "ticks",
+            "expr": {
+              "op": "ite",
+              "args": [
+                {
+                  "op": "lt",
+                  "args": [
+                    {
+                      "var": "ticks"
+                    },
+                    {
+                      "const": 2
+                    }
+                  ]
+                },
+                {
+                  "op": "add",
+                  "args": [
+                    {
+                      "var": "ticks"
+                    },
+                    {
+                      "const": 1
+                    }
+                  ]
+                },
+                {
+                  "var": "ticks"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "t_drop",
+        "event": "auto_close",
+        "guard": {
+          "op": "ge",
+          "args": [
+            {
+              "var": "ticks"
+            },
+            {
+              "const": 2
+            }
+          ]
+        },
+        "update": [
+          {
+            "var": "open",
+            "expr": {
+              "const": false
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "property": {
+    "id": "obligation-not-dropped",
+    "kind": "temporal",
+    "formula": {
+      "op": "G",
+      "args": [
+        {
+          "op": "implies",
+          "args": [
+            {
+              "op": "and",
+              "args": [
+                {
+                  "var": "documented"
+                },
+                {
+                  "op": "not",
+                  "args": [
+                    {
+                      "var": "resolved"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "var": "open"
+            }
+          ]
+        }
+      ]
+    },
+    "bound": 5,
+    "intent": "in every reachable state, a documented unresolved obligation is still open"
+  }
+}

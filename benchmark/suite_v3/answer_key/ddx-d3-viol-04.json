@@ -1,0 +1,22 @@
+{
+  "item": "ddx-d3-viol-04",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "widened_mediastinum",
+      "value": true
+    },
+    {
+      "var": "syncope",
+      "value": true
+    },
+    {
+      "var": "tearing_chest_pain",
+      "value": true
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 3,
+  "tier": "realistic",
+  "basis": "concrete_replay"
+}

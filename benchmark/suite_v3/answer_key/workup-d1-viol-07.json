@@ -1,0 +1,14 @@
+{
+  "item": "workup-d1-viol-07",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "poor_feeding",
+      "value": true
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 1,
+  "tier": "realistic",
+  "basis": "concrete_replay"
+}

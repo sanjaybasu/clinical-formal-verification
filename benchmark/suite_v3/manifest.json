@@ -1,0 +1,6658 @@
+[
+  {
+    "id": "triagepartial-d1-viol-00",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "triagepartial-d1-viol-01",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "triagepartial-d1-viol-02",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "triagepartial-d1-viol-03",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "triagepartial-d1-viol-04",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "triagepartial-d1-viol-05",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "triagepartial-d1-viol-06",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "triagepartial-d1-viol-07",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "triagepartial-d1-viol-08",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "triagepartial-d1-viol-09",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "triagepartial-d1-viol-10",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "triagepartial-d1-viol-11",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "triagepartial-d1-hold-100",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "triagepartial-d1-hold-101",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "triagepartial-d1-hold-102",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "triagepartial-d1-hold-103",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "triagepartial-d2-viol-00",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "triagepartial-d2-viol-01",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "triagepartial-d2-viol-02",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "triagepartial-d2-viol-03",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "triagepartial-d2-viol-04",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "triagepartial-d2-viol-05",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "triagepartial-d2-viol-06",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "triagepartial-d2-viol-07",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "triagepartial-d2-viol-08",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "triagepartial-d2-viol-09",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "triagepartial-d2-viol-10",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "triagepartial-d2-viol-11",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "triagepartial-d2-hold-100",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "triagepartial-d2-hold-101",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "triagepartial-d2-hold-102",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "triagepartial-d2-hold-103",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "triagepartial-d3-viol-00",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "triagepartial-d3-viol-01",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "triagepartial-d3-viol-02",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "triagepartial-d3-viol-03",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "triagepartial-d3-viol-04",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "triagepartial-d3-viol-05",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "triagepartial-d3-viol-06",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "triagepartial-d3-viol-07",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "triagepartial-d3-viol-08",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "triagepartial-d3-viol-09",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "triagepartial-d3-viol-10",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "triagepartial-d3-viol-11",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "triagepartial-d3-hold-100",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "triagepartial-d3-hold-101",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "triagepartial-d3-hold-102",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "triagepartial-d3-hold-103",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "triagepartial-d4-viol-00",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "triagepartial-d4-viol-01",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "triagepartial-d4-viol-02",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "triagepartial-d4-viol-03",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "triagepartial-d4-viol-04",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "triagepartial-d4-viol-05",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "triagepartial-d4-viol-06",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "triagepartial-d4-viol-07",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "triagepartial-d4-viol-08",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "triagepartial-d4-viol-09",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "triagepartial-d4-viol-10",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "triagepartial-d4-viol-11",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "triagepartial-d4-hold-100",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "triagepartial-d4-hold-101",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "triagepartial-d4-hold-102",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "triagepartial-d4-hold-103",
+    "domain": "triage_partial",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "medreenable-d1-viol-00",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "medreenable-d1-viol-01",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "medreenable-d1-viol-02",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "medreenable-d1-viol-03",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "medreenable-d1-viol-04",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "medreenable-d1-viol-05",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "medreenable-d1-viol-06",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "medreenable-d1-viol-07",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "medreenable-d1-viol-08",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "medreenable-d1-viol-09",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "medreenable-d1-viol-10",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "medreenable-d1-viol-11",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "medreenable-d1-hold-100",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "medreenable-d1-hold-101",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "medreenable-d1-hold-102",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "medreenable-d1-hold-103",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "medreenable-d2-viol-00",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "medreenable-d2-viol-01",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "medreenable-d2-viol-02",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "medreenable-d2-viol-03",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "medreenable-d2-viol-04",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "medreenable-d2-viol-05",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "medreenable-d2-viol-06",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "medreenable-d2-viol-07",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "medreenable-d2-viol-08",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "medreenable-d2-viol-09",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "medreenable-d2-viol-10",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "medreenable-d2-viol-11",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "medreenable-d2-hold-100",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "medreenable-d2-hold-101",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "medreenable-d2-hold-102",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "medreenable-d2-hold-103",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "medreenable-d3-viol-00",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "medreenable-d3-viol-01",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "medreenable-d3-viol-02",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "medreenable-d3-viol-03",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "medreenable-d3-viol-04",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "medreenable-d3-viol-05",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "medreenable-d3-viol-06",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "medreenable-d3-viol-07",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "medreenable-d3-viol-08",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "medreenable-d3-viol-09",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "medreenable-d3-viol-10",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "medreenable-d3-viol-11",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "medreenable-d3-hold-100",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "medreenable-d3-hold-101",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "medreenable-d3-hold-102",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "medreenable-d3-hold-103",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "medreenable-d4-viol-00",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "medreenable-d4-viol-01",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "medreenable-d4-viol-02",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "medreenable-d4-viol-03",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "medreenable-d4-viol-04",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "medreenable-d4-viol-05",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "medreenable-d4-viol-06",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "medreenable-d4-viol-07",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "medreenable-d4-viol-08",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "medreenable-d4-viol-09",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "medreenable-d4-viol-10",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "medreenable-d4-viol-11",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "medreenable-d4-hold-100",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "medreenable-d4-hold-101",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "medreenable-d4-hold-102",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "medreenable-d4-hold-103",
+    "domain": "medication",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "workup-d1-viol-00",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "workup-d1-viol-01",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "workup-d1-viol-02",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "workup-d1-viol-03",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "workup-d1-viol-04",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "workup-d1-viol-05",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "workup-d1-viol-06",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "workup-d1-viol-07",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "workup-d1-viol-08",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "workup-d1-viol-09",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "workup-d1-viol-10",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "workup-d1-viol-11",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "workup-d1-hold-100",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "workup-d1-hold-101",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "workup-d1-hold-102",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "workup-d1-hold-103",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "workup-d2-viol-00",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "workup-d2-viol-01",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "workup-d2-viol-02",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "workup-d2-viol-03",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "workup-d2-viol-04",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "workup-d2-viol-05",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "workup-d2-viol-06",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "workup-d2-viol-07",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "workup-d2-viol-08",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "workup-d2-viol-09",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "workup-d2-viol-10",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "workup-d2-viol-11",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "workup-d2-hold-100",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "workup-d2-hold-101",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "workup-d2-hold-102",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "workup-d2-hold-103",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "workup-d3-viol-00",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "workup-d3-viol-01",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "workup-d3-viol-02",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "workup-d3-viol-03",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "workup-d3-viol-04",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "workup-d3-viol-05",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "workup-d3-viol-06",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "workup-d3-viol-07",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "workup-d3-viol-08",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "workup-d3-viol-09",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "workup-d3-viol-10",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "workup-d3-viol-11",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "workup-d3-hold-100",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "workup-d3-hold-101",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "workup-d3-hold-102",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "workup-d3-hold-103",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "workup-d4-viol-00",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "workup-d4-viol-01",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "workup-d4-viol-02",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "workup-d4-viol-03",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "workup-d4-viol-04",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "workup-d4-viol-05",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "workup-d4-viol-06",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "workup-d4-viol-07",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "workup-d4-viol-08",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "workup-d4-viol-09",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "workup-d4-viol-10",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "workup-d4-viol-11",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "workup-d4-hold-100",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "workup-d4-hold-101",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "workup-d4-hold-102",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "workup-d4-hold-103",
+    "domain": "workup_completeness",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "ddx-d1-viol-00",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "ddx-d1-viol-01",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "ddx-d1-viol-02",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "ddx-d1-viol-03",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "ddx-d1-viol-04",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "ddx-d1-viol-05",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "ddx-d1-viol-06",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "ddx-d1-viol-07",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "ddx-d1-viol-08",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "ddx-d1-viol-09",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "ddx-d1-viol-10",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "ddx-d1-viol-11",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "ddx-d1-hold-100",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "ddx-d1-hold-101",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "ddx-d1-hold-102",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "ddx-d1-hold-103",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "ddx-d2-viol-00",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "ddx-d2-viol-01",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "ddx-d2-viol-02",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "ddx-d2-viol-03",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "ddx-d2-viol-04",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "ddx-d2-viol-05",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "ddx-d2-viol-06",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "ddx-d2-viol-07",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "ddx-d2-viol-08",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "ddx-d2-viol-09",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "ddx-d2-viol-10",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "ddx-d2-viol-11",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "ddx-d2-hold-100",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "ddx-d2-hold-101",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "ddx-d2-hold-102",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "ddx-d2-hold-103",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "ddx-d3-viol-00",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "ddx-d3-viol-01",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "ddx-d3-viol-02",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "ddx-d3-viol-03",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "ddx-d3-viol-04",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "ddx-d3-viol-05",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "ddx-d3-viol-06",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "ddx-d3-viol-07",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "ddx-d3-viol-08",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "ddx-d3-viol-09",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "ddx-d3-viol-10",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "ddx-d3-viol-11",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "ddx-d3-hold-100",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "ddx-d3-hold-101",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "ddx-d3-hold-102",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "ddx-d3-hold-103",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "ddx-d4-viol-00",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "ddx-d4-viol-01",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "ddx-d4-viol-02",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "ddx-d4-viol-03",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "ddx-d4-viol-04",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "ddx-d4-viol-05",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "ddx-d4-viol-06",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "ddx-d4-viol-07",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "ddx-d4-viol-08",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "ddx-d4-viol-09",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "ddx-d4-viol-10",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "ddx-d4-viol-11",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "ddx-d4-hold-100",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "ddx-d4-hold-101",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "ddx-d4-hold-102",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "ddx-d4-hold-103",
+    "domain": "differential_breadth",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealth-d1-viol-00",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "mentalhealth-d1-viol-01",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "mentalhealth-d1-viol-02",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "mentalhealth-d1-viol-03",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "mentalhealth-d1-viol-04",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "mentalhealth-d1-viol-05",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "mentalhealth-d1-viol-06",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "mentalhealth-d1-viol-07",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "mentalhealth-d1-viol-08",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "mentalhealth-d1-viol-09",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "mentalhealth-d1-viol-10",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "mentalhealth-d1-viol-11",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "mentalhealth-d1-hold-100",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealth-d1-hold-101",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealth-d1-hold-102",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealth-d1-hold-103",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealth-d2-viol-00",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "mentalhealth-d2-viol-01",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "mentalhealth-d2-viol-02",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "mentalhealth-d2-viol-03",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "mentalhealth-d2-viol-04",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "mentalhealth-d2-viol-05",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "mentalhealth-d2-viol-06",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "mentalhealth-d2-viol-07",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "mentalhealth-d2-viol-08",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "mentalhealth-d2-viol-09",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "mentalhealth-d2-viol-10",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "mentalhealth-d2-viol-11",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "mentalhealth-d2-hold-100",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealth-d2-hold-101",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealth-d2-hold-102",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealth-d2-hold-103",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealth-d3-viol-00",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "mentalhealth-d3-viol-01",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "mentalhealth-d3-viol-02",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "mentalhealth-d3-viol-03",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "mentalhealth-d3-viol-04",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "mentalhealth-d3-viol-05",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "mentalhealth-d3-viol-06",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "mentalhealth-d3-viol-07",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "mentalhealth-d3-viol-08",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "mentalhealth-d3-viol-09",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "mentalhealth-d3-viol-10",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "mentalhealth-d3-viol-11",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "mentalhealth-d3-hold-100",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealth-d3-hold-101",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealth-d3-hold-102",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealth-d3-hold-103",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealth-d4-viol-00",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "mentalhealth-d4-viol-01",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "mentalhealth-d4-viol-02",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "mentalhealth-d4-viol-03",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "mentalhealth-d4-viol-04",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "mentalhealth-d4-viol-05",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "mentalhealth-d4-viol-06",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "mentalhealth-d4-viol-07",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "mentalhealth-d4-viol-08",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "mentalhealth-d4-viol-09",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "mentalhealth-d4-viol-10",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "mentalhealth-d4-viol-11",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "mentalhealth-d4-hold-100",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealth-d4-hold-101",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealth-d4-hold-102",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealth-d4-hold-103",
+    "domain": "mental_health",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trust-d1-viol-00",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "trust-d1-viol-01",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "trust-d1-viol-02",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "trust-d1-viol-03",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "trust-d1-viol-04",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "trust-d1-viol-05",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "trust-d1-viol-06",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "trust-d1-viol-07",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "trust-d1-viol-08",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "trust-d1-viol-09",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "trust-d1-viol-10",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "trust-d1-viol-11",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "trust-d1-hold-100",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trust-d1-hold-101",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trust-d1-hold-102",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trust-d1-hold-103",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trust-d2-viol-00",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "trust-d2-viol-01",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "trust-d2-viol-02",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "trust-d2-viol-03",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "trust-d2-viol-04",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "trust-d2-viol-05",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "trust-d2-viol-06",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "trust-d2-viol-07",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "trust-d2-viol-08",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "trust-d2-viol-09",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "trust-d2-viol-10",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "trust-d2-viol-11",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "trust-d2-hold-100",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trust-d2-hold-101",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trust-d2-hold-102",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trust-d2-hold-103",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trust-d3-viol-00",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "trust-d3-viol-01",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "trust-d3-viol-02",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "trust-d3-viol-03",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "trust-d3-viol-04",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "trust-d3-viol-05",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "trust-d3-viol-06",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "trust-d3-viol-07",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "trust-d3-viol-08",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "trust-d3-viol-09",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "trust-d3-viol-10",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "trust-d3-viol-11",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "trust-d3-hold-100",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trust-d3-hold-101",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trust-d3-hold-102",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trust-d3-hold-103",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trust-d4-viol-00",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "trust-d4-viol-01",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "trust-d4-viol-02",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "trust-d4-viol-03",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "trust-d4-viol-04",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "trust-d4-viol-05",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "trust-d4-viol-06",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "trust-d4-viol-07",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "trust-d4-viol-08",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "trust-d4-viol-09",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "trust-d4-viol-10",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "trust-d4-viol-11",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "trust-d4-hold-100",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trust-d4-hold-101",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trust-d4-hold-102",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trust-d4-hold-103",
+    "domain": "trust_preference",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substance-d1-viol-00",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "substance-d1-viol-01",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "substance-d1-viol-02",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "substance-d1-viol-03",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "substance-d1-viol-04",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "substance-d1-viol-05",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "substance-d1-viol-06",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "substance-d1-viol-07",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "substance-d1-viol-08",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "substance-d1-viol-09",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "substance-d1-viol-10",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "substance-d1-viol-11",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "substance-d1-hold-100",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substance-d1-hold-101",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substance-d1-hold-102",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substance-d1-hold-103",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substance-d2-viol-00",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "substance-d2-viol-01",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "substance-d2-viol-02",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "substance-d2-viol-03",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "substance-d2-viol-04",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "substance-d2-viol-05",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "substance-d2-viol-06",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "substance-d2-viol-07",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "substance-d2-viol-08",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "substance-d2-viol-09",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "substance-d2-viol-10",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "substance-d2-viol-11",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "substance-d2-hold-100",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substance-d2-hold-101",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substance-d2-hold-102",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substance-d2-hold-103",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substance-d3-viol-00",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "substance-d3-viol-01",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "substance-d3-viol-02",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "substance-d3-viol-03",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "substance-d3-viol-04",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "substance-d3-viol-05",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "substance-d3-viol-06",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "substance-d3-viol-07",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "substance-d3-viol-08",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "substance-d3-viol-09",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "substance-d3-viol-10",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "substance-d3-viol-11",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 3
+  },
+  {
+    "id": "substance-d3-hold-100",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substance-d3-hold-101",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substance-d3-hold-102",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substance-d3-hold-103",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substance-d4-viol-00",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "substance-d4-viol-01",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "substance-d4-viol-02",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "substance-d4-viol-03",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "substance-d4-viol-04",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "substance-d4-viol-05",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "substance-d4-viol-06",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "substance-d4-viol-07",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "substance-d4-viol-08",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "substance-d4-viol-09",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "substance-d4-viol-10",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "substance-d4-viol-11",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "substance-d4-hold-100",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substance-d4-hold-101",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substance-d4-hold-102",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substance-d4-hold-103",
+    "domain": "substance_use",
+    "tier": "realistic",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "socialneeds-len01-viol-00",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "socialneeds-len01-viol-01",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "socialneeds-len01-viol-02",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "socialneeds-len01-viol-03",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "socialneeds-len01-viol-04",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "socialneeds-len01-viol-05",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "socialneeds-len01-viol-06",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "socialneeds-len01-viol-07",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "socialneeds-len01-viol-08",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "socialneeds-len01-viol-09",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "socialneeds-len01-viol-10",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "socialneeds-len01-viol-11",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "socialneeds-len01-hold-100",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "socialneeds-len01-hold-101",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "socialneeds-len01-hold-102",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "socialneeds-len01-hold-103",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "socialneeds-len02-viol-00",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "socialneeds-len02-viol-01",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "socialneeds-len02-viol-02",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "socialneeds-len02-viol-03",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "socialneeds-len02-viol-04",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "socialneeds-len02-viol-05",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "socialneeds-len02-viol-06",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "socialneeds-len02-viol-07",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "socialneeds-len02-viol-08",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "socialneeds-len02-viol-09",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "socialneeds-len02-viol-10",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "socialneeds-len02-viol-11",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "socialneeds-len02-hold-100",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "socialneeds-len02-hold-101",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "socialneeds-len02-hold-102",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "socialneeds-len02-hold-103",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "socialneeds-len04-viol-00",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "socialneeds-len04-viol-01",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "socialneeds-len04-viol-02",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "socialneeds-len04-viol-03",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "socialneeds-len04-viol-04",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "socialneeds-len04-viol-05",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "socialneeds-len04-viol-06",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "socialneeds-len04-viol-07",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "socialneeds-len04-viol-08",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "socialneeds-len04-viol-09",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "socialneeds-len04-viol-10",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "socialneeds-len04-viol-11",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "socialneeds-len04-hold-100",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "socialneeds-len04-hold-101",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "socialneeds-len04-hold-102",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "socialneeds-len04-hold-103",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "socialneeds-len06-viol-00",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "socialneeds-len06-viol-01",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "socialneeds-len06-viol-02",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "socialneeds-len06-viol-03",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "socialneeds-len06-viol-04",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "socialneeds-len06-viol-05",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "socialneeds-len06-viol-06",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "socialneeds-len06-viol-07",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "socialneeds-len06-viol-08",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "socialneeds-len06-viol-09",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "socialneeds-len06-viol-10",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "socialneeds-len06-viol-11",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "socialneeds-len06-hold-100",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "socialneeds-len06-hold-101",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "socialneeds-len06-hold-102",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "socialneeds-len06-hold-103",
+    "domain": "social_needs",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substanceusemoud-len01-viol-00",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "substanceusemoud-len01-viol-01",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "substanceusemoud-len01-viol-02",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "substanceusemoud-len01-viol-03",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "substanceusemoud-len01-viol-04",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "substanceusemoud-len01-viol-05",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "substanceusemoud-len01-viol-06",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "substanceusemoud-len01-viol-07",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "substanceusemoud-len01-viol-08",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "substanceusemoud-len01-viol-09",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "substanceusemoud-len01-viol-10",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "substanceusemoud-len01-viol-11",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "substanceusemoud-len01-hold-100",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substanceusemoud-len01-hold-101",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substanceusemoud-len01-hold-102",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substanceusemoud-len01-hold-103",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substanceusemoud-len02-viol-00",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "substanceusemoud-len02-viol-01",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "substanceusemoud-len02-viol-02",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "substanceusemoud-len02-viol-03",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "substanceusemoud-len02-viol-04",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "substanceusemoud-len02-viol-05",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "substanceusemoud-len02-viol-06",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "substanceusemoud-len02-viol-07",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "substanceusemoud-len02-viol-08",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "substanceusemoud-len02-viol-09",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "substanceusemoud-len02-viol-10",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "substanceusemoud-len02-viol-11",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "substanceusemoud-len02-hold-100",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substanceusemoud-len02-hold-101",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substanceusemoud-len02-hold-102",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substanceusemoud-len02-hold-103",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substanceusemoud-len04-viol-00",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "substanceusemoud-len04-viol-01",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "substanceusemoud-len04-viol-02",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "substanceusemoud-len04-viol-03",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "substanceusemoud-len04-viol-04",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "substanceusemoud-len04-viol-05",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "substanceusemoud-len04-viol-06",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "substanceusemoud-len04-viol-07",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "substanceusemoud-len04-viol-08",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "substanceusemoud-len04-viol-09",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "substanceusemoud-len04-viol-10",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "substanceusemoud-len04-viol-11",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "substanceusemoud-len04-hold-100",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substanceusemoud-len04-hold-101",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substanceusemoud-len04-hold-102",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substanceusemoud-len04-hold-103",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substanceusemoud-len06-viol-00",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "substanceusemoud-len06-viol-01",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "substanceusemoud-len06-viol-02",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "substanceusemoud-len06-viol-03",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "substanceusemoud-len06-viol-04",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "substanceusemoud-len06-viol-05",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "substanceusemoud-len06-viol-06",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "substanceusemoud-len06-viol-07",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "substanceusemoud-len06-viol-08",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "substanceusemoud-len06-viol-09",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "substanceusemoud-len06-viol-10",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "substanceusemoud-len06-viol-11",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "substanceusemoud-len06-hold-100",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substanceusemoud-len06-hold-101",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substanceusemoud-len06-hold-102",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "substanceusemoud-len06-hold-103",
+    "domain": "substance_use_moud",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealthpersist-len01-viol-00",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "mentalhealthpersist-len01-viol-01",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "mentalhealthpersist-len01-viol-02",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "mentalhealthpersist-len01-viol-03",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "mentalhealthpersist-len01-viol-04",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "mentalhealthpersist-len01-viol-05",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "mentalhealthpersist-len01-viol-06",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "mentalhealthpersist-len01-viol-07",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "mentalhealthpersist-len01-viol-08",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "mentalhealthpersist-len01-viol-09",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "mentalhealthpersist-len01-viol-10",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "mentalhealthpersist-len01-viol-11",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "mentalhealthpersist-len01-hold-100",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealthpersist-len01-hold-101",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealthpersist-len01-hold-102",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealthpersist-len01-hold-103",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealthpersist-len02-viol-00",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "mentalhealthpersist-len02-viol-01",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "mentalhealthpersist-len02-viol-02",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "mentalhealthpersist-len02-viol-03",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "mentalhealthpersist-len02-viol-04",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "mentalhealthpersist-len02-viol-05",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "mentalhealthpersist-len02-viol-06",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "mentalhealthpersist-len02-viol-07",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "mentalhealthpersist-len02-viol-08",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "mentalhealthpersist-len02-viol-09",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "mentalhealthpersist-len02-viol-10",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "mentalhealthpersist-len02-viol-11",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "mentalhealthpersist-len02-hold-100",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealthpersist-len02-hold-101",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealthpersist-len02-hold-102",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealthpersist-len02-hold-103",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealthpersist-len04-viol-00",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "mentalhealthpersist-len04-viol-01",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "mentalhealthpersist-len04-viol-02",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "mentalhealthpersist-len04-viol-03",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "mentalhealthpersist-len04-viol-04",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "mentalhealthpersist-len04-viol-05",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "mentalhealthpersist-len04-viol-06",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "mentalhealthpersist-len04-viol-07",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "mentalhealthpersist-len04-viol-08",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "mentalhealthpersist-len04-viol-09",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "mentalhealthpersist-len04-viol-10",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "mentalhealthpersist-len04-viol-11",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "mentalhealthpersist-len04-hold-100",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealthpersist-len04-hold-101",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealthpersist-len04-hold-102",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealthpersist-len04-hold-103",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealthpersist-len06-viol-00",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "mentalhealthpersist-len06-viol-01",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "mentalhealthpersist-len06-viol-02",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "mentalhealthpersist-len06-viol-03",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "mentalhealthpersist-len06-viol-04",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "mentalhealthpersist-len06-viol-05",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "mentalhealthpersist-len06-viol-06",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "mentalhealthpersist-len06-viol-07",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "mentalhealthpersist-len06-viol-08",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "mentalhealthpersist-len06-viol-09",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "mentalhealthpersist-len06-viol-10",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "mentalhealthpersist-len06-viol-11",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "mentalhealthpersist-len06-hold-100",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealthpersist-len06-hold-101",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealthpersist-len06-hold-102",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "mentalhealthpersist-len06-hold-103",
+    "domain": "mental_health_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trustpreferencepersist-len01-viol-00",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "trustpreferencepersist-len01-viol-01",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "trustpreferencepersist-len01-viol-02",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "trustpreferencepersist-len01-viol-03",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "trustpreferencepersist-len01-viol-04",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "trustpreferencepersist-len01-viol-05",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "trustpreferencepersist-len01-viol-06",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "trustpreferencepersist-len01-viol-07",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "trustpreferencepersist-len01-viol-08",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "trustpreferencepersist-len01-viol-09",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "trustpreferencepersist-len01-viol-10",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "trustpreferencepersist-len01-viol-11",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 1
+  },
+  {
+    "id": "trustpreferencepersist-len01-hold-100",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trustpreferencepersist-len01-hold-101",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trustpreferencepersist-len01-hold-102",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trustpreferencepersist-len01-hold-103",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trustpreferencepersist-len02-viol-00",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "trustpreferencepersist-len02-viol-01",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "trustpreferencepersist-len02-viol-02",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "trustpreferencepersist-len02-viol-03",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "trustpreferencepersist-len02-viol-04",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "trustpreferencepersist-len02-viol-05",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "trustpreferencepersist-len02-viol-06",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "trustpreferencepersist-len02-viol-07",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "trustpreferencepersist-len02-viol-08",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "trustpreferencepersist-len02-viol-09",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "trustpreferencepersist-len02-viol-10",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "trustpreferencepersist-len02-viol-11",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 2
+  },
+  {
+    "id": "trustpreferencepersist-len02-hold-100",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trustpreferencepersist-len02-hold-101",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trustpreferencepersist-len02-hold-102",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trustpreferencepersist-len02-hold-103",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trustpreferencepersist-len04-viol-00",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "trustpreferencepersist-len04-viol-01",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "trustpreferencepersist-len04-viol-02",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "trustpreferencepersist-len04-viol-03",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "trustpreferencepersist-len04-viol-04",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "trustpreferencepersist-len04-viol-05",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "trustpreferencepersist-len04-viol-06",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "trustpreferencepersist-len04-viol-07",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "trustpreferencepersist-len04-viol-08",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "trustpreferencepersist-len04-viol-09",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "trustpreferencepersist-len04-viol-10",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "trustpreferencepersist-len04-viol-11",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 4
+  },
+  {
+    "id": "trustpreferencepersist-len04-hold-100",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trustpreferencepersist-len04-hold-101",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trustpreferencepersist-len04-hold-102",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trustpreferencepersist-len04-hold-103",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trustpreferencepersist-len06-viol-00",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "trustpreferencepersist-len06-viol-01",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "trustpreferencepersist-len06-viol-02",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "trustpreferencepersist-len06-viol-03",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "trustpreferencepersist-len06-viol-04",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "trustpreferencepersist-len06-viol-05",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "trustpreferencepersist-len06-viol-06",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "trustpreferencepersist-len06-viol-07",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "trustpreferencepersist-len06-viol-08",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "trustpreferencepersist-len06-viol-09",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "trustpreferencepersist-len06-viol-10",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "trustpreferencepersist-len06-viol-11",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "trustpreferencepersist-len06-hold-100",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trustpreferencepersist-len06-hold-101",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trustpreferencepersist-len06-hold-102",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "trustpreferencepersist-len06-hold-103",
+    "domain": "trust_preference_persist",
+    "tier": "realistic",
+    "kind": "transition_system",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "needle-r80-c6-viol-00",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "needle-r80-c6-viol-01",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "needle-r80-c6-viol-02",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "needle-r80-c6-viol-03",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "needle-r80-c6-viol-04",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "needle-r80-c6-viol-05",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "needle-r80-c6-viol-06",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "needle-r80-c6-viol-07",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "needle-r80-c6-viol-08",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "needle-r80-c6-viol-09",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "needle-r80-c6-viol-10",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "needle-r80-c6-viol-11",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "needle-r80-c6-viol-12",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "needle-r80-c6-viol-13",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 6
+  },
+  {
+    "id": "needle-r80-c6-hold-100",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "needle-r80-c6-hold-101",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "needle-r80-c6-hold-102",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "needle-r80-c6-hold-103",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "needle-r80-c6-hold-104",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "needle-r80-c6-hold-105",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "needle-r80-c8-viol-00",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 8
+  },
+  {
+    "id": "needle-r80-c8-viol-01",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 8
+  },
+  {
+    "id": "needle-r80-c8-viol-02",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 8
+  },
+  {
+    "id": "needle-r80-c8-viol-03",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 8
+  },
+  {
+    "id": "needle-r80-c8-viol-04",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 8
+  },
+  {
+    "id": "needle-r80-c8-viol-05",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 8
+  },
+  {
+    "id": "needle-r80-c8-viol-06",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 8
+  },
+  {
+    "id": "needle-r80-c8-viol-07",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 8
+  },
+  {
+    "id": "needle-r80-c8-viol-08",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 8
+  },
+  {
+    "id": "needle-r80-c8-viol-09",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 8
+  },
+  {
+    "id": "needle-r80-c8-viol-10",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 8
+  },
+  {
+    "id": "needle-r80-c8-viol-11",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 8
+  },
+  {
+    "id": "needle-r80-c8-viol-12",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 8
+  },
+  {
+    "id": "needle-r80-c8-viol-13",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 8
+  },
+  {
+    "id": "needle-r80-c8-hold-100",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "needle-r80-c8-hold-101",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "needle-r80-c8-hold-102",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "needle-r80-c8-hold-103",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "needle-r80-c8-hold-104",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "needle-r80-c8-hold-105",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "needle-r120-c10-viol-00",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 10
+  },
+  {
+    "id": "needle-r120-c10-viol-01",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 10
+  },
+  {
+    "id": "needle-r120-c10-viol-02",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 10
+  },
+  {
+    "id": "needle-r120-c10-viol-03",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 10
+  },
+  {
+    "id": "needle-r120-c10-viol-04",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 10
+  },
+  {
+    "id": "needle-r120-c10-viol-05",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 10
+  },
+  {
+    "id": "needle-r120-c10-viol-06",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 10
+  },
+  {
+    "id": "needle-r120-c10-viol-07",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 10
+  },
+  {
+    "id": "needle-r120-c10-viol-08",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 10
+  },
+  {
+    "id": "needle-r120-c10-viol-09",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 10
+  },
+  {
+    "id": "needle-r120-c10-viol-10",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 10
+  },
+  {
+    "id": "needle-r120-c10-viol-11",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 10
+  },
+  {
+    "id": "needle-r120-c10-viol-12",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 10
+  },
+  {
+    "id": "needle-r120-c10-viol-13",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 10
+  },
+  {
+    "id": "needle-r120-c10-hold-100",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "needle-r120-c10-hold-101",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "needle-r120-c10-hold-102",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "needle-r120-c10-hold-103",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "needle-r120-c10-hold-104",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "needle-r120-c10-hold-105",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "needle-r120-c12-viol-00",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 12
+  },
+  {
+    "id": "needle-r120-c12-viol-01",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 12
+  },
+  {
+    "id": "needle-r120-c12-viol-02",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 12
+  },
+  {
+    "id": "needle-r120-c12-viol-03",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 12
+  },
+  {
+    "id": "needle-r120-c12-viol-04",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 12
+  },
+  {
+    "id": "needle-r120-c12-viol-05",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 12
+  },
+  {
+    "id": "needle-r120-c12-viol-06",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 12
+  },
+  {
+    "id": "needle-r120-c12-viol-07",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 12
+  },
+  {
+    "id": "needle-r120-c12-viol-08",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 12
+  },
+  {
+    "id": "needle-r120-c12-viol-09",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 12
+  },
+  {
+    "id": "needle-r120-c12-viol-10",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 12
+  },
+  {
+    "id": "needle-r120-c12-viol-11",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 12
+  },
+  {
+    "id": "needle-r120-c12-viol-12",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 12
+  },
+  {
+    "id": "needle-r120-c12-viol-13",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 12
+  },
+  {
+    "id": "needle-r120-c12-hold-100",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "needle-r120-c12-hold-101",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "needle-r120-c12-hold-102",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "needle-r120-c12-hold-103",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "needle-r120-c12-hold-104",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "needle-r120-c12-hold-105",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas3-viol-00",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas3-viol-01",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas3-viol-02",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas3-viol-03",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas3-viol-04",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas3-viol-05",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas3-viol-06",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas3-viol-07",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas3-viol-08",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas3-viol-09",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas3-viol-10",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas3-viol-11",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas3-viol-12",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas3-viol-13",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas3-hold-100",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas3-hold-101",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas3-hold-102",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas3-hold-103",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas3-hold-104",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas3-hold-105",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas3-hold-106",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas3-hold-107",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas3-hold-108",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas3-hold-109",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas5-viol-00",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas5-viol-01",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas5-viol-02",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas5-viol-03",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas5-viol-04",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas5-viol-05",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas5-viol-06",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas5-viol-07",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas5-viol-08",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas5-viol-09",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas5-viol-10",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas5-viol-11",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas5-viol-12",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas5-viol-13",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "violated",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas5-hold-100",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas5-hold-101",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas5-hold-102",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas5-hold-103",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas5-hold-104",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas5-hold-105",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas5-hold-106",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas5-hold-107",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas5-hold-108",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  },
+  {
+    "id": "feas5-hold-109",
+    "domain": "medication",
+    "tier": "stress",
+    "kind": "decision",
+    "ground_truth": "holds",
+    "interaction_depth": 0
+  }
+]

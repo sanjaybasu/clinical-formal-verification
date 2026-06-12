@@ -1,0 +1,66 @@
+{
+  "item": "needle-r120-c12-viol-01",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "anticoagulated",
+      "value": true
+    },
+    {
+      "var": "f0",
+      "value": true
+    },
+    {
+      "var": "f1",
+      "value": true
+    },
+    {
+      "var": "f2",
+      "value": true
+    },
+    {
+      "var": "f3",
+      "value": true
+    },
+    {
+      "var": "f4",
+      "value": true
+    },
+    {
+      "var": "f5",
+      "value": true
+    },
+    {
+      "var": "f6",
+      "value": true
+    },
+    {
+      "var": "f7",
+      "value": true
+    },
+    {
+      "var": "f8",
+      "value": true
+    },
+    {
+      "var": "f9",
+      "value": true
+    },
+    {
+      "var": "f10",
+      "value": true
+    },
+    {
+      "var": "f11",
+      "value": false
+    },
+    {
+      "var": "f12",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 12,
+  "tier": "stress",
+  "basis": "concrete_replay"
+}

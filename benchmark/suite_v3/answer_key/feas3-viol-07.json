@@ -1,0 +1,22 @@
+{
+  "item": "feas3-viol-07",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "wt",
+      "value": 3
+    },
+    {
+      "var": "renal",
+      "value": 12
+    },
+    {
+      "var": "inr",
+      "value": 2
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 0,
+  "tier": "stress",
+  "basis": "concrete_replay"
+}

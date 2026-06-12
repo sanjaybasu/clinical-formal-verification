@@ -50,13 +50,13 @@ def _prompt_for(item_path) -> str:
     return render_item(Item.from_dict(raw)) + JSON_INSTRUCT
 
 
-def _http(url: str, body: dict, headers: dict, attempts: int = 5) -> dict:
+def _http(url: str, body: dict, headers: dict, attempts: int = 5, timeout: int = 180) -> dict:
     data = json.dumps(body).encode()
     last = None
     for k in range(attempts):
         try:
             req = urllib.request.Request(url, data=data, headers=headers, method="POST")
-            with urllib.request.urlopen(req, timeout=180) as r:
+            with urllib.request.urlopen(req, timeout=timeout) as r:
                 return json.loads(r.read().decode())
         except urllib.error.HTTPError as e:
             last = f"HTTP {e.code}: {e.read().decode()[:200]}"
@@ -79,7 +79,7 @@ def _parse_json(text: str) -> dict:
 def call_openai(model, prompt):
     out = _http("https://api.openai.com/v1/chat/completions",
                 {"model": model, "messages": [{"role": "user", "content": prompt}],
-                 "response_format": {"type": "json_object"}, "max_completion_tokens": 6000},
+                 "response_format": {"type": "json_object"}, "max_completion_tokens": 16000},
                 {"Authorization": f"Bearer {os.environ['OPENAI_API_KEY']}", "Content-Type": "application/json"})
     return _parse_json(out["choices"][0]["message"]["content"])
 
@@ -93,6 +93,19 @@ def call_gemini(model, prompt):
     return _parse_json("".join(p.get("text", "") for p in parts))
 
 
+def call_ollama(model, prompt):
+    # local open-weights judge (e.g., deepseek-r1:70b) via Ollama; free, slow. Long timeout for
+    # reasoning models; strip any <think>...</think> block before JSON extraction.
+    out = _http("http://localhost:11434/api/chat",
+                {"model": model, "messages": [{"role": "user", "content": prompt}], "stream": False,
+                 "format": "json", "options": {"num_ctx": 16384, "temperature": 0}},
+                {"Content-Type": "application/json"}, attempts=3, timeout=1200)
+    text = out["message"]["content"]
+    if "</think>" in text:
+        text = text.split("</think>", 1)[1]
+    return _parse_json(text)
+
+
 def call_anthropic(model, prompt):
     out = _http("https://api.anthropic.com/v1/messages",
                 {"model": model, "max_tokens": 6000, "messages": [{"role": "user", "content": prompt}]},
@@ -102,7 +115,7 @@ def call_anthropic(model, prompt):
     return _parse_json(text)
 
 
-CALLERS = {"openai": call_openai, "gemini": call_gemini, "anthropic": call_anthropic}
+CALLERS = {"openai": call_openai, "gemini": call_gemini, "anthropic": call_anthropic, "ollama": call_ollama}
 
 
 def main():
@@ -118,7 +131,14 @@ def main():
 
     def verdict_for(item: Item):
         t0 = time.perf_counter()
-        rec = caller(args.model, prompts[item.id])
+        try:
+            rec = caller(args.model, prompts[item.id])
+        except Exception as e:  # transient/parse failure on one item must not crash or silently drop the run
+            try:
+                rec = caller(args.model, prompts[item.id])  # one retry
+            except Exception as e2:
+                return "error", None, {"model": args.model, "error": str(e2)[:200],
+                                       "api_seconds": round(time.perf_counter() - t0, 2)}
         verdict = "violated" if str(rec.get("verdict", "")).lower().startswith("viol") else "holds"
         rec2 = {"verdict": verdict, "witness_assignment": rec.get("witness_assignment") or [],
                 "witness_events": rec.get("witness_events") or []}
