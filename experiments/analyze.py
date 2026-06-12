@@ -31,6 +31,7 @@ METHOD_LABEL = {
     "judge_gpt55": "language-model judge (GPT-5.5)",
     "judge_gemini31propreview": "language-model judge (Gemini 3.1 Pro)",
     "judge_fable5": "language-model judge (Fable 5)",
+    "judge_qwen3_8b": "language-model judge (Qwen3-8B, open)",
     "nemo_guardrails": "NeMo Guardrails",
     "llama_guard": "Llama Guard",
 }
@@ -139,8 +140,11 @@ def main() -> int:
             r = runs[i]
             if r["verdict"] == "violated" and r.get("witness") is not None:
                 total_claims += 1
-                if confirm_witness(items[i], r["witness"]):
-                    valid += 1
+                try:
+                    if confirm_witness(items[i], r["witness"]):
+                        valid += 1
+                except Exception:
+                    pass  # malformed or incomplete witness (e.g. a weak model omits a variable) is not valid
         wval = (valid / total_claims) if total_claims else None
 
         by_depth = {}

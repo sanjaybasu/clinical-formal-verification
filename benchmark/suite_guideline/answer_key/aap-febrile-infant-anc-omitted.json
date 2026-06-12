@@ -1,0 +1,34 @@
+{
+  "item": "aap-febrile-infant-anc-omitted",
+  "ground_truth": "violated",
+  "witness": [
+    {
+      "var": "age_days",
+      "value": 22
+    },
+    {
+      "var": "temp_gt_385",
+      "value": false
+    },
+    {
+      "var": "crp_gt_20",
+      "value": false
+    },
+    {
+      "var": "anc_gt_4000",
+      "value": true
+    },
+    {
+      "var": "pct_ge_05",
+      "value": false
+    },
+    {
+      "var": "urine_positive",
+      "value": false
+    }
+  ],
+  "seeded": true,
+  "interaction_depth": 1,
+  "tier": "guideline",
+  "basis": "concrete_replay"
+}

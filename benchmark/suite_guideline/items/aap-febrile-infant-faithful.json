@@ -1,0 +1,163 @@
+{
+  "id": "aap-febrile-infant-faithful",
+  "domain": "triage_partial",
+  "metadata": {
+    "description": "AAP 2021 febrile-infant disposition (well-appearing, 8-60 days)",
+    "source": "published_guideline:AAP-2021-CPG-Pantell",
+    "clinical_intent": "young or high-risk febrile infants are evaluated and admitted, not discharged"
+  },
+  "ruleset": {
+    "id": "aap-febrile-infant-faithful",
+    "kind": "decision",
+    "inputs": [
+      {
+        "name": "age_days",
+        "type": "int",
+        "bounds": [
+          8,
+          60
+        ]
+      },
+      {
+        "name": "temp_gt_385",
+        "type": "bool"
+      },
+      {
+        "name": "crp_gt_20",
+        "type": "bool"
+      },
+      {
+        "name": "anc_gt_4000",
+        "type": "bool"
+      },
+      {
+        "name": "pct_ge_05",
+        "type": "bool"
+      },
+      {
+        "name": "urine_positive",
+        "type": "bool"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "discharge_home",
+        "type": "bool"
+      }
+    ],
+    "rules": [
+      {
+        "id": "young_full_eval",
+        "priority": 100,
+        "when": {
+          "op": "le",
+          "args": [
+            {
+              "var": "age_days"
+            },
+            {
+              "const": 21
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "discharge_home",
+            "value": false
+          }
+        ]
+      },
+      {
+        "id": "highrisk_no_discharge",
+        "priority": 90,
+        "when": {
+          "op": "or",
+          "args": [
+            {
+              "var": "temp_gt_385"
+            },
+            {
+              "var": "crp_gt_20"
+            },
+            {
+              "var": "anc_gt_4000"
+            },
+            {
+              "var": "pct_ge_05"
+            },
+            {
+              "var": "urine_positive"
+            }
+          ]
+        },
+        "then": [
+          {
+            "var": "discharge_home",
+            "value": false
+          }
+        ]
+      }
+    ],
+    "default": [
+      {
+        "var": "discharge_home",
+        "value": true
+      }
+    ],
+    "conflict_resolution": "priority"
+  },
+  "property": {
+    "id": "young-or-highrisk-not-discharged",
+    "kind": "invariant",
+    "formula": {
+      "op": "not",
+      "args": [
+        {
+          "op": "and",
+          "args": [
+            {
+              "var": "discharge_home"
+            },
+            {
+              "op": "or",
+              "args": [
+                {
+                  "op": "le",
+                  "args": [
+                    {
+                      "var": "age_days"
+                    },
+                    {
+                      "const": 21
+                    }
+                  ]
+                },
+                {
+                  "op": "or",
+                  "args": [
+                    {
+                      "var": "temp_gt_385"
+                    },
+                    {
+                      "var": "crp_gt_20"
+                    },
+                    {
+                      "var": "anc_gt_4000"
+                    },
+                    {
+                      "var": "pct_ge_05"
+                    },
+                    {
+                      "var": "urine_positive"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "intent": "discharge_home is never true for an infant <=21 days or with any high-risk marker / positive urine"
+  }
+}
